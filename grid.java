@@ -5,6 +5,8 @@ public class grid{
     }
     public String toString (){ 
         StringBuilder temp = new StringBuilder("");
+        temp.append("Grid "+this.area.length+"x"+this.area[0].length+" :");
+        temp.append("\n");
         for(int i = 0; i < area.length; i++){
             for(int j = 0; j < area[1].length; j++){
                 temp.append("").append(area[i][j]).append("|");//je fais unne concatenation

@@ -63,6 +63,8 @@ public class tetriminoFilled extends tetrimino{
     
     public String toString(){
         StringBuilder temp = new StringBuilder("");
+        temp.append("Shape "+this.tab[1][1]+" :");
+        temp.append("\n");
         temp.append(super.toString());
         return temp.toString();
     }

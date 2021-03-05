@@ -11,21 +11,7 @@ public class mainTest{
   
 	public static void main(String[] args){
         
-        /**
-         * dtermining the initial position of a tetrimino on the grid
-         * */
         
-        /* 
-        int pa=a.tab.length/2; //milieu shape a
-        int pA=A.area[1].length/2; //milieu gamearea A
-        int d=pA-pa ;//position début ajout a dans A
-        
-		
-        // détermination de la position d'insertion de la forme au début de la grille de jeu
-        System.out.println("milieu shape a = "+pa);
-        System.out.println("milieu gamearea A = "+pA);
-        System.out.println("position début ajout a dans A = "+d);
-        * */
         
         /**
          * Creating tetriminos
@@ -63,14 +49,36 @@ public class mainTest{
         list.add(t5);
         list.add(t6);
         list.add(t7);
-    }
         
-        /*
-        shape a = new shape(5,1);
-        gamearea A = new gamearea();
-        System.out.println(a);
+        /**
+         * creating the grid
+         * */
+         
+        grid A = new grid(20,10);
         System.out.println(A);
+    }
+    
+        /**
+         * dtermining the initial position of a tetrimino on the grid
+         * */
+        
+        /* 
+        int pa=a.tab.length/2; //milieu shape a
+        int pA=A.area[1].length/2; //milieu gamearea A
+        int d=pA-pa ;//position début ajout a dans A
+        
+		
+        // détermination de la position d'insertion de la forme au début de la grille de jeu
+        System.out.println("milieu shape a = "+pa);
+        System.out.println("milieu gamearea A = "+pA);
+        System.out.println("position début ajout a dans A = "+d);
         * */
+        
+        /**
+         * 
+         * */
+         
+        
         
         
         
