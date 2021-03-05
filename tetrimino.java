@@ -25,13 +25,18 @@ public class tetrimino {
 	
 	}
     
+    /**
+     * toString method
+     * no parameter
+     **/
+    
     public String toString (){ 
-        StringBuilder temp = new StringBuilder("");
+        StringBuilder temp = new StringBuilder(""); //StringBuilder allows us to use a toString method able to print something on different lines, usefull to print matrices
         for(int i = 0; i < tab.length; i++){
             for(int j = 0; j < tab[1].length; j++){
-                temp.append("").append(tab[i][j]).append("|");//je fais unne concatenation
+                temp.append("").append(tab[i][j]).append("|"); // concatenation
             }
-            temp.append("\n");// Retour a la ligne
+            temp.append("\n");// line break
         }
         return temp.toString();
     }
