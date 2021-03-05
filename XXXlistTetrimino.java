@@ -2,7 +2,7 @@
  * the listTetrimino class allows to create a LinkedList of diffrent tetriminos given as parameters
  * */
 
-public class listTetriminoXX{
+public class XXXlistTetrimino{
     LinkedList<tetrimino> list ;
     
     /**
