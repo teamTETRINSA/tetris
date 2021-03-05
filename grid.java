@@ -1,7 +1,7 @@
 public class grid{
     public int[][] area ;
-    public grid(){
-        area = new int[23][13];
+    public grid(int h, int l){
+        area = new int[h][l];
     }
     public String toString (){ 
         StringBuilder temp = new StringBuilder("");
