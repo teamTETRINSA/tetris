@@ -1,3 +1,4 @@
+// ANCIEN MODELE
 /**
  * to create shapes
  * by @josephblanchard
