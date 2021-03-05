@@ -10,6 +10,8 @@ public class mainTest{
         int pA=A.area[1].length/2; //milieu gamearea A
         int d=pA-pa ;//position début ajout a dans A
         
+		
+	// détermination de la position d'insertion de la forme au début de la grille de jeu
         System.out.println("milieu shape a = "+pa);
         System.out.println("milieu gamearea A = "+pA);
         System.out.println("position début ajout a dans A = "+d);
