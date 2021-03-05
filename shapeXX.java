@@ -4,7 +4,7 @@
  * by @josephblanchard
  * */
 
-public class shape{
+public class shapeXX{
     public int[][] tab ;
     
     /**
