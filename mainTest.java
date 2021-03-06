@@ -10,12 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
+import java.util.Random;
 
 public class mainTest{
   
 	public static void main(String[] args){
-        
-        
         
         /**
          * Creating tetriminos
@@ -57,33 +56,123 @@ public class mainTest{
         /**
          * creating the grid
          * */
+        
+        int mode = 2; //player mode (1 or 2 players)
+        boolean go = false ; // says if the game is over or not
+        int lap = 0; // count the total number of tetriminos placed in the area
+        int score = 0;
+        
+        //initializing tetriminos
+        int y = (int) (Math.random()*8);
+        tetrimino s1 = list.get(y);
+        tetrimino s2;
          
         grid G1 = new grid(20,10);
-        grid G2 = new grid (20,10);
-        //showGrid(G1,G2);
+        grid G2 = new grid(20,10);
+        
         System.out.println(G1);
         System.out.println(G2);
         
         
         GUI window = new GUI (861,600,100,50);
         //GUI window = new GUI (listeCourbe,1000,600,100,50);
+        
+        
+        
+        while(go==false){
+            lap+=1;
+            score+=1;
+            
+            Random rand = new Random();
+            int t = rand.nextInt(7);
+            //System.out.println("T="+t);
+            s2=list.get(t);
+            
+            
+            //when tetriminos are placed in the game, we look at all filled lines to delet them
+            
+            deleteLines(); /* call the linesFilled method to get a list of the lines that we need to delete
+                            * delete the filled lines in both grids
+                            * rearrange the grids making falling all filled boxes above the lines deleted
+                            * */
+        
+            
+            //when tetriminos are placed in the game and filled lines deleted, we look if the game is finished
+            
+            go=gameOver(G1,G2,mode);    /* as a function of the game mode
+                                         * if the second line of the table (which corresponds to line 1) is filled, the game is over
+                                         * */
+            
+            s1=s2; /* the next shape already choosed before
+                    * (so that we can show it near the game area in the GUI
+                    * becomes the main shape of the next lap, 
+                    * */
+        }
+        
+        
     }
     
     /**
-     * for printing the 2 frids at the same time
+     * method to know if the game is over
+     * if the second line of the table (which corresponds to line 1) is filled, the game is over
+     * boolean
      * */
     
-    //does not work
-    /*
-    public void showGrid(grid A, grid B){
-        System.out.println(A);
-        System.out.println(B);
-    }
-    * */
     
-        /**
-         * dtermining the initial position of a tetrimino on the grid
-         * */
+    public boolean gameOver(grid a, grid b, int mode){
+        boolean gameFinished = true;
+        
+        switch (mode){
+            case 1 :
+            for (int i=0 ; i<a.area[1].length ; i++){
+                if (a.area[1][i]==0){
+                    gameFinished=false;
+                    i=a.area[1].length;
+                }
+            }
+            break;
+            case 2 :
+            for (int i=0 ; i<a.area[1].length ; i++){
+                if (a.area[1][i]==0 && b.area[1][i]==0){
+                    gameFinished=false;
+                    i=a.area[1].length;
+                }
+            }
+            break;
+        }
+        return gameFinished;
+    }
+    
+    /**
+     * method to know when a line is filled and has to be emptied
+     * LinkedList<int> 
+     * */
+    
+    public LinkedList<int> linesFilled (int score, grid g){ 
+        LinkedList<int> filledLines = new LinkedList<int>(); 
+        for (int i = 0 ; i<g.area.length ; i++){
+            boolean filled = true ;
+            for (int j = 0 ; i<g.area[0].length ; j++){
+                if (g.area[i][j]==0){
+                    filled = false ;
+                    j = g.area[0].length ;
+                }
+            }
+            if (filled = true){
+                filledLines.add(i);
+            }
+        }
+        return filledLines;
+    }
+    
+    /**
+     * method to get the initial position of a tetrimino on the grid
+     * we place the top left hand corner of the shape
+     * this method could be use if we use different width for grids
+     * int
+     * */
+        
+        //only elements
         
         /* 
         int pa=a.tab.length/2; //milieu shape a
@@ -96,24 +185,20 @@ public class mainTest{
         System.out.println("milieu gamearea A = "+pA);
         System.out.println("position début ajout a dans A = "+d);
         * */
-        
-        /**
-         * 
-         * */
-         
-        
-        
-        
-        
-        //printShape(a);
-        
+    
+    /**
+     * method to print the 2 grids at the same time on the terminal
+     * */
+    
+    
+        // only elements
+    
+        //does not work
         /*
-        for (int i=0 ; i<3 ; i++){
-            for (int j=0 ; j<3 ; j++){
-                System.out.print(a.tab[i][j]+"  ");
-            }
-            System.out.println();
+        public void showGrid(grid A, grid B){
+        System.out.println(A);
+        System.out.println(B);
         }
         * */
-    
+        
 }

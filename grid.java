@@ -1,4 +1,4 @@
-public class grid{
+    public class grid{
     public int[][] area ;
     public grid(int h, int l){
         area = new int[h][l];
