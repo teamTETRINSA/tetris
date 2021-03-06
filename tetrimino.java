@@ -1,43 +1,76 @@
-import java.util.Random;
-import java.awt.Color;
+/**
+ * it's a colored shape composed of different litlle squares
+ * */
 
-public class tetrimino {
-    
-    public int[][] tab ;
-    protected Color CouleurTetrimino;
-    private final Color COULEUR_PAR_DEFAUT = Color.black; // La couleur par défaut est défini comme une constante
-    
+public class tetrimino extends shape{
     /**
      * constructor
-     * no parameter
-     **/
+     * */
     
-    public tetrimino () {
-        
-        Random rand = new Random();
-		int r = rand.nextInt(255);
-		int g = rand.nextInt(255);
-		int b = rand.nextInt(255);
-        //Initialisation couleur
-		CouleurTetrimino = new Color(r, g, b);
-		//Initialisation tab
-		tab = new int [2][4];
-	
-	}
+    public tetrimino(int n){
+        super();
+        switch (n){
+            case 1: // ....
+            for (int i =0 ; i<this.tab[0].length ; i++){
+                this.tab[0][i]=1;
+            }
+            break;
+            
+            case 2: // ::
+            this.tab[0][0]=2;
+            this.tab[0][1]=2;
+            this.tab[1][0]=2;
+            this.tab[1][1]=2;
+            break;
+            
+            case 3: // .:.
+            for (int i =0 ; i<this.tab[0].length ; i++){
+                this.tab[1][i]=3;
+            }
+            this.tab[1][1]=3;
+            break;
+            
+            case 4: // ':.
+            this.tab[0][0]=4;
+            this.tab[0][1]=4;
+            this.tab[1][1]=4;
+            this.tab[1][2]=4;
+            break;
+            
+            case 5: // .:'
+            this.tab[1][0]=5;
+            this.tab[0][1]=5;
+            this.tab[1][1]=5;
+            this.tab[0][2]=5;
+            break;
+            
+            case 6: // :..
+            for (int i =0 ; i<this.tab[0].length-1 ; i++){
+                this.tab[1][i]=6;
+            }
+            this.tab[0][0]=6;
+            break;
+            
+            case 7: // ..:
+            for (int i =0 ; i<this.tab[0].length-1 ; i++){
+                this.tab[1][i]=7;
+            }
+            this.tab[0][2]=7;
+            break;
+        }
+    }
     
     /**
      * toString method
      * no parameter
      **/
     
-    public String toString (){ 
-        StringBuilder temp = new StringBuilder(""); //StringBuilder allows us to use a toString method able to print something on different lines, usefull to print matrices
-        for(int i = 0; i < tab.length; i++){
-            for(int j = 0; j < tab[1].length; j++){
-                temp.append("").append(tab[i][j]).append("|"); // concatenation
-            }
-            temp.append("\n");// line break
-        }
+    public String toString(){
+        StringBuilder temp = new StringBuilder("");
+        temp.append("Shape "+this.tab[1][1]+" :");
+        temp.append("\n");
+        temp.append(super.toString());
         return temp.toString();
     }
+
 }

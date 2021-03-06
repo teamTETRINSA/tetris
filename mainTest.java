@@ -21,13 +21,13 @@ public class mainTest{
          * Creating tetriminos
          * */
         
-        tetriminoFilled t1= new tetriminoFilled(1);
-        tetriminoFilled t2= new tetriminoFilled(2);
-        tetriminoFilled t3= new tetriminoFilled(3);
-        tetriminoFilled t4= new tetriminoFilled(4);
-        tetriminoFilled t5= new tetriminoFilled(5);
-        tetriminoFilled t6= new tetriminoFilled(6);
-        tetriminoFilled t7= new tetriminoFilled(7);
+        tetrimino t1= new tetrimino(1);
+        tetrimino t2= new tetrimino(2);
+        tetrimino t3= new tetrimino(3);
+        tetrimino t4= new tetrimino(4);
+        tetrimino t5= new tetrimino(5);
+        tetrimino t6= new tetrimino(6);
+        tetrimino t7= new tetrimino(7);
         
         /**
          * for printing the different tetriminos created on the temrinal
@@ -45,7 +45,7 @@ public class mainTest{
          * now we create a list with all these tetriminos
          * */
         
-        LinkedList<tetriminoFilled> list = new LinkedList<tetriminoFilled>();
+        LinkedList<tetrimino> list = new LinkedList<tetrimino>();
         list.add(t1);
         list.add(t2);
         list.add(t3);
@@ -64,7 +64,8 @@ public class mainTest{
         System.out.println(G1);
         System.out.println(G2);
         
-        GUI window = new GUI (1000,600,100,50);
+        
+        GUI window = new GUI (861,600,100,50);
         //GUI window = new GUI (listeCourbe,1000,600,100,50);
     }
     
