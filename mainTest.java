@@ -6,6 +6,10 @@
  * */
 
 import java.util.LinkedList;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.Color;
 
 public class mainTest{
   
@@ -54,9 +58,27 @@ public class mainTest{
          * creating the grid
          * */
          
-        grid A = new grid(20,10);
-        System.out.println(A);
+        grid G1 = new grid(20,10);
+        grid G2 = new grid (20,10);
+        //showGrid(G1,G2);
+        System.out.println(G1);
+        System.out.println(G2);
+        
+        GUI window = new GUI (1000,600,100,50);
+        //GUI window = new GUI (listeCourbe,1000,600,100,50);
     }
+    
+    /**
+     * for printing the 2 frids at the same time
+     * */
+    
+    //does not work
+    /*
+    public void showGrid(grid A, grid B){
+        System.out.println(A);
+        System.out.println(B);
+    }
+    * */
     
         /**
          * dtermining the initial position of a tetrimino on the grid
