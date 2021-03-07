@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.util.LinkedList;
 import java.awt.Color;
 import java.awt.Graphics2D;//used to reduce the size of an image
+import java.awt.Image;
 
 public class GUI extends JFrame implements MouseListener, ActionListener{
     
@@ -44,12 +45,13 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
          * LABELS
          */
         
-        /*
+        
         ImageIcon original = new ImageIcon("BG1.jpeg");
         Image newImage   =  original.getImage();
         int	h = newImage.getHeight(this);
         int	l = newImage.getWidth(this);
-        newImage = newImage.getScaledInstance(l,600,861);
+        //newImage = newImage.getScaledInstance(l,600,861);
+        newImage = newImage.getScaledInstance(861,600,0);
         
 
         
@@ -59,18 +61,19 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
         JLabel backGround = new JLabel(bg1);
         backGround.setBounds(0,0,a,b);
         JP1.add(backGround);
-        * */
+        
         
         
         ///////////
         
         
-        
+        /*
         ImageIcon bg1 = new ImageIcon("BG1.jpeg");
         bg1=fillScreen(bg1);
         JLabel backGround = new JLabel(bg1);
         backGround.setBounds(0,0,a,b);
         JP1.add(backGround);
+        * */
         
         
         /**
@@ -106,6 +109,7 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
     public void mouseReleased(MouseEvent e){  
     }
     
+    /*
     public ImageIcon fillScreen(ImageIcon i){
         
         Image I   =  i.getImage();
@@ -117,4 +121,5 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
         ImageIcon resizedImage = new ImageIcon(I);
         return resizedImage;
     }
+    * */
 }

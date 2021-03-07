@@ -91,7 +91,7 @@ public class mainTest{
             
             
             //when tetriminos are placed in the game, we look at all filled lines to delet them
-            
+            /*
             deleteLines(); /* call the linesFilled method to get a list of the lines that we need to delete
                             * delete the filled lines in both grids
                             * rearrange the grids making falling all filled boxes above the lines deleted
@@ -99,7 +99,7 @@ public class mainTest{
         
             
             //when tetriminos are placed in the game and filled lines deleted, we look if the game is finished
-            
+            /*
             go=gameOver(G1,G2,mode);    /* as a function of the game mode
                                          * if the second line of the table (which corresponds to line 1) is filled, the game is over
                                          * */
