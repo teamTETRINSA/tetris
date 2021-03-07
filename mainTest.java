@@ -6,6 +6,7 @@
  * */
 
 import java.util.LinkedList;
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +45,7 @@ public class mainTest{
          * now we create a list with all these tetriminos
          * */
         
-        LinkedList<tetrimino> list = new LinkedList<tetrimino>();
+        ArrayList<tetrimino> list = new ArrayList<tetrimino>();
         list.add(t1);
         list.add(t2);
         list.add(t3);
@@ -144,12 +145,23 @@ public class mainTest{
     }
     
     /**
+     * method to delete all lines filled by tetriminos
+     * 
+     * void
+     * */
+    
+    public void deleteLines(){
+    }
+    
+    
+    /**
      * method to know when a line is filled and has to be emptied
+     * int score, grid g
      * LinkedList<int> 
      * */
     
-    public LinkedList<int> linesFilled (int score, grid g){ 
-        LinkedList<int> filledLines = new LinkedList<int>(); 
+    public LinkedList<Integer> linesFilled (int score, grid g){ 
+        LinkedList<Integer> filledLines = new LinkedList<Integer>(); 
         for (int i = 0 ; i<g.area.length ; i++){
             boolean filled = true ;
             for (int j = 0 ; i<g.area[0].length ; j++){
