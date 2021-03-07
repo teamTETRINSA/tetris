@@ -54,63 +54,88 @@ public class mainTest{
         list.add(t6);
         list.add(t7);
         
-        /**
-         * creating the grid
-         * */
+        boolean start=true;
         
-        int mode = 2; //player mode (1 or 2 players)
-        boolean go = false ; // says if the game is over or not
-        int lap = 0; // count the total number of tetriminos placed in the area
-        int score = 0;
+        while (start){
+            start=false;
         
-        //initializing tetriminos
-        int y = (int) (Math.random()*8);
-        tetrimino s1 = list.get(y);
-        tetrimino s2;
-         
-        grid G1 = new grid(20,10);
-        grid G2 = new grid(20,10);
-        
-        System.out.println(G1);
-        System.out.println(G2);
-        
-        
-        GUI window = new GUI (861,600,100,50);
-        //GUI window = new GUI (listeCourbe,1000,600,100,50);
-        
-        
-        
-        while(go==false){
-            lap+=1;
-            score+=1;
+            /**
+             * creating the grid
+             * */
             
-            Random rand = new Random();
-            int t = rand.nextInt(7);
-            //System.out.println("T="+t);
-            s2=list.get(t);
+            int mode = 2;   /* player mode 2  by default
+                             * need now to add a reaction to the button mode player
+                             * */
+            
+            boolean go = false ; // says if the game is over or not
+            int lap = 0; // count the total number of tetriminos placed in the area
+            int score1 = 0;
+            int score2 =0;
+            
+            //initializing tetriminos
+            int y = (int) (Math.random()*8);
+            tetrimino s1 = list.get(y);
+            tetrimino s2;
+             
+            grid G1 = new grid(20,10);
+            grid G2 = new grid(20,10);
+            
+            System.out.println(G1);
+            System.out.println(G2);
             
             
-            //when tetriminos are placed in the game, we look at all filled lines to delet them
-            /*
-            deleteLines(); /* call the linesFilled method to get a list of the lines that we need to delete
-                            * delete the filled lines in both grids
-                            * rearrange the grids making falling all filled boxes above the lines deleted
-                            * */
-        
+            GUI window = new GUI (861,600,100,50);
+            //GUI window = new GUI (listeCourbe,1000,600,100,50);
             
-            //when tetriminos are placed in the game and filled lines deleted, we look if the game is finished
-            /*
-            go=gameOver(G1,G2,mode);    /* as a function of the game mode
-                                         * if the second line of the table (which corresponds to line 1) is filled, the game is over
-                                         * */
+            /** main loop
+             * allow to repeat the fall of tetriminos until the game is over
+             * */
             
-            s1=s2; /* the next shape already choosed before
-                    * (so that we can show it near the game area in the GUI
-                    * becomes the main shape of the next lap, 
-                    * */
+            while(go==false){
+                lap+=1;
+                score1+=1;
+                score2+=1;
+                
+                Random rand = new Random();
+                int t = rand.nextInt(7);
+                //System.out.println("T="+t);
+                s2=list.get(t);
+                
+                
+                //when tetriminos are placed in the game, we look at all filled lines to delete them
+                
+                /*
+                int bonus1 = deleteLines(score1,G1); /* call the linesFilled method to get a list of the lines that we need to delete
+                                * delete the filled lines in both grids
+                                * rearrange the grids making falling all filled boxes above the lines deleted
+                                * add points for each o
+                                * */
+                int bonus2 = deleteLines(score2,G2);
+                score1 = addBonus(bonus1);
+                score2 = addBonus(bonus2);
+                                
+                
+                //when tetriminos are placed in the game and filled lines deleted, we look if the game is finished
+                
+                /*
+                go=gameOver(G1,G2,mode);    /* as a function of the game mode
+                                             * if the second line of the table (which corresponds to line 1) is filled, the game is over
+                                             * */
+                
+                s1=s2; /* the next shape already choosed before
+                        * (so that we can show it near the game area in the GUI
+                        * becomes the main shape of the next lap, 
+                        * */
+            }
+            
+            /** print a panel when the game is over
+             * button start becomes avilable and visible
+             * if the user push the start button, 
+             * the boolean "start" becomes true and the game restart
+             * */
+            
+            
         }
-        
-        
     }
     
     /**
@@ -150,7 +175,31 @@ public class mainTest{
      * void
      * */
     
-    public void deleteLines(){
+    public int deleteLines(int score, grid A){
+        LinkedList<Integer> linesfilledA = linesFilled (A);
+        
+        //first we delete the numbers of the filled lines
+        int count=0;
+        for (int a : linesfilledA){
+            count=+1;
+            for (int i =0 ; i< A.area[0].length ; i++){
+                A.area[a][i]=0;
+            }
+        }
+        return count;
+
+        
+        // then we show the grids in terminal and on the GUI with emptied lines
+        
+        // finally we make fall all the filled boxes above thes lines in the temrinal and on the GUI
+        
+    }
+    
+    /**
+     * method to trandform the number of lines deleted in one step as an increase of the score
+     * */
+    
+    public int addBonus(int b){
     }
     
     
@@ -160,7 +209,7 @@ public class mainTest{
      * LinkedList<int> 
      * */
     
-    public LinkedList<Integer> linesFilled (int score, grid g){ 
+    public LinkedList<Integer> linesFilled (grid g){ 
         LinkedList<Integer> filledLines = new LinkedList<Integer>(); 
         for (int i = 0 ; i<g.area.length ; i++){
             boolean filled = true ;
