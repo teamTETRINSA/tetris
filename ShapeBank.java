@@ -13,7 +13,7 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.util.Random;
 
-public class mainTest{
+public class ShapeBank {
   
 	public static void main(String[] args){
         
