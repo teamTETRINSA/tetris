@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.util.LinkedList; //to delete
 import java.util.ArrayList;
 import java.awt.Color;
-import java.awt.Graphics2D;//used to reduce the size of an image
+import java.awt.Graphics2D; //used to reduce the size of an image
 import java.awt.Image;
 
 public class GUI extends JFrame implements MouseListener, ActionListener{
@@ -19,10 +19,10 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
     private JPanel JP1;
     
     /**
-    * initializing parameters
+     * initializing parameters
      * */
      
-    //to re-check after the main mdoifications
+    //to re-check after the main modifications
         
     boolean restart=true;// variable to know if we want to restart the game
     boolean start;
@@ -33,43 +33,78 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
     int lap = 0; // cont the total number of tetriminos placed in the area
     int score1 = 0; // score of player 1 (on left)
     int score2 = 0; // score of player 2 (on right)
+    ArrayList<tetrimino> TetriminosList;
+    grid G1;
+    grid G2;
     
     /**Constructor
-     * for any mode > it opens on mode 2
+     * for any player mode > it starts on mode 2
      * */
      
-    public GUI (ArrayList<tetrimino> list, int a, int b, int c, int d, grid tab1, grid tab2){
+    public GUI (ArrayList<tetrimino> l, int a, int b, int c, int d, grid tab1, grid tab2){
+        
+        TetriminosList=l;
+        G1=tab1;
+        G2=tab2;
+        
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(a,b);
         this.setLocation(c,d);
         this.setTitle("Tetr'INSA");
-
-        //names of parameters
-        //this.l=maListeCourbe;
         
         
         
         /**
          * PANELS
+         * 3 main panels, 
+         *      1 for each grid
+         *      1 for the menu bar
+         * 2 more when the game finishes 
+         *      to annouce who won and scores
          */
         
-        JPanel JP1 = new JPanel();
+        JPanel JPG1 = new JPanel();
         JP1.setLayout(null);
-        //JP1.setBounds(10,10,10,10);
+        JP1.setBounds(10,10,10,10);
         JP1.setBackground(Color.green);
-        JP1.addMouseListener(this);
-        this.add(JP1);
+        this.add(JPG1);
+        
+        JPanel JPG2 = new JPanel();
+        JP1.setLayout(null);
+        JP1.setBounds(30,10,10,10);
+        JP1.setBackground(Color.red);
+        this.add(JPG2);
+        
+        JPanel JPMenu = new JPanel();
+        JP1.setLayout(null);
+        JP1.setBounds(50,10,10,10);
+        JP1.setBackground(Color.yellow);
+        this.add(JPMenu);
+        
+        JPanel JPWinner = new JPanel();
+        JP1.setLayout(null);
+        JP1.setBounds(10,30,10,10);
+        JP1.setBackground(Color.yellow);
+        //this.add(JPWinner);
+        
+        JPanel JPLoser = new JPanel();
+        JP1.setLayout(null);
+        JP1.setBounds(30,30,10,10);
+        JP1.setBackground(Color.yellow);
+        //this.add(JPLoser);
         
         /**
          * LABELS
+         * background image
+         * description of buttons
          */
         
-        
+    
         ImageIcon original = new ImageIcon("BG1.jpeg");
         Image newImage   =  original.getImage();
-        int	h = newImage.getHeight(this);
-        int	l = newImage.getWidth(this);
+        //int	h = newImage.getHeight(this);
+        //int	j = newImage.getWidth(this);
         //newImage = newImage.getScaledInstance(l,600,861);
         newImage = newImage.getScaledInstance(861,600,0);
         
