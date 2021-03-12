@@ -21,7 +21,7 @@ public class shape {
         //Initialisation couleur
 		CouleurTetrimino = new Color(r, g, b);
 		//Initialisation tab
-		tab = new int [2][4];
+		tab = new int [4][4];
 	
 	}
     
