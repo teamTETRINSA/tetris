@@ -60,6 +60,10 @@ public class tetrimino extends shape{
         }
     }
     
+    public tetrimino(){
+        super();
+    }
+    
     /**
      * toString method
      * no parameter
