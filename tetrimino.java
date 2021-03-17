@@ -1,6 +1,8 @@
 /**
  * it's a colored shape composed of different litlle squares
  * */
+ 
+import java.awt.Graphics;
 
 public class tetrimino extends shape{
     /**
@@ -76,5 +78,9 @@ public class tetrimino extends shape{
         temp.append(super.toString());
         return temp.toString();
     }
+    
+    public void dessine(Graphics g){
+        super.dessine(g);
+	}
 
 }

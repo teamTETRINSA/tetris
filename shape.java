@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class shape {
     
@@ -50,4 +51,13 @@ public class shape {
         * */
         return res;
     }
+    
+    public void dessine(Graphics g){
+        g.setColor(CouleurTetrimino);
+        for (int i=0; i < tab.length ; i++){
+            for (int j=0; j< tab[0].length ; j++){
+                g.fillRect (i*15, j*15, 15, 15);
+            }
+        }
+	}
 }
