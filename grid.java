@@ -1,8 +1,11 @@
-    public class grid{
+public class grid{
+	
     public int[][] area ;
+    
     public grid(int h, int l){
         area = new int[h][l];
     }
+    
     public String toString (){ 
         StringBuilder temp = new StringBuilder("");
         temp.append("Grid "+this.area.length+"x"+this.area[0].length+" :");

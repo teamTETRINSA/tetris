@@ -8,6 +8,25 @@ import java.util.Random;
 
 public class mainGame /*extends JPanel()**/ {
 	
+	    /**
+     * initializing parameters
+     * */
+     
+    //to re-check after the main modifications
+        
+    boolean restart=true;// variable to know if we want to restart the game
+    boolean start;
+    int mode = 2;   /* player mode 2  by default
+                            * need now to add a reaction to the button mode player
+                        * */
+    boolean go = false; // says if the game is over or not
+    int lap = 0; // cont the total number of tetriminos placed in the area
+    int score1 = 0; // score of player 1 (on left)
+    int score2 = 0; // score of player 2 (on right)
+    ArrayList<tetrimino> TetriminosList;
+    grid G1;
+    grid G2;
+	
 	int nb = 0;
 	tetrimino form1 = new tetrimino();
 	tetrimino form2 = new tetrimino();
@@ -80,12 +99,6 @@ public class mainGame /*extends JPanel()**/ {
 		nb = (int)(Math.random()*8);
 		form1 = list.get(nb);
 		return form1;
-	}
-	
-	public void rotateRight () {
-		
-		
-		
 	}
     
 }
