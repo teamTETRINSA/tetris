@@ -18,5 +18,56 @@ public class grid{
         }
         return temp.toString();
     }
+    
+    /**
+     * transform a shape that end it's fall (seen as even numbers)
+     * to a fixed shape (seen as odd numbers ≠ 0)
+     * */
+    
+    public void transformShape(){
+        for (int i=0 ; i<area.length ; i++){
+            for (int j=0 ; j<area[0].length ; j++){
+                if (odd(area[i][j])){ // the method odd (int i) returns true if the integer i is odd
+                    switch (area[i][j]){
+                        case 1 :
+                        area[i][j] = 2;
+                        break;
+                        
+                        case 3 :
+                        area[i][j] = 4;
+                        break;
+                        
+                        case 5 :
+                        area[i][j] = 6;
+                        break;
+                        
+                        case 7 :
+                        area[i][j] = 8;
+                        break;
+                        
+                        case 9 :
+                        area[i][j] = 10;
+                        break;
+                        
+                        case 11 :
+                        area[i][j] = 12;
+                        break;
+                        
+                        case 13 :
+                        area[i][j] = 14;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean odd (int i){
+        boolean o = true;
+        if (i%2 !=0){
+            o = false;
+        }
+        return o;
+    }
 
 }
