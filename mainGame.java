@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.util.Random;
 
-public class mainGame extends JPanel() {
+public class mainGame /*extends JPanel()**/ {
 	
 	int nb = 0;
 	tetrimino form1 = new tetrimino();
