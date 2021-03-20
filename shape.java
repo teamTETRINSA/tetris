@@ -5,7 +5,10 @@ import java.awt.Graphics;
 public class shape {
     
     public int[][] tab ;
+    public int X = 0;
+    public int Y = 0;
     protected Color CouleurTetrimino;
+    
     private final Color COULEUR_PAR_DEFAUT = Color.black; // La couleur par défaut est défini comme une constante
     
     /**
@@ -19,8 +22,14 @@ public class shape {
 		int r = rand.nextInt(255);
 		int g = rand.nextInt(255);
 		int b = rand.nextInt(255);
+        
+        //Initialisation coordinates 
+        //this.X = x;
+        //this.Y = y;
+        
         //Initialisation couleur
 		CouleurTetrimino = new Color(r, g, b);
+		
 		//Initialisation tab
 		tab = new int [4][4];
 	

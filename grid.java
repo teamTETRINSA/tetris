@@ -24,7 +24,7 @@ public class grid{
      * to a fixed shape (seen as odd numbers ≠ 0)
      * */
     
-    public void transformShape(){
+    /*public void transformShape(){
         for (int i=0 ; i<area.length ; i++){
             for (int j=0 ; j<area[0].length ; j++){
                 if (odd(area[i][j])){ // the method odd (int i) returns true if the integer i is odd
@@ -60,7 +60,7 @@ public class grid{
                 }
             }
         }
-    }
+    }*/
     
     public boolean odd (int i){
         boolean o = true;
@@ -69,5 +69,14 @@ public class grid{
         }
         return o;
     }
+    
+     public void dessine(Graphics g){
+        g.setColor(CouleurTetrimino);
+        for (int i=0; i < tab.length ; i++){
+            for (int j=0; j< tab[0].length ; j++){
+                g.fillRect (i*15, j*15, 15, 15);
+            }
+        }
+	}
 
 }

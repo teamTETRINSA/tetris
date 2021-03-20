@@ -79,30 +79,59 @@ public class tetrimino extends shape{
         return temp.toString();
     }
     
-    public void dessine(Graphics g){
-        super.dessine(g);
-	}
-
-	public tetrimino rotateRotate90 (tetrimino t){
-		int [][] revTab = new int [t.tab.length][t.tab[0].length];
+        /**
+     * ROTATETRIMINO
+     * Rotation to the right 
+     * */
+    
+    public void rotateTetrimino () {
+		
+		int [][] revTab = new int [this.tab.length][this.tab[0].length];
         
         //the lines are moved down
         for (int j = 0; j<revTab.length; j++){
 			for (int i = 0; i<revTab[0].length; i++){
-				revTab[i][j]=t.tab[t.tab.length-1-i][j];
+				revTab[i][j]=this.tab[this.tab.length-1-i][j];
 			}
 		}
 		
 		//transpose of the matrix
-		int [][] transTab = new int [t.tab.length][t.tab[0].length];
+		int [][] transTab = new int [this.tab.length][this.tab[0].length];
 		for (int p = 0; p<transTab.length; p++){
 			for (int q = 0; q<transTab[0].length; q++){
 				transTab[p][q]=revTab[q][p];
 			}
 		}
         
-        t.tab=revTab;
-        return t ;
+        this.tab=transTab;
     }
+    
+    /**
+     * MOVETETRIMINO
+     * Translation of the tetrimino of a coordinate dX 
+     * */
+     
+     // A DEPLACER ??? DANS tetrimino.java ???? Ui
+     
+    public void moveTetrimino(int dx) {
+			
+			this.X += dx;
+			
+	}
+    
+    /**
+     * DROPTETRIMINO
+     * Drop the tetrimino of a coordinate dY 
+     * */
+     
+    public void dropTetrimino(int dy) {
+			
+			this.Y += dy;
+			
+	}
+    
+    public void dessine(Graphics g){
+        super.dessine(g);
+	}
 
 }

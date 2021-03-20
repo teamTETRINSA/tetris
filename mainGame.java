@@ -33,6 +33,7 @@ public class mainGame /*extends JPanel()**/ {
         while (restart == true){
             restart = false;
             G = new grid(20,10);          //we re-build a grid before each new game
+            // Paramètre position initiale x à calculer 
             System.out.println(G);        //a supprimer plus tard
             t1 = newTetrimino();          //the first tetrimino choosen
             /** AFFICHAGE DE T1 **/
@@ -251,4 +252,16 @@ public class mainGame /*extends JPanel()**/ {
     public int addBonus(int b){
         return 1; // so that it compiles
     }
+	
+	/**
+     * GETCELL
+     * Returns the content of one cell of the grid
+     * */
+     
+    public int getCell(int x, int y) {
+			
+			return (this.tab[x][y]);
+			
+	}
+	
 }
