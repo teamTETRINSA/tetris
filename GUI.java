@@ -12,70 +12,46 @@ import java.awt.Color;
 import java.awt.Graphics2D; //used to reduce the size of an image
 import java.awt.Image;
 
-public class GUI extends JFrame implements MouseListener, ActionListener{
+public class GUI extends JFrame implements MouseListener, ActionListener, KeyListener{
     
     
     //private JButton start;
     //private JLabel backGround;
     private JPanel JP1;
-    
-    /**
-     * initializing parameters
-     * */
-     
-    //to re-check after the main modifications
-        
-    boolean restart=true;// variable to know if we want to restart the game
-    boolean start;
-    int mode = 2;   /* player mode 2  by default
-                            * need now to add a reaction to the button mode player
-                        * */
-    boolean go = false; // says if the game is over or not
-    int lap = 0; // cont the total number of tetriminos placed in the area
-    int score1 = 0; // score of player 1 (on left)
-    int score2 = 0; // score of player 2 (on right)
-    ArrayList<tetrimino> TetriminosList;
-    grid G1;
-    grid G2;
+    // ...
     
     /**Constructor
      * for any player mode > it starts on mode 2
      * */
      
-    public GUI (ArrayList<tetrimino> l, int a, int b, int c, int d, grid tab1, grid tab2){
+    public GUI (ArrayList<tetrimino> l, int a, int b, int c, int d, grid tab1){
         
-        TetriminosList=l;
-        G1=tab1;
-        G2=tab2;
+        //TetriminosList=l;
+        //G1=tab1;
         
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(a,b);
         this.setLocation(c,d);
         this.setTitle("Tetr'INSA");
+        addKeyListener(this);
         
         
         
         /**
-         * PANELS
-         * 3 main panels, 
-         *      1 for each grid
+         * 3 PANELS
+         * 2 main panels, 
+         *      1 for the grid
          *      1 for the menu bar
-         * 2 more when the game finishes 
-         *      to annouce who won and scores
+         * 1 more
+         *      when the game is over
          */
         
-        JPanel JPG1 = new JPanel();
+        JPanel JP1 = new JPanel();
         JP1.setLayout(null);
         JP1.setBounds(10,10,10,10);
         JP1.setBackground(Color.green);
-        this.add(JPG1);
-        
-        JPanel JPG2 = new JPanel();
-        JP1.setLayout(null);
-        JP1.setBounds(30,10,10,10);
-        JP1.setBackground(Color.red);
-        this.add(JPG2);
+        this.add(JP1);
         
         JPanel JPMenu = new JPanel();
         JP1.setLayout(null);
@@ -83,17 +59,14 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
         JP1.setBackground(Color.yellow);
         this.add(JPMenu);
         
+        // a pop up window appears when the game is finished : maybe we'll not use a JPanel...
+        /*
         JPanel JPWinner = new JPanel();
         JP1.setLayout(null);
         JP1.setBounds(10,30,10,10);
         JP1.setBackground(Color.yellow);
         //this.add(JPWinner);
-        
-        JPanel JPLoser = new JPanel();
-        JP1.setLayout(null);
-        JP1.setBounds(30,30,10,10);
-        JP1.setBackground(Color.yellow);
-        //this.add(JPLoser);
+        * */
         
         /**
          * LABELS
@@ -148,70 +121,54 @@ public class GUI extends JFrame implements MouseListener, ActionListener{
     }
     
     /********************************************************************************************************
-     * GRAPHICAL METHODS
-     * all methods that will take into account graphical parameters
+     * ACTIONLISTENER
      * */
     
-        public void actionPerformed (ActionEvent e) {
-        }
+    public void actionPerformed (ActionEvent e) {
+    }
         
-        public void mouseClicked (MouseEvent e){
-        }
+    /********************************************************************************************************
+     * MOUSELISTENER
+     * */
         
-        public void mouseEntered(MouseEvent e){
-        }
-            
-        public void mouseExited(MouseEvent e){
-        }
+    public void mouseClicked (MouseEvent e){
+    }
+    
+    public void mouseEntered(MouseEvent e){
+    }
         
-        public void mousePressed(MouseEvent e){ 
-        }
-        
-        public void mouseReleased(MouseEvent e){  
-        }
+    public void mouseExited(MouseEvent e){
+    }
+    
+    public void mousePressed(MouseEvent e){ 
+    }
+    
+    public void mouseReleased(MouseEvent e){  
+    }
     
     /********************************************************************************************************
-     * METHODS
-     * methods to analyse the game and (they do not modify the GUI)
+     * KEYLISTENER
      * */
-     
-
-        /**
-         * method to get the initial position of a tetrimino on the grid
-         * we place the top left hand corner of the shape
-         * this method could be use if we use different width for grids
-         * int
-         * */
-        
-        //only elements
-        
-        /* 
-        int pa=a.tab.length/2; //milieu shape a
-        int pA=A.area[1].length/2; //milieu gamearea A
-        int d=pA-pa ;//position début ajout a dans A
-        
-		
-        // détermination de la position d'insertion de la forme au début de la grille de jeu
-        System.out.println("milieu shape a = "+pa);
-        System.out.println("milieu gamearea A = "+pA);
-        System.out.println("position début ajout a dans A = "+d);
-        * */
     
-        /**
-         * method to print the 2 grids at the same time on the terminal
-         * to delete?
-         * */
+    public void keyPressed(KeyEvent e) {
+    }
     
+    public void keyReleased(KeyEvent e) {
+    }
     
-        // only elements
-    
-        //does not work
-        /*
-        public void showGrid(grid A, grid B){
-        System.out.println(A);
-        System.out.println(B);
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyCode()==KeyEvent.VK_DOWN){
+            mainGame.dropTetrimino(1);
+        }else if (e.getKeyCode()==KeyEvent.VK_UP){
+            mainGame.rotateTetrimino();
+        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+            mainGame.moveTetrimino(1);
+        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+            mainGame.moveTetrimino(-1);
         }
-        * */
+    }
+
+      
         
         /**
          * method to resize an image for the background

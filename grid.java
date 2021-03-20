@@ -70,7 +70,14 @@ public class grid{
         return o;
     }
     
-     public void dessine(Graphics g){
+   
+    
+    public int getCell(int x, int y) {
+        return (area[x][y]);
+	}
+    
+     /*
+    public void dessine(Graphics g){
         g.setColor(CouleurTetrimino);
         for (int i=0; i < tab.length ; i++){
             for (int j=0; j< tab[0].length ; j++){
@@ -78,5 +85,5 @@ public class grid{
             }
         }
 	}
-
+    * */
 }

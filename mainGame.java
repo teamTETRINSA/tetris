@@ -14,6 +14,7 @@ public class mainGame /*extends JPanel()**/ {
      
     boolean restart=true;   // variable to know if we want to restart the game
     boolean start;          //varibale to know if we print another shape on the grid
+    boolean fallen ;        // variable to know the tetrimino t1 fell
     int score = 0;          // score of the player
     int bestScore = 0;      // to save the best score
     /**boolean go = false; // says if the game is over or not      :      START varibale ?????      **/
@@ -44,6 +45,7 @@ public class mainGame /*extends JPanel()**/ {
                 start = false;
                 lap += 1;
                 score += 1;
+                t1.getInitialPosition(G);
                 t2=newTetrimino();        // will be printed a "the next coming tetrimino" when t1 will be printed on the grid
                 /** PRINT T2 **/   
                 if (check(G)==true)                    //initialisation : la chute n°1 est-elle possible?
@@ -51,7 +53,7 @@ public class mainGame /*extends JPanel()**/ {
                 /* tant LA CHUTE EST POSSIBLE 
                  * check method : I don't know if we put it in this maintest or in the grid class...
                  * **/
-                While (check(G)==true){    
+                While (G.check()==true){    
                     /** PRINT ... **/
                 }
                 
@@ -213,9 +215,10 @@ public class mainGame /*extends JPanel()**/ {
     }
     
     /**
-        * method to delete all lines filled by tetriminos in a grid
-        * void
-        * */
+     * DELETELINES
+     * method to delete all lines filled by tetriminos in a grid
+     * void
+     * */
 
     public int deleteLines(int score, grid g){
         // to get a list of the lines we need to delete
@@ -253,15 +256,48 @@ public class mainGame /*extends JPanel()**/ {
         return 1; // so that it compiles
     }
 	
+    /**
+     * ROTATETRIMINO
+     * Rotation to the right 
+     * */
+    
+    public void rotateTetrimino () {
+		t1.rotateTetrimino();
+    }
+    
+    /**
+     * MOVETETRIMINO
+     * Translation of the tetrimino of a coordinate dX 
+     * */
+     
+    public void moveTetrimino(int dx) {
+        t1.moveTetrimino(dx);
+	}
+    
+    /**
+     * DROPTETRIMINO
+     * Drop the tetrimino of a coordinate dY 
+     * */
+     
+    public void dropTetrimino(int dy) {
+        t1.dropTetrimino(dy);
+	}
+    
 	/**
      * GETCELL
      * Returns the content of one cell of the grid
      * */
      
     public int getCell(int x, int y) {
-			
-			return (this.tab[x][y]);
-			
+        return G.getCell(x,y);
 	}
+    
+    /**
+     * GETINITIALPOSITION
+     * method to get the initial position of a tetrimino on the grid
+     * we place the top left hand corner of the tetrimino tab
+     * */
+    
+    
 	
 }

@@ -79,7 +79,7 @@ public class tetrimino extends shape{
         return temp.toString();
     }
     
-        /**
+    /**
      * ROTATETRIMINO
      * Rotation to the right 
      * */
@@ -111,12 +111,8 @@ public class tetrimino extends shape{
      * Translation of the tetrimino of a coordinate dX 
      * */
      
-     // A DEPLACER ??? DANS tetrimino.java ???? Ui
-     
     public void moveTetrimino(int dx) {
-			
 			this.X += dx;
-			
 	}
     
     /**
@@ -125,13 +121,23 @@ public class tetrimino extends shape{
      * */
      
     public void dropTetrimino(int dy) {
-			
 			this.Y += dy;
-			
 	}
     
     public void dessine(Graphics g){
         super.dessine(g);
 	}
+    
+    public void getInitialPosition(grid g){
+        int ct=tab.length/2; // coordinate of the horizontal center of tetrimino t
+        int cg=g.area[0].length/2; //coordinate of the horizontal center of grid G
+        X = cg-ct ;// the initial position X of tetrimino t
+        
+		
+        // détermination de la position d'insertion de la forme au début de la grille de jeu
+        System.out.println("milieu shape a = "+ct);
+        System.out.println("milieu gamearea A = "+cg);
+        System.out.println("position début ajout a dans A = "+ (cg-ct));
+    }
 
 }
