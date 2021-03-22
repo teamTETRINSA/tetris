@@ -62,10 +62,6 @@ public class tetrimino extends shape{
         }
     }
     
-    public tetrimino(){
-        super();
-    }
-    
     /**
      * toString method
      * no parameter
@@ -127,6 +123,13 @@ public class tetrimino extends shape{
     public void dessine(Graphics g){
         super.dessine(g);
 	}
+    
+    /**
+     * GETINITIALPOSITION
+     * method to get the initial position of a tetrimino on the grid
+     * we place the top left hand corner of the tetrimino tab
+     * */
+    
     
     public void getInitialPosition(grid g){
         int ct=tab.length/2; // coordinate of the horizontal center of tetrimino t

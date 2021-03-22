@@ -50,18 +50,19 @@ public class mainGame /*extends JPanel()**/ {
                 /** PRINT T2 **/   
                 if (check(G)==true)                    //initialisation : la chute n°1 est-elle possible?
                 
-                /* tant LA CHUTE EST POSSIBLE 
+                /* tant que LA CHUTE EST POSSIBLE 
                  * check method : I don't know if we put it in this maintest or in the grid class...
                  * **/
-                While (G.check()==true){    
-                    /** PRINT ... **/
-                }
+                //While (G.check()==true){    
+                //    /** PRINT ... **/
+                //}
                 
                 /* we exchange the even numbers of a tetrimino as odd ones
                  * it now belongs to the fallen tetriminos
                  * */
-                g.tranformShape();
-                /** PRINT G **/
+                //g.tranformShape();
+                ///** PRINT G **/
+                
                 /*
                  * the total score is modified
                  * we add the lap integer to the score
@@ -78,7 +79,7 @@ public class mainGame /*extends JPanel()**/ {
                  * and the next tetrimino that will be used becomes the one printed on the side (t2)
                  * */
                 if (!GameOver(G)){
-                    start == true;
+                    start = true;
                     t1 = t2;
                 }
             }
@@ -87,7 +88,7 @@ public class mainGame /*extends JPanel()**/ {
                 bestScore=score;
             }
             /** PRINT PopUp window 
-             * for the end of the game
+             * at the end of the game
              * with the score 
              * and the bestScore
              * */
@@ -103,10 +104,9 @@ public class mainGame /*extends JPanel()**/ {
     
     /********************************************************************************************************
      * METHODS
-     * methods to analyse the game and (they do not modify the GUI)
      * */
     
-    public ArrayList ShapeBank () {
+    public ArrayList<tetrimino> ShapeBank () {
         
         /**
          * Creating tetriminos
@@ -123,7 +123,7 @@ public class mainGame /*extends JPanel()**/ {
         /**
          * for printing the different tetriminos created on the temrinal
          * */
-        
+        /*
         System.out.println(t1);
         System.out.println(t2);
         System.out.println(t3);
@@ -131,6 +131,7 @@ public class mainGame /*extends JPanel()**/ {
         System.out.println(t5);
         System.out.println(t6);
         System.out.println(t7);
+        * **/
         
         /**
          * now we create a list with all these tetriminos
@@ -292,12 +293,7 @@ public class mainGame /*extends JPanel()**/ {
         return G.getCell(x,y);
 	}
     
-    /**
-     * GETINITIALPOSITION
-     * method to get the initial position of a tetrimino on the grid
-     * we place the top left hand corner of the tetrimino tab
-     * */
-    
+   
     
 	
 }

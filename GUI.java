@@ -20,6 +20,11 @@ public class GUI extends JFrame implements MouseListener, ActionListener, KeyLis
     private JPanel JP1;
     // ...
     
+    //Implementing the timer
+    int interval = 1000; // maybe we could create a function to get an interval as a function of the number of lap done
+    Timer T = new Timer(interval, this);
+    
+    
     /**Constructor
      * for any player mode > it starts on mode 2
      * */
@@ -125,6 +130,7 @@ public class GUI extends JFrame implements MouseListener, ActionListener, KeyLis
      * */
     
     public void actionPerformed (ActionEvent e) {
+        
     }
         
     /********************************************************************************************************
