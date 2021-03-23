@@ -29,37 +29,34 @@ import java.awt.event.*;
 import java.awt.Color;
 
 public class helpPopUp extends JFrame {	
-		public helpPopUp (){
-			this.setTitle("How to Play:");
-			//Set size of the window
-			this.setSize(400,400);
-			//intital position
-			this.setLocation(300,200);
-			this.setLayout(null);
-			this.setVisible(false);
-			
-			JPanel helpPane = new JPanel();
-			//Set position and size (x,y,dx,dy)
-			helpPane.setBounds(0,0,400,400);
-			//absolute positioning
-			helpPane.setLayout(null);
-			//Set colour
-			helpPane.setBackground(new Color(243,120,48));
-			//add this pane to the frame
-			this.add(helpPane);
-			
-			JLabel helpText = new JLabel();
-			helpText.setFont(new Font("Ariel", Font.PLAIN, 16));
-			//add text
-			helpText.setText("Write text on how to play the game");
-			//Set position and size (x,y,dx,dy)
-			helpText.setBounds(0,0,340,50);
-			//add this to the main pane
-			helpPane.add(helpText);
-			
-			
-		}
+    public helpPopUp (){
+        this.setTitle("How to Play:");
+        //Set size of the window
+        this.setSize(400,400);
+        //intital position
+        this.setLocation(300,200);
+        this.setLayout(null);
+        this.setVisible(false);
+        
+        JPanel helpPane = new JPanel();
+        //Set position and size (x,y,dx,dy)
+        helpPane.setBounds(0,0,400,400);
+        //absolute positioning
+        helpPane.setLayout(null);
+        //Set colour
+        helpPane.setBackground(new Color(243,120,48));
+        //add this pane to the frame
+        this.add(helpPane);
+        
+        JLabel helpText = new JLabel();
+        helpText.setFont(new Font("Ariel", Font.PLAIN, 16));
+        //add text
+        helpText.setText("Write text on how to play the game");
+        //Set position and size (x,y,dx,dy)
+        helpText.setBounds(0,0,340,50);
+        //add this to the main pane
+        helpPane.add(helpText);
+    }
 }
-		
 
 
