@@ -29,7 +29,11 @@ import java.awt.event.*;
 import java.awt.Color;
 
 public class helpPopUp extends JFrame {	
+    
     public helpPopUp (){
+		
+		String s = "Welcome to Tetris ! /n + RULES [...]";
+		
         this.setTitle("How to Play:");
         //Set size of the window
         this.setSize(400,400);

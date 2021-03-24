@@ -210,14 +210,15 @@ public class tetrisGUI extends JFrame implements ActionListener{
     
     public void keyTyped(KeyEvent e) {
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
-            mainGame.dropTetrimino(1);
+            //mainGame.dropTetrimino(1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-            mainGame.rotateTetrimino();
+            //mainGame.rotateTetrimino();
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            mainGame.moveTetrimino(1);
+            //mainGame.moveTetrimino(1);
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            mainGame.moveTetrimino(-1);
+            //mainGame.moveTetrimino(-1);
         }
     }
+    
 }
 

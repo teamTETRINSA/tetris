@@ -25,9 +25,12 @@
 public class testGUI {
 	
 	public static void main (String[] args) {
-			tetrisGUI myTetrisGUI = new tetrisGUI ();
+			
+			//tetrisGUI myTetrisGUI = new tetrisGUI ();
+			
+			//helpPopUp helpWindow = new helpPopUp ();
 
-		
+			WelcomeGUI newWindow = new WelcomeGUI ();
 	}
 }
 
