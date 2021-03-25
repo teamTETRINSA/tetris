@@ -6,33 +6,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.LinkedList; //to delete
+import java.util.LinkedList; // to delete
 import java.util.ArrayList;
 import java.awt.Color;
-import java.awt.Graphics2D; //used to reduce the size of an image
+import java.awt.Graphics2D; // used to reduce the size of an image
 import java.awt.Image;
 
 public class GUI extends JFrame implements MouseListener, ActionListener, KeyListener{
     
-    
-    //private JButton start;
-    //private JLabel backGround;
+    // private JButton start;
+    // private JLabel backGround;
     private JPanel JP1;
     // ...
     
-    //Implementing the timer
-    int interval = 1000; // maybe we could create a function to get an interval as a function of the number of lap done
+    // implementing the timer
+    int interval=1000; // maybe we could create a function to get an interval as a function of the number of laps done
     Timer T = new Timer(interval, this);
     
     
-    /**Constructor
+    /** constructor
      * for any player mode > it starts on mode 2
      * */
      
     public GUI (ArrayList<tetrimino> l, int a, int b, int c, int d, grid tab1){
         
-        //TetriminosList=l;
-        //G1=tab1;
+        // TetriminosList=l;
+        // G1=tab1;
         
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,7 +69,7 @@ public class GUI extends JFrame implements MouseListener, ActionListener, KeyLis
         JP1.setLayout(null);
         JP1.setBounds(10,30,10,10);
         JP1.setBackground(Color.yellow);
-        //this.add(JPWinner);
+        // this.add(JPWinner);
         * */
         
         /**
@@ -81,10 +80,10 @@ public class GUI extends JFrame implements MouseListener, ActionListener, KeyLis
         
     
         ImageIcon original = new ImageIcon("BG1.jpeg");
-        Image newImage   =  original.getImage();
-        //int	h = newImage.getHeight(this);
-        //int	j = newImage.getWidth(this);
-        //newImage = newImage.getScaledInstance(l,600,861);
+        Image newImage = original.getImage();
+        // int h = newImage.getHeight(this);
+        // int j = newImage.getWidth(this);
+        // newImage = newImage.getScaledInstance(l,600,861);
         newImage = newImage.getScaledInstance(861,600,0);
         
 
@@ -130,7 +129,6 @@ public class GUI extends JFrame implements MouseListener, ActionListener, KeyLis
      * */
     
     public void actionPerformed (ActionEvent e) {
-        
     }
         
     /********************************************************************************************************

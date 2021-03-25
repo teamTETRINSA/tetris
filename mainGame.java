@@ -15,12 +15,12 @@ public class mainGame /*extends JPanel()**/ {
 	public static void main(String[] args) {
         
         /**
-     * Initializing parameters
+     * initializing parameters
      * */
      
     boolean restart=true;   // variable to know if we want to restart the game
     
-    boolean start = true;          //varibale to know if we print another shape on the grid
+    boolean start = true;          // varibale to know if we print another shape on the grid
     
     boolean fallen ;        // variable to know the tetrimino t1 fell
     
@@ -280,6 +280,25 @@ public class mainGame /*extends JPanel()**/ {
     }
     
     /**
+     * GET THE SCORE
+     * the score increases when one line is completed/deleted
+     * the more lines you complete at the same time, the higher the score
+     * */
+    public static int getScore(grid g1){
+		int score=0;
+		int nbLines=0; // number of lines completed (so deleted) at the same time
+		for(int i=0 ; i<g1.area.length ; i++){
+			boolean filled1 = true;
+			for(int j=0 ; i<g1.area[0].length ; j++){
+				if(filled1 = true){ // if one line is completed
+					score = score + nbLines*100; // scoring system for level 1, we can adapt it
+				} 
+			}
+		}
+		return score;
+	}
+    
+    /**
      * ADDBONUS
      * method to transform the number of lines deleted in one step as an increase of the score
      * function of the lap number and the number of lines deleted in one shot
@@ -325,7 +344,7 @@ public class mainGame /*extends JPanel()**/ {
         return g.getCell(x,y);
 	}
     
-	// METHODE TO PAUSE THE GAME !!! 
+   
     
 	
 }
