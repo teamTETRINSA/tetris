@@ -5,12 +5,16 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.net.URL;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
+
+// Sound support
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 
 public class WelcomeGUI extends JFrame implements ActionListener {	
     
@@ -26,14 +30,17 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private tetrisGUI OnePlayer;
     
-    private AudioClip tetrisSoundtrack;
+    private boolean sound = true;
+    
+    private Clip tetrisSoundtrack;
+    
+    private Clip playSound;
+    
+    private Clip helpSound;
     
     
     public WelcomeGUI (){
 		
-		/*URL urlClick = WelcomeGUI.class.getResource("tetris-theme-officiel.wav");
-		tetrisSoundtrack = Applet.newAudioClip(urlClick);*/
- 
         /* 
          * // Definition of the Frame //
          */
@@ -65,7 +72,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Player1.setBounds(200,110,200,60);
 		Player1.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
 		Player1.setForeground(Color.WHITE);
+		Player1.setBackground(new Color(255,255,255,100));
 		Player1.setBorder(roundedBorder);
+		Player1.setOpaque(false);
 		panelImage.add(Player1);
 		Player1.addActionListener(this);
 		
@@ -74,7 +83,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Player2.setBounds(200,180,200,60);
 		Player2.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
 		Player2.setForeground(Color.WHITE);
+		Player2.setBackground(new Color(255,255,255,100));
 		Player2.setBorder(roundedBorder);
+		Player2.setOpaque(false);
 		panelImage.add(Player2);
 		Player2.addActionListener(this);
 		
@@ -83,8 +94,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		HelpButton.setBounds(200,250,200,60);
 		HelpButton.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
 		HelpButton.setForeground(Color.WHITE);
-		HelpButton.setBackground(Color.WHITE);
+		HelpButton.setBackground(new Color(255,255,255,100));
 		HelpButton.setBorder(roundedBorder);
+		HelpButton.setOpaque(false);
 		panelImage.add(HelpButton);
 		HelpButton.addActionListener(this);
 		
@@ -138,12 +150,27 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         OnePlayer = new tetrisGUI ();
         OnePlayer.setVisible(false);
         
-        HelpWindow = new helpPopUp ();
-        HelpWindow.setVisible(false);
+        //HelpWindow = new helpPopUp ();
+        //HelpWindow.setVisible(false);
         
         this.setVisible(true);
         
-        tetrisSoundtrack.play();
+		// Audio SoundTrack 
+        
+        try {
+         
+         File tetrisSoundFile = new File("tetris-theme-officiel.wav");		// Open an audio input stream.
+         AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
+         tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
+         tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
+         tetrisSoundtrack.start();
+         
+         File playSoundFile = new File("here-we-go.wav");
+         AudioInputStream audioplaySound = AudioSystem.getAudioInputStream(playSoundFile);
+         playSound = AudioSystem.getClip();
+         playSound.open(audioplaySound);
+         
+		}catch(Exception e){ e.printStackTrace(); }
         
     }
     
@@ -152,7 +179,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		if (e.getSource()== Player1){
 			
 			OnePlayer.setVisible(true);
-		
+			playSound.start();
+			tetrisSoundtrack.stop();
+			
 		}
 		
 		if (e.getSource()== Player2){
@@ -163,15 +192,30 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource()== HelpButton){
 			
+			HelpWindow = new helpPopUp ();
 			HelpWindow.setVisible(true);
 			
 		}
 		
 		if (e.getSource() == soundButton) {
+		
+			if (sound == true) {
+				tetrisSoundtrack.stop();
+				sound = false;
+			
+			}else if (sound == false) {
+				tetrisSoundtrack.start();
+				sound = true;
+				
+			}
+			
+		}
+		
+		/*if (e.getSource() == soundButton) {
             URL urlClick = WelcomeGUI.class.getResource("tetris-theme-officiel.wav");
             tetrisSoundtrack = Applet.newAudioClip(urlClick);
             tetrisSoundtrack.loop();
-        }
+        }*/
      
 	}
     

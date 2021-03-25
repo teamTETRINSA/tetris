@@ -325,7 +325,7 @@ public class mainGame /*extends JPanel()**/ {
         return g.getCell(x,y);
 	}
     
-   
+	// METHODE TO PAUSE THE GAME !!! 
     
 	
 }
