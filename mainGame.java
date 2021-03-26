@@ -322,18 +322,22 @@ public class mainGame /*extends JPanel()**/ {
      * Translation of the tetrimino of a coordinate dX 
      * */
      
-    public void moveTetrimino(tetrimino t, int dx) {
-        t.moveTetrimino(dx);
+    public void moveTetrimino(tetrimino t, grid g, int dx) {
+        if ((dx>0 && moveToRightIsPossible(t,g)==true)||(dx<0 && moveToLeftIsPossible(t,g))){
+            t.moveTetrimino(dx);
 	}
+    }
     
     /**
      * DROPTETRIMINO
      * Drop the tetrimino of a coordinate dY 
      * */
      
-    public void dropTetrimino(tetrimino t, int dy) {
-        t.dropTetrimino(dy);
-	}
+    public void dropTetrimino(tetrimino t, grid g, int dy) {
+        if (dropIsPossible(t,g)==true){
+            t.dropTetrimino(dy);
+        }
+    }
     
 	/**
      * GETCELL
@@ -342,7 +346,70 @@ public class mainGame /*extends JPanel()**/ {
      
     public int getCell(grid g, int x, int y) {
         return g.getCell(x,y);
-	}
+    }
+	
+	/**
+     * DROPSIPOSSIBLE
+     * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
+     * */
+    
+    public boolean dropIsPossible(tetrimino t, grid g){
+        boolean possible = true ;
+        for (int i = 0; i< t.tab.length ; i++){
+            for (int j=0 ; j< t.tab[0].length ; j++){
+                if (t.tab[i+1][j]==0){
+                    if (g.area[t.Y+i+1][t.X] != 0){
+                        possible = false ;
+                        i = t.tab.length;
+                        j = t.tab[0].length;
+                    }
+                }
+            }
+        }
+        return possible;
+    }
+    
+    /**
+     * MOVETORIGHTISPOSSIBLE
+     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
+     * */
+    
+    public boolean moveToRightIsPossible(tetrimino t, grid g){
+        boolean possible = true ;
+        for (int i = 0; i< t.tab.length ; i++){
+            for (int j=0 ; j< t.tab[0].length ; j++){
+                if (t.tab[i][j+1]==0){
+                    if (g.area[t.Y][t.X+j+1] != 0){
+                        possible = false ;
+                        i = t.tab.length;
+                        j = t.tab[0].length;
+                    }
+                }
+            }
+        }
+        return possible;
+    }
+    
+     /**
+     * MOVETOLEFTISPOSSIBLE
+     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
+     * */
+    
+    public boolean moveToLeftIsPossible(tetrimino t, grid g){
+        boolean possible = true ;
+        for (int i = 0; i< t.tab.length ; i++){
+            for (int j=0 ; j< t.tab[0].length ; j++){
+                if (t.tab[i][j-1]==0){
+                    if (g.area[t.Y][t.X+j-1] != 0){
+                        possible = false ;
+                        i = t.tab.length;
+                        j = t.tab[0].length;
+                    }
+                }
+            }
+        }
+        return possible;
+    }
     
 	// METHODE TO PAUSE THE GAME !!! 
     
