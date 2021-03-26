@@ -1,3 +1,4 @@
+
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +7,7 @@ import java.awt.Color;
 
 public class tetrisGUI extends JFrame implements ActionListener{
 	
-	// declare widgets out of constructor
+	//declare widgets out of constructor
 	private JButton startButton;
 	private JButton difficulty1;
 	private JButton difficulty2;
@@ -17,10 +18,10 @@ public class tetrisGUI extends JFrame implements ActionListener{
 	private JButton helpButton;
 	private helpPopUp help;
 	
-	// constructor
+	//constructor
 	public tetrisGUI (){
 		
-		// creation of principal window
+		//Creation of principle window
 		
 		this.setTitle("Tetr'INSA");
 		this.setSize(800,600);
@@ -28,7 +29,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		// create main panel
+		//Create main panel
 		JPanel mainPane = new JPanel();
 		mainPane.setBounds(0,0,800,600);
 		mainPane.setLayout(null);
@@ -36,18 +37,18 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		this.add(mainPane);
 		
 		/*
-		// create panel for next tetrimino
+		//Create panel for next tetrimino
 		JPanel nextPane = new JPanel();
-		// set position and size (x,y,dx,dy)
+		//Set position and size (x,y,dx,dy)
 		nextPane.setBounds(531,65,200,175);
-		// absolute positioning
+		//absolute positioning
 		nextPane.setLayout(null);
-		// set color
+		//set color
 		nextPane.setBackground(Color.red);
 		mainPane.add(nextPane);
 		*/ 
 		
-		// create start button
+		//Create start button
 		startButton = new JButton ("Start!");
 		startButton.setBounds(523,245,232,60);	
 		startButton.setBackground(Color.red);
@@ -60,7 +61,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
          * DIFFICULTY BUTTONS
          * */
 		
-		// difficulty button1
+		//difficulty button1
 		difficulty1 = new JButton ("1");
 		difficulty1.setBounds(523,327,64,60);	
 		difficulty1.setBackground(Color.red);
@@ -68,7 +69,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		difficulty1.addActionListener(this);
 		mainPane.add(difficulty1);
 		
-		// difficulty button2
+		//difficulty button2
 		difficulty2 = new JButton ("2");
 		difficulty2.setBounds(607,327,64,60);	
 		difficulty2.setBackground(Color.red);
@@ -76,7 +77,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		difficulty2.addActionListener(this);
 		mainPane.add(difficulty2);
 		
-		// difficulty button 3
+		//difficulty button 3
 		difficulty3 = new JButton ("3");
 		difficulty3.setBounds(691,327,64,60);	
 		difficulty3.setBackground(Color.red);
@@ -84,7 +85,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		difficulty3.addActionListener(this);
 		mainPane.add(difficulty3);
 		
-		// "Difficulty"
+		//"Difficulty"
 		JLabel difficulty = new JLabel();
 		difficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
 		difficulty.setText("Difficulty:");
@@ -102,7 +103,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		scoreTitle.setBounds(595,370,340,50);
 		mainPane.add(scoreTitle);
 		
-		// score textArea
+		//score textArea
 		scoreAff = new JTextArea ();
 		scoreAff.setBounds(595,425,330,50);	
 		scoreAff.setOpaque(false);
@@ -111,14 +112,14 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		/**
          * BEST SCORE
          * */
-		// "Score"
+		//"Score"
 		JLabel bestScoreTitle = new JLabel();
 		bestScoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		bestScoreTitle.setText("Best Score:");
 		bestScoreTitle.setBounds(595,450,340,50);
 		mainPane.add(bestScoreTitle);
 		
-		// best score textArea
+		//best score textArea
 		bestScoreAff = new JTextArea ();
 		bestScoreAff.setBounds(595,500,330,50);	
 		bestScoreAff.setOpaque(false);
@@ -128,7 +129,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		/**
          * SOUND
          * */
-		// sound button
+		//sound button
 		Icon musicIcon = new ImageIcon("Soundicon.png");
 		soundButton = new JButton (musicIcon);
 		soundButton.setBounds(720,25,20,20);	
@@ -142,7 +143,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
          * HOW TO PLAY
          * */
         
-		// how to play button
+		//how to play button
 		helpButton = new JButton ("?");
 		helpButton.setBounds(745,25,20,20);	
 		helpButton.setBackground(Color.white);
@@ -150,7 +151,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		mainPane.add(helpButton);
 		helpButton.addActionListener(this);
 		
-		// declare pop up
+		//declare pop up
 		help = new helpPopUp();
 		
 		

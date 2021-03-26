@@ -15,12 +15,12 @@ public class mainGame /*extends JPanel()**/ {
 	public static void main(String[] args) {
         
         /**
-     * initializing parameters
+     * Initializing parameters
      * */
      
     boolean restart=true;   // variable to know if we want to restart the game
     
-    boolean start = true;          // varibale to know if we print another shape on the grid
+    boolean start = true;          //varibale to know if we print another shape on the grid
     
     boolean fallen ;        // variable to know the tetrimino t1 fell
     
@@ -344,7 +344,7 @@ public class mainGame /*extends JPanel()**/ {
         return g.getCell(x,y);
 	}
     
-   
+	// METHODE TO PAUSE THE GAME !!! 
     
 	
 }
