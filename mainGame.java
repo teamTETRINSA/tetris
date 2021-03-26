@@ -12,7 +12,7 @@ public class mainGame /*extends JPanel()**/ {
      * MAIN
      * */
   
-	public static void main(String[] args) {
+	public  void main(String[] args) {
         
         /**
      * Initializing parameters
@@ -34,9 +34,11 @@ public class mainGame /*extends JPanel()**/ {
     
     /**boolean possibleFall ;  // to says if a tetrimno can fall (if there is nothing under it) **/
     
-    Timer T;                // tetriminos fall at precise (shorter and shorter) time intervals
+    Timer T;                // tetriminos fall at precise (and shorter and shorter) time intervals
     
-    grid G;                 //the game area
+    int interval;
+    
+    grid G;                 //the game are
     
     tetrimino T1;           //the tetrimino falling on the grid
     
@@ -89,18 +91,16 @@ public class mainGame /*extends JPanel()**/ {
         
         restart = false;
         G = new grid(20,10);          //we re-build a grid before each new game
-            
-    // Paramètre position initiale x à calculer 
         
         System.out.println(G);        //a supprimer plus tard
 
         int nb = (int)(Math.random()*8);	       //the first tetrimino choosen
 		T1 = ShapeBank.get(nb);   
            
-    /** AFFICHAGE DE T1 **/
-    /* while we can play and add tetriminos
-     * we continue introducing tetriminos at the top of the game
-     * */
+        /** AFFICHAGE DE T1 **/
+        /* while we can play and add tetriminos
+         * we continue introducing tetriminos at the top of the game
+         * */
             
 		while (start == true)
                 
@@ -117,7 +117,7 @@ public class mainGame /*extends JPanel()**/ {
                 
                 /** PRINT T2 **/   
             
-            if (check(G)==true)                    //initialisation : la chute n°1 est-elle possible?
+            //if (check(G)==true)   //methode fallIsPossible                 //initialisation : la chute n°1 est-elle possible?
                 
             /* tant que LA CHUTE EST POSSIBLE 
              * check method : I don't know if we put it in this maintest or in the grid class...
@@ -126,10 +126,7 @@ public class mainGame /*extends JPanel()**/ {
             //While (G.check()==true){    
             //    /** PRINT ... **/
             //}
-                
-            /* we exchange the even numbers of a tetrimino as odd ones
-             * it now belongs to the fallen tetriminos
-             * */
+            
             //g.tranformShape();
             ///** PRINT G **/
                 
@@ -193,9 +190,12 @@ public class mainGame /*extends JPanel()**/ {
      * param : grid
      * */
     
+    //useless
+    /*
     public static boolean check(grid g){
         return false;  // so that it compiles
     }
+    * */
     
     /*public int deleteLines(int score, grid g){
         return 0;   // so that it compiles
@@ -325,8 +325,8 @@ public class mainGame /*extends JPanel()**/ {
     public void moveTetrimino(tetrimino t, grid g, int dx) {
         if ((dx>0 && moveToRightIsPossible(t,g)==true)||(dx<0 && moveToLeftIsPossible(t,g))){
             t.moveTetrimino(dx);
+        }
 	}
-    }
     
     /**
      * DROPTETRIMINO
@@ -337,7 +337,7 @@ public class mainGame /*extends JPanel()**/ {
         if (dropIsPossible(t,g)==true){
             t.dropTetrimino(dy);
         }
-    }
+	}
     
 	/**
      * GETCELL
@@ -346,9 +346,9 @@ public class mainGame /*extends JPanel()**/ {
      
     public int getCell(grid g, int x, int y) {
         return g.getCell(x,y);
-    }
-	
-	/**
+	}
+    
+    /**
      * DROPSIPOSSIBLE
      * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
      * */
@@ -410,6 +410,7 @@ public class mainGame /*extends JPanel()**/ {
         }
         return possible;
     }
+    
     
 	// METHODE TO PAUSE THE GAME !!! 
     

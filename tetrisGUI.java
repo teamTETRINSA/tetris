@@ -9,14 +9,15 @@ public class tetrisGUI extends JFrame implements ActionListener{
 	
 	//declare widgets out of constructor
 	private JButton startButton;
-	private JButton difficulty1;
-	private JButton difficulty2;
-	private JButton difficulty3;
+	private JRadioButton difficulty1;
+	private JRadioButton difficulty2;
+	private JRadioButton difficulty3;
 	private JTextArea scoreAff;
 	private JTextArea bestScoreAff;
 	private JButton soundButton;
 	private JButton helpButton;
 	private helpPopUp help;
+    private Timer t;
 	
 	//constructor
 	public tetrisGUI (){
@@ -62,7 +63,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
          * */
 		
 		//difficulty button1
-		difficulty1 = new JButton ("1");
+		difficulty1 = new JRadioButton ("1");
 		difficulty1.setBounds(523,327,64,60);	
 		difficulty1.setBackground(Color.red);
 		difficulty1.setForeground(Color.black);
@@ -70,7 +71,7 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		mainPane.add(difficulty1);
 		
 		//difficulty button2
-		difficulty2 = new JButton ("2");
+		difficulty2 = new JRadioButton ("2");
 		difficulty2.setBounds(607,327,64,60);	
 		difficulty2.setBackground(Color.red);
 		difficulty2.setForeground(Color.black);
@@ -78,12 +79,17 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		mainPane.add(difficulty2);
 		
 		//difficulty button 3
-		difficulty3 = new JButton ("3");
+		difficulty3 = new JRadioButton ("3");
 		difficulty3.setBounds(691,327,64,60);	
 		difficulty3.setBackground(Color.red);
 		difficulty3.setForeground(Color.black);
 		difficulty3.addActionListener(this);
 		mainPane.add(difficulty3);
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(difficulty1);
+        group.add(difficulty2);
+        group.add(difficulty3);
 		
 		//"Difficulty"
 		JLabel difficulty = new JLabel();
@@ -162,20 +168,31 @@ public class tetrisGUI extends JFrame implements ActionListener{
 		JLabel label = new JLabel(icon);
 		label.setBounds(0,0,800,600);
 		mainPane.add(label);
+        
+        t = new Timer(100, this);
 		
 		this.setVisible(true);
 	
 	}
+    
+    public void paint (Graphics g){
+        ///(grid G).dessine(g);
+    }
     
     /********************************************************************************************************
      * ACTIONLISTENER
      * */
 
     public void actionPerformed (ActionEvent e){
+        
+        // no need of any "if" for the timer t
+        repaint();
+        
 		if (e.getSource() == helpButton){
 			help.setVisible(true);
 			System.out.println("you clicked on help");
 		}
+        
 		
 	}
         
