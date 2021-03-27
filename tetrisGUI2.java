@@ -1,3 +1,27 @@
+/*
+ * tetrisGUI2.java
+ * 
+ * Copyright 2021 Bich-lien Phan <bich-lienphan@Bich-liens-MacBook.local>
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ * 
+ */
+
+
 
 import java.util.ArrayList; 
 import javax.swing.*;
@@ -6,89 +30,41 @@ import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.event.*;
 
-public class tetrisGUI extends JFrame implements ActionListener, ChangeListener {
-	
+public class tetrisGUI2 extends JFrame implements ActionListener, ChangeListener{
 	//declare widgets out of constructor
 	private JButton startButton;
-	/*
-	private JButton difficulty1;
-	private JButton difficulty2;
-	private JButton difficulty3;
-	*/
 	private JSlider sliderDifficulty;
-	private JTextArea scoreAff;
+	private JTextArea scoreAff1;
+	private JTextArea scoreAff2;
 	private JTextArea bestScoreAff;
 	private JButton soundButton;
 	private JButton helpButton;
 	private helpPopUp help;
 	
 	//constructor
-	public tetrisGUI (){
+	public tetrisGUI2 (){
 		
 		//Creation of principle window
 		
 		this.setTitle("Tetr'INSA");
-		this.setSize(857,600);
-		this.setLocation(300,200);
+		this.setSize(929,670);
+		this.setLocation(130,20);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		
 		//Create main panel
 		JPanel mainPane = new JPanel();
-		mainPane.setBounds(0,0,857,600);
+		mainPane.setBounds(0,0,929,650);
 		mainPane.setLayout(null);
 		mainPane.setBackground(Color.white);
 		this.add(mainPane);
 		
-		/*
-		//Create panel for next tetrimino
-		JPanel nextPane = new JPanel();
-		//Set position and size (x,y,dx,dy)
-		nextPane.setBounds(531,65,200,175);
-		//absolute positioning
-		nextPane.setLayout(null);
-		//set color
-		nextPane.setBackground(Color.red);
-		mainPane.add(nextPane);
-		*/ 
-		
 		//Create start button
 		startButton = new JButton ("Start!");
-		startButton.setBounds(570,245,232,60);	
+		startButton.setBounds(370,230,200,55);	
 		startButton.setBackground(Color.red);
 		startButton.setForeground(Color.black);
 		startButton.addActionListener(this);
 		mainPane.add(startButton);
-		
-		
-		/**
-         * DIFFICULTY BUTTONS
-         * */
-		/*
-		//difficulty button1
-		difficulty1 = new JButton ("1");
-		difficulty1.setBounds(570,327,64,60);	
-		difficulty1.setBackground(Color.red);
-		difficulty1.setForeground(Color.black);
-		difficulty1.addActionListener(this);
-		mainPane.add(difficulty1);
-		
-		//difficulty button2
-		difficulty2 = new JButton ("2");
-		difficulty2.setBounds(654,327,64,60);	
-		difficulty2.setBackground(Color.red);
-		difficulty2.setForeground(Color.black);
-		difficulty2.addActionListener(this);
-		mainPane.add(difficulty2);
-		
-		//difficulty button 3
-		difficulty3 = new JButton ("3");
-		difficulty3.setBounds(730,327,64,60);	
-		difficulty3.setBackground(Color.red);
-		difficulty3.setForeground(Color.black);
-		difficulty3.addActionListener(this);
-		mainPane.add(difficulty3);
-		*/
 		
 		sliderDifficulty = new JSlider(JSlider.HORIZONTAL,1,3,1);
         sliderDifficulty.setMajorTickSpacing(1);
@@ -97,34 +73,54 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		sliderDifficulty.setSnapToTicks(true);
 		sliderDifficulty.setPaintTicks(true);
 		sliderDifficulty.setPaintLabels(true);
-		sliderDifficulty.setBounds(570,327,232,60);
+		sliderDifficulty.setBounds(353,327,232,60);
 		
 		mainPane.add(sliderDifficulty);
         sliderDifficulty.addChangeListener(this);
+		
 		
 		//"Difficulty"
 		JLabel difficulty = new JLabel();
 		difficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
 		difficulty.setText("Difficulty:");
-		difficulty.setBounds(642,289,340,50);
+		difficulty.setBounds(440,289,340,50);
 		mainPane.add(difficulty);
 		
-		
 		/**
-         * SCORE
+         * SCORES
          * */
-		//"Score"
+		//"Scores"
 		JLabel scoreTitle = new JLabel();
 		scoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
-		scoreTitle.setText("Your Score:");
-		scoreTitle.setBounds(642,370,340,50);
+		scoreTitle.setText("Scores:");
+		scoreTitle.setBounds(440,370,340,50);
 		mainPane.add(scoreTitle);
 		
-		//score textArea
-		scoreAff = new JTextArea ();
-		scoreAff.setBounds(642,425,330,50);	
-		scoreAff.setOpaque(false);
-		mainPane.add(scoreAff);
+		//"Player 1"
+		JLabel score1 = new JLabel();
+		score1.setFont(new Font("Ariel", Font.PLAIN, 16));
+		score1.setText("Player 1:");
+		score1.setBounds(380,400,340,50);
+		mainPane.add(score1);
+		
+		//score textArea for player 1 
+		scoreAff1 = new JTextArea ();
+		scoreAff1.setBounds(390,455,330,50);	
+		scoreAff1.setOpaque(false);
+		mainPane.add(scoreAff1);
+		
+		//"Player 2"
+		JLabel score2 = new JLabel();
+		score2.setFont(new Font("Ariel", Font.PLAIN, 16));
+		score2.setText("Player 2:");
+		score2.setBounds(495,400,340,50);
+		mainPane.add(score2);
+		
+		//score textArea for player 2
+		scoreAff2 = new JTextArea ();
+		scoreAff2.setBounds(495,455,330,50);	
+		scoreAff2.setOpaque(false);
+		mainPane.add(scoreAff2);
 		
 		/**
          * BEST SCORE
@@ -133,76 +129,41 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		JLabel bestScoreTitle = new JLabel();
 		bestScoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		bestScoreTitle.setText("Best Score:");
-		bestScoreTitle.setBounds(642,465,340,50);
+		bestScoreTitle.setBounds(440,500,340,50);
 		mainPane.add(bestScoreTitle);
 		
 		//best score textArea
 		bestScoreAff = new JTextArea ();
-		bestScoreAff.setBounds(642,500,330,50);	
+		bestScoreAff.setBounds(450,550,330,50);	
 		bestScoreAff.setOpaque(false);
 		mainPane.add(bestScoreAff);
 		
 		
 		/**
-         * SOUND
-         * */
-		//sound button
-		Icon musicIcon = new ImageIcon("Soundicon.png");
-		soundButton = new JButton (musicIcon);
-		soundButton.setBounds(730,10,20,20);	
-		soundButton.setBackground(Color.red);
-		soundButton.setForeground(Color.black);
-		soundButton.addActionListener(this);
-		mainPane.add(soundButton);
-		
-		
-		/**
-         * HOW TO PLAY
-         * */
-        
-		//how to play button
-		helpButton = new JButton ("?");
-		helpButton.setBounds(755,10,20,20);	
-		helpButton.setBackground(Color.white);
-		helpButton.setForeground(Color.black);
-		mainPane.add(helpButton);
-		helpButton.addActionListener(this);
-		
-		//declare pop up
-		help = new helpPopUp();
-		
-		
-		/**
          * ADD BACKGROUND
          * */
-		ImageIcon icon = new ImageIcon("backgroundfinal.png");
+		ImageIcon icon = new ImageIcon("background2.jpg");
 		JLabel label = new JLabel(icon);
-		label.setBounds(0,0,857,600);
+		label.setBounds(0,0,929,650);
 		mainPane.add(label);
 		
+		
 		this.setVisible(true);
-	
-	}
-    
+    }
     /********************************************************************************************************
      * ACTIONLISTENER
      * */
 
     public void actionPerformed (ActionEvent e){
-		if (e.getSource() == helpButton){
-			help.setVisible(true);
-			System.out.println("you clicked on help");
-		}
-		
 	}
-	
+    
 	/********************************************************************************************************
      * CHANGELISTENER
      * */
 	
 	public void stateChanged(ChangeEvent e) {
 	}
-        
+    
     /********************************************************************************************************
      * MOUSELISTENER
      * */
@@ -243,6 +204,9 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
             //mainGame.moveTetrimino(-1);
         }
     }
-    
 }
+
+		
+
+		
 
