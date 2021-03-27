@@ -22,6 +22,11 @@ import javax.sound.sampled.Clip;
  *  Mouse follower : tetrimino image
  * 	Remplissage JPanels (images, texte ...) + Alignements textes JLabels (layout ...)
  * 	Other components ? (p10 slides Fenetres) + dans les autres classes graphiques ...
+ * 	Add Emojis
+ * 	JTextPane / JEditorPane with scrolls inside JPanels
+ * 	https://stackoverflow.com/questions/40368875/how-to-display-unicode-characters-in-java-swing
+ * 	http://icps.u-strasbg.fr/people/bastoul/public_html/teaching/java/docs/Swing.pdf
+ *  https://miashs-www.u-ga.fr/prevert/Prog/Java/swing/JTextPane.html
  * 
  * */ 
 
@@ -37,9 +42,11 @@ public class helpPopUp extends JFrame implements ActionListener {
     
     public helpPopUp () {
 		
+			// Frame definition //
+		
 		this.setTitle("Help Panel - How to Play : ");
         this.setSize(1000,600);
-        this.setLocation(300,200);
+        this.setLocationRelativeTo(null);
         this.setLayout(null);        
         this.setResizable(false);
         this.setUndecorated(true);
@@ -47,12 +54,16 @@ public class helpPopUp extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(false);
         
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
 			// Panel containing the background image //
         
         JPanel panelImage = new JPanel();
         panelImage.setBounds(0,0,1000,600);
         panelImage.setLayout(null);
         // panelImage.setBackground(Color.BLACK); ---> for testing purposes only
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 			// Buttons //
 			
@@ -72,6 +83,8 @@ public class helpPopUp extends JFrame implements ActionListener {
 		soundButton.setOpaque(false);
 		panelImage.add(soundButton);
 		soundButton.addActionListener(this);
+		
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 			// Panels containing the information //
         
@@ -100,6 +113,49 @@ public class helpPopUp extends JFrame implements ActionListener {
         tetriminos.setBorder(roundedBorder);
         // tetriminos.setBackground(Color.RED); ---> for testing purposes only
         
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
+			// Text Areas in Panels // 
+			
+		JTextPane textPaneControlKeys = new JTextPane();
+		textPaneControlKeys.setBounds(20,60,160,420);
+		textPaneControlKeys.setOpaque(false);
+		//textPaneGeneralRules.setContentType("text/html");
+		controlKeys.add(textPaneControlKeys);
+		
+		JTextPane textPaneGeneralRules = new JTextPane();
+		textPaneGeneralRules.setBounds(20,60,660,250);
+		textPaneGeneralRules.setOpaque(false);
+		//textPaneGeneralRules.setContentType("text/html");
+		generalRules.add(textPaneGeneralRules);
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
+			// Text Strings for rules //
+			
+		String Keys1 = "Left Arrow : " + "\n" + " - Move Left -" + "\n";
+		String Keys2 = "Right Arrow : " + "\n" + " - Move Right -" + "\n";
+		String Keys3 = "Upper Arrow : " + "\n" + " - Move Up -" + "\n";
+		String Keys4 = "Down Arrow : " + "\n" + " - Move Down -" + "\n";
+		
+		String Rule1 = "Write Rule 1";
+		String Rule2 = "Write Rule 2";
+		String Rule3 = "\ud83d\udc3b";
+		String Rule4 = "";
+		
+		textPaneGeneralRules.setText("Write the rules below" + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + Rule1 + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + Rule2 + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + Rule3 + "\n");
+		
+		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys1 + "\n");
+		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys2 + "\n");
+		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys3 + "\n");
+		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys4 + "\n");
+		
+		
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
 			// Other components inside the Panels //
         
         JLabel helpText = new JLabel();
@@ -110,18 +166,17 @@ public class helpPopUp extends JFrame implements ActionListener {
         
         JLabel titleControlKeys = new JLabel();
         titleControlKeys.setFont(new Font("Times Roman", Font.BOLD, 18));
-        titleControlKeys.setText(" CONTROL KEYS");
+        titleControlKeys.setText(" CONTROL KEYS ");
         titleControlKeys.setHorizontalAlignment(JLabel.CENTER);
         titleControlKeys.setForeground(Color.WHITE);
-        titleControlKeys.setBounds(20,20,160,20);
+        titleControlKeys.setBounds((controlKeys.getWidth()-160)/2,20,160,20);
         controlKeys.add(titleControlKeys);
         
         JLabel titleGeneralRules = new JLabel();
         titleGeneralRules.setFont(new Font("Times Roman", Font.BOLD, 18));
         titleGeneralRules.setText(" GENERAL RULES ");
-        titleGeneralRules.setHorizontalAlignment(JLabel.CENTER);
         titleGeneralRules.setForeground(Color.WHITE);
-        titleGeneralRules.setBounds(300,20,160,20);
+        titleGeneralRules.setBounds((generalRules.getWidth()-160)/2,20,160,20);
         generalRules.add(titleGeneralRules);
         
         JLabel separationLine = new JLabel();
@@ -132,12 +187,15 @@ public class helpPopUp extends JFrame implements ActionListener {
         separationLine.setBounds(20,40,160,20);
         controlKeys.add(separationLine);
         
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
 			// Insertion of images inside the Panels //
         
 		JLabel BackgroundHelp = new JLabel(new ImageIcon("background-help.jpg"));
 		BackgroundHelp.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(BackgroundHelp);
         
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 			// Creation of the global Panel //
         
@@ -151,9 +209,13 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpPanel.add(tetriminos);
         helpPanel.add(panelImage);
         
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
 			// Adding this Panel to the general Frame //
 		
         this.add(helpPanel);
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
         // Audio SoundTrack 
         

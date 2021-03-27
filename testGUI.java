@@ -31,6 +31,7 @@ public class testGUI {
 			//helpPopUp helpWindow = new helpPopUp ();
 
 			WelcomeGUI newWindow = new WelcomeGUI ();
+			
 	}
 }
 

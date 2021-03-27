@@ -15,6 +15,11 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+/*
+ *  Make round edges on Buttons
+ * 	Emojis and pictures ...
+ * 
+ * */ 
 
 public class WelcomeGUI extends JFrame implements ActionListener {	
     
@@ -75,6 +80,11 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Player1.setBackground(new Color(255,255,255,100));
 		Player1.setBorder(roundedBorder);
 		Player1.setOpaque(false);
+		
+		JLabel icon1 = new JLabel(new ImageIcon("emoji-video-game.jpg"));
+		icon1.setBounds(10,0,40,40);
+		Player1.add(icon1);
+		
 		panelImage.add(Player1);
 		Player1.addActionListener(this);
 		
@@ -170,6 +180,11 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          playSound = AudioSystem.getClip();
          playSound.open(audioplaySound);
          
+         File helpSoundFile = new File("pacman_death.wav");
+         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         helpSound = AudioSystem.getClip();
+         helpSound.open(audiohelpSound);
+         
 		}catch(Exception e){ e.printStackTrace(); }
         
     }
@@ -194,6 +209,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 			
 			HelpWindow = new helpPopUp ();
 			HelpWindow.setVisible(true);
+			helpSound.start();
+			tetrisSoundtrack.stop();
 			
 		}
 		
