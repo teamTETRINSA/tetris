@@ -10,11 +10,9 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 	
 	//declare widgets out of constructor
 	private JButton startButton;
-	/*
 	private JButton difficulty1;
 	private JButton difficulty2;
 	private JButton difficulty3;
-	*/
 	private JSlider sliderDifficulty;
 	private JTextArea scoreAff;
 	private JTextArea bestScoreAff;
@@ -28,14 +26,14 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		//Creation of principle window
 		
 		this.setTitle("Tetr'INSA");
-		this.setSize(857,600);
+		this.setSize(800,600);
 		this.setLocation(300,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		//Create main panel
 		JPanel mainPane = new JPanel();
-		mainPane.setBounds(0,0,857,600);
+		mainPane.setBounds(0,0,800,600);
 		mainPane.setLayout(null);
 		mainPane.setBackground(Color.white);
 		this.add(mainPane);
@@ -54,7 +52,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		
 		//Create start button
 		startButton = new JButton ("Start!");
-		startButton.setBounds(570,245,232,60);	
+		startButton.setBounds(523,245,232,60);	
 		startButton.setBackground(Color.red);
 		startButton.setForeground(Color.black);
 		startButton.addActionListener(this);
@@ -64,10 +62,11 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		/**
          * DIFFICULTY BUTTONS
          * */
+		
 		/*
 		//difficulty button1
 		difficulty1 = new JButton ("1");
-		difficulty1.setBounds(570,327,64,60);	
+		difficulty1.setBounds(523,327,64,60);	
 		difficulty1.setBackground(Color.red);
 		difficulty1.setForeground(Color.black);
 		difficulty1.addActionListener(this);
@@ -75,7 +74,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		
 		//difficulty button2
 		difficulty2 = new JButton ("2");
-		difficulty2.setBounds(654,327,64,60);	
+		difficulty2.setBounds(607,327,64,60);	
 		difficulty2.setBackground(Color.red);
 		difficulty2.setForeground(Color.black);
 		difficulty2.addActionListener(this);
@@ -83,32 +82,35 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		
 		//difficulty button 3
 		difficulty3 = new JButton ("3");
-		difficulty3.setBounds(730,327,64,60);	
+		difficulty3.setBounds(691,327,64,60);	
 		difficulty3.setBackground(Color.red);
 		difficulty3.setForeground(Color.black);
 		difficulty3.addActionListener(this);
 		mainPane.add(difficulty3);
 		*/
 		
-		sliderDifficulty = new JSlider(JSlider.HORIZONTAL,1,3,1);
+		//"Difficulty"
+		JLabel difficulty = new JLabel();
+		difficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
+		difficulty.setText("Difficulty:");
+		difficulty.setBounds(595,289,340,50);
+		mainPane.add(difficulty);
+		
+		/**
+         * DIFFICULTY SLIDER
+         * */
+         
+        sliderDifficulty = new JSlider(JSlider.HORIZONTAL,1,3,1);
         sliderDifficulty.setMajorTickSpacing(1);
 		//sliderDifficulty.setMinorTickSpacing(1);
 		sliderDifficulty.setValueIsAdjusting(true);
 		sliderDifficulty.setSnapToTicks(true);
 		sliderDifficulty.setPaintTicks(true);
 		sliderDifficulty.setPaintLabels(true);
-		sliderDifficulty.setBounds(570,327,232,60);
+		sliderDifficulty.setBounds(523,327,232,60);
 		
 		mainPane.add(sliderDifficulty);
         sliderDifficulty.addChangeListener(this);
-		
-		//"Difficulty"
-		JLabel difficulty = new JLabel();
-		difficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
-		difficulty.setText("Difficulty:");
-		difficulty.setBounds(642,289,340,50);
-		mainPane.add(difficulty);
-		
 		
 		/**
          * SCORE
@@ -117,28 +119,28 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		JLabel scoreTitle = new JLabel();
 		scoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		scoreTitle.setText("Your Score:");
-		scoreTitle.setBounds(642,370,340,50);
+		scoreTitle.setBounds(595,370,340,50);
 		mainPane.add(scoreTitle);
 		
 		//score textArea
 		scoreAff = new JTextArea ();
-		scoreAff.setBounds(642,425,330,50);	
+		scoreAff.setBounds(595,425,330,50);	
 		scoreAff.setOpaque(false);
 		mainPane.add(scoreAff);
 		
 		/**
          * BEST SCORE
          * */
-		//"Best Score"
+		//"Score"
 		JLabel bestScoreTitle = new JLabel();
 		bestScoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		bestScoreTitle.setText("Best Score:");
-		bestScoreTitle.setBounds(642,465,340,50);
+		bestScoreTitle.setBounds(595,450,340,50);
 		mainPane.add(bestScoreTitle);
 		
 		//best score textArea
 		bestScoreAff = new JTextArea ();
-		bestScoreAff.setBounds(642,500,330,50);	
+		bestScoreAff.setBounds(595,500,330,50);	
 		bestScoreAff.setOpaque(false);
 		mainPane.add(bestScoreAff);
 		
@@ -149,7 +151,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		//sound button
 		Icon musicIcon = new ImageIcon("Soundicon.png");
 		soundButton = new JButton (musicIcon);
-		soundButton.setBounds(730,10,20,20);	
+		soundButton.setBounds(720,25,20,20);	
 		soundButton.setBackground(Color.red);
 		soundButton.setForeground(Color.black);
 		soundButton.addActionListener(this);
@@ -162,7 +164,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
         
 		//how to play button
 		helpButton = new JButton ("?");
-		helpButton.setBounds(755,10,20,20);	
+		helpButton.setBounds(745,25,20,20);	
 		helpButton.setBackground(Color.white);
 		helpButton.setForeground(Color.black);
 		mainPane.add(helpButton);
@@ -177,7 +179,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
          * */
 		ImageIcon icon = new ImageIcon("backgroundfinal.png");
 		JLabel label = new JLabel(icon);
-		label.setBounds(0,0,857,600);
+		label.setBounds(0,0,800,600);
 		mainPane.add(label);
 		
 		this.setVisible(true);
