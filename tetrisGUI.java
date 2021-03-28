@@ -17,8 +17,13 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 	private JTextArea scoreAff;
 	private JTextArea bestScoreAff;
 	private JButton soundButton;
+    private JButton playPauseButton;
 	private JButton helpButton;
 	private helpPopUp help;
+    private tetrimino T1;
+    private tetrimino T2;
+    private grid G;
+    private boolean pause;
 	
 	//constructor
 	public tetrisGUI (){
@@ -89,7 +94,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		mainPane.add(difficulty3);
 		*/
 		
-		//"Difficulty"
+		//Difficulty
 		JLabel difficulty = new JLabel();
 		difficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
 		difficulty.setText("Difficulty:");
@@ -146,9 +151,8 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		
 		
 		/**
-         * SOUND
+         * SOUND BUTTON
          * */
-		//sound button
 		Icon musicIcon = new ImageIcon("Soundicon.png");
 		soundButton = new JButton (musicIcon);
 		soundButton.setBounds(720,25,20,20);	
@@ -157,7 +161,18 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		soundButton.addActionListener(this);
 		mainPane.add(soundButton);
 		
-		
+		/**
+         * PLAY/PAUSE
+         * */
+         
+		Icon playPauseIcon = new ImageIcon("playPauseIcon.png");
+		playPauseButton = new JButton (playPauseIcon);
+		playPauseButton.setBounds(680,25,20,20);	
+		playPauseButton.setBackground(Color.red);
+		playPauseButton.setForeground(Color.black);
+		playPauseButton.addActionListener(this);
+		mainPane.add(playPauseButton);
+        
 		/**
          * HOW TO PLAY
          * */
@@ -181,20 +196,46 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		JLabel label = new JLabel(icon);
 		label.setBounds(0,0,800,600);
 		mainPane.add(label);
+        
+        /**
+         * TIMER
+         * the grid will be repaint each 100ms
+         * */
+        
+        Timer t = new Timer(100, this);
+        t.start(); 
 		
 		this.setVisible(true);
 	
 	}
+    
+    
+    /**
+     * PAINT method
+     * */
+    
+    public void paint (Graphics g){
+        G.dessine(g);
+        T1.dessine(g);
+    }
     
     /********************************************************************************************************
      * ACTIONLISTENER
      * */
 
     public void actionPerformed (ActionEvent e){
+        
+        // no need of any "if" for the timer t
+        repaint();
+        
 		if (e.getSource() == helpButton){
 			help.setVisible(true);
 			System.out.println("you clicked on help");
 		}
+        
+        if (e.getSource()== playPauseButton){
+            //mainGame.pauseTheGame();
+        }
 		
 	}
 	
@@ -236,13 +277,20 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
     
     public void keyTyped(KeyEvent e) {
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
-            //mainGame.dropTetrimino(1);
+            //mainGame.dropTetrimino(t1,g,1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-            //mainGame.rotateTetrimino();
+            //mainGame.rotateTetrimino(t1);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            //mainGame.moveTetrimino(1);
+            //mainGame.moveTetrimino(t1,g,1);
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            //mainGame.moveTetrimino(-1);
+            //mainGame.moveTetrimino(t1,g,-1);
+        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+            if (pause==true){
+                pause=false;
+            }else{
+                pause=true;
+            }
+            //mainGame.pauseTheGame();
         }
     }
     

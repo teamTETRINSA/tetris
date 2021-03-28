@@ -1,13 +1,14 @@
 import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class shape {
     
     public int[][] tab ;
     public int X = 0;
     public int Y = 0;
-    protected Color CouleurTetrimino;
+    protected Color ColorTetrimino;
     
     private final Color COULEUR_PAR_DEFAUT = Color.black; // La couleur par défaut est défini comme une constante
     
@@ -23,12 +24,15 @@ public class shape {
 		int g = rand.nextInt(255);
 		int b = rand.nextInt(255);
         
-        //Initialisation coordinates 
-        //this.X = x;
-        //this.Y = y;
+        /*
+        //creating an ArrayList of colors
+        ArrayList<Color> AvailableColors = new ArrayList<Color> (Color.green, Color.blue, Color.red);
         
         //Initialisation couleur
-		CouleurTetrimino = new Color(r, g, b);
+        int nb = (int)(Math.random()*4);
+		CouleurTetrimino = AvailableColors.get(nb);
+        * */
+        ColorTetrimino = Color.cyan;
 		
 		//Initialisation tab
 		tab = new int [4][4];
@@ -61,12 +65,4 @@ public class shape {
         return res;
     }
     
-    public void dessine(Graphics g){
-        g.setColor(CouleurTetrimino);
-        for (int i=0; i < tab.length ; i++){
-            for (int j=0; j< tab[0].length ; j++){
-                g.fillRect (i*15, j*15, 15, 15);
-            }
-        }
-	}
 }

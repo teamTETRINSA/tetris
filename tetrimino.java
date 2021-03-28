@@ -3,6 +3,7 @@
  * */
  
 import java.awt.Graphics;
+import java.awt.Color;
 
 public class tetrimino extends shape{
     /**
@@ -117,11 +118,7 @@ public class tetrimino extends shape{
      * */
      
     public void dropTetrimino(int dy) {
-			this.Y += dy;
-	}
-    
-    public void dessine(Graphics g){
-        super.dessine(g);
+			this.Y += -dy;
 	}
     
     /**
@@ -142,5 +139,23 @@ public class tetrimino extends shape{
         System.out.println("milieu gamearea A = "+cg);
         System.out.println("position début ajout a dans A = "+ (cg-ct));
     }
+    
+    public void dessine(Graphics g){
+        g.setColor(ColorTetrimino);
+        for (int i=0; i < tab.length ; i++){
+            for (int j=0; j< tab[0].length ; j++){
+                g.fillRect (Y*15+i*15, X*15+j*15, 15, 15);
+            }
+        }
+	}
+    
+    /*******************
+     * TO COMPLETE WITH OTHER COLORS
+     * */
+    
+    public int getIntegerForColor(){
+        return 1;
+    }
+        
 
 }

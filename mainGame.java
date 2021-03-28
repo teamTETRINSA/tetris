@@ -5,22 +5,24 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import java.util.Random;
+import java.awt.Dialog;
+import javax.swing.JOptionPane;
 
-public class mainGame /*extends JPanel()**/ {
-    
-    /********************************************************************************************************
-     * MAIN
-     * */
+public class mainGame extends JOptionPane {
   
 	public static void main(String[] args) {
         
-        /**
+    /**
      * Initializing parameters
      * */
      
     boolean restart=true;   // variable to know if we want to restart the game
     
-    boolean start = true;          //varibale to know if we print another shape on the grid
+    boolean start = true;          //variaale to know if we print another shape on the grid
+    
+    boolean initialPhase = true;  // variable used in the tetrisGUI-2 classes to know if we are in the initial phase of the game (ther player is choosing
+    
+    boolean pause = false ;
     
     boolean fallen ;        // variable to know the tetrimino t1 fell
     
@@ -32,9 +34,7 @@ public class mainGame /*extends JPanel()**/ {
     
     int lap = 0;            // count the total number of tetriminos placed in the area
     
-    /**boolean possibleFall ;  // to says if a tetrimno can fall (if there is nothing under it) **/
-    
-    Timer T;                // tetriminos fall at precise (shorter and shorter) time intervals
+    int interval =1000;          //the time interval at which a tetrimino is dropped    
     
     grid G;                 //the game area
     
@@ -48,9 +48,9 @@ public class mainGame /*extends JPanel()**/ {
 	
 	ArrayList<tetrimino> ShapeBank = new ArrayList<tetrimino> ();
        
-        /**
-         * Creating tetriminos
-         * */
+    /**
+     * Creating tetriminos
+     * */
         
     tetrimino t1= new tetrimino(1);
     tetrimino t2= new tetrimino(2);
@@ -60,22 +60,22 @@ public class mainGame /*extends JPanel()**/ {
     tetrimino t6= new tetrimino(6);
     tetrimino t7= new tetrimino(7);
         
-        /**
-         * for printing the different tetriminos created on the temrinal
-         * */
-        /*
-        System.out.println(t1);
-        System.out.println(t2);
-        System.out.println(t3);
-        System.out.println(t4);
-        System.out.println(t5);
-        System.out.println(t6);
-        System.out.println(t7);
-        * **/
+    /**
+     * for printing the different tetriminos created on the temrinal
+     * */
+    /*
+    System.out.println(t1);
+    System.out.println(t2);
+    System.out.println(t3);
+    System.out.println(t4);
+    System.out.println(t5);
+    System.out.println(t6);
+    System.out.println(t7);
+    */
         
-        /**
-         * now we create a list with all these tetriminos
-         * */
+    /**
+     * now we create a list with all these tetriminos
+     * */
          
     ShapeBank.add(t1);
     ShapeBank.add(t2);
@@ -88,22 +88,21 @@ public class mainGame /*extends JPanel()**/ {
     while (restart == true){
         
         restart = false;
-        G = new grid(20,10);          //we re-build a grid before each new game
-            
-    // Paramètre position initiale x à calculer 
+        G = new grid(20,10);                //we re-build a grid before each new game
         
-        System.out.println(G);        //a supprimer plus tard
+        System.out.println(G);              //a supprimer plus tard
 
-        int nb = (int)(Math.random()*8);	       //the first tetrimino choosen
+        int nb = (int)(Math.random()*8);	//the first tetrimino choosen
 		T1 = ShapeBank.get(nb);   
            
-    /** AFFICHAGE DE T1 **/
-    /* while we can play and add tetriminos
-     * we continue introducing tetriminos at the top of the game
-     * */
+        /** AFFICHAGE DE T1 **/
+        /* while we can play and add tetriminos
+        * we continue introducing tetriminos at the top of the game
+        */
             
 		while (start == true)
-                
+            
+            interval =  45*((int) Math.sin(1/(lap+8)))+200; // this function allows to decrease the time ineterval as a functioon of the number of laps done
             start = false;
             lap += 1;
             score += 1;
@@ -113,26 +112,18 @@ public class mainGame /*extends JPanel()**/ {
 			int nbs = (int)(Math.random()*8);
 			T2 = ShapeBank.get(nbs);
             
-			// will be printed a "the next coming tetrimino" when t1 will be printed on the grid
-                
-                /** PRINT T2 **/   
+			// will be printed "the next coming tetrimino T2" when T1 will be printed on the grid
             
-            if (check(G)==true)                    //initialisation : la chute n°1 est-elle possible?
-                
-            /* tant que LA CHUTE EST POSSIBLE 
-             * check method : I don't know if we put it in this maintest or in the grid class...
-             * **/
-                
-            //While (G.check()==true){    
-            //    /** PRINT ... **/
-            //}
-                
-            /* we exchange the even numbers of a tetrimino as odd ones
-             * it now belongs to the fallen tetriminos
-             * */
-            //g.tranformShape();
-            ///** PRINT G **/
-                
+            while (dropIsPossible(T1, G)){
+                //while the play/pause button is on "pause" mode, do nothing
+                while (pause==true){
+                }
+                timePause(interval);
+                dropTetrimino(T1,G,1);
+            }
+            
+            G.transformShape(T1);
+            
             /*
              * the total score is modified
              * we add the lap integer to the score
@@ -141,8 +132,6 @@ public class mainGame /*extends JPanel()**/ {
              * */
                 
             score += lap + deleteLines(score, G);
-            
-            /** PRINT score **/
                 
             /*
              * is the game finished?
@@ -155,20 +144,25 @@ public class mainGame /*extends JPanel()**/ {
                 start = true;
                 t1 = t2;
             }
+               
         }
         
-            // the bestScore is updated
-        
-        if (bestScore <= score){
-            bestScore=score;
-        }
+        // the bestScore is updated
             
         /** PRINT PopUp window 
          * at the end of the game
          * with the score 
          * and the bestScore
          * */
-            
+        
+        if (score>bestScore){
+            //JOptionPane.showMessageDialog(frame, "New Best Score !"+"/n"+score);
+            //JOptionPane.showMessageDialog( null, "New Best Score !" );
+            bestScore=score;
+        }else{
+            //JOptionPane.showMessageDialog(frame, "Game Over !"+"/n"+score+"/n"+"High Score : "+bestScore);
+            //JOptionPane.showMessageDialog( null, "GameOver !" );
+        }
         score=0;
             
         /** PRINT "score=0" at the top of the window where the score appears **/
@@ -176,7 +170,7 @@ public class mainGame /*extends JPanel()**/ {
         // the PLAY button waits to be pushed
         
         while (!restart){
-            /** WAIT **/
+            //do nothing
         }
         
     }
@@ -186,6 +180,17 @@ public class mainGame /*extends JPanel()**/ {
     /********************************************************************************************************
      * METHODS
      * */
+     
+    /**
+     * TIMEPAUSE
+     * used to make drop the tetriminos at regular intervals
+     * */
+    
+    public static void timePause (int ms) {
+		try {
+		Thread.sleep(ms);
+		}catch(InterruptedException e){}
+	}
     
     /**
      * CHECK method
@@ -265,18 +270,19 @@ public class mainGame /*extends JPanel()**/ {
                 g.area[a][i]=0;
             }
         }
-
-        /** PRINT grid **/
         
-        // we rearrange the grid
-        /** PRINT score **/
+        /* we rearrange the grid : we make fall all the filled boxes 
+         * above the lines in the terminal and on the GUI
+         */
         
-        // finally we make fall all the filled boxes above thes lines in the terminal and on the GUI
+        g.makeFallGrid();
         
         /* we return an integer corresponding to the bonus got
          * using the method addBonus? is it usefull or maybe we can directly do it here...
          * */
-        return 1; // so that it compiles
+         
+        int bonus = (int) Math.pow(10,count);
+        return bonus; 
     }
     
     /**
@@ -284,6 +290,7 @@ public class mainGame /*extends JPanel()**/ {
      * the score increases when one line is completed/deleted
      * the more lines you complete at the same time, the higher the score
      * */
+     
     public static int getScore(grid g1){
 		int score=0;
 		int nbLines=0; // number of lines completed (so deleted) at the same time
@@ -304,26 +311,29 @@ public class mainGame /*extends JPanel()**/ {
      * function of the lap number and the number of lines deleted in one shot
      * */
     
-    public int addBonus(int b){
+    public static int addBonus(int b){
         return 1; // so that it compiles
     }
-	
-    /**
-     * ROTATETRIMINO
-     * Rotation to the right 
-     * */
     
-    public void rotateTetrimino (tetrimino t) {
-		t.rotateTetrimino();
-    }
+    /**
+     * GETCELL
+     * Returns the content of one cell of the grid
+     * */
+     
+    public static int getCell(grid g, int x, int y) {
+        return g.getCell(x,y);
+	}
     
     /**
      * MOVETETRIMINO
-     * Translation of the tetrimino of a coordinate dX 
+     * Translation of the tetrimino of a coordinate dX
+     * can move a tetrimino to the right or to the left 
      * */
      
-    public void moveTetrimino(tetrimino t, int dx) {
-        t.moveTetrimino(dx);
+    public static void moveTetrimino(tetrimino t, grid g, int dx) {
+        if ((dx>0 && moveToRightIsPossible(t,g)==true)||(dx<0 && moveToLeftIsPossible(t,g))){
+            t.moveTetrimino(dx);
+        }
 	}
     
     /**
@@ -331,20 +341,89 @@ public class mainGame /*extends JPanel()**/ {
      * Drop the tetrimino of a coordinate dY 
      * */
      
-    public void dropTetrimino(tetrimino t, int dy) {
-        t.dropTetrimino(dy);
+    public static void dropTetrimino(tetrimino t, grid g, int dy) {
+        if (dropIsPossible(t,g)==true){
+            t.dropTetrimino(dy);
+        }
 	}
-    
-	/**
-     * GETCELL
-     * Returns the content of one cell of the grid
-     * */
-     
-    public int getCell(grid g, int x, int y) {
-        return g.getCell(x,y);
-	}
-    
-	// METHODE TO PAUSE THE GAME !!! 
-    
 	
+    /**
+     * ROTATETRIMINO
+     * Rotation to the right 
+     * */
+    
+    public static void rotateTetrimino (tetrimino t) {
+		t.rotateTetrimino();
+    }
+    
+    /**
+     * DROPSIPOSSIBLE
+     * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
+     * */
+    
+    public static boolean dropIsPossible(tetrimino t, grid g){
+        boolean possible = true ;
+        for (int i = 0; i< t.tab.length ; i++){
+            for (int j=0 ; j< t.tab[0].length ; j++){
+                if (t.tab[i+1][j]==0){
+                    if (g.area[t.Y+i+1][t.X] != 0){
+                        possible = false ;
+                        i = t.tab.length;
+                        j = t.tab[0].length;
+                    }
+                }
+            }
+        }
+        return possible;
+    }
+    
+    /**
+     * MOVETORIGHTISPOSSIBLE
+     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
+     * */
+    
+    public static boolean moveToRightIsPossible(tetrimino t, grid g){
+        boolean possible = true ;
+        for (int i = 0; i< t.tab.length ; i++){
+            for (int j=0 ; j< t.tab[0].length ; j++){
+                if (t.tab[i][j+1]==0){
+                    if (g.area[t.Y][t.X+j+1] != 0){
+                        possible = false ;
+                        i = t.tab.length;
+                        j = t.tab[0].length;
+                    }
+                }
+            }
+        }
+        return possible;
+    }
+    
+     /**
+     * MOVETOLEFTISPOSSIBLE
+     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
+     * */
+    
+    public static boolean moveToLeftIsPossible(tetrimino t, grid g){
+        boolean possible = true ;
+        for (int i = 0; i< t.tab.length ; i++){
+            for (int j=0 ; j< t.tab[0].length ; j++){
+                if (t.tab[i][j-1]==0){
+                    if (g.area[t.Y][t.X+j-1] != 0){
+                        possible = false ;
+                        i = t.tab.length;
+                        j = t.tab[0].length;
+                    }
+                }
+            }
+        }
+        return possible;
+    }
+    
+    public static boolean pauseTheGame (boolean pause){
+        if (pause==false){
+            return true ;
+        }else{
+            return false;
+        }
+    }
 }
