@@ -32,7 +32,9 @@ import javax.sound.sampled.Clip;
 
 public class helpPopUp extends JFrame implements ActionListener {	
     
-    private Clip helpSoundtrack;
+    public static Clip helpSoundtrack;
+    
+    public static boolean closedWindow = true;
     
     private JButton exitButton;
     
@@ -217,19 +219,19 @@ public class helpPopUp extends JFrame implements ActionListener {
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
-        // Audio SoundTrack 
+			// Audio SoundTrack //
         
-      /* try {
+       try {
          
          File helpSoundFile = new File("help-menu-music.wav");		// Open an audio input stream.
          AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
          helpSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          helpSoundtrack.open(audiohelpSound);		// Open audio clip and load samples from the audio input stream.
-         helpSoundtrack.start();
+         //helpSoundtrack.start();
          
 		}catch(Exception e){ e.printStackTrace(); } 
 		
-		*/
+		
 		
     }
     
@@ -238,6 +240,8 @@ public class helpPopUp extends JFrame implements ActionListener {
 		if (e.getSource()== exitButton){
 			
 			this.setVisible(false);
+			helpSoundtrack.stop();
+			closedWindow = true;
 			
 		}
 		
