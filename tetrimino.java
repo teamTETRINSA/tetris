@@ -103,23 +103,9 @@ public class tetrimino extends shape{
         this.tab=transTab;
     }
     
-    /**
-     * MOVETETRIMINO
-     * Translation of the tetrimino of a coordinate dX 
-     * */
-     
-    public void moveTetrimino(int dx) {
-			this.X += dx;
-	}
     
-    /**
-     * DROPTETRIMINO
-     * Drop the tetrimino of a coordinate dY 
-     * */
-     
-    public void dropTetrimino(int dy) {
-			this.Y += -dy;
-	}
+    
+    
     
     /**
      * GETINITIALPOSITION
@@ -128,17 +114,7 @@ public class tetrimino extends shape{
      * */
     
     
-    public void getInitialPosition(grid g){
-        int ct=tab.length/2; // coordinate of the horizontal center of tetrimino t
-        int cg=g.area[0].length/2; //coordinate of the horizontal center of grid G
-        X = cg-ct ;// the initial position X of tetrimino t
-        
-		
-        // détermination de la position d'insertion de la forme au début de la grille de jeu
-        System.out.println("milieu shape a = "+ct);
-        System.out.println("milieu gamearea A = "+cg);
-        System.out.println("position début ajout a dans A = "+ (cg-ct));
-    }
+    
     
     public void dessine(Graphics g){
         g.setColor(ColorTetrimino);

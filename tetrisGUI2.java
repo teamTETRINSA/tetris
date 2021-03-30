@@ -41,11 +41,7 @@ public class tetrisGUI2 extends JFrame implements ActionListener, ChangeListener
     private JButton playPauseButton;
 	private JButton helpButton;
 	private helpPopUp help;
-    private tetrimino T1;
-    private tetrimino T2;
-    private grid G;
-    private boolean pause;
-	
+
 	//constructor
 	public tetrisGUI2 (){
 		
@@ -178,15 +174,17 @@ public class tetrisGUI2 extends JFrame implements ActionListener, ChangeListener
     /**
      * PAINT method
      * */
-    
+    /*
     public void paint (Graphics g){
-        G.dessine(g);
+        data.dessine(g);
+        data.T1.dessine(g);
         
         //THINK HOW CAN WE PRINT THE 2 GRIDS AT TO DIFFERENT PALCES ON THE GUI
         
         //T1.dessine(g);
         //T2.dessin(g);
     }
+    * */
     
     /********************************************************************************************************
      * ACTIONLISTENER
@@ -201,8 +199,11 @@ public class tetrisGUI2 extends JFrame implements ActionListener, ChangeListener
 			System.out.println("you clicked on help");
 		}
         
-        if (e.getSource()== playPauseButton){
-            //mainGame.pauseTheGame();
+        if (e.getSource() == playPauseButton){
+            //cannot compile for now
+            /*
+            data.pauseTheGame();
+            * */
         }
 	}
     
@@ -242,16 +243,43 @@ public class tetrisGUI2 extends JFrame implements ActionListener, ChangeListener
     public void keyReleased(KeyEvent e) {
     }
     
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e){
+        
+        // for the player on right
+        // cannot compile for now
+        /*
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
-            //mainGame.dropTetrimino(t1,g,1);
+            mainGame.dropTetrimino(data, 1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-            //mainGame.rotateTetrimino(t1);
+            mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            //mainGame.moveTetrimino(t1,g,1);
+            mainGame.moveTetrimino(data,1);
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            //mainGame.moveTetrimino(t1,g,-1);
+            mainGame.moveTetrimino(data,-1);
         }
+        * */
+        
+        // for the player on left
+        // cannot compile for now
+        /*
+        if (e.getKeyCode()==KeyEvent.VK_S){
+            mainGame.dropTetrimino(data, 1);
+        }else if (e.getKeyCode()==KeyEvent.VK_Z){
+            mainGame.rotateTetrimino(data);
+        }else if (e.getKeyCode()==KeyEvent.VK_D){
+            mainGame.moveTetrimino(data,1);
+        }else if (e.getKeyCode()==KeyEvent.VK_Q){
+            mainGame.moveTetrimino(data,-1);
+        }
+        * */
+        
+        // to pause the game
+        //cannot compile for now
+        /*
+        if (e.getKeyCode()==KeyEvent.VK_SPACE){
+            data.pauseTheGame();
+        }
+        * */
     }
 }
 

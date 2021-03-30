@@ -7,6 +7,10 @@ import java.awt.Color;
 import javax.swing.event.*;
 
 public class tetrisGUI extends JFrame implements ActionListener, ChangeListener {
+    
+    //grid-type attribute
+    
+    private grid data;
 	
 	//declare widgets out of constructor
 	private JButton startButton;
@@ -20,14 +24,12 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
     private JButton playPauseButton;
 	private JButton helpButton;
 	private helpPopUp help;
-    private tetrimino T1;
-    private tetrimino T2;
-    private grid G;
-    private boolean pause;
 	
 	//constructor
-	public tetrisGUI (){
+	public tetrisGUI (grid g){
 		
+        data = g;
+        
 		//Creation of principle window
 		
 		this.setTitle("Tetr'INSA");
@@ -94,17 +96,21 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		mainPane.add(difficulty3);
 		*/
 		
+        // A INSERER DANS LA WELCOME GUI
+        /*
 		//Difficulty
 		JLabel difficulty = new JLabel();
 		difficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
 		difficulty.setText("Difficulty:");
 		difficulty.setBounds(595,289,340,50);
 		mainPane.add(difficulty);
+        * */
 		
 		/**
          * DIFFICULTY SLIDER
          * */
-         
+        // A INSERER DANS LA WELCOME GUI
+        /* 
         sliderDifficulty = new JSlider(JSlider.HORIZONTAL,1,3,1);
         sliderDifficulty.setMajorTickSpacing(1);
 		//sliderDifficulty.setMinorTickSpacing(1);
@@ -116,6 +122,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		
 		mainPane.add(sliderDifficulty);
         sliderDifficulty.addChangeListener(this);
+        * */
 		
 		/**
          * SCORE
@@ -215,8 +222,8 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
      * */
     
     public void paint (Graphics g){
-        G.dessine(g);
-        T1.dessine(g);
+        data.dessine(g);
+        data.T1.dessine(g);
     }
     
     /********************************************************************************************************
@@ -234,7 +241,7 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
 		}
         
         if (e.getSource()== playPauseButton){
-            //mainGame.pauseTheGame();
+            data.pauseTheGame();
         }
 		
 	}
@@ -277,20 +284,15 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
     
     public void keyTyped(KeyEvent e) {
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
-            //mainGame.dropTetrimino(t1,g,1);
+            mainGame.dropTetrimino(data, 1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-            //mainGame.rotateTetrimino(t1);
+            mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            //mainGame.moveTetrimino(t1,g,1);
+            mainGame.moveTetrimino(data,1);
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            //mainGame.moveTetrimino(t1,g,-1);
+            mainGame.moveTetrimino(data,-1);
         }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
-            if (pause==true){
-                pause=false;
-            }else{
-                pause=true;
-            }
-            //mainGame.pauseTheGame();
+            data.pauseTheGame();
         }
     }
     
