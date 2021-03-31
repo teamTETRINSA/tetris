@@ -19,11 +19,14 @@ import javax.sound.sampled.Clip;
 /*
  *  Make round edges on Buttons
  * 	Emojis and pictures ...
- * 	Changing Backgrounds -> JSpinner
+ * 	Enlever Changing Backgrounds -> JSpinner + StateChange
  * 	For TetrisGUI changing Backgrounds -> JCombobox
+ * 	Mode plein écran ???
  * */ 
 
-public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener {	
+public class WelcomeGUI extends JFrame implements ActionListener {	
+    
+    private grid data;
     
     private JButton Player1;
     
@@ -39,9 +42,13 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
     
     private tetrisGUI2 TwoPlayers;
     
+    private info1PlayerPopUp OnePlayerInfo;
+    
+    private info2PlayerPopUp TwoPlayersInfo;
+    
     private boolean sound = true;
     
-    private Clip tetrisSoundtrack;
+    protected static Clip tetrisSoundtrack;
     
     private Clip playSound;
     
@@ -55,8 +62,6 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
     
     //private String backGround = "imageTetrisWelcome.jpg";
     
-    private JSpinner backGroundSpinner;
-    
     private int backGroundNumber = 1;
     
     private JLabel Background;
@@ -66,17 +71,18 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
     private JLabel Names;
     
     
-    
     // ImageIcons : //
-    
+    /*
     private ImageIcon imageIconTetrisWelcome1 = new ImageIcon("imageTetrisWelcome.jpg");
     
     private ImageIcon imageIconTetrisWelcome2 = new ImageIcon("imageTetrisWelcome2.jpg");
     
     private ImageIcon imageIconTetrisWelcome3 = new ImageIcon("imageTetrisWelcome4.jpg");
+    */
     
-    
-    public WelcomeGUI (){
+    public WelcomeGUI (/*grid g*/){
+		
+		/*data = g;*/
 		
 		// Definition of the Frame //
         
@@ -165,21 +171,7 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
 		Names.setText("Project realised by Joseph B, Paul TD, Bich-Lien P, Flora G");
 		Names.setBounds(130,315,480,40);
 		panelImage.add(Names); 
-		
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-        
-		// JSpinner to change the background //
-		
-		// String[] backGroundNumbers = {"1","2","3"} ; - - -> Over way to define the model with SpinnerListModel 
-		
-		SpinnerNumberModel backGroundModel = new SpinnerNumberModel(1,1,3,1);
-		backGroundSpinner = new JSpinner(backGroundModel);
-		
-		backGroundSpinner.setBounds(60,20,40,20);
-		
-		backGroundSpinner.addChangeListener(this);
-		panelImage.add(backGroundSpinner);
-		
+			
 		
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //		
 	 
@@ -199,7 +191,7 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
 		LogoGame.setBounds(140,20,320,80);
 		panelImage.add(LogoGame);
 		
-		Background = new JLabel(imageIconTetrisWelcome1);
+		Background = new JLabel(new ImageIcon("imageTetrisFondWelcome.jpg"));
 		Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(Background);
         
@@ -211,11 +203,11 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
         
         this.add(welcomePanel);
         
-        OnePlayer = new tetrisGUI ();
+        /*OnePlayer = new tetrisGUI ();
         OnePlayer.setVisible(false);
         
         TwoPlayers = new tetrisGUI2 ();
-        TwoPlayers.setVisible(false);
+        TwoPlayers.setVisible(false);*/ // -> Create from infoPlayer...
         
         //HelpWindow = new helpPopUp ();
         //HelpWindow.setVisible(false);
@@ -250,51 +242,6 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
 		}catch(Exception e){ e.printStackTrace(); }
         
     }
-    
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-	
-	public void stateChanged(ChangeEvent e) {
-	
-		if (e.getSource() == backGroundSpinner) {
-			
-			backGroundNumber = (Integer) backGroundSpinner.getValue();
-			// System.out.println(backGroundNumber); - - - > Test to verify 
-			
-			if (backGroundNumber == 1) {
-				
-				//backGround = "imageTetrisWelcome.jpg";
-				//Background.setIcon(imageIconTetrisWelcome1);
-				Background = new JLabel(imageIconTetrisWelcome1);
-				Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
-				panelImage.add(Background);
-			}
-			
-			if (backGroundNumber == 2) {
-				
-				//backGround = "imageTetrisWelcome2.jpg";
-				//Background.setIcon(imageIconTetrisWelcome2);
-				Background = new JLabel(imageIconTetrisWelcome2);
-				Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
-				Background.repaint();
-				Background.revalidate();
-				panelImage.add(Background);
-				panelImage.repaint();
-				
-			}
-			
-			if (backGroundNumber == 3) {
-				
-				//backGround = "imageTetrisWelcome4.jpg";
-				//Background.setIcon(imageIconTetrisWelcome3);
-				Background = new JLabel(imageIconTetrisWelcome3);
-				Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
-				Background.setIcon(imageIconTetrisWelcome3);
-				Background.repaint();
-			}
-			
-		}
-	
-	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
     
@@ -302,17 +249,23 @@ public class WelcomeGUI extends JFrame implements ActionListener, ChangeListener
 		
 		if (e.getSource()== Player1){
 			
-			OnePlayer.setVisible(true);
+			OnePlayerInfo = new info1PlayerPopUp ();
+			OnePlayerInfo.setVisible(true);
+			//this.setVisible(false);
+			//OnePlayer.setVisible(true);
 			playSound.start();
-			tetrisSoundtrack.stop();
+			//tetrisSoundtrack.stop();
 			
 		}
 		
 		if (e.getSource()== Player2){
 			
-			TwoPlayers.setVisible(true);
+			TwoPlayersInfo = new info2PlayerPopUp ();
+			TwoPlayersInfo.setVisible(true);
+			//this.setVisible(false);
+			//TwoPlayers.setVisible(true);
 			playSound.start();
-			tetrisSoundtrack.stop();
+			//tetrisSoundtrack.stop();
 			//System.out.println("No 2 players mode for now ...");
 		
 		}

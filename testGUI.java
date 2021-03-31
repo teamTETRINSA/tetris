@@ -32,6 +32,7 @@ public class testGUI {
 
 			WelcomeGUI newWindow = new WelcomeGUI ();
 			
+			//info1PlayerPopUp newWindowBis = new info1PlayerPopUp ();
 	}
 }
 
