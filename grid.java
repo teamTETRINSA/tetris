@@ -29,7 +29,9 @@ public class grid{
     
     public int lap = 0;            // count the total number of tetriminos placed in the area
     
-    public int interval = 1000;          //the time interval at which a tetrimino is dropped    
+    public int interval = 1000;    //the time interval at which a tetrimino is dropped   
+    
+    public int speedLevel;         // take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
     
     public tetrimino T1;           //the tetrimino falling on the grid
     
@@ -161,5 +163,13 @@ public class grid{
         }else{
             pause=false;
         }
+    }
+    
+    public void selectAreaSize (int h, int w){
+        area = new int[h][w];
+    }
+    
+    public void selectSpeed (int s){
+        speedLevel = s ;
     }
 }

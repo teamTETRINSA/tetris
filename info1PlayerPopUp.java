@@ -22,7 +22,9 @@ import javax.sound.sampled.Clip;
 // Rajouter différents éléments (Slider -> difficulté, Spinner -> choix background, JCombo -> Liste joueurs à sélectionner pseudo, RadioButton -> size of grid among 3 possibilities, TextArea -> enter player name if new player)
 // Finir créer widgets, les placer correctement, les custom graphiquement, ajouter listeners
 
-public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeListener {	
+public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeListener {
+    
+    private grid data;	
 
 	private JPanel panelImage;
 	
@@ -31,14 +33,14 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	private JButton helpButton;
 	
 	private JButton playButton;
+    
+    private JButton exitButton;
 	
 	private JLabel nameFrame;
 	
 	private JLabel Background;
 	
 	private JPanel onePlayerInfoPanel;
-	
-	private JButton exitButton;
 	
 	private JSlider sliderDifficulty;
 	
@@ -47,6 +49,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     private JTextArea newplayerPseudo;
     
     private JComboBox <String> playerPseudo;
+    
+    private JTextField newName;
     
     private ButtonGroup gridSizeButtons;
     
@@ -66,7 +70,9 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     private tetrisGUI OnePlayer;
 	
-	public info1PlayerPopUp () {
+	public info1PlayerPopUp (grid g) {
+        
+        data = g;
 		
 		// Definition of the Frame //
 		
@@ -133,7 +139,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playButton.addActionListener(this);
 		
 		exitButton = new JButton();
-		exitButton.setText("RETURN");
+		exitButton.setText("<BACK");
 		exitButton.setBounds(480,20,100,20);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
 		exitButton.setForeground(Color.BLACK);
@@ -209,33 +215,69 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playerPseudo.setBackground(Color.LIGHT_GRAY);
 		playerPseudo.setFont(new Font("Arial", Font.BOLD, 14));
 		playerPseudo.setMaximumRowCount(5);
-		playerPseudo.setBounds(80,300,200,50);
+		playerPseudo.setBounds(80,150,200,50);
 		playerPseudo.setEditable(true);
 		
 		panelImage.add(playerPseudo, BorderLayout.CENTER);
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
+        newName = new JTextField();
+        
+        newName.setText("Enter your name");
+        
+        newName.setForeground(Color.RED);
+		newName.setBackground(Color.LIGHT_GRAY);
+		newName.setFont(new Font("Arial", Font.BOLD, 14));
+		newName.setBounds(80,300,200,50);
+		newName.setEditable(true);
 		
+		panelImage.add(newName, BorderLayout.CENTER);
+    
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	
 		// JRadioButton for the size of the grid //
+        
+		gridSize1 = new JRadioButton ();
+		gridSize2 = new JRadioButton ();
+		gridSize3 = new JRadioButton ();
+        
+        gridSize1.setText("aaa");
+        gridSize2.setText("24x12");
+        gridSize3.setText("28x14");
 		
-		gridSize1 = new JRadioButton ("20x10");
-		gridSize2 = new JRadioButton ("24x12");
-		gridSize3 = new JRadioButton ("28x14");
-		
-		gridSize1.setBounds(80,150,50,30);
-		gridSize2.setBounds(80,190,50,30);
-		gridSize3.setBounds(80,230,50,30);
-		
-		panelImage.add(gridSize1);
+		gridSize1.setBounds(350,150,50,30);
+		gridSize2.setBounds(350,190,50,30);
+		gridSize3.setBounds(350,230,50,30);
+        
+        gridSize1.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
+        gridSize2.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
+        gridSize3.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
+        
+        gridSize1.setForeground(Color.WHITE);
+        gridSize2.setForeground(Color.WHITE);
+        gridSize3.setForeground(Color.WHITE);
+        
+		gridSize1.setBackground(new Color(255,255,255,100));
+        gridSize2.setBackground(new Color(255,255,255,100));
+        gridSize3.setBackground(new Color(255,255,255,100));
+        
+        gridSize1.addActionListener(this);
+        gridSize2.addActionListener(this);
+        gridSize3.addActionListener(this);
+        
+        panelImage.add(gridSize1);
 		panelImage.add(gridSize2);
 		panelImage.add(gridSize3);
-		
-		gridSizeButtons = new ButtonGroup ();
+        
+        // grouping the 3 buttons
+        
+        gridSizeButtons = new ButtonGroup();
 		
 		gridSizeButtons.add(gridSize1);
 		gridSizeButtons.add(gridSize2);
 		gridSizeButtons.add(gridSize3);
-		
+        
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //		
 	 
 		// Insertion of the images // 
@@ -306,16 +348,36 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     public void actionPerformed (ActionEvent e) {
      
-    if (e.getSource() == playButton){
-			
-		OnePlayer = new tetrisGUI ();
-        OnePlayer.setVisible(true);
-        this.setVisible(false);
-        WelcomeGUI.tetrisSoundtrack.stop();
-			
-		} 
-     
-	}
-
-
+        if (e.getSource() == playButton){	
+            OnePlayer = new tetrisGUI (data);
+            OnePlayer.setVisible(true);
+            this.setVisible(false);
+            WelcomeGUI.tetrisSoundtrack.stop();
+        }
+        
+        if (e.getSource() == helpButton){	
+            helpPopUp HelpWindow = new helpPopUp ();
+			HelpWindow.setVisible(true);
+			//helpSound.start();
+			//tetrisSoundtrack.stop();
+			helpPopUp.helpSoundtrack.start();
+			helpPopUp.closedWindow = true;
+        }
+        
+        if (e.getSource() == exitButton){
+            this.dispose();
+        }
+        
+        if (e.getSource() == gridSize1){
+            data.selectAreaSize(20,10);
+        }
+        
+        if (e.getSource() == gridSize1){
+            data.selectAreaSize(24,12);
+        }
+        
+        if (e.getSource() == gridSize1){
+            data.selectAreaSize(28,14);
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class mainGame extends JOptionPane {
         grid data = new grid();
         
         //Calling the first "welcome" panel
-        //WelcomeGUI newWindow = new WelcomeGUI (data);
+        WelcomeGUI newWindow = new WelcomeGUI (data);
         // Creation of the ShapeBank of tetriminos
         ArrayList<tetrimino> ShapeBank = new ArrayList<tetrimino> ();
            
@@ -71,7 +71,8 @@ public class mainGame extends JOptionPane {
                 
             while (data.start == true)
                 
-                data.interval =  45*((int) Math.sin(1/(data.lap+8)))+200; // this function allows to decrease the time ineterval as a functioon of the number of laps done
+                // this function allows to decrease the time ineterval as a functioon of the number of laps done 
+                data.interval = data.speedLevel*(int)Math.exp((-data.lap)/100) + 200; 
                 data.start = false;
                 data.lap += 1;
                 data.score += 1;
