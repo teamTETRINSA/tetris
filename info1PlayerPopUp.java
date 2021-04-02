@@ -96,9 +96,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	 
 		// Definition of the basic Buttons and Labels // 
-		
         
-        Border roundedBorder = new LineBorder(Color.WHITE, 2, true);
+        Border roundedBorder = new LineBorder(Color.WHITE, 3, true);
         
         nameFrame = new JLabel();
 		//nameFrame.setForeground(Color.white);
@@ -137,8 +136,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playButton.setOpaque(false);
 		panelImage.add(playButton);
 		playButton.addActionListener(this);
-		
-		exitButton = new JButton();
+        
+        exitButton = new JButton();
 		exitButton.setText("<BACK");
 		exitButton.setBounds(480,20,100,20);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
@@ -302,6 +301,23 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	
 	public void stateChanged(ChangeEvent e) {
+        /*
+        JSlider source = (JSlider)e.getSource();
+        if (source.getValueIsAdjusting()) {
+            int fps = (int)source.getValue();
+
+        } 
+        * */
+        
+        if (e.getSource() == "1"){
+            data.selectSpeed(800);
+            System.out.println(data.speedLevel);
+        } else if (e.getSource() == "2"){
+            data.selectSpeed(600);
+        }else if (e.getSource() == "3"){
+            data.selectSpeed(400);
+        }
+        
 		/*
 		if (e.getSource() == backGroundSpinner) {
 			
@@ -347,6 +363,20 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
     
     public void actionPerformed (ActionEvent e) {
+        
+        if (e.getSource() == soundButton) {
+		
+			if (WelcomeGUI.sound == true) {
+				WelcomeGUI.tetrisSoundtrack.stop();
+				WelcomeGUI.sound = false;
+			
+			}else if (WelcomeGUI.sound == false) {
+				WelcomeGUI.tetrisSoundtrack.start();
+				WelcomeGUI.sound = true;
+				
+			}
+			
+		}
      
         if (e.getSource() == playButton){	
             OnePlayer = new tetrisGUI (data);

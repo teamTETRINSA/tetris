@@ -28,9 +28,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private grid data;
     
-    private JRadioButton Player1;
+    private JButton Player1;
     
-    private JRadioButton Player2;
+    private JButton Player2;
     
     private JButton NextButton;
     
@@ -48,7 +48,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private info2PlayerPopUp TwoPlayersInfo;
     
-    private boolean sound = true;
+    public static boolean sound = true;
     
     protected static Clip tetrisSoundtrack;
     
@@ -112,11 +112,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		/***********************************************************************************
          * BUTTONS
          * */ 
-		
-        /**
-         * NEXT BUTTON
-         * open the infoPlayerPopUp corresponding window
-         * */
+        
         
         Border roundedBorder = new LineBorder(Color.WHITE, 2, true);
         
@@ -125,7 +121,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          * open the infoPlayerPopUp corresponding window
          * */
         
-        Player1 = new JRadioButton();
+        Player1 = new JButton();
 		Player1.setText("One Player");
 		Player1.setBounds(200,110,200,60);
 		Player1.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
@@ -146,7 +142,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          * open the infoPlayerPopUp corresponding window
          * */
 		
-		Player2 = new JRadioButton();
+		Player2 = new JButton();
 		Player2.setText("Two Players");
 		Player2.setBounds(200,180,200,60);
 		Player2.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
@@ -156,30 +152,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Player2.setOpaque(false);
 		panelImage.add(Player2);
 		Player2.addActionListener(this);
-        
-        /**
-         * RADIO BUTTONS GROUP
-         * */
-        
-        ButtonGroup RadioGroup = new ButtonGroup();
-        RadioGroup.add(Player1);
-        RadioGroup.add(Player2);
-		
-        /**
-         * NEXT BUTTON
-         * open the infoPlayerPopUp corresponding window
-         * */
-        
-		NextButton = new JButton();
-		NextButton.setText("Next");
-		NextButton.setBounds(200,250,200,60);
-		NextButton.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
-		NextButton.setForeground(Color.WHITE);
-		NextButton.setBackground(new Color(255,255,255,100));
-		NextButton.setBorder(roundedBorder);
-		NextButton.setOpaque(false);
-		panelImage.add(NextButton);
-		NextButton.addActionListener(this);
         
         /**
          * SOUND BUTTON
@@ -301,41 +273,35 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource()== Player1){
 			choice = 1;
+            OnePlayerInfo = new info1PlayerPopUp (data);
+            OnePlayerInfo.setVisible(true);
+            //this.setVisible(false);
+            //OnePlayer.setVisible(true);
+            playSound.start();
+            //tetrisSoundtrack.stop();
 		}
 		
 		if (e.getSource()== Player2){
 			choice = 2;
+            // SAME AS CHOIC 1 FOR THE MOMENT
+            OnePlayerInfo = new info1PlayerPopUp (data);
+            OnePlayerInfo.setVisible(true);
+            //this.setVisible(false);
+            //OnePlayer.setVisible(true);
+            playSound.start();
+            //tetrisSoundtrack.stop();
+            
+            /** it should be the code just below but we create a single player mode game for now **/
+            /*
+            TwoPlayersInfo = new info2PlayerPopUp ();
+            TwoPlayersInfo.setVisible(true);
+            //this.setVisible(false);
+            //TwoPlayers.setVisible(true);
+            playSound.start();
+            //tetrisSoundtrack.stop();
+            //System.out.println("No 2 players mode for now ...");
+            * */
 		}
-        
-        if (e.getSource() == NextButton){
-            if (choice == 1){
-                OnePlayerInfo = new info1PlayerPopUp (data);
-                OnePlayerInfo.setVisible(true);
-                //this.setVisible(false);
-                //OnePlayer.setVisible(true);
-                playSound.start();
-                //tetrisSoundtrack.stop();
-            }else if (choice == 2){
-                
-                OnePlayerInfo = new info1PlayerPopUp (data);
-                OnePlayerInfo.setVisible(true);
-                //this.setVisible(false);
-                //OnePlayer.setVisible(true);
-                playSound.start();
-                //tetrisSoundtrack.stop();
-                
-                /** it should be the code just above but we create a single player mode game for now **/
-                /*
-                TwoPlayersInfo = new info2PlayerPopUp ();
-                TwoPlayersInfo.setVisible(true);
-                //this.setVisible(false);
-                //TwoPlayers.setVisible(true);
-                playSound.start();
-                //tetrisSoundtrack.stop();
-                //System.out.println("No 2 players mode for now ...");
-                * */
-            }
-        }
 		
 		if (e.getSource()== HelpButton){
 			
