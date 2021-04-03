@@ -6,15 +6,27 @@ import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.event.*;
 
-public class tetrisDraft extends JFrame  {
-		  //grid-type attribute
+public class tetrisDraft extends JFrame implements ActionListener, ChangeListener {
     
-		private grid data;
-
-		private JTextArea scoreAff;
-		private JButton playPauseButton;
+    //grid-type attribute
+    
+    private grid data;	
+	//declare widgets out of constructor
+	private JTextArea scoreAff;
+	private JTextArea bestScoreAff;
+	private JButton soundButton;
+    private JButton playPauseButton;
+	private JButton helpButton;
+    private JPanel gamePanel;
+    private JPanel displayPanel;
+    private JPanel nextPanel;
+	private helpPopUp help;
+    
+    private Timer T;
 	
-	    public tetrisDraft (){
+    public tetrisDraft (grid g){
+            
+        data = g;
 		
 		//Creation of principle window
 		
@@ -91,21 +103,147 @@ public class tetrisDraft extends JFrame  {
 		scoreAff.setBounds(20,20,210,50);	
 		scoreAff.setBackground(Color.red);
 		bestScorePanel.add(scoreAff);
+        
+        /**
+         * SOUND BUTTON
+         * */
+		soundButton = new JButton ("􀊣)");
+        
+		soundButton.setBounds(20,20,40,20);	
+		soundButton.setBackground(Color.red);
+		soundButton.setForeground(Color.black);
+		soundButton.addActionListener(this);
+		mainPanel.add(soundButton);
+        
+		/**
+         * HELP BUTTON
+         * */
+        
+		helpButton = new JButton ("?");
+		helpButton.setBounds(70,20,20,20);	
+		helpButton.setBackground(Color.white);
+		helpButton.setForeground(Color.black);
+		mainPanel.add(helpButton);
+		helpButton.addActionListener(this);
 		
 		/**
          * PLAY/PAUSE
          * */
      
-		Icon playPauseIcon = new ImageIcon("playPauseIcon.png");
-		playPauseButton = new JButton (playPauseIcon);
+		//Icon playPauseIcon = new ImageIcon("playPauseIcon.png");
+		playPauseButton = new JButton (/*playPauseIcon*/);
+        playPauseButton.setText("􀊈)");
+        playPauseButton.setFont(new Font("Ariel", Font.BOLD, 30));
 		playPauseButton.setBounds(20,455,210,50);	
 		playPauseButton.setBackground(Color.red);
-		playPauseButton.setForeground(Color.black);
+		playPauseButton.setForeground(Color.RED);
 		//playPauseButton.addActionListener(this);
 		displayPanel.add(playPauseButton);
+        
+        /**
+		 * GAME PANEL
+		 * */
+		JPanel gamePanel = new JPanel();
+		gamePanel.setBounds(20,20,470,530);
+		gamePanel.setLayout(null);
+		gamePanel.setBackground(new Color(224, 224, 224, 50));
+		mainPanel.add(gamePanel);
+        
+        /**
+         * TIMER
+         * the grid will be repaint each 100ms
+         * */
+        
+        T = new Timer(100, this);
+        T.start(); 
+		
+        /**
+         * Making all visible
+         * */
 		
 		this.setVisible(true);
-	
 	}
+    
+    
+    
+    /********************************************************************************************************
+     * ACTIONLISTENER
+     * */
+
+    public void actionPerformed (ActionEvent e){
+        
+        // no need of any "if" for the timer t
+        repaint();
+        
+        /*
+		if (e.getSource() == helpButton){
+            data.pauseTheGame();
+			help.setVisible(true);
+			System.out.println("you clicked on help");
+		}
+        * */
+        
+        if (e.getSource() == helpButton){
+            data.pauseTheGame();
+			helpPopUp HelpWindow = new helpPopUp ();
+			HelpWindow.setVisible(true);
+			System.out.println("you clicked on help");
+		}
+        
+        if (e.getSource()== playPauseButton){
+            data.pauseTheGame();
+        }
+		
+	}
+	
+	/********************************************************************************************************
+     * CHANGELISTENER
+     * */
+	
+	public void stateChanged(ChangeEvent e) {
+	}
+        
+    /********************************************************************************************************
+     * MOUSELISTENER
+     * */
+        
+    public void mouseClicked (MouseEvent e){
+    }
+    
+    public void mouseEntered(MouseEvent e){
+    }
+        
+    public void mouseExited(MouseEvent e){
+    }
+    
+    public void mousePressed(MouseEvent e){ 
+    }
+    
+    public void mouseReleased(MouseEvent e){  
+    }
+    
+    /********************************************************************************************************
+     * KEYLISTENER
+     * */
+    
+    public void keyPressed(KeyEvent e) {
+    }
+    
+    public void keyReleased(KeyEvent e) {
+    }
+    
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyCode()==KeyEvent.VK_DOWN){
+            mainGame.dropTetrimino(data, 1);
+        }else if (e.getKeyCode()==KeyEvent.VK_UP){
+            mainGame.rotateTetrimino(data);
+        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+            mainGame.moveTetrimino(data,1);
+        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+            mainGame.moveTetrimino(data,-1);
+        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+            data.pauseTheGame();
+        }
+    }
 
 }

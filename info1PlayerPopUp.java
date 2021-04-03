@@ -68,7 +68,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     private String sizeGrid;
     
-    private tetrisGUI OnePlayer;
+    private tetrisDraft OnePlayer;
 	
 	public info1PlayerPopUp (grid g) {
         
@@ -379,7 +379,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		}
      
         if (e.getSource() == playButton){	
-            OnePlayer = new tetrisGUI (data);
+            OnePlayer = new tetrisDraft (data);
             OnePlayer.setVisible(true);
             this.setVisible(false);
             WelcomeGUI.tetrisSoundtrack.stop();

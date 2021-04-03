@@ -100,39 +100,34 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
          * */
 		Icon musicIcon = new ImageIcon("Soundicon.png");
 		soundButton = new JButton (musicIcon);
-		soundButton.setBounds(720,25,20,20);	
+		soundButton.setBounds(20,20,20,20);	
 		soundButton.setBackground(Color.red);
 		soundButton.setForeground(Color.black);
 		soundButton.addActionListener(this);
 		mainPane.add(soundButton);
-		
-		/**
-         * PLAY/PAUSE
-         * */
-         
-		Icon playPauseIcon = new ImageIcon("playPauseIcon.png");
-		playPauseButton = new JButton (playPauseIcon);
-		playPauseButton.setBounds(680,25,20,20);	
-		playPauseButton.setBackground(Color.red);
-		playPauseButton.setForeground(Color.black);
-		playPauseButton.addActionListener(this);
-		mainPane.add(playPauseButton);
         
 		/**
-         * HOW TO PLAY
+         * HELP BUTTON
          * */
         
-		//how to play button
 		helpButton = new JButton ("?");
-		helpButton.setBounds(745,25,20,20);	
+		helpButton.setBounds(60,20,20,20);	
 		helpButton.setBackground(Color.white);
 		helpButton.setForeground(Color.black);
 		mainPane.add(helpButton);
 		helpButton.addActionListener(this);
 		
-		//declare pop up
-		help = new helpPopUp();
-		
+        /**
+         * PLAY/PAUSE
+         * */
+         
+		playPauseButton = new JButton ();
+        playPauseButton.setText("􀊈");
+		playPauseButton.setBounds(680,25,20,20);	
+		playPauseButton.setBackground(Color.red);
+		playPauseButton.setForeground(Color.black);
+		playPauseButton.addActionListener(this);
+		mainPane.add(playPauseButton);
 		
 		/**
          * ADD BACKGROUND
@@ -158,11 +153,12 @@ public class tetrisGUI extends JFrame implements ActionListener, ChangeListener 
     /**
      * PAINT method
      * */
-    
+    /*
     public void paint (Graphics g){
         data.dessine(g);
         data.T1.dessine(g);
     }
+    * */
     
     /********************************************************************************************************
      * ACTIONLISTENER
