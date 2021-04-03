@@ -113,7 +113,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          * BUTTONS
          * */ 
         
-        
+    
         Border roundedBorder = new LineBorder(Color.WHITE, 2, true);
         
         /**
@@ -187,14 +187,20 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 		// Copyrights // 
+		
+		JPanel namePanel = new JPanel();
+		namePanel.setBounds(100,345,365,40);
+		namePanel.setLayout(null);
+		namePanel.setBackground(new Color(255,255,255,155));
+		panelImage.add(namePanel); 
         
         Names = new JLabel();
         Names.setForeground(Color.black);
-		Names.setBackground(Color.white);
+		Names.setBackground(Color.black);
 		Names.setFont(new Font("Times Roman", Font.BOLD, 14));
-		Names.setText("Project realised by Joseph B, Paul TD, Bich-Lien P, Flora G");
-		Names.setBounds(130,315,480,40);
-		panelImage.add(Names); 
+		Names.setText("Project by Joseph B, Paul TD, Bich-Lien P, Flora G");
+		Names.setBounds(5,0,480,40);
+		namePanel.add(Names); 
 			
 		
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //		
@@ -208,14 +214,15 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		panelImage.add(LogoINSA);*/
 		
 		LogoINSA = new JLabel(new ImageIcon("insa_logo.png"));
-		LogoINSA.setBounds(20,320,100,40);
+		LogoINSA.setBounds(500,20,60,24);
 		panelImage.add(LogoINSA);
 		
-		LogoGame = new JLabel(new ImageIcon("logo.png"));
+		/*LogoGame = new JLabel(new ImageIcon("logo.png"));
 		LogoGame.setBounds(140,20,320,80);
 		panelImage.add(LogoGame);
+		*/
 		
-		Background = new JLabel(new ImageIcon("imageTetrisFondWelcome.jpg"));
+		Background = new JLabel(new ImageIcon("backgroundPropositionWelcome.png"));
 		Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(Background);
         
@@ -283,7 +290,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource()== Player2){
 			choice = 2;
-            // SAME AS CHOIC 1 FOR THE MOMENT
+            // SAME AS CHOICE 1 FOR THE MOMENT
             OnePlayerInfo = new info1PlayerPopUp (data);
             OnePlayerInfo.setVisible(true);
             //this.setVisible(false);
