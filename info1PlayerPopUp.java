@@ -108,6 +108,41 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		nameFrame.setHorizontalAlignment(JLabel.CENTER);
 		nameFrame.setBounds((panelImage.getWidth()-300)/2,20,300,20);
 		panelImage.add(nameFrame); 
+		
+		JPanel choicePanel = new JPanel();
+		JPanel displayPanel = new JPanel();
+		displayPanel.setBounds(40,60,520,520);
+		displayPanel.setLayout(null);
+		displayPanel.setBackground(new Color(224, 224, 224, 50));
+		panelImage.add(displayPanel);
+		
+		JLabel choosePseudo = new JLabel ();
+		choosePseudo.setFont(new Font("Ariel", Font.PLAIN, 16));
+		choosePseudo.setText("Choose your pseudo or enter a new one:");
+        choosePseudo.setForeground(Color.white);
+		choosePseudo.setBounds(50,65,400,50);
+		panelImage.add(choosePseudo);
+		
+		JLabel chooseSize = new JLabel ();
+		chooseSize.setFont(new Font("Ariel", Font.PLAIN, 16));
+		chooseSize.setText("Choose the size of your game:");
+        chooseSize.setForeground(Color.white);
+		chooseSize.setBounds(50,155,400,50);
+		panelImage.add(chooseSize);
+		
+		JLabel chooseBackground = new JLabel ();
+		chooseBackground.setFont(new Font("Ariel", Font.PLAIN, 16));
+		chooseBackground.setText("Choose the background of your game:");
+        chooseBackground.setForeground(Color.white);
+		chooseBackground.setBounds(50,280,400,50);
+		panelImage.add(chooseBackground);
+		
+		JLabel chooseDifficulty = new JLabel ();
+		chooseDifficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
+		chooseDifficulty.setText("Choose the background of your game:");
+        chooseDifficulty.setForeground(Color.white);
+		chooseDifficulty.setBounds(50,370,400,50);
+		panelImage.add(chooseDifficulty);
         
 		soundButton = new JButton (new ImageIcon("Soundicon.png"));
 		soundButton.setBounds(20,20,20,20);	
@@ -156,7 +191,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		backGroundSpinner = new JSpinner(backGroundModel);
 		
-		backGroundSpinner.setBounds(350,300,200,50);
+		backGroundSpinner.setBounds(50,330,200,50);
 		
 		backGroundSpinner.addChangeListener(this);
 		panelImage.add(backGroundSpinner);
@@ -169,15 +204,15 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
         JLabel labelLevel1 = new JLabel("Easy peasy !");
         JLabel labelLevel2 = new JLabel("Spicy");
         JLabel labelLevel3 = new JLabel("Don't even dare...");
-        //labelLevel1.setForeground(Color.WHITE);
-        //labelLevel2.setForeground(Color.WHITE);
-        //labelLevel3.setForeground(Color.WHITE);
+        labelLevel1.setForeground(Color.WHITE);
+        labelLevel2.setForeground(Color.WHITE);
+        labelLevel3.setForeground(Color.WHITE);
         difficultyLabels.put(1, labelLevel1);
         difficultyLabels.put(2, labelLevel2);
         difficultyLabels.put(3, labelLevel3);
 		
 		JPanel sliderPanel = new JPanel();
-        sliderPanel.setBounds(140,390,320,80);
+        sliderPanel.setBounds(140,420,320,80);
         sliderPanel.setLayout(null);
         //sliderPanel.setOpaque(false);
         sliderPanel.setBackground(new Color(255,255,255,20));
@@ -194,7 +229,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		sliderDifficulty.setPaintTrack(true);
 		sliderDifficulty.setPaintTicks(true);
 		sliderDifficulty.setPaintLabels(true);
-		sliderDifficulty.setBounds(150,400,300,60);
+		sliderDifficulty.setBounds(150,430,300,60);
 		sliderDifficulty.setLabelTable(difficultyLabels);
 		
 		panelImage.add(sliderDifficulty);
@@ -214,7 +249,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playerPseudo.setBackground(Color.LIGHT_GRAY);
 		playerPseudo.setFont(new Font("Arial", Font.BOLD, 14));
 		playerPseudo.setMaximumRowCount(5);
-		playerPseudo.setBounds(80,150,200,50);
+		playerPseudo.setBounds(50,115,200,50);
 		playerPseudo.setEditable(true);
 		
 		panelImage.add(playerPseudo, BorderLayout.CENTER);
@@ -228,7 +263,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
         newName.setForeground(Color.RED);
 		newName.setBackground(Color.LIGHT_GRAY);
 		newName.setFont(new Font("Arial", Font.BOLD, 14));
-		newName.setBounds(80,300,200,50);
+		newName.setBounds(290,115,200,50);
 		newName.setEditable(true);
 		
 		panelImage.add(newName, BorderLayout.CENTER);
@@ -241,13 +276,13 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		gridSize2 = new JRadioButton ();
 		gridSize3 = new JRadioButton ();
         
-        gridSize1.setText("aaa");
+        gridSize1.setText("hello");
         gridSize2.setText("24x12");
         gridSize3.setText("28x14");
 		
-		gridSize1.setBounds(350,150,50,30);
-		gridSize2.setBounds(350,190,50,30);
-		gridSize3.setBounds(350,230,50,30);
+		gridSize1.setBounds(50,195,150,30);
+		gridSize2.setBounds(50,225,150,30);
+		gridSize3.setBounds(50,255,150,30);
         
         gridSize1.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
         gridSize2.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
