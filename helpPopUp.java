@@ -168,7 +168,8 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpText.setFont(new Font("Times Roman", Font.BOLD, 24));
         helpText.setText(" - HOW TO PLAY - ");
         helpText.setForeground(Color.WHITE);
-        helpText.setBounds((panelImage.getWidth()-250)/2,10,250,30);
+        helpText.setBounds((panelImage.getWidth()-310)/2,10,310,30);
+        helpText.setIcon(new ImageIcon("rules.png"));
         
         JLabel titleControlKeys = new JLabel();
         titleControlKeys.setFont(new Font("Times Roman", Font.BOLD, 18));

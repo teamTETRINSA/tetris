@@ -120,28 +120,28 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		choosePseudo.setFont(new Font("Ariel", Font.PLAIN, 16));
 		choosePseudo.setText("Choose your pseudo or enter a new one:");
         choosePseudo.setForeground(Color.white);
-		choosePseudo.setBounds(50,65,400,50);
+		choosePseudo.setBounds(70,65,400,50);
 		panelImage.add(choosePseudo);
 		
 		JLabel chooseSize = new JLabel ();
 		chooseSize.setFont(new Font("Ariel", Font.PLAIN, 16));
 		chooseSize.setText("Choose the size of your game:");
         chooseSize.setForeground(Color.white);
-		chooseSize.setBounds(50,155,400,50);
+		chooseSize.setBounds(70,155,400,50);
 		panelImage.add(chooseSize);
 		
 		JLabel chooseBackground = new JLabel ();
 		chooseBackground.setFont(new Font("Ariel", Font.PLAIN, 16));
 		chooseBackground.setText("Choose the background of your game:");
         chooseBackground.setForeground(Color.white);
-		chooseBackground.setBounds(50,280,400,50);
+		chooseBackground.setBounds(70,280,400,50);
 		panelImage.add(chooseBackground);
 		
 		JLabel chooseDifficulty = new JLabel ();
 		chooseDifficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
 		chooseDifficulty.setText("Choose the background of your game:");
         chooseDifficulty.setForeground(Color.white);
-		chooseDifficulty.setBounds(50,370,400,50);
+		chooseDifficulty.setBounds(70,370,400,50);
 		panelImage.add(chooseDifficulty);
         
 		soundButton = new JButton (new ImageIcon("Soundicon.png"));
@@ -152,9 +152,9 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		panelImage.add(soundButton);
 		soundButton.addActionListener(this);
 		
-		helpButton = new JButton ();
+		helpButton = new JButton (new ImageIcon("help.png"));
 		helpButton.setBounds(60,20,20,20);	
-		helpButton.setText("?");
+		//helpButton.setText("?");
 		helpButton.setFont(new java.awt.Font("Times Roman", Font.BOLD, 14));
 		helpButton.setForeground(Color.WHITE);
 		helpButton.setBackground(Color.BLACK);
@@ -169,11 +169,12 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playButton.setBackground(new Color(255,255,255,100));
 		playButton.setBorder(roundedBorder);
 		playButton.setOpaque(false);
+		playButton.setIcon(new ImageIcon("play.png"));
 		panelImage.add(playButton);
 		playButton.addActionListener(this);
         
         exitButton = new JButton();
-		exitButton.setText("<BACK");
+		exitButton.setText("<- BACK");
 		exitButton.setBounds(480,20,100,20);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
 		exitButton.setForeground(Color.BLACK);
@@ -276,9 +277,9 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		gridSize2 = new JRadioButton ();
 		gridSize3 = new JRadioButton ();
         
-        gridSize1.setText("hello");
-        gridSize2.setText("24x12");
-        gridSize3.setText("28x14");
+        gridSize1.setText("Grid 1 : hello");
+        gridSize2.setText("Grid 2 : 24x12");
+        gridSize3.setText("Grid 3 : 28x14");
 		
 		gridSize1.setBounds(50,195,150,30);
 		gridSize2.setBounds(50,225,150,30);
