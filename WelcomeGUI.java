@@ -191,7 +191,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		// Copyrights // 
 		
 		JPanel namePanel = new JPanel();
-		namePanel.setBounds(100,325,365,40);
+		namePanel.setBounds(80,325,400,40);
 		namePanel.setLayout(null);
 		namePanel.setBackground(new Color(255,255,255,155));
 		panelImage.add(namePanel); 
@@ -202,6 +202,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Names.setFont(new Font("Times Roman", Font.BOLD, 14));
 		Names.setText("Project by Joseph B, Paul TD, Bich-Lien P, Flora G");
 		Names.setBounds(5,0,480,40);
+		Names.setIcon(new ImageIcon ("laptop.png"));
 		namePanel.add(Names); 
 			
 		
