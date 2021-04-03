@@ -123,16 +123,17 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         
         Player1 = new JButton();
 		Player1.setText("One Player");
-		Player1.setBounds(200,110,200,60);
+		Player1.setBounds(200,130,200,60);
 		Player1.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
 		Player1.setForeground(Color.WHITE);
 		Player1.setBackground(new Color(255,255,255,100));
 		Player1.setBorder(roundedBorder);
 		Player1.setOpaque(false);
+		Player1.setIcon(new ImageIcon("emoji-video-game.png"));
 		
-		JLabel icon1 = new JLabel(new ImageIcon("emoji-video-game.jpg"));
+		/*JLabel icon1 = new JLabel(new ImageIcon("emoji-video-game.jpg"));
 		icon1.setBounds(10,0,40,40);
-		Player1.add(icon1);
+		Player1.add(icon1);*/
 		
 		panelImage.add(Player1);
 		Player1.addActionListener(this);
@@ -144,12 +145,13 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		Player2 = new JButton();
 		Player2.setText("Two Players");
-		Player2.setBounds(200,180,200,60);
+		Player2.setBounds(200,220,200,60);
 		Player2.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
 		Player2.setForeground(Color.WHITE);
 		Player2.setBackground(new Color(255,255,255,100));
 		Player2.setBorder(roundedBorder);
 		Player2.setOpaque(false);
+		Player2.setIcon(new ImageIcon("videogame.png"));
 		panelImage.add(Player2);
 		Player2.addActionListener(this);
         
@@ -170,12 +172,12 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          * open the helpPopUp window
          * */
         
-        HelpButton = new JButton ();
-		HelpButton.setBounds(60,20,20,20);	
-		HelpButton.setText("?");
+        HelpButton = new JButton (new ImageIcon("help.png"));
+		HelpButton.setBounds(50,20,20,20);	
+		//HelpButton.setText("?");
 		HelpButton.setFont(new java.awt.Font("Times Roman", Font.BOLD, 14));
-		HelpButton.setForeground(Color.WHITE);
-		HelpButton.setBackground(Color.BLACK);
+		HelpButton.setForeground(Color.BLACK);
+		HelpButton.setBackground(Color.WHITE);
 		panelImage.add(HelpButton);
 		HelpButton.addActionListener(this);
 		
@@ -189,7 +191,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		// Copyrights // 
 		
 		JPanel namePanel = new JPanel();
-		namePanel.setBounds(100,345,365,40);
+		namePanel.setBounds(100,325,365,40);
 		namePanel.setLayout(null);
 		namePanel.setBackground(new Color(255,255,255,155));
 		panelImage.add(namePanel); 
@@ -214,7 +216,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		panelImage.add(LogoINSA);*/
 		
 		LogoINSA = new JLabel(new ImageIcon("insa_logo.png"));
-		LogoINSA.setBounds(500,20,60,24);
+		LogoINSA.setBounds(510,20,60,24);
 		panelImage.add(LogoINSA);
 		
 		/*LogoGame = new JLabel(new ImageIcon("logo.png"));

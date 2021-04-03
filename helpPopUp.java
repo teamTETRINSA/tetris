@@ -130,6 +130,10 @@ public class helpPopUp extends JFrame implements ActionListener {
 		textPaneGeneralRules.setOpaque(false);
 		//textPaneGeneralRules.setContentType("text/html");
 		generalRules.add(textPaneGeneralRules);
+		
+		JLabel tetriminoImage = new JLabel(new ImageIcon("tetrimino.jpg"));
+		tetriminoImage.setBounds(0,0,tetriminos.getWidth(),tetriminos.getHeight());
+		tetriminos.add(tetriminoImage);
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
@@ -164,7 +168,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpText.setFont(new Font("Times Roman", Font.BOLD, 24));
         helpText.setText(" - HOW TO PLAY - ");
         helpText.setForeground(Color.WHITE);
-        helpText.setBounds(350,10,400,30);
+        helpText.setBounds((panelImage.getWidth()-250)/2,10,250,30);
         
         JLabel titleControlKeys = new JLabel();
         titleControlKeys.setFont(new Font("Times Roman", Font.BOLD, 18));
