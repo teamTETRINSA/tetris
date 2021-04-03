@@ -120,7 +120,7 @@ public class tetrimino extends shape{
         g.setColor(ColorTetrimino);
         for (int i=0; i < tab.length ; i++){
             for (int j=0; j< tab[0].length ; j++){
-                g.fillRect (Y*15+i*15, X*15+j*15, 15, 15);
+                g.fillRect (30+Y*15+i*15, 70+X*15+j*15, 15, 15);
             }
         }
 	}

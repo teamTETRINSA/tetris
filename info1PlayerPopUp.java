@@ -383,6 +383,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             OnePlayer.setVisible(true);
             this.setVisible(false);
             WelcomeGUI.tetrisSoundtrack.stop();
+            timePause();
+            tetrisDraft.T.start();
         }
         
         if (e.getSource() == helpButton){	
@@ -410,4 +412,15 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             data.selectAreaSize(28,14);
         }
     }
+    
+    /**
+     * TIMEPAUSE
+     * used to wait a second before starting printing tetriminos on the game area 
+     * */
+
+    public static void timePause () {
+		try {
+		Thread.sleep(1000);
+		}catch(InterruptedException e){}
+	}
 }

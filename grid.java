@@ -11,7 +11,7 @@ public class grid{
 	
     public int[][] area ;
     
-    public boolean restart = true;   // variable to know if we want to restart the game
+    public boolean restart = false;   // variable to know if we want to restart the game
     
     public boolean start = true;          //variaale to know if we print another shape on the grid
     
@@ -108,7 +108,7 @@ public class grid{
         for (int i=0; i < area.length ; i++){
             for (int j=0; j< area[0].length ; j++){
                 if (area[i][j] != 0){
-                    g.fillRect (20+i*15, 20+j*15, 15, 15);
+                    g.fillRect (30+i*15, 70+j*15, 15, 15);
                 }
             }
         }

@@ -55,6 +55,10 @@ public class mainGame extends JOptionPane {
         ShapeBank.add(t5);
         ShapeBank.add(t6);
         ShapeBank.add(t7);
+        
+        while (!data.restart){
+            // do nothing
+        }
 
         while (data.restart == true){
 
@@ -127,12 +131,12 @@ public class mainGame extends JOptionPane {
              * */
 
             if (data.score>data.bestScore){
-                //JOptionPane.showMessageDialog(frame, "New Best Score !"+"/n"+data.score);
-                //JOptionPane.showMessageDialog( null, "New Best Score !" );
+                //static problem
+                //tetrisDraft.messageDialogNBS();
                 data.bestScore=data.score;
             }else{
-                //JOptionPane.showMessageDialog(frame, "Game Over !"+"/n"+data.score+"/n"+"High Score : "+data.bestScore);
-                //JOptionPane.showMessageDialog( null, "GameOver !" );
+                //static problem
+                //tetrisDraft.messageDialogGO();
             }
             data.score=0;
 

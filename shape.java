@@ -32,7 +32,7 @@ public class shape {
         int nb = (int)(Math.random()*4);
 		CouleurTetrimino = AvailableColors.get(nb);
         * */
-        ColorTetrimino = Color.cyan;
+        ColorTetrimino = Color.blue;
 		
 		//Initialisation tab
 		tab = new int [4][4];

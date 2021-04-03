@@ -22,7 +22,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     private JPanel nextPanel;
 	private helpPopUp help;
     
-    private Timer T;
+    public static Timer T;                 // public > so that we can start the timer form theinfo1PlayerPopUp class
 	
     public tetrisDraft (grid g){
             
@@ -78,7 +78,8 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		scoreAff = new JTextArea ();
 		scoreAff.setBounds(20,20,210,50);	
 		scoreAff.setBackground(Color.red);
-		scorePanel.add(scoreAff);
+		//scorePanel.add(scoreAff);
+        displayPanel.add(scoreAff);
 		
 		/**
          * BEST SCORE
@@ -102,14 +103,15 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		scoreAff = new JTextArea ();
 		scoreAff.setBounds(20,20,210,50);	
 		scoreAff.setBackground(Color.red);
-		bestScorePanel.add(scoreAff);
+		//bestScorePanel.add(scoreAff);
+        displayPanel.add(scoreAff);
         
         /**
          * SOUND BUTTON
          * */
 		soundButton = new JButton ("􀊣)");
         
-		soundButton.setBounds(20,20,40,20);	
+		soundButton.setBounds(20,10,50,20);	
 		soundButton.setBackground(Color.red);
 		soundButton.setForeground(Color.black);
 		soundButton.addActionListener(this);
@@ -120,7 +122,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * */
         
 		helpButton = new JButton ("?");
-		helpButton.setBounds(70,20,20,20);	
+		helpButton.setBounds(70,10,20,20);	
 		helpButton.setBackground(Color.white);
 		helpButton.setForeground(Color.black);
 		mainPanel.add(helpButton);
@@ -143,25 +145,51 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         /**
 		 * GAME PANEL
 		 * */
+         
+        /*
 		JPanel gamePanel = new JPanel();
-		gamePanel.setBounds(20,20,470,530);
+		gamePanel.setBounds(20,40,470,530);
 		gamePanel.setLayout(null);
 		gamePanel.setBackground(new Color(224, 224, 224, 50));
 		mainPanel.add(gamePanel);
+        * */
         
         /**
          * TIMER
          * the grid will be repaint each 100ms
+         * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
          * */
         
         T = new Timer(100, this);
-        T.start(); 
 		
         /**
          * Making all visible
          * */
 		
 		this.setVisible(true);
+	}
+    
+    public void paint (Graphics g) {
+        
+        
+
+		g.setColor(Color.orange);
+		g.fillRect(20,60,470,530);
+        
+        g.setColor(Color.red);
+        g.fillRect(550,60,210,175);
+        
+        g.setColor(Color.blue);
+        data.dessine(g);
+        data.T1.dessine(g);
+
+		// g.setColor(Color.red);
+		// g.fillRect(200, 200, 200, 200);
+        
+        /*
+		g.setColor(Color.black);
+		g.fillOval(250, (int) y, 100, 100);
+        * */
 	}
     
     
@@ -192,6 +220,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         if (e.getSource()== playPauseButton){
             data.pauseTheGame();
+        }
+        
+        if (data.start == false){
+            this.dispose();
         }
 		
 	}
@@ -245,5 +277,15 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
             data.pauseTheGame();
         }
     }
-
+    
+    public void messageDialogNBS(){
+        JOptionPane.showMessageDialog(this, "New Best Score !"+"/n"+
+            data.score,"", JOptionPane.OK_OPTION);
+    }
+    
+    public void messageDialogGO(){
+        JOptionPane.showMessageDialog(this, "Game Over !"+"/n"+data.score+"/n"+
+            "High Score : "+data.bestScore,"", JOptionPane.OK_OPTION);
+    }
+    
 }
