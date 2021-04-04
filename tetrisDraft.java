@@ -25,6 +25,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 	private JButton soundButton;
     private JButton playPauseButton;
 	private JButton helpButton;
+	private JButton exitButton;
     private JPanel gamePanel;
     private JPanel nextPanel;
 	private helpPopUp help;
@@ -139,6 +140,17 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		helpButton.setForeground(Color.black);
 		mainPanel.add(helpButton);
 		helpButton.addActionListener(this);
+	    
+	    /**
+         * EXIT BUTTON
+         * */
+		exitButton = new JButton ("EXIT");
+        
+		exitButton.setBounds(20,35,50,20);	
+		exitButton.setBackground(Color.red);
+		exitButton.setForeground(Color.black);
+		exitButton.addActionListener(this);
+		mainPanel.add(exitButton);
 		
 		/**
          * PLAY/PAUSE
@@ -204,6 +216,117 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         super.paint(g);
         
+	//next coming tetrimino panel
+        g.setColor(Color.red);
+        g.fillRect(550,60,210,175);
+        
+        /*
+        g.setColor(Color.blue);
+        for (int i=0; i < data.T1.tab.length ; i++){
+            for (int j=0; j< data.T1.tab[0].length ; j++){
+                g.fillRect (30+data.T1.Y*15+i*15, 70+data.T1.X*15+j*15, 15, 15);
+            }
+        }
+        
+        g.setColor(Color.black);
+        for (int i=0; i < data.area.length ; i++){
+            for (int j=0; j< data.area[0].length ; j++){
+                if (data.area[i][j] != 0){
+                    g.fillRect (30+i*15, 70+j*15, 15, 15);
+                }
+            }
+        }
+        * */
+        
+        
+        switch (data.area.length){
+            case 20:
+            
+                //background panel
+                g.setColor(Color.orange);
+                g.fillRect(160,40,278,538);
+                
+                //area
+                g.setColor(Color.black);
+                for (int i=0; i < 10 ; i++){
+                    for (int j=0; j< 20 ; j++){
+                        if (data.area[i][j] != 0){
+                            g.fillRect (170+i*24+i*2, 50+j*24+j*2, 24, 24);
+                        }
+                    }
+                }
+                
+                //tetrimino
+                g.setColor(Color.blue);
+                for (int i=0; i < /*data.T1.tab.length*/ 4 ; i++){
+                    for (int j=0; j< /*data.T1.tab[0].length*/ 4 ; j++){
+                        g.fillRect (170+(data.T1.Y*(24+2))+i*(24+2), 70+(data.T1.X*(24+2))+j*(24+2), 24, 24);
+                    }
+                }
+            break;
+            
+            case 24:
+                g.setColor(Color.orange);
+                g.fillRect(160,40,282,546);
+                g.setColor(Color.green);
+                for (int i=0; i < 12 ; i++){
+                    for (int j=0; j< 24 ; j++){
+                        g.fillRect (170+i*20+i*2, 50+j*20+j*2, 20, 20);
+                    }
+                }
+            break;
+            
+            case 28:
+                g.setColor(Color.orange);
+                g.fillRect(160,40,284,549);
+                g.setColor(Color.blue);
+                for (int i=0; i < 14 ; i++){
+                    for (int j=0; j< 28 ; j++){
+                        g.fillRect (170+i*17+i*2, 50+j*17+j*2, 17, 17);
+                    }
+                }
+            break;
+        }
+        
+        
+        /*        
+        g.setColor(Color.black);
+        for (int i=0; i < 10 ; i++){
+            for (int j=0; j< 20 ; j++){
+                g.fillRect (170+i*24+i*2, 50+j*24+j*2, 24, 24);
+            }
+        }
+        
+        g.setColor(Color.green);
+        for (int i=0; i < 12 ; i++){
+            for (int j=0; j< 24 ; j++){
+                g.fillRect (170+i*20+i*2, 50+j*20+j*2, 20, 20);
+            }
+        }
+        
+        g.setColor(Color.blue);
+        for (int i=0; i < 14 ; i++){
+            for (int j=0; j< 28 ; j++){
+                g.fillRect (170+i*17+i*2, 50+j*17+j*2, 17, 17);
+            }
+        }
+        * */
+        
+        
+        
+        //g.setColor(Color.blue);
+        //data.dessine(g);
+        //data.T1.dessine(g);
+
+		// g.setColor(Color.red);
+		// g.fillRect(200, 200, 200, 200);
+        
+        /*
+		g.setColor(Color.black);
+		g.fillOval(250, (int) y, 100, 100);
+        * */   
+	
+	   /*
         g.setColor(Color.orange);
 		g.fillRect(20,60,470,520);
         
@@ -213,6 +336,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         g.setColor(Color.blue);
         data.dessine(g);
         data.T1.dessine(g);
+	*/
  
 	}
     
@@ -243,6 +367,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         }
         
         if (data.start == false){
+            this.dispose();
+        }
+	    
+	if (e.getSource() == exitButton){
             this.dispose();
         }
         
