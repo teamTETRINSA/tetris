@@ -438,7 +438,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             this.setVisible(false);
             WelcomeGUI.tetrisSoundtrack.stop();
             timePause();
-            tetrisDraft.T.start();
+            //tetrisDraft.T.start();
         }
         
         if (e.getSource() == helpButton){	
@@ -458,11 +458,11 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             data.selectAreaSize(20,10);
         }
         
-        if (e.getSource() == gridSize1){
+        if (e.getSource() == gridSize2){
             data.selectAreaSize(24,12);
         }
         
-        if (e.getSource() == gridSize1){
+        if (e.getSource() == gridSize3){
             data.selectAreaSize(28,14);
         }
     }
