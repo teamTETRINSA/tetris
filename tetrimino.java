@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class tetrimino extends shape{
+    
     /**
      * constructor
      * */
@@ -13,11 +14,14 @@ public class tetrimino extends shape{
     public tetrimino(int n){
         super();
         switch (n){
+            
             case 1: // ....
-            for (int i =0 ; i<this.tab[0].length ; i++){
-                this.tab[1][i]=1;
-            }
+            this.tab[1][0]=1;
+            this.tab[1][1]=1;
+            this.tab[1][2]=1;
+            this.tab[1][3]=1;
             break;
+            
             
             case 2: // ::
             this.tab[1][1]=2;
@@ -27,7 +31,7 @@ public class tetrimino extends shape{
             break;
             
             case 3: // .:.
-            for (int i =0 ; i<this.tab[0].length ; i++){
+            for (int i =0 ; i<this.tab[0].length-1 ; i++){
                 this.tab[2][i]=3;
             }
             this.tab[1][1]=3;
@@ -68,6 +72,7 @@ public class tetrimino extends shape{
      * no parameter
      **/
     
+    /*
     public String toString(){
         StringBuilder temp = new StringBuilder("");
         temp.append("Shape "+this.tab[1][1]+" :");
@@ -75,12 +80,15 @@ public class tetrimino extends shape{
         temp.append(super.toString());
         return temp.toString();
     }
+    * */
+    
     
     /**
      * ROTATETRIMINO
      * Rotation to the right 
      * */
     
+    /*
     public void rotateTetrimino () {
 		
 		int [][] revTab = new int [this.tab.length][this.tab[0].length];
@@ -102,36 +110,25 @@ public class tetrimino extends shape{
         
         this.tab=transTab;
     }
+    * */
     
     
     
-    
-    
-    /**
-     * GETINITIALPOSITION
-     * method to get the initial position of a tetrimino on the grid
-     * we place the top left hand corner of the tetrimino tab
-     * */
-    
-    
-    
-    
+    /*
     public void dessine(Graphics g){
+        super.paint(g);
+        
         g.setColor(ColorTetrimino);
         for (int i=0; i < tab.length ; i++){
             for (int j=0; j< tab[0].length ; j++){
-                g.fillRect (30+Y*15+i*15, 70+X*15+j*15, 15, 15);
+                if (tab[i][j]!=0){
+                    g.fillRect (30+Y*15+j*15, 70+X*15+i*15, 15, 15);
+                }
             }
         }
-	}
-    
-    /*******************
-     * TO COMPLETE WITH OTHER COLORS
-     * */
-    
-    public int getIntegerForColor(){
-        return 1;
-    }
         
+	}
+    * */
+    
 
 }

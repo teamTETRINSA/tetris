@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class grid{
 	
-    public int[][] area ;
+    public int[][] area = new int[20][10];
     
     public boolean restart = false;   // variable to know if we want to restart the game
     
@@ -33,17 +33,19 @@ public class grid{
     
     public int speedLevel;         // take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
     
-    public tetrimino T1;           //the tetrimino falling on the grid
+    public shape T1;           //the tetrimino falling on the grid
     
-    public tetrimino T2;           // the next tetrimino coming ; it is printed on the side of the game
+    public shape T2;           // the next tetrimino coming ; it is printed on the side of the game
     
     /**
      * CONSTRUCTOR
      * */
     
     public grid(){
+        //area[8][7]=1;
     }
     
+    /*
     public String toString (){ 
         StringBuilder temp = new StringBuilder("");
         temp.append("Grid "+this.area.length+"x"+this.area[0].length+" :");
@@ -56,6 +58,7 @@ public class grid{
         }
         return temp.toString();
     }
+    * */
     
     /**
      * transform a shape that end it's fall (seen as even numbers)
@@ -65,7 +68,9 @@ public class grid{
     public void transformShape(){
         for (int i = 0; i<T1.tab.length; i++){
             for (int j = 0; j<T1.tab[0].length ; j++){
-                area[T1.Y+i][T1.X+j]=T1.getIntegerForColor();
+                if (T1.tab[i][j]!=0){
+                    area[T1.Y+i][T1.X+j]=T1.getIntegerForColor();
+                }
             }
         }
     }

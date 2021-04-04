@@ -41,7 +41,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     //private helpPopUp HelpWindow;
     
-    private tetrisGUI OnePlayer;
+    //private tetrisGUI OnePlayer;
     
     private tetrisGUI2 TwoPlayers;
     
@@ -75,6 +75,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private int choice = 0;
     
+    private ArrayList<shape> list;
+    
     
     // ImageIcons : //
     /*
@@ -85,9 +87,10 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     private ImageIcon imageIconTetrisWelcome3 = new ImageIcon("imageTetrisWelcome4.jpg");
     */
     
-    public WelcomeGUI (grid g){
+    public WelcomeGUI (grid g, ArrayList<shape> l){
 		
 		data = g;
+        list = l;
 		
 		// Definition of the Frame //
         
@@ -285,7 +288,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource()== Player1){
 			choice = 1;
-            OnePlayerInfo = new info1PlayerPopUp (data);
+            OnePlayerInfo = new info1PlayerPopUp (data, list);
             OnePlayerInfo.setVisible(true);
             //this.setVisible(false);
             //OnePlayer.setVisible(true);
@@ -296,7 +299,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		if (e.getSource()== Player2){
 			choice = 2;
             // SAME AS CHOICE 1 FOR THE MOMENT
-            OnePlayerInfo = new info1PlayerPopUp (data);
+            OnePlayerInfo = new info1PlayerPopUp (data, list);
             OnePlayerInfo.setVisible(true);
             //this.setVisible(false);
             //OnePlayer.setVisible(true);

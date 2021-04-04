@@ -12,37 +12,21 @@ public class mainGame extends JOptionPane {
 
 	public static void main(String[] args) {
 
-        grid data = new grid();
-
-        //Calling the first "welcome" panel
-        WelcomeGUI newWindow = new WelcomeGUI (data);
+        
         // Creation of the ShapeBank of tetriminos
-        ArrayList<tetrimino> ShapeBank = new ArrayList<tetrimino> ();
+        ArrayList<shape> ShapeBank = new ArrayList<shape> ();
 
         /**
          * Creating tetriminos
          * */
 
-        tetrimino t1= new tetrimino(1);
-        tetrimino t2= new tetrimino(2);
-        tetrimino t3= new tetrimino(3);
-        tetrimino t4= new tetrimino(4);
-        tetrimino t5= new tetrimino(5);
-        tetrimino t6= new tetrimino(6);
-        tetrimino t7= new tetrimino(7);
-
-        /**
-         * for printing the different tetriminos created on the temrinal
-         * */
-        /*
-        System.out.println(t1);
-        System.out.println(t2);
-        System.out.println(t3);
-        System.out.println(t4);
-        System.out.println(t5);
-        System.out.println(t6);
-        System.out.println(t7);
-        */
+        shape t1= new tetrimino(1);
+        shape t2= new tetrimino(2);
+        shape t3= new tetrimino(3);
+        shape t4= new tetrimino(4);
+        shape t5= new tetrimino(5);
+        shape t6= new tetrimino(6);
+        shape t7= new tetrimino(7);
 
         /**
          * now we create a list with all these tetriminos
@@ -56,14 +40,21 @@ public class mainGame extends JOptionPane {
         ShapeBank.add(t6);
         ShapeBank.add(t7);
         
-        while (!data.restart){
+        grid data = new grid();
+
+        //Calling the first "welcome" panel
+        WelcomeGUI newWindow = new WelcomeGUI (data, ShapeBank);
+        
+        while (data.restart==false){
             // do nothing
         }
 
         while (data.restart == true){
 
-            data.initialiseData();   //we empty the area before each new game
-            data.restart = false;
+            data.initialiseData();   /* we empty the area before each new game
+                                        * useful when we play more that one game after having lauch the java program
+                                        * data.restart = false;
+                                        * */
 
             //the first tetrimino choosen is initialized in a diferent way than the following
             int nb = (int)(Math.random()*8);
@@ -75,13 +66,16 @@ public class mainGame extends JOptionPane {
 
             while (data.start == true)
 
-                // this function allows to decrease the time ineterval as a functioon of the number of laps done
+                // this function allows to decrease the time interval as a functioon of the number of laps done
                 data.interval = data.speedLevel*(int)Math.exp((-data.lap)/100) + 200;
                 data.start = false;
                 data.lap += 1;
                 data.score += 1;
 
-                data.getInitialPosition();
+                data.getInitialPosition();  /* usefull to print the tetrimino
+                                                * at the center of the grid
+                                                * as a fucntion of its size
+                                                * */
 
                 // we choose the next coming tetrimino random - it will be printed next the game area
                 int nbs = (int)(Math.random()*8);

@@ -44,6 +44,7 @@ public class shape {
      * no parameter
      **/
     
+    /*
     public String toString (){ 
         String res ="";
         for(int i = 0; i < tab.length; i++){
@@ -61,8 +62,57 @@ public class shape {
             temp.append("\n");// line break
         }
         return temp.toString();
-        * */
+        *
         return res;
+    }**/
+    
+    /**
+     * ROTATETRIMINO
+     * Rotation to the right 
+     * */
+    
+    public void rotateTetrimino () {
+		
+		int [][] revTab = new int [this.tab.length][this.tab[0].length];
+        
+        //the lines are moved down
+        for (int j = 0; j<revTab.length; j++){
+			for (int i = 0; i<revTab[0].length; i++){
+				revTab[i][j]=this.tab[this.tab.length-1-i][j];
+			}
+		}
+		
+		//transpose of the matrix
+		int [][] transTab = new int [this.tab.length][this.tab[0].length];
+		for (int p = 0; p<transTab.length; p++){
+			for (int q = 0; q<transTab[0].length; q++){
+				transTab[p][q]=revTab[q][p];
+			}
+		}
+        
+        this.tab=transTab;
     }
+    
+    /*******************
+     * TO COMPLETE WITH OTHER COLORS
+     * */
+    
+    public int getIntegerForColor(){
+        return 1;
+    }
+    
+    public void dessine(Graphics g){
+        for (int i=0; i < tab.length ; i++){
+            for (int j=0; j< tab[0].length ; j++){
+                if (tab[i][j]!=0){
+                    g.setColor(ColorTetrimino);
+                    g.fillRect (30+Y*15+j*15, 80+X*15+i*15, 15, 15);
+                }//else{
+                    //g.setColor(Color.red);
+                    //g.fillRect (30+Y*15+j*15, 80+X*15+i*15, 15, 15);
+                //}   
+            }
+        }
+	}
     
 }

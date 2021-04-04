@@ -69,10 +69,13 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     private String sizeGrid;
     
     private tetrisDraft OnePlayer;
+    
+    private ArrayList<shape> list ;
 	
-	public info1PlayerPopUp (grid g) {
+	public info1PlayerPopUp (grid g, ArrayList<shape> l) {
         
         data = g;
+        list = l;
 		
 		// Definition of the Frame //
 		
@@ -432,13 +435,17 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			
 		}
      
-        if (e.getSource() == playButton){	
-            OnePlayer = new tetrisDraft (data);
+        if (e.getSource() == playButton){
+            data.restart=true;
+            OnePlayer = new tetrisDraft (data, list);
+            OnePlayer.T.start();
             OnePlayer.setVisible(true);
             this.setVisible(false);
             WelcomeGUI.tetrisSoundtrack.stop();
             timePause();
-            //tetrisDraft.T.start();
+            //OnePlayer.closedWindow = true;
+            
+            
         }
         
         if (e.getSource() == helpButton){	
