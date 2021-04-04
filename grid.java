@@ -96,13 +96,16 @@ public class grid{
     }
     
    
-    /*
+    /**
+     * GETCELL
+     * Returns the content of one cell of the grid
+     * */
+    
     public int getCell(int x, int y) {
         return (area[x][y]);
 	}
-    * */
     
-    
+    /*
     public void dessine(Graphics g){
         g.setColor(Color.black);
         for (int i=0; i < area.length ; i++){
@@ -113,6 +116,7 @@ public class grid{
             }
         }
 	}
+	*/
     
     public void getInitialPosition(){
         int ct=T1.tab.length/2; // coordinate of the horizontal center of tetrimino t
