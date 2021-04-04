@@ -105,8 +105,9 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		nameFrame.setForeground(Color.white);
 		nameFrame.setFont(new Font("Times Roman", Font.BOLD, 18));
 		nameFrame.setText("- ONE PLAYER MODE -");
+		nameFrame.setIcon(new ImageIcon("oneplayer.png"));
 		nameFrame.setHorizontalAlignment(JLabel.CENTER);
-		nameFrame.setBounds((panelImage.getWidth()-300)/2,20,300,20);
+		nameFrame.setBounds((panelImage.getWidth()-300)/2,20,300,30);
 		panelImage.add(nameFrame); 
 		
 		JPanel displayPanel = new RoundedJPanel(30,new Color(224,224,224,50),Color.WHITE, true, false);
@@ -118,33 +119,37 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		JLabel choosePseudo = new JLabel ();
 		choosePseudo.setFont(new Font("Ariel", Font.PLAIN, 16));
-		choosePseudo.setText("Choose your pseudo or enter a new one:");
+		choosePseudo.setText("Choose your pseudo or enter a new one :");
+		choosePseudo.setIcon(new ImageIcon("info.png"));
         choosePseudo.setForeground(Color.white);
 		choosePseudo.setBounds(70,65,400,50);
 		panelImage.add(choosePseudo);
 		
 		JLabel chooseSize = new JLabel ();
 		chooseSize.setFont(new Font("Ariel", Font.PLAIN, 16));
-		chooseSize.setText("Choose the size of your game:");
+		chooseSize.setText("Choose the size of your grid :");
+		chooseSize.setIcon(new ImageIcon("size.png"));
         chooseSize.setForeground(Color.white);
 		chooseSize.setBounds(70,155,400,50);
 		panelImage.add(chooseSize);
 		
 		JLabel chooseBackground = new JLabel ();
 		chooseBackground.setFont(new Font("Ariel", Font.PLAIN, 16));
-		chooseBackground.setText("Choose the background of your game:");
+		chooseBackground.setText("Choose your favorite background :");
+		chooseBackground.setIcon(new ImageIcon("background.png"));
         chooseBackground.setForeground(Color.white);
-		chooseBackground.setBounds(70,280,400,50);
+		chooseBackground.setBounds(70,285,400,50);
 		panelImage.add(chooseBackground);
 		
 		JLabel chooseDifficulty = new JLabel ();
 		chooseDifficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
-		chooseDifficulty.setText("Choose the background of your game:");
+		chooseDifficulty.setText("Choose your difficulty level :");
+		chooseDifficulty.setIcon(new ImageIcon("difficulty.png"));
         chooseDifficulty.setForeground(Color.white);
-		chooseDifficulty.setBounds(70,370,400,50);
+		chooseDifficulty.setBounds(70,380,400,50);
 		panelImage.add(chooseDifficulty);
         
-		soundButton = new JButton (new ImageIcon("Soundicon.png"));
+		soundButton = new JButton (new ImageIcon("sound.png"));
 		soundButton.setBounds(20,20,20,20);	
 		soundButton.setOpaque(false);
 		//soundButton.setBackground(Color.red);
@@ -192,19 +197,28 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		backGroundSpinner = new JSpinner(backGroundModel);
 		
-		backGroundSpinner.setBounds(50,330,200,50);
+		JFormattedTextField backGroundSpinnerField = ((JSpinner.DefaultEditor)backGroundSpinner.getEditor()).getTextField();
+		backGroundSpinnerField.setEditable(false);
+		
+		backGroundSpinner.setBounds((displayPanel.getWidth()-200)/2,330,200,50);
 		
 		backGroundSpinner.addChangeListener(this);
 		panelImage.add(backGroundSpinner);
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 		
-		// JSlider to change difficulty //	
+		// JSlider to change difficulty //	-> Reprendre Tool Tip Text !! 
 		
 		Hashtable<Integer, JLabel> difficultyLabels = new Hashtable<>();
-        JLabel labelLevel1 = new JLabel("Easy peasy !");
-        JLabel labelLevel2 = new JLabel("Spicy");
-        JLabel labelLevel3 = new JLabel("Don't even dare...");
+        JLabel labelLevel1 = new JLabel(new ImageIcon("easypeasy.png"));
+        labelLevel1.setToolTipText("Easy Peasy");
+        
+        JLabel labelLevel2 = new JLabel(new ImageIcon("spicy.png"));
+        labelLevel2.setToolTipText("Spicy");
+        
+        JLabel labelLevel3 = new JLabel(new ImageIcon("don'tevendare.png"));
+        labelLevel1.setToolTipText("Don't even dare !");
+        
         labelLevel1.setForeground(Color.WHITE);
         labelLevel2.setForeground(Color.WHITE);
         labelLevel3.setForeground(Color.WHITE);
@@ -213,10 +227,10 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
         difficultyLabels.put(3, labelLevel3);
 		
 		JPanel sliderPanel = new JPanel();
-        sliderPanel.setBounds(140,420,320,80);
+        sliderPanel.setBounds(160,430,280,80);
         sliderPanel.setLayout(null);
         //sliderPanel.setOpaque(false);
-        sliderPanel.setBackground(new Color(255,255,255,20));
+        sliderPanel.setBackground(new Color(255,255,255,10));
         sliderPanel.setBorder(roundedBorder);
         panelImage.add(sliderPanel);
 		
@@ -230,7 +244,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		sliderDifficulty.setPaintTrack(true);
 		sliderDifficulty.setPaintTicks(true);
 		sliderDifficulty.setPaintLabels(true);
-		sliderDifficulty.setBounds(150,430,300,60);
+		sliderDifficulty.setBounds(170,440,260,60);
 		sliderDifficulty.setLabelTable(difficultyLabels);
 		
 		panelImage.add(sliderDifficulty);
@@ -248,23 +262,25 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		playerPseudo.setForeground(Color.RED);
 		playerPseudo.setBackground(Color.LIGHT_GRAY);
-		playerPseudo.setFont(new Font("Arial", Font.BOLD, 14));
+		playerPseudo.setFont(new Font("Arial", Font.PLAIN, 14));
 		playerPseudo.setMaximumRowCount(5);
-		playerPseudo.setBounds(50,115,200,50);
+		playerPseudo.setBounds(80,110,200,50);
 		playerPseudo.setEditable(true);
 		
 		panelImage.add(playerPseudo, BorderLayout.CENTER);
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
+		// JTextField for new players //
+    
         newName = new JTextField();
         
         newName.setText("Enter your name");
         
-        newName.setForeground(Color.RED);
+        newName.setForeground(Color.BLACK);
 		newName.setBackground(Color.LIGHT_GRAY);
-		newName.setFont(new Font("Arial", Font.BOLD, 14));
-		newName.setBounds(290,115,200,50);
+		newName.setFont(new Font("Arial", Font.PLAIN, 14));
+		newName.setBounds(320,110,200,50);
 		newName.setEditable(true);
 		
 		panelImage.add(newName, BorderLayout.CENTER);
@@ -277,17 +293,17 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		gridSize2 = new JRadioButton ();
 		gridSize3 = new JRadioButton ();
         
-        gridSize1.setText("Grid 1 : hello");
-        gridSize2.setText("Grid 2 : 24x12");
-        gridSize3.setText("Grid 3 : 28x14");
+        gridSize1.setText("Grid 1 : 20 x 10");
+        gridSize2.setText("Grid 2 : 24 x 12");
+        gridSize3.setText("Grid 3 : 28 x 14");
 		
-		gridSize1.setBounds(50,195,150,30);
-		gridSize2.setBounds(50,225,150,30);
-		gridSize3.setBounds(50,255,150,30);
+		gridSize1.setBounds(100,200,150,30);
+		gridSize2.setBounds(100,230,150,30);
+		gridSize3.setBounds(100,260,150,30);
         
-        gridSize1.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
-        gridSize2.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
-        gridSize3.setFont(new java.awt.Font("Arial", Font.BOLD, 18));
+        gridSize1.setFont(new java.awt.Font("Arial", Font.PLAIN, 16));
+        gridSize2.setFont(new java.awt.Font("Arial", Font.PLAIN, 16));
+        gridSize3.setFont(new java.awt.Font("Arial", Font.PLAIN, 16));
         
         gridSize1.setForeground(Color.WHITE);
         gridSize2.setForeground(Color.WHITE);
@@ -317,7 +333,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	 
 		// Insertion of the images // 
 		
-		Background = new JLabel(new ImageIcon("tetrisBackgroundOption5.jpeg"));
+		Background = new JLabel(new ImageIcon("tetrisBackgroundOption8.jpg"));
 		Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(Background);
 		
@@ -397,6 +413,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
+	
+		// ActionListener //
     
     public void actionPerformed (ActionEvent e) {
         
@@ -459,4 +477,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		Thread.sleep(1000);
 		}catch(InterruptedException e){}
 	}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+
 }
