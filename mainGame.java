@@ -267,16 +267,6 @@ public class mainGame extends JOptionPane {
 	}
     * */
 
-    /**
-     * GETCELL
-     * Returns the content of one cell of the grid
-    * */
-
-    /*
-    public static int getCell() {
-        return grid.getCell();
-	}
-    */
 
     /**
      * MOVETETRIMINO
