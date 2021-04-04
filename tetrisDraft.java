@@ -5,23 +5,35 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.event.*;
+// Sound support
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class tetrisDraft extends JFrame implements ActionListener, ChangeListener {
     
     //grid-type attribute
     
     private grid data;	
+    
 	//declare widgets out of constructor
+	private JPanel mainPanel;
+	private JPanel displayPanel;
 	private JTextArea scoreAff;
 	private JTextArea bestScoreAff;
 	private JButton soundButton;
     private JButton playPauseButton;
 	private JButton helpButton;
     private JPanel gamePanel;
-    private JPanel displayPanel;
     private JPanel nextPanel;
 	private helpPopUp help;
-    
+	
+	//for the music
+	public static boolean sound = true;
+    protected static Clip tetrisSoundtrack;
+    private Clip helpSound;
+
     public static Timer T;                 // public > so that we can start the timer form theinfo1PlayerPopUp class
 	
     public tetrisDraft (grid g){
@@ -32,18 +44,18 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		
 		this.setTitle("Tetr'INSA");
 		this.setSize(800,600);
-		this.setLocation(200,200);
+		this.setLocation(200,100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Create main panel
-		JPanel mainPanel = new JPanel();
+		mainPanel = new JPanel();
 		mainPanel.setBounds(0,0,800,600);
 		mainPanel.setLayout(null);
 		mainPanel.setBackground(Color.white);
 		this.add(mainPanel);
 		
 		//Create display panel with the scores and the "future" tetris
-		JPanel displayPanel = new JPanel();
+		displayPanel = new JPanel();
 		displayPanel.setBounds(530,20,250,530);
 		displayPanel.setLayout(null);
 		displayPanel.setBackground(new Color(224, 224, 224, 50));
@@ -167,14 +179,33 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * */
 		
 		this.setVisible(true);
+		
+		 try {
+         
+         File tetrisSoundFile = new File("Tetris-Song.wav");		// Open an audio input stream.
+         AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
+         tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
+         tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
+		
+		if (helpPopUp.closedWindow == true) {
+			tetrisSoundtrack.start();
+		}
+         
+         
+         File helpSoundFile = new File("pacman_death.wav");
+         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         helpSound = AudioSystem.getClip();
+         helpSound.open(audiohelpSound);
+         
+		}catch(Exception e){ e.printStackTrace(); }
 	}
     
-    public void paint (Graphics g) {
+   public void paint (Graphics g) {
         
+        super.paint(g);
         
-
-		g.setColor(Color.orange);
-		g.fillRect(20,60,470,530);
+        g.setColor(Color.orange);
+		g.fillRect(20,60,470,520);
         
         g.setColor(Color.red);
         g.fillRect(550,60,210,175);
@@ -182,14 +213,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         g.setColor(Color.blue);
         data.dessine(g);
         data.T1.dessine(g);
-
-		// g.setColor(Color.red);
-		// g.fillRect(200, 200, 200, 200);
-        
-        /*
-		g.setColor(Color.black);
-		g.fillOval(250, (int) y, 100, 100);
-        * */
+ 
 	}
     
     
@@ -201,21 +225,17 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     public void actionPerformed (ActionEvent e){
         
         // no need of any "if" for the timer t
-        repaint();
-        
-        /*
-		if (e.getSource() == helpButton){
-            data.pauseTheGame();
-			help.setVisible(true);
-			System.out.println("you clicked on help");
-		}
-        * */
+        //repaint();
         
         if (e.getSource() == helpButton){
             data.pauseTheGame();
 			helpPopUp HelpWindow = new helpPopUp ();
 			HelpWindow.setVisible(true);
 			System.out.println("you clicked on help");
+			helpSound.start();
+			tetrisSoundtrack.stop();
+			helpPopUp.helpSoundtrack.start();
+			helpPopUp.closedWindow = true;
 		}
         
         if (e.getSource()== playPauseButton){
@@ -225,6 +245,20 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         if (data.start == false){
             this.dispose();
         }
+        
+        if (e.getSource() == soundButton) {
+		
+			if (sound == true) {
+				tetrisSoundtrack.stop();
+				sound = false;
+			
+			}else if (sound == false) {
+				tetrisSoundtrack.start();
+				sound = true;
+				
+			}
+			
+		}
 		
 	}
 	
