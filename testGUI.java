@@ -30,11 +30,12 @@ public class testGUI {
 			
 			//tetrisGUI myTetrisGUI = new tetrisGUI ();
 			
-			//helpPopUp helpWindow = new helpPopUp ();
+			helpPopUp helpWindow = new helpPopUp ();
+			helpWindow.setVisible(true);
 
-			WelcomeGUI newWindow = new WelcomeGUI (a);
+			//WelcomeGUI newWindow = new WelcomeGUI (a);
 			
-			//info1PlayerPopUp newWindowBis = new info1PlayerPopUp ();
+			info1PlayerPopUp newWindowBis = new info1PlayerPopUp (a);
 	}
 }
 

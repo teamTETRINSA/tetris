@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import javax.swing.event.*;
+import javax.swing.border.*;
 
 // Sound support
 import java.io.File;
@@ -94,7 +95,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         //Set size of the window
         this.setSize(600,400);
         //Intital position
-        this.setLocation(300,200);
+		this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setLayout(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -201,7 +202,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Names.setBackground(Color.black);
 		Names.setFont(new Font("Times Roman", Font.BOLD, 14));
 		Names.setText("Project by Joseph B, Paul TD, Bich-Lien P, Flora G");
-		Names.setBounds(5,0,480,40);
+		Names.setBounds(0,0,400,40);
+		Names.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		Names.setIcon(new ImageIcon ("laptop.png"));
 		namePanel.add(Names); 
 			

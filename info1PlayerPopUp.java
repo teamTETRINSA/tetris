@@ -109,11 +109,11 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		nameFrame.setBounds((panelImage.getWidth()-300)/2,20,300,20);
 		panelImage.add(nameFrame); 
 		
-		JPanel choicePanel = new JPanel();
-		JPanel displayPanel = new JPanel();
+		JPanel displayPanel = new RoundedJPanel(30,new Color(224,224,224,50),Color.WHITE, true, false);
 		displayPanel.setBounds(40,60,520,520);
 		displayPanel.setLayout(null);
-		displayPanel.setBackground(new Color(224, 224, 224, 50));
+		displayPanel.setOpaque(false);
+		//displayPanel.setBackground(new Color(224, 224, 224, 50));
 		panelImage.add(displayPanel);
 		
 		JLabel choosePseudo = new JLabel ();
@@ -173,9 +173,9 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		panelImage.add(playButton);
 		playButton.addActionListener(this);
         
-        exitButton = new JButton();
-		exitButton.setText("<- BACK");
-		exitButton.setBounds(480,20,100,20);
+        exitButton = new JButton(new ImageIcon("back.png"));
+		//exitButton.setText("<- BACK");
+		exitButton.setBounds(540,10,40,40);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
 		exitButton.setForeground(Color.BLACK);
 		exitButton.setBackground(Color.WHITE);
@@ -317,7 +317,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	 
 		// Insertion of the images // 
 		
-		Background = new JLabel(new ImageIcon("tetrisBackgroundOption3.jpg"));
+		Background = new JLabel(new ImageIcon("tetrisBackgroundOption5.jpeg"));
 		Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(Background);
 		

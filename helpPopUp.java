@@ -90,21 +90,21 @@ public class helpPopUp extends JFrame implements ActionListener {
         
 			// Panels containing the information //
         
-        JPanel controlKeys = new JPanel();
+        JPanel controlKeys = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
         controlKeys.setBounds(30,50,200,520);
         controlKeys.setLayout(null);
-        //controlKeys.setOpaque(false);
-        controlKeys.setBackground(new Color(0,0,0,100));
-        controlKeys.setBorder(roundedBorder);
+        controlKeys.setOpaque(false);
+        //controlKeys.setBackground(new Color(0,0,0,100));
+        //controlKeys.setBorder(roundedBorder);
 
         // controlKeys.setBackground(Color.RED); ---> for testing purposes only
         
-        JPanel generalRules = new JPanel();
+        JPanel generalRules = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
         generalRules.setBounds(270,50,700,330);
         generalRules.setLayout(null);
-		//generalRules.setOpaque(false);
-		generalRules.setBackground(new Color(0,0,0,100));
-		generalRules.setBorder(roundedBorder);
+		generalRules.setOpaque(false);
+		//generalRules.setBackground(new Color(0,0,0,100));
+		//generalRules.setBorder(roundedBorder);
         // generalRules.setBackground(Color.RED); ---> for testing purposes only
         
         JPanel tetriminos = new JPanel();
@@ -138,26 +138,78 @@ public class helpPopUp extends JFrame implements ActionListener {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
 			// Text Strings for rules //
+		
+		// KEYS //
 			
-		String Keys1 = "Left Arrow : " + "\n" + " - Move Left -" + "\n";
+		JLabel upperArrow = new JLabel();
+        upperArrow.setFont(new Font("Times Roman", Font.BOLD, 12));
+        upperArrow.setText(" 1/4 Rotation ");
+        upperArrow.setForeground(Color.WHITE);
+        upperArrow.setBounds(20,70,150,30);
+        upperArrow.setIcon(new ImageIcon("upperarrow.jpg"));
+        controlKeys.add(upperArrow);
+        
+        JLabel lowerArrow = new JLabel();
+        lowerArrow.setFont(new Font("Times Roman", Font.BOLD, 12));
+        lowerArrow.setText(" Drop the piece ");
+        lowerArrow.setForeground(Color.WHITE);
+        lowerArrow.setBounds(20,110,150,30);
+		lowerArrow.setIcon(new ImageIcon("lowerarrow.jpg"));
+        controlKeys.add(lowerArrow);
+        
+        JLabel rightArrow = new JLabel();
+        rightArrow.setFont(new Font("Times Roman", Font.BOLD, 12));
+        rightArrow.setText(" Right translation ");
+        rightArrow.setForeground(Color.WHITE);
+        rightArrow.setBounds(20,150,150,30);
+        rightArrow.setIcon(new ImageIcon("rightarrow.jpg"));
+        controlKeys.add(rightArrow);
+        
+        JLabel leftArrow = new JLabel();
+        leftArrow.setFont(new Font("Times Roman", Font.BOLD, 12));
+        leftArrow.setText(" Right translation ");
+        leftArrow.setForeground(Color.WHITE);
+        leftArrow.setBounds(20,190,150,30);
+        leftArrow.setIcon(new ImageIcon("leftarrow.jpg"));
+        controlKeys.add(leftArrow);
+        
+        JLabel soundLabel = new JLabel();
+		soundLabel.setFont(new Font("Times Roman", Font.BOLD, 12));
+        soundLabel.setText(" SOUND ON / OFF ");
+        soundLabel.setForeground(Color.WHITE);
+        soundLabel.setBounds(20,230,150,30);
+        soundLabel.setIcon(new ImageIcon("Soundicon.png"));
+        controlKeys.add(soundLabel);
+        
+        JLabel helpLabel = new JLabel();
+        helpLabel.setFont(new Font("Times Roman", Font.BOLD, 12));
+        helpLabel.setText(" Help Panel ");
+        helpLabel.setForeground(Color.WHITE);
+        helpLabel.setBounds(20,270,150,30);
+        helpLabel.setIcon(new ImageIcon("help.png"));
+        controlKeys.add(helpLabel);
+        
+        // [ Other commands on the same model -> just copy + change labelName, name image and add 40 to the vertical component ]
+        
+		/*String Keys1 = "Left Arrow : " + "\n" + " - Move Left -" + "\n";
 		String Keys2 = "Right Arrow : " + "\n" + " - Move Right -" + "\n";
-		String Keys3 = "Upper Arrow : " + "\n" + " - Move Up -" + "\n";
+		String Keys3 = "Upper Arrow : " + "\n" + " - 1/4 Rotation - " + "\n";
 		String Keys4 = "Down Arrow : " + "\n" + " - Move Down -" + "\n";
-		
-		String Rule1 = "Write Rule 1";
-		String Rule2 = "Write Rule 2";
-		String Rule3 = "\ud83d\udc3b";
-		String Rule4 = "";
-		
-		textPaneGeneralRules.setText("Write the rules below" + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + Rule1 + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + Rule2 + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + Rule3 + "\n");
 		
 		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys1 + "\n");
 		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys2 + "\n");
 		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys3 + "\n");
-		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys4 + "\n");
+		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys4 + "\n");*/
+        
+        // RULES//
+		
+		textPaneGeneralRules.setForeground(Color.WHITE);
+		textPaneGeneralRules.setText("The game of Tetris consists of dropping several shapes to form the biggest possible number of lines." + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "You are able to move these shapes left and right and to rotate them." + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line." + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points." + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Once the screen is full and you can't place any more shapes, the game is over." + "\n");
+	
 		
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -183,7 +235,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         titleGeneralRules.setFont(new Font("Times Roman", Font.BOLD, 18));
         titleGeneralRules.setText(" GENERAL RULES ");
         titleGeneralRules.setForeground(Color.WHITE);
-        titleGeneralRules.setBounds((generalRules.getWidth()-160)/2,20,160,20);
+        titleGeneralRules.setBounds((generalRules.getWidth()-160)/2,15,160,20);
         generalRules.add(titleGeneralRules);
         
         JLabel separationLine = new JLabel();
