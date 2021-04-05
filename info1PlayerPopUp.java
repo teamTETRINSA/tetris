@@ -68,7 +68,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     private String sizeGrid;
     
-    private tetrisDraft OnePlayer;
+    public tetrisDraft OnePlayer;
     
     private ArrayList<shape> list ;
 	
@@ -423,13 +423,13 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
         
         if (e.getSource() == soundButton) {
 		
-			if (WelcomeGUI.sound == true) {
+			if (data.soundOn == true) {
 				WelcomeGUI.tetrisSoundtrack.stop();
-				WelcomeGUI.sound = false;
+				data.soundOn = false;
 			
-			}else if (WelcomeGUI.sound == false) {
+			}else if (data.soundOn == false) {
 				WelcomeGUI.tetrisSoundtrack.start();
-				WelcomeGUI.sound = true;
+				data.soundOn = true;
 				
 			}
 			

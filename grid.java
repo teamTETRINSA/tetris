@@ -33,16 +33,21 @@ public class grid{
     
     public int speedLevel=800;         // take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
     
-    public shape T1 = new tetrimino(1);           //the tetrimino falling on the grid
+    public shape T1 ;           //the tetrimino falling on the grid
     
-    public shape T2 = new tetrimino(1);           // the next tetrimino coming ; it is printed on the side of the game
+    public shape T2 ;           // the next tetrimino coming ; it is printed on the side of the game
+    
+    public boolean soundOn =true ;
     
     /**
      * CONSTRUCTOR
      * */
     
     public grid(){
-        //area[8][7]=1;
+        int nb = (int)(Math.random()*7);
+        T1 = new tetrimino(nb);
+        nb = (int)(Math.random()*7);
+        T2 = new tetrimino(nb);
     }
     
     /*
@@ -147,6 +152,11 @@ public class grid{
     /**
      * DROPTETRIMINO
      * Drop the tetrimino of a coordinate dY 
+     * -
+     * used from the main
+     * this method will not be directly called from the GUI keyListneer methods as 
+     * we need first to check the possibility to drop the current 
+     * falling tetrimino in the mainGame class
      * */
      
     public void dropTetrimino(int dy) {

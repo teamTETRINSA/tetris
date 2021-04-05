@@ -396,6 +396,12 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         // no need of any "if" for the timer t
         repaint();
+        System.out.println("REPAINT");
+        
+        if (data.start == false){
+            this.tetrisSoundtrack.stop();
+            this.dispose();
+        }
         
         if (e.getSource() == helpButton){
             data.pauseTheGame();
@@ -411,12 +417,8 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         if (e.getSource()== playPauseButton){
             data.pauseTheGame();
         }
-        
-        if (data.start == false){
-            this.dispose();
-        }
 	    
-	if (e.getSource() == exitButton){
+        if (e.getSource() == exitButton){
             this.tetrisSoundtrack.stop();
             WelcomeGUI.tetrisSoundtrack.start();
             this.dispose();
@@ -424,13 +426,13 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         if (e.getSource() == soundButton) {
 		
-			if (sound == true) {
+			if (data.soundOn == true) {
 				tetrisSoundtrack.stop();
-				sound = false;
+				data.soundOn = false;
 			
-			}else if (sound == false) {
+			}else if (data.soundOn == false) {
 				tetrisSoundtrack.start();
-				sound = true;
+				data.soundOn = true;
 				
 			}
 			
@@ -491,11 +493,15 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     public void messageDialogNBS(){
         JOptionPane.showMessageDialog(this, "New Best Score !"+"/n"+
             data.score,"", JOptionPane.OK_OPTION);
+        //JOptionPane.OK_OPTION.addActionListener(this);
+        //il faut couper la music alors et fermer la fenêtre
     }
     
     public void messageDialogGO(){
         JOptionPane.showMessageDialog(this, "Game Over !"+"/n"+data.score+"/n"+
             "High Score : "+data.bestScore,"", JOptionPane.OK_OPTION);
+        //JOptionPane.OK_OPTION.addActionListener(this);
+        //il faut couper la music alors et fermer la fenêtre
     }
     
 }

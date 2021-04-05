@@ -45,7 +45,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private tetrisGUI2 TwoPlayers;
     
-    private info1PlayerPopUp OnePlayerInfo;
+    public static info1PlayerPopUp OnePlayerInfo;
     
     private info2PlayerPopUp TwoPlayersInfo;
     
@@ -331,13 +331,13 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource() == soundButton) {
 		
-			if (sound == true) {
+			if (data.soundOn == true) {
 				tetrisSoundtrack.stop();
-				sound = false;
+				data.soundOn = false;
 			
-			}else if (sound == false) {
+			}else if (data.soundOn == false) {
 				tetrisSoundtrack.start();
-				sound = true;
+				data.soundOn = true;
 				
 			}
 			
