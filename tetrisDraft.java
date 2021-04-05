@@ -68,7 +68,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		
 		//Create panel for next tetrimino
 		JPanel nextPanel = new JPanel();
-		nextPanel.setBounds(20,20,210,175);
+		nextPanel.setBounds(20,80,130,130);
 		nextPanel.setLayout(null);
 		nextPanel.setBackground(Color.red);
 		displayPanel.add(nextPanel); 
@@ -216,29 +216,11 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		}catch(Exception e){ e.printStackTrace(); }
 	}
     
-   public void paint (Graphics g) {
+    public void paint (Graphics g) {
         
         super.paint(g);
         
-        //next coming tetrimino panel
-        g.setColor(Color.red);
-        g.fillRect(550,60,210,175);
-        
-        //printing the next coming tetrimino
-
-            for (int i=0; i < data.T2.tab.length; i++){
-                for (int j=0; j< data.T2.tab[0].length ; j++){
-                    if (data.T2.tab[i][j]!=0){
-                        g.setColor(data.T2.ColorTetrimino);
-                        g.fillRect (570+j*(24+2), 80+i*(24+2), 24, 24);
-                    }else{
-                        g.setColor(Color.yellow);
-                        g.fillRect (570+j*(24+2), 80+i*(24+2), 24, 24);
-                    } 
-                        //g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);
-                }
-            }
-        
+        // game area
         g.setColor(Color.orange);
         g.fillRect(160,40,278,538);
         
@@ -293,7 +275,9 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 g.setColor(Color.blue);
                 for (int i=0; i < data.T1.tab.length; i++){
                     for (int j=0; j< data.T1.tab[0].length ; j++){
-                        g.fillRect (170+(data.T1.Y*(24+2))+i*(24+2), 70+(data.T1.X*(24+2))+j*(24+2), 24, 24);
+                        if (data.T1.tab[i][j]!=0){
+                            g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);
+                        }
                     }
                 }
             break;
@@ -347,6 +331,25 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
             break;
         }
         
+        /*
+        //next coming tetrimino panel
+        g.setColor(Color.red);
+        g.fillRect(550,60,130,175);
+        * */
+        
+        //printing the next coming tetrimino
+        for (int i=0; i < data.T2.tab.length; i++){
+            for (int j=0; j< data.T2.tab[0].length ; j++){
+                if (data.T2.tab[i][j]!=0){
+                    g.setColor(data.T2.ColorTetrimino);
+                    g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
+                }else{
+                    g.setColor(Color.yellow);
+                    g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
+                } 
+                    //g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);
+            }
+        }
         
         
         /*        

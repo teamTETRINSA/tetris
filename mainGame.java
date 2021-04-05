@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
 import java.awt.Color;
 import java.util.Random;
 import java.awt.Dialog;
@@ -47,9 +48,13 @@ public class mainGame extends JOptionPane {
         
         while (data.restart==false){
             // do nothing
+            System.out.println("### FALSE ###");
+            timePause(1000);
         }
 
         while (data.restart == true){
+            
+            System.out.println("### NEW LAP ###");
 
             data.initialiseData();   /* we empty the area before each new game
                                         * useful when we play more that one game after having lauch the java program
@@ -57,28 +62,35 @@ public class mainGame extends JOptionPane {
                                         * */
 
             //the first tetrimino choosen is initialized in a diferent way than the following
-            int nb = (int)(Math.random()*8);
+            int nb = (int)(Math.random()*7);
+            System.out.println("AAAAA    "+nb);
             data.T1 = ShapeBank.get(nb);
 
             /* while we can play and add tetriminos
             * we continue introducing tetriminos at the top of the game
             */
 
-            while (data.start == true)
-
+            while (data.start == true){
+                System.out.println("DDDDDDDDD       "+data.lap);
+                timePause(1000);
+                System.out.println("SSSSSSSSS       "+data.speedLevel);
+                
+                
                 // this function allows to decrease the time interval as a functioon of the number of laps done
                 data.interval = data.speedLevel*(int)Math.exp((-data.lap)/100) + 200;
+                
                 data.start = false;
                 data.lap += 1;
                 data.score += 1;
 
                 data.getInitialPosition();  /* usefull to print the tetrimino
                                                 * at the center of the grid
-                                                * as a fucntion of its size
+                                                * as a function of its size
                                                 * */
 
                 // we choose the next coming tetrimino random - it will be printed next the game area
-                int nbs = (int)(Math.random()*8);
+                int nbs = (int)(Math.random()*7);
+                System.out.println("FFFFFFF    "+nb);
                 data.T2 = ShapeBank.get(nbs);
 
                 // will be printed "the next coming tetrimino T2" when T1 will be printed on the grid
@@ -143,6 +155,7 @@ public class mainGame extends JOptionPane {
             }
 
         }
+    }
 
     /********************************************************************************************************
      * METHODS
@@ -152,6 +165,13 @@ public class mainGame extends JOptionPane {
      * TIMEPAUSE
      * used to make drop the tetriminos at regular intervals
      * */
+    /*
+    public static void timePause () {
+		try {
+		Thread.sleep(1000);
+		}catch(InterruptedException e){}
+	}
+    * */
 
     public static void timePause (int ms) {
 		try {
@@ -303,7 +323,7 @@ public class mainGame extends JOptionPane {
         boolean possible = true ;
         for (int i = 0; i< data.T1.tab.length ; i++){
             for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                if (data.T1.tab[i+1][j]==0){
+                if (data.T1.tab[i/*+1*/][j]==0){
                     if (data.area[data.T1.Y+i+1][data.T1.X] != 0){
                         possible = false ;
                         i = data.T1.tab.length;

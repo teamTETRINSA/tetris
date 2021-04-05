@@ -356,20 +356,20 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	
 	public void stateChanged(ChangeEvent e) {
-        /*
+        int fps=0;
         JSlider source = (JSlider)e.getSource();
         if (source.getValueIsAdjusting()) {
-            int fps = (int)source.getValue();
+            fps = (int)source.getValue();
 
         } 
-        * */
         
-        if (e.getSource() == "1"){
+        
+        if (fps == 1){
             data.selectSpeed(800);
             System.out.println(data.speedLevel);
-        } else if (e.getSource() == "2"){
+        } else if (fps == 2){
             data.selectSpeed(600);
-        }else if (e.getSource() == "3"){
+        }else if (fps == 3){
             data.selectSpeed(400);
         }
         
@@ -436,16 +436,16 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		}
      
         if (e.getSource() == playButton){
-            data.restart=true;
             OnePlayer = new tetrisDraft (data, list);
-            OnePlayer.T.start();
-            OnePlayer.setVisible(true);
             this.setVisible(false);
-            WelcomeGUI.tetrisSoundtrack.stop();
+            OnePlayer.setVisible(true);
+            OnePlayer.T.start();
             timePause();
+            data.restart=true;
+            WelcomeGUI.tetrisSoundtrack.stop();
+            //timePause();
             //OnePlayer.closedWindow = true;
-            
-            
+            this.dispose();
         }
         
         if (e.getSource() == helpButton){	

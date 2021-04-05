@@ -31,11 +31,11 @@ public class grid{
     
     public int interval = 1000;    //the time interval at which a tetrimino is dropped   
     
-    public int speedLevel;         // take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
+    public int speedLevel=800;         // take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
     
-    public shape T1;           //the tetrimino falling on the grid
+    public shape T1 = new tetrimino(1);           //the tetrimino falling on the grid
     
-    public shape T2;           // the next tetrimino coming ; it is printed on the side of the game
+    public shape T2 = new tetrimino(1);           // the next tetrimino coming ; it is printed on the side of the game
     
     /**
      * CONSTRUCTOR
