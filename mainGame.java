@@ -97,6 +97,7 @@ public class mainGame extends JOptionPane {
 
                 while (dropIsPossible(data)){
                     //while the play/pause button is on "pause" mode, do nothing
+                    System.out.println("drop "+dropIsPossible(data));
                     while (data.pause==true){
                     }
                     timePause(data.interval);
@@ -212,7 +213,7 @@ public class mainGame extends JOptionPane {
 
         for (int i = 0 ; i<data.area.length ; i++){
             boolean filled = true ;
-            for (int j = 0 ; i<data.area[0].length ; j++){
+            for (int j = 0 ; j<data.area[0].length ; j++){
                 if (data.area[i][j]==0){
                     filled = false ;
                     j = data.area[0].length ;
@@ -323,8 +324,24 @@ public class mainGame extends JOptionPane {
         boolean possible = true ;
         for (int i = 0; i< data.T1.tab.length ; i++){
             for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                if (data.T1.tab[i/*+1*/][j]==0){
-                    if (data.area[data.T1.Y+i+1][data.T1.X] != 0){
+                if (data.T1.tab[i][j]!=0){
+                    if ((data.T1.Y == data.area.length -3-1) && (ShapeCountEmptyLines(data,1)==true)){
+                        if (data.area[data.T1.Y+i+1][data.T1.X+j] != 0){
+                            possible = false;
+                            i = data.T1.tab.length;
+                            j = data.T1.tab[0].length;
+                        }
+                    }else if((data.T1.Y == data.area.length -2-1) && (ShapeCountEmptyLines(data,2)==true)){
+                        if (data.area[data.T1.Y+i+1][data.T1.X+j] != 0){
+                            possible = false;
+                            i = data.T1.tab.length;
+                            j = data.T1.tab[0].length;
+                        }
+                    }else if ((data.T1.Y < data.area.length -3-1) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
+                        possible = false ;
+                        i = data.T1.tab.length;
+                        j = data.T1.tab[0].length;
+                    }else{
                         possible = false ;
                         i = data.T1.tab.length;
                         j = data.T1.tab[0].length;
@@ -344,8 +361,8 @@ public class mainGame extends JOptionPane {
         boolean possible = true ;
         for (int i = 0; i< data.T1.tab.length ; i++){
             for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                if (data.T1.tab[i][j+1]==0){
-                    if (data.area[data.T1.Y][data.T1.X+j+1] != 0){
+                if (data.T1.tab[i][j]!=0){
+                    if (data.area[data.T1.Y+i+1][data.T1.X+j] != 0){
                         possible = false ;
                         i = data.T1.tab.length;
                         j = data.T1.tab[0].length;
@@ -375,6 +392,36 @@ public class mainGame extends JOptionPane {
             }
         }
         return possible;
+    }
+    
+    /**
+     * ShapeCountEmptyLines (n)
+     * return true if the n last lines of the tab of a shape are empty
+     * works if n = 1 or 2
+     * */
+    
+    public static boolean ShapeCountEmptyLines(grid data, int n){
+        boolean ok = true ;
+        switch (n){
+            case 1:
+                for (int j=0 ; j< data.T1.tab[0].length ; j++){
+                    if (data.T1.tab[data.T1.tab.length-1][j]!=0){
+                        ok=false;
+                    }
+                }
+            break;
+            
+            case 2:
+                for (int i = data.T1.tab.length-1; i>1 ; i--){
+                    for (int j=0 ; j< data.T1.tab[0].length ; j++){
+                        if (data.T1.tab[i][j]!=0){
+                            ok=false;
+                        }
+                    }
+                }
+            break;
+        }
+        return ok;
     }
 
 }

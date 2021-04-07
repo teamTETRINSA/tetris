@@ -161,6 +161,7 @@ public class grid{
      
     public void dropTetrimino(int dy) {
         T1.Y += dy;
+        System.out.println("Y = "+T1.Y);
 	}
     
     /**
