@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.event.*;
+import javax.swing.Timer;
 // Sound support
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
@@ -37,7 +38,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     protected static Clip tetrisSoundtrack;
     private Clip helpSound;
 
-    public static Timer T;                 // public > so that we can start the timer form theinfo1PlayerPopUp class
+    //public static Timer T;                 // public > so that we can start the timer form theinfo1PlayerPopUp class
 	
     public tetrisDraft (grid g, ArrayList<shape> l){
             
@@ -85,15 +86,15 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		scoreTitle.setBounds(20,205,210,50);
 		displayPanel.add(scoreTitle);
 		
-		JPanel scorePanel = new JPanel();
+		/*JPanel scorePanel = new JPanel();
 		scorePanel.setBounds(20,265,210,50);
 		scorePanel.setLayout(null);
 		scorePanel.setBackground(Color.red);
 		displayPanel.add(scorePanel);
-		
+		*/
 		//score textArea
 		scoreAff = new JTextArea ();
-		scoreAff.setBounds(20,20,210,50);	
+		scoreAff.setBounds(20,265,210,50);	
 		scoreAff.setBackground(Color.red);
 		//scorePanel.add(scoreAff);
         displayPanel.add(scoreAff);
@@ -110,15 +111,17 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		bestScoreTitle.setBounds(20,325,210,50);
 		displayPanel.add(bestScoreTitle);
 		
+		/*
 		JPanel bestScorePanel = new JPanel();
 		bestScorePanel.setBounds(20,385,210,50);
 		bestScorePanel.setLayout(null);
 		bestScorePanel.setBackground(Color.red);
 		displayPanel.add(bestScorePanel);
+		*/ 
 		
 		//score textArea
 		scoreAff = new JTextArea ();
-		scoreAff.setBounds(20,20,210,50);	
+		scoreAff.setBounds(20,385,210,50);	
 		scoreAff.setBackground(Color.red);
 		//bestScorePanel.add(scoreAff);
         displayPanel.add(scoreAff);
@@ -188,7 +191,9 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
          * */
         
-        T = new Timer(1000, this);
+		Timer mt = new Timer(500, this);
+		mt.start();
+		
 		
         /**
          * Making all visible
@@ -214,12 +219,13 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          helpSound.open(audiohelpSound);
          
 		}catch(Exception e){ e.printStackTrace(); }
+
 	}
-    
+   
     public void paint (Graphics g) {
         
         super.paint(g);
-        
+    
         // game area
         g.setColor(Color.orange);
         g.fillRect(160,40,278,538);
@@ -253,7 +259,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 }
                 * */
                 
-        
+ 
         switch (data.area.length){
             case 20:
             
@@ -336,7 +342,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         g.setColor(Color.red);
         g.fillRect(550,60,130,175);
         * */
-        
+ 
         //printing the next coming tetrimino
         for (int i=0; i < data.T2.tab.length; i++){
             for (int j=0; j< data.T2.tab[0].length ; j++){
@@ -478,8 +484,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     
     public void keyTyped(KeyEvent e) {
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
+			System.out.println("You Pressed the down button");
             mainGame.dropTetrimino(data, 1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
+			System.out.println("You Pressed the up button");
             mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             mainGame.moveTetrimino(data,1);
@@ -488,6 +496,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
             data.pauseTheGame();
         }
+ 
     }
     
     public void messageDialogNBS(){
