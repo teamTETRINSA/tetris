@@ -12,7 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class tetrisDraft extends JFrame implements ActionListener, ChangeListener {
+public class tetrisDraft extends JFrame implements ActionListener, ChangeListener, KeyListener {
     
     //grid-type attribute
     
@@ -23,14 +23,16 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 	//declare widgets out of constructor
 	private JPanel mainPanel;
 	private JPanel displayPanel;
+	private JPanel nextPanel;
 	private JTextArea scoreAff;
 	private JTextArea bestScoreAff;
 	private JButton soundButton;
     private JButton playPauseButton;
 	private JButton helpButton;
 	private JButton exitButton;
+	private JLabel scoreTitle;
+	private JLabel bestScoreTitle;
     private JPanel gamePanel;
-    private JPanel nextPanel;
 	private helpPopUp help;
 	
 	//for the music
@@ -68,7 +70,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		mainPanel.add(displayPanel);
 		
 		//Create panel for next tetrimino
-		JPanel nextPanel = new JPanel();
+		nextPanel = new JPanel();
 		nextPanel.setBounds(20,80,130,130);
 		nextPanel.setLayout(null);
 		nextPanel.setBackground(Color.red);
@@ -78,7 +80,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * SCORE
          * */
          //"Score"
-		JLabel scoreTitle = new JLabel();
+		scoreTitle = new JLabel();
 		scoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		scoreTitle.setText("Your Score:");
         scoreTitle.setForeground(Color.black);
@@ -103,7 +105,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * BEST SCORE
          * */
          //"Score"
-		JLabel bestScoreTitle = new JLabel();
+		bestScoreTitle = new JLabel();
 		bestScoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		bestScoreTitle.setText("Score to beat:");
 		bestScoreTitle.setForeground(Color.black);
