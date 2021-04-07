@@ -299,15 +299,15 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		if (e.getSource()== Player2){
 			choice = 2;
             // SAME AS CHOICE 1 FOR THE MOMENT
-            OnePlayerInfo = new info1PlayerPopUp (data, list);
-            OnePlayerInfo.setVisible(true);
+            //OnePlayerInfo = new info1PlayerPopUp (data, list);
+            //OnePlayerInfo.setVisible(true);
             //this.setVisible(false);
             //OnePlayer.setVisible(true);
-            playSound.start();
+            //playSound.start();
             //tetrisSoundtrack.stop();
             
             /** it should be the code just below but we create a single player mode game for now **/
-            /*
+            
             TwoPlayersInfo = new info2PlayerPopUp ();
             TwoPlayersInfo.setVisible(true);
             //this.setVisible(false);
@@ -315,7 +315,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
             playSound.start();
             //tetrisSoundtrack.stop();
             //System.out.println("No 2 players mode for now ...");
-            * */
+            
 		}
 		
 		if (e.getSource()== HelpButton){
