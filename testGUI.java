@@ -38,8 +38,11 @@ public class testGUI {
 			
 			//info1PlayerPopUp newWindowBis = new info1PlayerPopUp ();
 			
-			GameOverGUI WindowGameover = new GameOverGUI (3,a);
-			WindowGameover.setVisible(true);
+			info2PlayerPopUp newWindowBisbis = new info2PlayerPopUp ();
+			newWindowBisbis.setVisible(true);
+			
+			//GameOverGUI WindowGameover = new GameOverGUI (3,a);
+			//WindowGameover.setVisible(true);
 	}
 }
 
