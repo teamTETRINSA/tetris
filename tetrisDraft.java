@@ -12,7 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class tetrisDraft extends JFrame implements ActionListener, ChangeListener, KeyListener {
+public class tetrisDraft extends JFrame implements ActionListener, ChangeListener {
     
     //grid-type attribute
     
@@ -23,16 +23,14 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 	//declare widgets out of constructor
 	private JPanel mainPanel;
 	private JPanel displayPanel;
-	private JPanel nextPanel;
 	private JTextArea scoreAff;
 	private JTextArea bestScoreAff;
 	private JButton soundButton;
     private JButton playPauseButton;
 	private JButton helpButton;
 	private JButton exitButton;
-	private JLabel scoreTitle;
-	private JLabel bestScoreTitle;
     private JPanel gamePanel;
+    private JPanel nextPanel;
 	private helpPopUp help;
 	
 	//for the music
@@ -41,6 +39,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     private Clip helpSound;
 
     //public static Timer T;                 // public > so that we can start the timer form theinfo1PlayerPopUp class
+    private Timer mt;
 	
     public tetrisDraft (grid g, ArrayList<shape> l){
             
@@ -70,7 +69,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		mainPanel.add(displayPanel);
 		
 		//Create panel for next tetrimino
-		nextPanel = new JPanel();
+		JPanel nextPanel = new JPanel();
 		nextPanel.setBounds(20,80,130,130);
 		nextPanel.setLayout(null);
 		nextPanel.setBackground(Color.red);
@@ -80,7 +79,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * SCORE
          * */
          //"Score"
-		scoreTitle = new JLabel();
+		JLabel scoreTitle = new JLabel();
 		scoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		scoreTitle.setText("Your Score:");
         scoreTitle.setForeground(Color.black);
@@ -105,7 +104,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * BEST SCORE
          * */
          //"Score"
-		bestScoreTitle = new JLabel();
+		JLabel bestScoreTitle = new JLabel();
 		bestScoreTitle.setFont(new Font("Ariel", Font.PLAIN, 16));
 		bestScoreTitle.setText("Score to beat:");
 		bestScoreTitle.setForeground(Color.black);
@@ -193,8 +192,11 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
          * */
         
-		Timer mt = new Timer(500, this);
+		mt = new Timer(500, this);
 		mt.start();
+        
+        //T = new Timer(500, this);
+		//T.start();
 		
 		
         /**
@@ -403,8 +405,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     public void actionPerformed (ActionEvent e){
         
         // no need of any "if" for the timer t
-        repaint();
-        System.out.println("REPAINT");
+        if (data.pause==false){
+            repaint();
+        }
+        //System.out.println("repaint");
         
         if (data.start == false){
             this.tetrisSoundtrack.stop();
@@ -422,8 +426,13 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 			helpPopUp.closedWindow = true;
 		}
         
-        if (e.getSource()== playPauseButton){
+        if (e.getSource() == playPauseButton){
             data.pauseTheGame();
+            if (data.pause==true){
+                mt.stop();
+            }else{
+                mt.start();
+            }
         }
 	    
         if (e.getSource() == exitButton){

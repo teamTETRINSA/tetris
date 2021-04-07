@@ -80,23 +80,16 @@ public class grid{
         }
     }
     
-    public void makeFallGrid(){
-        for (int i=area.length-1 ; i>=0 ; i--){
-            boolean lineEmpty = true;
-            for (int j=0 ; j<area[0].length ; j++){
-                if (area[i][j]!=0){
-                    lineEmpty = false;
-                    j=-1;
-                }
-            }
-            if (lineEmpty==true){
-                for (int k=0 ; k<area[0].length ; k++){
-                    area[i][k]=area[i-1][k];
-                }
+    public void makeFallGrid(int l){
+        for (int i=l ; i>0 ; i--){
+            for (int k=0 ; k<area[0].length ; k++){
+                area[l][k]=area[l-1][k];
             }
         }
+        System.out.println("          > jump "); 
     }
     
+    /*
     public boolean odd (int i){
         boolean o = true;
         if (i%2 !=0){
@@ -104,16 +97,21 @@ public class grid{
         }
         return o;
     }
+    * */
     
    
     /**
      * GETCELL
      * Returns the content of one cell of the grid
      * */
-    
+     
+     //useless
+     
+    /*
     public int getCell(int x, int y) {
         return (area[x][y]);
 	}
+    * */
     
     /*
     public void dessine(Graphics g){
@@ -135,9 +133,11 @@ public class grid{
         
 		
         // détermination de la position d'insertion de la forme au début de la grille de jeu
+        /*
         System.out.println("milieu shape a = "+ct);
         System.out.println("milieu gamearea A = "+cg);
         System.out.println("position début ajout a dans A = "+ (cg-ct));
+        * */
     }
     
     public void initialiseData(){
@@ -156,7 +156,7 @@ public class grid{
      * used from the main
      * this method will not be directly called from the GUI keyListneer methods as 
      * we need first to check the possibility to drop the current 
-     * falling tetrimino in the mainGame class
+     * falling tetrimino in the mainGame class and then use this method
      * */
      
     public void dropTetrimino(int dy) {

@@ -54,7 +54,7 @@ public class mainGame extends JOptionPane {
 
         while (data.restart == true){
             
-            System.out.println("### NEW LAP ###");
+            
 
             data.initialiseData();   /* we empty the area before each new game
                                         * useful when we play more that one game after having lauch the java program
@@ -63,7 +63,7 @@ public class mainGame extends JOptionPane {
 
             //the first tetrimino choosen is initialized in a diferent way than the following
             int nb = (int)(Math.random()*7);
-            System.out.println("AAAAA    "+nb);
+            System.out.println("new T1 "+nb);
             data.T1 = ShapeBank.get(nb);
 
             /* while we can play and add tetriminos
@@ -71,9 +71,10 @@ public class mainGame extends JOptionPane {
             */
 
             while (data.start == true){
-                System.out.println("DDDDDDDDD       "+data.lap);
+                System.out.println("###### NEW LAP ######");
+                
                 timePause(1000);
-                System.out.println("SSSSSSSSS       "+data.speedLevel);
+                //System.out.println("SSSSSSSSS       "+data.speedLevel);
                 
                 
                 // this function allows to decrease the time interval as a functioon of the number of laps done
@@ -81,7 +82,9 @@ public class mainGame extends JOptionPane {
                 
                 data.start = false;
                 data.lap += 1;
+                System.out.println("######    "+data.lap+"    ######");
                 data.score += 1;
+                System.out.println("######    "+data.score+"    ######");
 
                 data.getInitialPosition();  /* usefull to print the tetrimino
                                                 * at the center of the grid
@@ -90,18 +93,17 @@ public class mainGame extends JOptionPane {
 
                 // we choose the next coming tetrimino random - it will be printed next the game area
                 int nbs = (int)(Math.random()*7);
-                System.out.println("FFFFFFF    "+nb);
                 data.T2 = ShapeBank.get(nbs);
+                System.out.println("######  T2  >> "+nbs+" ######");
 
                 // will be printed "the next coming tetrimino T2" when T1 will be printed on the grid
 
                 while (dropIsPossible(data)){
-                    //while the play/pause button is on "pause" mode, do nothing
-                    System.out.println("drop "+dropIsPossible(data));
-                    while (data.pause==true){
+                    if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing                    
+                        timePause(data.interval);
+                        data.dropTetrimino(1);
+                        //System.out.println("drop ");
                     }
-                    timePause(data.interval);
-                    data.dropTetrimino(1);
                 }
 
                 data.transformShape();
@@ -112,8 +114,8 @@ public class mainGame extends JOptionPane {
                  * we also add an integer returned by the deleteLines method
                  * see its implementation for details
                  * */
-
-                data.score += data.lap + deleteLines(data);
+                int bonus = deleteLines(data) + data.lap;
+                data.score +=  bonus;
 
                 /*
                  * is the game finished?
@@ -122,11 +124,11 @@ public class mainGame extends JOptionPane {
                  * and the next tetrimino that will be used becomes the one printed on the side (t2)
                  * */
 
-                if (! gameOver(data)){
+                if (gameOver(data)==false){
                     data.start = true;
-                    t1 = t2;
+                    data.T1 = data.T2;
+                    System.out.println("######  T1 = T2 ######");
                 }
-
             }
 
             // the bestScore is updated
@@ -147,11 +149,10 @@ public class mainGame extends JOptionPane {
             }
             data.score=0;
 
-            /** PRINT "score=0" at the top of the window where the score appears **/
 
             // the PLAY button waits to be pushed
 
-            while (!data.restart){
+            while (data.restart==false){
                 //do nothing
             }
 
@@ -189,10 +190,10 @@ public class mainGame extends JOptionPane {
 
 
     public static boolean gameOver(grid data) {
-        boolean gameFinished = true;
+        boolean gameFinished = false;
         for (int i=0 ; i<data.area[1].length ; i++){
-            if (data.area[1][i]==0){
-                gameFinished=false;
+            if (data.area[1][i]!=0){
+                gameFinished=true;
                 i=data.area[1].length;
             }
         }
@@ -200,6 +201,43 @@ public class mainGame extends JOptionPane {
     }
 
 
+    /**
+     * DELETELINES
+     * method to delete all lines filled by tetriminos in a grid
+     * void
+     * */
+
+    public static int deleteLines(grid data){
+        // to get a list of the lines we need to delete
+        LinkedList<Integer> linesfilled = linesFilled(data);
+
+        // we delete all the numbers contained in filled lines
+        int count=0;
+        for (int l : linesfilled){
+            count=+1;
+            for (int i =0 ; i< data.area[0].length ; i++){
+                data.area[l][i]=0;
+            }
+            data.makeFallGrid(l); // we rearrange the grid : we make fall all the filled boxes above the lines
+        }
+        System.out.println("     count = "+count);
+
+        
+
+        
+
+        /* we return an integer corresponding to the bonus got
+         * using the method addBonus? is it usefull or maybe we can directly do it here...
+         * */
+        if (count > 0){
+            int bonus = (int) Math.pow(10,count);
+            return bonus;
+        }else{
+            return 0;
+        }
+    }
+    
+    
     /**
     * LINES method
     * method to know when a line is filled and has to be emptied
@@ -219,45 +257,13 @@ public class mainGame extends JOptionPane {
                     j = data.area[0].length ;
                 }
             }
-            if (filled = true){
+            if (filled == true){
                 filledLines.add(i);
             }
         }
         return filledLines;
     }
 
-    /**
-     * DELETELINES
-     * method to delete all lines filled by tetriminos in a grid
-     * void
-     * */
-
-    public static int deleteLines(grid data){
-        // to get a list of the lines we need to delete
-        LinkedList<Integer> linesfilled = linesFilled(data);
-
-        // we delete all the numbers contained in filled lines
-        int count=0;
-        for (int a : linesfilled){
-            count=+1;
-            for (int i =0 ; i< data.area[0].length ; i++){
-                data.area[a][i]=0;
-            }
-        }
-
-        /* we rearrange the grid : we make fall all the filled boxes
-         * above the lines in the terminal and on the GUI
-         */
-
-        data.makeFallGrid();
-
-        /* we return an integer corresponding to the bonus got
-         * using the method addBonus? is it usefull or maybe we can directly do it here...
-         * */
-
-        int bonus = (int) Math.pow(10,count);
-        return bonus;
-    }
 
 
     /**
@@ -319,7 +325,8 @@ public class mainGame extends JOptionPane {
      * DROPSIPOSSIBLE
      * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
      * */
-
+    
+    /*
     public static boolean dropIsPossible(grid data){
         boolean possible = true ;
         for (int i = 0; i< data.T1.tab.length ; i++){
@@ -351,6 +358,45 @@ public class mainGame extends JOptionPane {
         }
         return possible;
     }
+    * */
+    
+    public static boolean dropIsPossible(grid data){
+        boolean possible = true ;
+        if (data.T1.Y < data.area.length -4){
+            for (int i = 0; i< data.T1.tab.length ; i++){
+                for (int j=0 ; j< data.T1.tab[0].length ; j++){
+                    if ((data.T1.tab[i][j] != 0) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
+                        possible = false ;
+                        i = data.T1.tab.length;
+                        j = data.T1.tab[0].length;
+                    }
+                }
+            }
+        } else if ((data.T1.Y == data.area.length -4) && (ShapeCountEmptyLines(data,1)==true)){
+            for (int i = 0; i< data.T1.tab.length ; i++){
+                for (int j=0 ; j< data.T1.tab[0].length ; j++){
+                    if ((data.T1.tab[i][j] != 0) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
+                        possible = false ;
+                        i = data.T1.tab.length;
+                        j = data.T1.tab[0].length;
+                    }
+                }
+            }
+        } else if ((data.T1.Y == data.area.length -3) && (ShapeCountEmptyLines(data,2)==true)){
+            for (int i = 0; i< data.T1.tab.length ; i++){
+                for (int j=0 ; j< data.T1.tab[0].length ; j++){
+                    if ((data.T1.tab[i][j] != 0) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
+                        possible = false ;
+                        i = data.T1.tab.length;
+                        j = data.T1.tab[0].length;
+                    }
+                }
+            }
+        } else {
+            possible = false ;
+        }
+        return possible;
+    }
 
     /**
      * MOVETORIGHTISPOSSIBLE
@@ -359,16 +405,32 @@ public class mainGame extends JOptionPane {
 
     public static boolean moveToRightIsPossible(grid data){
         boolean possible = true ;
-        for (int i = 0; i< data.T1.tab.length ; i++){
-            for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                if (data.T1.tab[i][j]!=0){
-                    if (data.area[data.T1.Y+i+1][data.T1.X+j] != 0){
+        if (data.T1.X < data.area[0].length -4){
+            for (int i = 0; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
                         possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
                     }
                 }
             }
+        }else if ((data.T1.X == data.area[0].length -4) && (RightSideEmptyColumns(data,1)==true)){
+            for (int i = 0; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else if ((data.T1.X == data.area[0].length -3) && (RightSideEmptyColumns(data,2)==true)){
+            for (int i = 0; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else{
+            possible = false;
         }
         return possible;
     }
@@ -377,7 +439,42 @@ public class mainGame extends JOptionPane {
      * MOVETOLEFTISPOSSIBLE
      * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
      * */
-
+    
+    public static boolean moveToLeftIsPossible(grid data){
+        boolean possible = true ;
+        //OK
+        if (data.T1.X > 0){
+            for (int i = 0; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i-1] != 0)){
+                        possible = false ;
+                    }
+                }
+            }
+        
+        }else if ((data.T1.X == 0) && (LeftSideEmptyColumns(data,1)==true)){
+            for (int i = 0; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i-1] != 0)){
+                        possible = false ;
+                    }
+                }
+            }
+        }/*else if ((data.T1.X == data.area[0].length -3) && (RightSideEmptyColumns(data,2)==true)){
+            for (int i = 0; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                        possible = false ;
+                    }
+                }
+            }
+        }*/else{
+            possible = false;
+        }
+        return possible;
+    }
+    
+    /*
     public static boolean moveToLeftIsPossible(grid data){
         boolean possible = true ;
         for (int i = 0; i< data.T1.tab.length ; i++){
@@ -393,9 +490,10 @@ public class mainGame extends JOptionPane {
         }
         return possible;
     }
+    * */
     
     /**
-     * ShapeCountEmptyLines (n)
+     * SHAPECOUNTEMPTYLINES
      * return true if the n last lines of the tab of a shape are empty
      * works if n = 1 or 2
      * */
@@ -423,5 +521,69 @@ public class mainGame extends JOptionPane {
         }
         return ok;
     }
+    
+    /**
+     * RIGHTSIDEEMPTYCOLUMNS
+     * return true if the n last lines of the tab of a shape are empty
+     * works if n = 1 or 2
+     * */
+    
+    public static boolean RightSideEmptyColumns(grid data, int n){
+        boolean ok = true ;
+        switch (n){
+            case 1:
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if (data.T1.tab[j][data.T1.tab[0].length-1]!=0){
+                        ok=false;
+                    }
+                }
+            break;
+            
+            case 2:
+                for (int i = data.T1.tab[0].length-2; i < data.T1.tab[0].length ; i++){
+                    for (int j=0 ; j< data.T1.tab.length ; j++){
+                        if (data.T1.tab[j][i]!=0){
+                            ok=false;
+                        }
+                    }
+                }
+            break;
+        }
+        return ok;
+    }
+    
+    /**
+     * LEFTSIDEEMPTYCOLUMNS
+     * return true if the n last lines of the tab of a shape are empty
+     * works if n = 1 or 2
+     * */
+    
+    public static boolean LeftSideEmptyColumns(grid data, int n){
+        boolean ok = true ;
+        switch (n){
+            case 1:
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if (data.T1.tab[j][0]!=0){
+                        ok=false;
+                    }
+                }
+            break;
+            /*
+            case 2:
+                for (int i = data.T1.tab[0].length-2; i < data.T1.tab[0].length ; i++){
+                    for (int j=0 ; j< data.T1.tab.length ; j++){
+                        if (data.T1.tab[j][i]!=0){
+                            ok=false;
+                        }
+                    }
+                }
+            break;
+            * */
+        }
+        return ok;
+    }
+    
+    
+    
 
 }
