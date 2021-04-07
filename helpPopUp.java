@@ -71,9 +71,9 @@ public class helpPopUp extends JFrame implements ActionListener {
 			
 		Border roundedBorder = new LineBorder(Color.WHITE, 3, true);
 			
-		exitButton = new JButton();
-		exitButton.setText("EXIT");
-		exitButton.setBounds(880,10,100,30);
+		exitButton = new JButton(new ImageIcon("back.png"));
+		//exitButton.setText("EXIT");
+		exitButton.setBounds(930,10,40,40);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
 		exitButton.setForeground(Color.BLACK);
 		exitButton.setBackground(Color.WHITE);
@@ -81,7 +81,7 @@ public class helpPopUp extends JFrame implements ActionListener {
 		exitButton.addActionListener(this);
 		
 		soundButton = new JButton (new ImageIcon("Soundicon.png"));
-		soundButton.setBounds(20,20,20,20);	
+		soundButton.setBounds(30,20,20,20);	
 		soundButton.setOpaque(false);
 		panelImage.add(soundButton);
 		soundButton.addActionListener(this);
@@ -91,7 +91,7 @@ public class helpPopUp extends JFrame implements ActionListener {
 			// Panels containing the information //
         
         JPanel controlKeys = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
-        controlKeys.setBounds(30,50,200,520);
+        controlKeys.setBounds(30,55,200,520);
         controlKeys.setLayout(null);
         controlKeys.setOpaque(false);
         //controlKeys.setBackground(new Color(0,0,0,100));
@@ -100,20 +100,37 @@ public class helpPopUp extends JFrame implements ActionListener {
         // controlKeys.setBackground(Color.RED); ---> for testing purposes only
         
         JPanel generalRules = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
-        generalRules.setBounds(270,50,700,330);
+        generalRules.setBounds(250,375,730,200);
         generalRules.setLayout(null);
 		generalRules.setOpaque(false);
 		//generalRules.setBackground(new Color(0,0,0,100));
 		//generalRules.setBorder(roundedBorder);
         // generalRules.setBackground(Color.RED); ---> for testing purposes only
         
+        JPanel generalRulesBis = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        generalRulesBis.setBounds(250,55,300,300);
+        generalRulesBis.setLayout(null);
+		generalRulesBis.setOpaque(false);
+        
         JPanel tetriminos = new JPanel();
-        tetriminos.setBounds(270,420,700,150);
+        tetriminos.setBounds(570,55,402,302);
         tetriminos.setLayout(null);
         //tetriminos.setOpaque(false);
-        tetriminos.setBackground(new Color(0,0,0,100));
+        tetriminos.setBackground(Color.white);
         tetriminos.setBorder(roundedBorder);
         // tetriminos.setBackground(Color.RED); ---> for testing purposes only
+        
+        Icon imgIcon = new ImageIcon(this.getClass().getResource("tetriminos.gif"));
+		JLabel label = new JLabel(imgIcon);
+		label.setBounds(2,2,398,298); 
+		//this.getContentPane().add(label);	
+		tetriminos.add(label);	
+		
+		/*Icon imgIcon2 = new ImageIcon(this.getClass().getResource("loading4.gif"));
+		JLabel label2 = new JLabel(imgIcon2);
+		label2.setBounds(0,0,300,300); 
+		//this.getContentPane().add(label);	
+		generalRulesBis.add(label2);	*/
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
@@ -125,15 +142,32 @@ public class helpPopUp extends JFrame implements ActionListener {
 		//textPaneGeneralRules.setContentType("text/html");
 		controlKeys.add(textPaneControlKeys);
 		
-		JTextPane textPaneGeneralRules = new JTextPane();
-		textPaneGeneralRules.setBounds(20,60,660,250);
-		textPaneGeneralRules.setOpaque(false);
-		//textPaneGeneralRules.setContentType("text/html");
-		generalRules.add(textPaneGeneralRules);
 		
-		JLabel tetriminoImage = new JLabel(new ImageIcon("tetrimino.jpg"));
-		tetriminoImage.setBounds(0,0,tetriminos.getWidth(),tetriminos.getHeight());
-		tetriminos.add(tetriminoImage);
+		JTextPane textPaneGeneralRules = new JTextPane();
+		textPaneGeneralRules.setBounds(20,50,660,250);
+		textPaneGeneralRules.setOpaque(false);
+		textPaneGeneralRules.setEditable(false);
+		textPaneGeneralRules.setForeground(Color.black);
+		generalRules.add(textPaneGeneralRules);
+		//textPaneGeneralRules.setContentType("text/html");
+		
+		/*
+		JScrollPane scrollPane = new JScrollPane(textPaneGeneralRules);
+		scrollPane.setBounds(20,50,690,130);
+		scrollPane.setOpaque(false);
+		scrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		generalRules.add(scrollPane);
+		*/
+		
+		JTextPane textPaneGeneralRulesBis = new JTextPane();
+		textPaneGeneralRulesBis.setBounds(20,20,290,260);
+		textPaneGeneralRulesBis.setOpaque(false);
+		//textPaneGeneralRules.setContentType("text/html");
+		generalRulesBis.add(textPaneGeneralRulesBis);
+		
+		//JLabel tetriminoImage = new JLabel(new ImageIcon("tetrimino.jpg"));
+		//tetriminoImage.setBounds(0,0,tetriminos.getWidth(),tetriminos.getHeight());
+		//tetriminos.add(tetriminoImage);
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
@@ -201,7 +235,7 @@ public class helpPopUp extends JFrame implements ActionListener {
 		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys3 + "\n");
 		textPaneControlKeys.setText(textPaneControlKeys.getText() + Keys4 + "\n");*/
         
-        // RULES//
+        // RULES //
 		
 		textPaneGeneralRules.setForeground(Color.WHITE);
 		textPaneGeneralRules.setText("The game of Tetris consists of dropping several shapes to form the biggest possible number of lines." + "\n");
@@ -209,9 +243,8 @@ public class helpPopUp extends JFrame implements ActionListener {
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line." + "\n");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points." + "\n");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Once the screen is full and you can't place any more shapes, the game is over." + "\n");
+		
 	
-		
-		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 			// Other components inside the Panels //
@@ -265,6 +298,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpPanel.add(helpText);
         helpPanel.add(controlKeys);
         helpPanel.add(generalRules);
+        helpPanel.add(generalRulesBis);
         helpPanel.add(tetriminos);
         helpPanel.add(panelImage);
         

@@ -336,10 +336,16 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	 
 		// Insertion of the images // 
 		
+		Icon imgIcon = new ImageIcon(this.getClass().getResource("settings.gif"));
+		JLabel label = new JLabel(imgIcon);
+		label.setBounds(0,0,600,600); 
+		panelImage.add(label);	
+		
+		/*
 		Background = new JLabel(new ImageIcon("tetrisBackgroundOption8.jpg"));
 		Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(Background);
-		
+		*/
 		onePlayerInfoPanel = new JPanel();
         onePlayerInfoPanel.setBounds(0,0,600,600);
         onePlayerInfoPanel.setLayout(null);
