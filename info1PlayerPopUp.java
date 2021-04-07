@@ -445,7 +445,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             OnePlayer = new tetrisDraft (data, list);
             this.setVisible(false);
             OnePlayer.setVisible(true);
-            OnePlayer.T.start();
+            //OnePlayer.T.start();
             timePause();
             data.restart=true;
             WelcomeGUI.tetrisSoundtrack.stop();
