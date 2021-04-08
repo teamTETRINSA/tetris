@@ -192,7 +192,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
          * */
         
-		mt = new Timer(500, this);
+		mt = new Timer(700, this);
 		mt.start();
         
         //T = new Timer(500, this);
@@ -230,38 +230,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         super.paint(g);
     
-        // game area
+        /* game area
         g.setColor(Color.orange);
         g.fillRect(160,40,278,538);
-        
-        /*
-        
-                g.setColor(Color.black);
-                for (int i=0; i < 10 ; i++){
-                    for (int j=0; j< 20 ; j++){
-                        if (data.getCell(j, i) != 0){
-                            g.fillRect (170+i*24+i*2, 50+j*24+j*2, 24, 24);
-                        }
-                    }
-                }
-                
-                g.setColor(Color.blue);
-                list.get(1).dessine(g);
-                for (int i=0 ; i< 1; i++){
-                    if (i!=0){
-                        list.get(i).X +=5*i;
-                    }
-                    list.get(i).dessine(g);
-                }
-                /*
-                //tetrimino
-                g.setColor(Color.blue);
-                for (int i=0; i < data.T1.tab.length; i++){
-                    for (int j=0; j< data.T1.tab[0].length ; j++){
-                        g.fillRect (170+(data.T1.Y*(24+2))+i*(24+2), 70+(data.T1.X*(24+2))+j*(24+2), 24, 24);
-                    }
-                }
-                * */
+        * */
                 
  
         switch (data.area.length){
@@ -276,17 +248,17 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 for (int i=0; i < 10 ; i++){
                     for (int j=0; j< 20 ; j++){
                         if (data.getCell(j, i) != 0){
-                            g.fillRect (170+i*24+i*2, 50+j*24+j*2, 24, 24);
+                            g.fillRect (170+i*(24+2), 50+j*(24+2), 24, 24);
                         }
                     }
                 }
                 
                 //tetrimino
-                g.setColor(Color.blue);
+                g.setColor(Color.black);
                 for (int i=0; i < data.T1.tab.length; i++){
                     for (int j=0; j< data.T1.tab[0].length ; j++){
                         if (data.T1.tab[i][j]!=0){
-                            g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);
+                            g.fillRect (170+(data.T1.X*(24+2))+j*(24+2), 50+(data.T1.Y*(24+2))+i*(24+2), 24, 24);
                         }
                     }
                 }
@@ -298,20 +270,22 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 g.fillRect(160,40,282,546);
                 
                 //area
-                g.setColor(Color.green);
+                g.setColor(Color.black);
                 for (int i=0; i < 12 ; i++){
                     for (int j=0; j< 24 ; j++){
                         if (data.getCell(j, i) != 0){
-                            g.fillRect (170+i*20+i*2, 50+j*20+j*2, 20, 20);
+                            g.fillRect (170+i*(20+2), 50+j*(20+2), 20, 20);
                         }
                     }
                 }
                 
                 //tetrimino
-                g.setColor(Color.blue);
+                g.setColor(Color.black);
                 for (int i=0; i < data.T1.tab.length ; i++){
                     for (int j=0; j< data.T1.tab[0].length  ; j++){
-                        g.fillRect (170+(data.T1.Y*(20+2))+i*(20+2), 70+(data.T1.X*(20+2))+j*(20+2), 20, 20);
+                        if (data.T1.tab[i][j]!=0){
+                            g.fillRect (170+(data.T1.X*(20+2))+j*(20+2), 50+(data.T1.Y*(20+2))+i*(20+2), 20, 20);
+                        }
                     }
                 }
             break;
@@ -322,20 +296,23 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 g.fillRect(160,40,284,549);
                 
                 //area
-                g.setColor(Color.blue);
+                g.setColor(Color.black);
                 for (int i=0; i < 14 ; i++){
                     for (int j=0; j< 28 ; j++){
                         if (data.getCell(j, i) != 0){
-                            g.fillRect (170+i*17+i*2, 50+j*17+j*2, 17, 17);
+                            g.fillRect (170+i*(17+2), 50+j*(17+2), 17, 17);
                         }
                     }
                 }
                 
                 //tetrimino
-                g.setColor(Color.blue);
+                g.setColor(Color.black);
                 for (int i=0; i < data.T1.tab.length  ; i++){
                     for (int j=0; j< data.T1.tab[0].length ; j++){
-                        g.fillRect (170+(data.T1.Y*(17+2))+i*(17+2), 70+(data.T1.X*(17+2))+j*(20+2), 17, 17);
+                        if (data.T1.tab[i][j]!=0){
+                            g.fillRect (170+(data.T1.X*(17+2))+j*(17+2), 50+(data.T1.Y*(17+2))+i*(20+2), 17, 17);
+                        }
+                        
                     }
                 }
             break;
@@ -353,47 +330,13 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 if (data.T2.tab[i][j]!=0){
                     g.setColor(data.T2.ColorTetrimino);
                     g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
-                }else{
+                }/*else{
                     g.setColor(Color.yellow);
                     g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
                 } 
-                    //g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);
+                    //g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);/*/
             }
         }
-        
-        
-        /*        
-        g.setColor(Color.black);
-        for (int i=0; i < 10 ; i++){
-            for (int j=0; j< 20 ; j++){
-                g.fillRect (170+i*24+i*2, 50+j*24+j*2, 24, 24);
-            }
-        }
-        
-        g.setColor(Color.green);
-        for (int i=0; i < 12 ; i++){
-            for (int j=0; j< 24 ; j++){
-                g.fillRect (170+i*20+i*2, 50+j*20+j*2, 20, 20);
-            }
-        }
-        
-        g.setColor(Color.blue);
-        for (int i=0; i < 14 ; i++){
-            for (int j=0; j< 28 ; j++){
-                g.fillRect (170+i*17+i*2, 50+j*17+j*2, 17, 17);
-            }
-        }
-        * */
-        
-        
-        
-        //g.setColor(Color.blue);
-        //data.dessine(g);
-        //data.T1.dessine(g);
-
-		// g.setColor(Color.red);
-		// g.fillRect(200, 200, 200, 200);
- 
 	}
     
     
@@ -406,7 +349,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         // no need of any "if" for the timer t
         if (data.pause==false){
-            //repaint();
+            repaint();
         }
         //System.out.println("repaint");
         
@@ -490,26 +433,57 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
      * */
     
     public void keyPressed(KeyEvent e) {
-    }
-    
-    public void keyReleased(KeyEvent e) {
-    }
-    
-    public void keyTyped(KeyEvent e) {
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
-			System.out.println("You Pressed the down button");
+			System.out.println("⬇");
             mainGame.dropTetrimino(data, 1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-			System.out.println("You Pressed the up button");
+			System.out.println("↻");
             mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+            System.out.println("➡︎");
             mainGame.moveTetrimino(data,1);
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+            System.out.println("⬅︎︎");
             mainGame.moveTetrimino(data,-1);
         }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
             data.pauseTheGame();
         }
- 
+    }
+    
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode()==KeyEvent.VK_DOWN){
+			System.out.println("⬇");
+            mainGame.dropTetrimino(data, 1);
+        }else if (e.getKeyCode()==KeyEvent.VK_UP){
+			System.out.println("↻");
+            mainGame.rotateTetrimino(data);
+        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+            System.out.println("➡︎");
+            mainGame.moveTetrimino(data,1);
+        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+            System.out.println("⬅︎︎");
+            mainGame.moveTetrimino(data,-1);
+        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+            data.pauseTheGame();
+        }
+    }
+    
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyCode()==KeyEvent.VK_DOWN){
+			System.out.println("⬇");
+            mainGame.dropTetrimino(data, 1);
+        }else if (e.getKeyCode()==KeyEvent.VK_UP){
+			System.out.println("↻");
+            mainGame.rotateTetrimino(data);
+        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+            System.out.println("➡︎");
+            mainGame.moveTetrimino(data,1);
+        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+            System.out.println("⬅︎︎");
+            mainGame.moveTetrimino(data,-1);
+        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+            data.pauseTheGame();
+        }
     }
     
     public void messageDialogNBS(){

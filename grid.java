@@ -176,9 +176,12 @@ public class grid{
     public void pauseTheGame (){
         if (pause==false){
             pause=true;
+            System.out.println("▶️︎︎");
         }else{
             pause=false;
+            System.out.println("⏸️︎︎");
         }
+        
     }
     
     public void selectAreaSize (int h, int w){
