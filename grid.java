@@ -105,13 +105,9 @@ public class grid{
      * Returns the content of one cell of the grid
      * */
      
-     //useless
-     
-    /*
     public int getCell(int x, int y) {
         return (area[x][y]);
 	}
-    * */
     
     /*
     public void dessine(Graphics g){

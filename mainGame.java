@@ -63,7 +63,7 @@ public class mainGame extends JOptionPane {
 
             //the first tetrimino choosen is initialized in a diferent way than the following
             int nb = (int)(Math.random()*7);
-            System.out.println("new T1 "+nb);
+            System.out.println("new T1 >>>"+nb);
             data.T1 = ShapeBank.get(nb);
 
             /* while we can play and add tetriminos
@@ -82,9 +82,9 @@ public class mainGame extends JOptionPane {
                 
                 data.start = false;
                 data.lap += 1;
-                System.out.println("######    "+data.lap+"    ######");
+                System.out.println("######  lap :"+data.lap+"   ######");
                 data.score += 1;
-                System.out.println("######    "+data.score+"    ######");
+                System.out.println("######  score : "+data.score+"  ######");
 
                 data.getInitialPosition();  /* usefull to print the tetrimino
                                                 * at the center of the grid
@@ -128,9 +128,15 @@ public class mainGame extends JOptionPane {
                     data.start = true;
                     data.T1 = data.T2;
                     System.out.println("######  T1 = T2 ######");
+                    System.out.println();
                 }
             }
-
+            System.out.println("##################################");
+            System.out.println("##################################");
+            System.out.println("######      GAME OVER      #######");
+            System.out.println("######      SCORE : "+data.score+"    #######");
+            
+            
             // the bestScore is updated
 
             /** PRINT PopUp window
@@ -147,13 +153,22 @@ public class mainGame extends JOptionPane {
                 //static problem
                 //tetrisDraft.messageDialogGO();
             }
+            
+            System.out.println("######      BESTSCORE : "+data.bestScore+"    #######");
+            System.out.println("##################################");
+            System.out.println("##################################");
+            System.out.println();
+            
             data.score=0;
+            System.out.println("Score = 0");
 
 
             // the PLAY button waits to be pushed
 
             while (data.restart==false){
                 //do nothing
+                System.out.println("wait ... ");
+                timePause(1000);
             }
 
         }
@@ -429,6 +444,14 @@ public class mainGame extends JOptionPane {
                     }
                 }
             }
+        }else if(data.T1.X == -2){
+            for (int i = 1; i< data.T1.tab[0].length ; i++){
+                for (int j=0 ; j< data.T1.tab.length ; j++){
+                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                        possible = false ;
+                    }
+                }
+            }
         }else{
             possible = false;
         }
@@ -452,7 +475,10 @@ public class mainGame extends JOptionPane {
                 }
             }
         
-        }else if ((data.T1.X == 0) && (LeftSideEmptyColumns(data,1)==true)){
+        }else if ((data.T1.X == 0) && (LeftSideEmptyColumns(data,1)==true)){    /* and if the first column of the tetrimino's tab is empty,
+                                                                                 * we can analyse the x-1 column of the grid's area when a 
+                                                                                 * box of the tetrimino's tab is filled bu a number different than 0
+                                                                                 * */
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
                     if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i-1] != 0)){
@@ -460,7 +486,10 @@ public class mainGame extends JOptionPane {
                     }
                 }
             }
-        }/*else if ((data.T1.X == data.area[0].length -3) && (RightSideEmptyColumns(data,2)==true)){
+        }else if((data.T1.X == -1) && (LeftSideEmptyColumns(data,2)==true)){    /* and if the 2 first columns of the tetrimino's tab are empty,
+                                                                                 * we can analyse the x-1 column of the grid's area when a 
+                                                                                 * box of the tetrimino's tab is filled by a number different than 0
+                                                                                 * */
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
                     if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
@@ -468,7 +497,7 @@ public class mainGame extends JOptionPane {
                     }
                 }
             }
-        }*/else{
+        }else{
             possible = false;
         }
         return possible;

@@ -406,11 +406,13 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         
         // no need of any "if" for the timer t
         if (data.pause==false){
-            repaint();
+            //repaint();
         }
         //System.out.println("repaint");
         
-        if (data.start == false){
+        // CRASH
+        // to be modified so that we can dispose the window when
+        if (data.restart == false){
             this.tetrisSoundtrack.stop();
             this.dispose();
         }
