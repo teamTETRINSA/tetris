@@ -142,10 +142,12 @@ public class GameOverGUI extends JFrame {
 			Graphics2D G = (Graphics2D) g;
 			G.setFont(new Font("Times Roman", Font.BOLD, 35));     
         
-			G.setColor(Color.red);
+			G.setColor(Color.blue);
 			G.drawString(string1, coordX, coordY);
-			G.setColor(Color.white);
+			G.setColor(Color.red);
 			G.drawString(string1, coordX+2, coordY+2);
+			G.setColor(Color.white);
+			G.drawString(string1, coordX+4, coordY+4);
 			
 			G.setColor(Color.white);
 			G.drawString(string2, coordZ, coordT);
@@ -155,7 +157,7 @@ public class GameOverGUI extends JFrame {
 			try {
 			
 				Thread.sleep(200);
-				coordX += 20;
+				coordX += 40;
             
 				if(coordX > getWidth()) {
 					coordX = 0;
