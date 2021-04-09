@@ -122,10 +122,11 @@ public class grid{
 	}
 	*/
     
-    public void getInitialPosition(){
-        int ct=T1.tab.length/2; // coordinate of the horizontal center of tetrimino t
+    public int getInitialPosition(tetrimino T){
+        int ct=T.tab.length/2; // coordinate of the horizontal center of tetrimino t
         int cg=(area[0].length)/2; //coordinate of the horizontal center of grid G
-        T1.X = cg-ct ;// the initial position X of tetrimino t
+        T.X = cg-ct ;// the initial position X of tetrimino t
+        return T.X;
         
 		
         // détermination de la position d'insertion de la forme au début de la grille de jeu
@@ -176,10 +177,10 @@ public class grid{
     public void pauseTheGame (){
         if (pause==false){
             pause=true;
-            System.out.println("▶️︎︎");
+            System.out.println("PLAY");
         }else{
             pause=false;
-            System.out.println("⏸️︎︎");
+            System.out.println("PAUSE️︎︎");
         }
         
     }

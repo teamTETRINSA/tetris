@@ -39,12 +39,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private JButton soundButton;
     
-    //private helpPopUp HelpWindow;
-    
-    //private tetrisGUI OnePlayer;
-    
-    private tetrisGUI2 TwoPlayers;
-    
     public static info1PlayerPopUp OnePlayerInfo;
     
     private info2PlayerPopUp TwoPlayersInfo;
@@ -87,10 +81,10 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     private ImageIcon imageIconTetrisWelcome3 = new ImageIcon("imageTetrisWelcome4.jpg");
     */
     
-    public WelcomeGUI (grid g, ArrayList<shape> l){
+    public WelcomeGUI (grid g /*ArrayList<shape> l*/){
 		
 		data = g;
-        list = l;
+        //list = l;
 		
 		// Definition of the Frame //
         

@@ -12,39 +12,12 @@ import javax.swing.JOptionPane;
 public class mainGame extends JOptionPane {
 
 	public static void main(String[] args) {
-
         
-        // Creation of the ShapeBank of tetriminos
-        ArrayList<shape> ShapeBank = new ArrayList<shape> ();
-
-        /**
-         * Creating tetriminos
-         * */
-
-        shape t1= new tetrimino(1);
-        shape t2= new tetrimino(2);
-        shape t3= new tetrimino(3);
-        shape t4= new tetrimino(4);
-        shape t5= new tetrimino(5);
-        shape t6= new tetrimino(6);
-        shape t7= new tetrimino(7);
-
-        /**
-         * now we create a list with all these tetriminos
-         * */
-
-        ShapeBank.add(t1);
-        ShapeBank.add(t2);
-        ShapeBank.add(t3);
-        ShapeBank.add(t4);
-        ShapeBank.add(t5);
-        ShapeBank.add(t6);
-        ShapeBank.add(t7);
         
         grid data = new grid();
 
         //Calling the first "welcome" panel
-        WelcomeGUI newWindow = new WelcomeGUI (data, ShapeBank);
+        WelcomeGUI newWindow = new WelcomeGUI (data/*, ShapeBank*/);
         
         while (data.restart==false){
             // do nothing
@@ -54,7 +27,26 @@ public class mainGame extends JOptionPane {
 
         while (data.restart == true){
             
+            // Creation of the ShapeBank of tetriminos
+            // While the button play is not pressed, do nothing, then create a new shapeBank with thr X copmponent of tetriminos centered
             
+            ArrayList<shape> ShapeBank = bank(data);
+            
+            /*
+            switch (data.area.length){
+                case 20 :
+                
+                break;
+                
+                case 24 :
+                ArrayList<shape> ShapeBank = new bank(2);
+                break;
+                
+                case 28 :
+                ArrayList<shape> ShapeBank = new bank(3);
+                break;
+            }
+            * */
 
             data.initialiseData();   /* we empty the area before each new game
                                         * useful when we play more that one game after having lauch the java program
@@ -78,18 +70,13 @@ public class mainGame extends JOptionPane {
                 
                 
                 // this function allows to decrease the time interval as a functioon of the number of laps done
-                data.interval = data.speedLevel*(int)Math.exp((-data.lap)/100) + 200;
+                data.interval = data.speedLevel*(int)Math.exp((-data.lap)/100) + 100;
                 
                 data.start = false;
                 data.lap += 1;
                 System.out.println("######  lap :"+data.lap+"   ######");
                 data.score += 1;
                 System.out.println("######  score : "+data.score+"  ######");
-
-                data.getInitialPosition();  /* usefull to print the tetrimino
-                                                * at the center of the grid
-                                                * as a function of its size
-                                                * */
 
                 // we choose the next coming tetrimino random - it will be printed next the game area
                 int nbs = (int)(Math.random()*7);
@@ -612,7 +599,47 @@ public class mainGame extends JOptionPane {
         return ok;
     }
     
+    /**
+     * BANK
+     * create a new bank where the tetriminos hav their X coordinate centered
+     * */
+    
+    public static ArrayList<shape> bank(grid data){
+        ArrayList<shape> BANK = new ArrayList<shape> ();
+        
+        //Creating tetriminos
+
+        shape t1= new tetrimino(1);
+        shape t2= new tetrimino(2);
+        shape t3= new tetrimino(3);
+        shape t4= new tetrimino(4);
+        shape t5= new tetrimino(5);
+        shape t6= new tetrimino(6);
+        shape t7= new tetrimino(7);
+
+        //now we create a list with all these tetriminos
+
+        BANK.add(t1);
+        BANK.add(t2);
+        BANK.add(t3);
+        BANK.add(t4);
+        BANK.add(t5);
+        BANK.add(t6);
+        BANK.add(t7);
+        
+        //we change the starting X coordinate
+        
+        for (int i = 0; i < BANK.size() ; i++){
+            BANK.get(i).X = data.getInitialPosition((tetrimino)BANK.get(i));
+        }
+        
+        return BANK;
+    }
     
     
+    
+    
+
+        
 
 }
