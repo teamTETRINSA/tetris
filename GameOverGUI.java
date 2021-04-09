@@ -142,10 +142,15 @@ public class GameOverGUI extends JFrame {
 			Graphics2D G = (Graphics2D) g;
 			G.setFont(new Font("Times Roman", Font.BOLD, 35));     
         
-			G.setColor(Color.white);
-			G.drawString(string1, coordX, coordY);
 			G.setColor(Color.red);
+			G.drawString(string1, coordX, coordY);
+			G.setColor(Color.white);
+			G.drawString(string1, coordX+2, coordY+2);
+			
+			G.setColor(Color.white);
 			G.drawString(string2, coordZ, coordT);
+			G.setColor(Color.black);
+			G.drawString(string2, coordZ+2, coordT+2);
 
 			try {
 			
