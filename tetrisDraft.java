@@ -12,7 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class tetrisDraft extends JFrame implements ActionListener, ChangeListener {
+public class tetrisDraft extends JFrame implements ActionListener, ChangeListener, KeyListener {
     
     //grid-type attribute
     
@@ -59,13 +59,16 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		mainPanel.setBounds(0,0,800,600);
 		mainPanel.setLayout(null);
 		mainPanel.setBackground(Color.white);
+		this.addKeyListener(this);
 		this.add(mainPanel);
+		
 		
 		//Create display panel with the scores and the "future" tetris
 		displayPanel = new JPanel();
 		displayPanel.setBounds(530,20,250,530);
 		displayPanel.setLayout(null);
 		displayPanel.setBackground(new Color(224, 224, 224, 50));
+		this.addKeyListener(this);
 		mainPanel.add(displayPanel);
 		
 		//Create panel for next tetrimino
@@ -73,6 +76,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		nextPanel.setBounds(20,80,130,130);
 		nextPanel.setLayout(null);
 		nextPanel.setBackground(Color.red);
+		this.addKeyListener(this);
 		displayPanel.add(nextPanel); 
 
 		/**
@@ -171,7 +175,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 		playPauseButton.setBounds(20,455,210,50);	
 		playPauseButton.setBackground(Color.red);
 		playPauseButton.setForeground(Color.RED);
-		//playPauseButton.addActionListener(this);
+		playPauseButton.addActionListener(this);
 		displayPanel.add(playPauseButton);
         
         /**
@@ -203,7 +207,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          * Making all visible
          * */
 		
-		this.setVisible(true);
+
 		
         try {
          
@@ -223,6 +227,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
          helpSound.open(audiohelpSound);
          
 		}catch(Exception e){ e.printStackTrace(); }
+		
+		this.setVisible(true);
+		this.addKeyListener(this);
+
 
 	}
    
@@ -241,7 +249,10 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
             
                 //background panel
                 g.setColor(Color.orange);
+                this.addKeyListener(this);
                 g.fillRect(160,40,278,538);
+                this.addKeyListener(this);
+                this.setFocusable(true);
                 
                 //area
                 g.setColor(Color.black);
@@ -268,6 +279,8 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 //background panel
                 g.setColor(Color.orange);
                 g.fillRect(160,40,282,546);
+                this.addKeyListener(this);
+                this.setFocusable(true);
                 
                 //area
                 g.setColor(Color.black);
@@ -294,7 +307,9 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 //background panel
                 g.setColor(Color.orange);
                 g.fillRect(160,40,284,549);
-                
+                this.addKeyListener(this);
+                this.setFocusable(true);
+
                 //area
                 g.setColor(Color.black);
                 for (int i=0; i < 14 ; i++){
@@ -433,6 +448,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
      * */
     
     public void keyPressed(KeyEvent e) {
+		System.out.println("coucou");
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
 			System.out.println("⬇");
             mainGame.dropTetrimino(data, 1);
@@ -451,39 +467,9 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     }
     
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode()==KeyEvent.VK_DOWN){
-			System.out.println("⬇");
-            mainGame.dropTetrimino(data, 1);
-        }else if (e.getKeyCode()==KeyEvent.VK_UP){
-			System.out.println("↻");
-            mainGame.rotateTetrimino(data);
-        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            System.out.println("➡︎");
-            mainGame.moveTetrimino(data,1);
-        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            System.out.println("⬅︎︎");
-            mainGame.moveTetrimino(data,-1);
-        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
-            data.pauseTheGame();
-        }
     }
     
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyCode()==KeyEvent.VK_DOWN){
-			System.out.println("⬇");
-            mainGame.dropTetrimino(data, 1);
-        }else if (e.getKeyCode()==KeyEvent.VK_UP){
-			System.out.println("↻");
-            mainGame.rotateTetrimino(data);
-        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            System.out.println("➡︎");
-            mainGame.moveTetrimino(data,1);
-        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            System.out.println("⬅︎︎");
-            mainGame.moveTetrimino(data,-1);
-        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
-            data.pauseTheGame();
-        }
     }
     
     public void messageDialogNBS(){
@@ -499,5 +485,7 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
         //JOptionPane.OK_OPTION.addActionListener(this);
         //il faut couper la music alors et fermer la fenêtre
     }
+    public void setFocusable (){
+	}
     
 }
