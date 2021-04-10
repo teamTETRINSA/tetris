@@ -60,17 +60,18 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     private JRadioButton gridSize3;
     
-    private int difficulty;
+    public static int difficulty = 1; // Default Value
     
-    private String backGroundname;
+    public static String backGroundname = "Night Lake"; // Default Value
     
-    private String pseudoPlayer;
+    public static String pseudoPlayer = "No Pseudo"; // Default Value
     
-    private String sizeGrid;
+    public static String sizeGrid = "20 x 10"; // Default Value
     
     public tetrisDraft OnePlayer;
     
     private ArrayList<shape> list ;
+    
 	
 	public info1PlayerPopUp (grid g, ArrayList<shape> l) {
         
@@ -194,7 +195,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		// JSpinner to change the background //
 		
-		String[] backGroundNames = {" Background 1 : Desert "," Background 2 : SCAN "," Background 3 : [...] "," Background 4 : [...] "} ;
+		String[] backGroundNames = {"Sunset","Oasis","Dinosaurs","Night Lake"} ;
 		
 		SpinnerListModel backGroundModel = new SpinnerListModel(backGroundNames);
 		

@@ -41,8 +41,12 @@ public class testGUI {
 			//info2PlayerPopUp newWindowBisbis = new info2PlayerPopUp ();
 			//newWindowBisbis.setVisible(true);
 			
-			GameOverGUI WindowGameover = new GameOverGUI (3,a);
-			WindowGameover.setVisible(true);
+			//GameOverGUI WindowGameover = new GameOverGUI (3,a);
+			//WindowGameover.setVisible(true);
+			
+			tetrisDraft2 myTetrisDraft = new tetrisDraft2 (a);
+			myTetrisDraft.setVisible(true);
+			
 	}
 }
 
