@@ -284,7 +284,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource()== Player1){
 			choice = 1;
-            OnePlayerInfo = new info1PlayerPopUp (data, list);
+            OnePlayerInfo = new info1PlayerPopUp (data);
             OnePlayerInfo.setVisible(true);
             //this.setVisible(false);
             //OnePlayer.setVisible(true);

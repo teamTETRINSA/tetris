@@ -60,13 +60,13 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     private JRadioButton gridSize3;
     
-    private int difficulty;
+    public static int difficulty;
     
-    private String backGroundname;
+    public static String backGroundname;
     
-    private String pseudoPlayer;
+    public static String pseudoPlayer;
     
-    private String sizeGrid;
+    public static String sizeGrid;
     
     public tetrisDraft2 OnePlayer;
     
@@ -74,10 +74,9 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     /** CONSTRUCTOR **/
 	
-	public info1PlayerPopUp (grid g, ArrayList<shape> l) {
+	public info1PlayerPopUp (grid g) {
         
         data = g;
-        list = l;
 		
 		// Definition of the Frame //
 		

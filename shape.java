@@ -106,7 +106,7 @@ public class shape {
 					for (int i=0; i < data.T1.tab.length; i++){
 						for (int j=0; j< data.T1.tab[0].length ; j++){
 							if (data.T1.tab[i][j]!=0){
-								g.fillRect (170+(data.T1.X*(24+2))+j*(24+2), 50+(data.T1.Y*(24+2))+i*(24+2), 24, 24);
+								g.fillRect (138+(data.T1.X*(28+2))+j*(28+2), 110+(data.T1.Y*(28+2))+i*(28+2), 28, 28);
 							}
 						}
 					}
@@ -117,7 +117,7 @@ public class shape {
 					for (int i=0; i < data.T1.tab.length ; i++){
 						for (int j=0; j< data.T1.tab[0].length  ; j++){
 							if (data.T1.tab[i][j]!=0){
-								g.fillRect (170+(data.T1.X*(20+2))+j*(20+2), 50+(data.T1.Y*(20+2))+i*(20+2), 20, 20);
+								g.fillRect (131+(data.T1.X*(23+2))+j*(23+2), 110+(data.T1.Y*(23+2))+i*(23+2), 23, 23);
 							}
 						}
 					}
@@ -128,7 +128,7 @@ public class shape {
 					for (int i=0; i < data.T1.tab.length  ; i++){
 						for (int j=0; j< data.T1.tab[0].length ; j++){
 							if (data.T1.tab[i][j]!=0){
-								g.fillRect (170+(data.T1.X*(17+2))+j*(17+2), 50+(data.T1.Y*(17+2))+i*(20+2), 17, 17);
+								g.fillRect (133+(data.T1.X*(20+2))+j*(20+2), 110+(data.T1.Y*(20+2))+i*(20+2), 20, 20);
 							}
 							
 						}
@@ -140,7 +140,10 @@ public class shape {
 				for (int j=0; j< data.T2.tab[0].length ; j++){
 					if (data.T2.tab[i][j]!=0){
 						g.setColor(data.T1.ColorTetrimino);
-						g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
+						g.fillRect (604+j*(54+2), 495+i*(54+2), 54, 54);
+					}else{
+						g.setColor(Color.yellow);
+						g.fillRect (604+j*(54+2), 495+i*(54+2), 54, 54);
 					}
 				}
 			}

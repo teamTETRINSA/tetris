@@ -135,8 +135,11 @@ public class grid{
                     for (int j=0; j< 20 ; j++){
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
-                            g.fillRect (170+i*(24+2), 50+j*(24+2), 24, 24);
-                        }
+                            g.fillRect (138+i*(28+2), 110+j*(28+2), 28, 28);
+                        }else{
+							g.setColor(Color.cyan);
+                            g.fillRect (138+i*(28+2), 110+j*(28+2), 28, 28);
+						}
                     }
                 }
             break;
@@ -147,8 +150,11 @@ public class grid{
                     for (int j=0; j< 24 ; j++){
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
-                            g.fillRect (170+i*(20+2), 50+j*(20+2), 20, 20);
-                        }
+                            g.fillRect (131+i*(23+2), 110+j*(23+2), 23, 23);
+                        }else{
+							g.setColor(Color.cyan);
+                            g.fillRect (131+i*(23+2), 110+j*(23+2), 23, 23);
+						}
                     }
                 }
             break;
@@ -159,8 +165,11 @@ public class grid{
                     for (int j=0; j< 28 ; j++){
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
-                            g.fillRect (170+i*(17+2), 50+j*(17+2), 17, 17);
-                        }
+                            g.fillRect (133+i*(20+2), 110+j*(20+2), 20, 20);
+                        }else{
+							g.setColor(Color.cyan);
+                            g.fillRect (133+i*(20+2), 110+j*(20+2), 20, 20);
+						}
                     }
                 }
             break;
