@@ -6,10 +6,17 @@
 import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
+import java.awt.Graphics;
 
 public class grid{
 	
     public int[][] area = new int[20][10];
+    
+    //public Color[][] areaC = new Color[20][10];
+    
+    public Object[][] areaO = new Object[20][10];
+    
+    
     
     public boolean restart = false;   // variable to know if we want to restart the game
     
@@ -39,9 +46,7 @@ public class grid{
     
     public boolean soundOn =true ;
     
-    /**
-     * CONSTRUCTOR
-     * */
+    /** CONSTRUCTOR **/
     
     public grid(){
         int nb = (int)(Math.random()*7);
@@ -66,6 +71,7 @@ public class grid{
     * */
     
     /**
+     * TRANSFORMSHAPE
      * transform a shape that end it's fall (seen as even numbers)
      * to a fixed shape (seen as odd numbers ≠ 0)
      * */
@@ -74,16 +80,22 @@ public class grid{
         for (int i = 0; i<T1.tab.length; i++){
             for (int j = 0; j<T1.tab[0].length ; j++){
                 if (T1.tab[i][j]!=0){
-                    area[T1.Y+i][T1.X+j]=T1.getIntegerForColor();
+                    //areaO[T1.Y+i][T1.X+j]=T1.getIntegerForColor();
+                    areaO[T1.Y+i][T1.X+j]=T1.ColorTetrimino;
                 }
             }
         }
     }
     
+    /**
+     * MAKEFALLGRID
+     * Make fall the part above an empty line (previously entirely filled)
+     * */
+    
     public void makeFallGrid(int l){
         for (int i=l ; i>0 ; i--){
-            for (int k=0 ; k<area[0].length ; k++){
-                area[l][k]=area[l-1][k];
+            for (int k=0 ; k<areaO[0].length ; k++){
+                areaO[l][k]=areaO[l-1][k];
             }
         }
         System.out.println("          > jump "); 
@@ -105,26 +117,60 @@ public class grid{
      * Returns the content of one cell of the grid
      * */
      
-    public int getCell(int x, int y) {
-        return (area[x][y]);
-	}
+    //not used no more
     
-    /*
+    
+    public Object getCell(int x, int y) {
+        return areaO[x][y];
+        
+	}
+	
+    
+    
     public void dessine(Graphics g){
-        g.setColor(Color.black);
-        for (int i=0; i < area.length ; i++){
-            for (int j=0; j< area[0].length ; j++){
-                if (area[i][j] != 0){
-                    g.fillRect (30+i*15, 70+j*15, 15, 15);
+        switch (areaO.length){
+            case 20:
+                //g.setColor(Color.black);
+                for (int i=0; i < 10 ; i++){
+                    for (int j=0; j< 20 ; j++){
+                        if (areaO[j][i] != null){
+							g.setColor((Color) areaO[j][i]);
+                            g.fillRect (170+i*(24+2), 50+j*(24+2), 24, 24);
+                        }
+                    }
                 }
-            }
+            break;
+            
+            case 24:
+                //g.setColor(Color.black);
+                for (int i=0; i < 12 ; i++){
+                    for (int j=0; j< 24 ; j++){
+                        if (areaO[j][i] != null){
+							g.setColor((Color) areaO[j][i]);
+                            g.fillRect (170+i*(20+2), 50+j*(20+2), 20, 20);
+                        }
+                    }
+                }
+            break;
+            
+            case 28:
+                //g.setColor(Color.black);
+                for (int i=0; i < 14 ; i++){
+                    for (int j=0; j< 28 ; j++){
+                        if (areaO[j][i] != null){
+							g.setColor((Color) areaO[j][i]);
+                            g.fillRect (170+i*(17+2), 50+j*(17+2), 17, 17);
+                        }
+                    }
+                }
+            break;
         }
 	}
-	*/
+	
     
     public int getInitialPosition(tetrimino T){
         int ct=T.tab.length/2; // coordinate of the horizontal center of tetrimino t
-        int cg=(area[0].length)/2; //coordinate of the horizontal center of grid G
+        int cg=(areaO[0].length)/2; //coordinate of the horizontal center of grid G
         T.X = cg-ct ;// the initial position X of tetrimino t
         return T.X;
         
@@ -139,9 +185,9 @@ public class grid{
     
     public void initialiseData(){
         // first we empty the area
-        for (int i=0; i < area.length ; i++){
-            for (int j=0; j< area[0].length ; j++){
-                area[i][j]=0;
+        for (int i=0; i < areaO.length ; i++){
+            for (int j=0; j< areaO[0].length ; j++){
+                areaO[i][j]=null;
             }
         }
     }
@@ -177,16 +223,16 @@ public class grid{
     public void pauseTheGame (){
         if (pause==false){
             pause=true;
-            System.out.println("PLAY");
+            System.out.println("********************************* PAUSE THE GAME >>> PLAY");
         }else{
             pause=false;
-            System.out.println("PAUSE️︎︎");
+            System.out.println("********************************* PAUSE THE GAME >>> PAUSE");
         }
         
     }
     
     public void selectAreaSize (int h, int w){
-        area = new int[h][w];
+        areaO = new Object[h][w];
     }
     
     public void selectSpeed (int s){

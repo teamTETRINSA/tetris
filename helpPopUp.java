@@ -42,6 +42,8 @@ public class helpPopUp extends JFrame implements ActionListener {
     
     private boolean sound = true;
     
+    /** CONSTRUCTOR **/
+    
     public helpPopUp () {
 		
 			// Frame definition //

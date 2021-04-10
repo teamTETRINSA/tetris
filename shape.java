@@ -12,10 +12,7 @@ public class shape {
     
     private final Color COULEUR_PAR_DEFAUT = Color.black; // La couleur par défaut est défini comme une constante
     
-    /**
-     * constructor
-     * no parameter
-     **/
+    /** CONSTRUCTOR **/
     
     public shape () {
         
@@ -32,7 +29,7 @@ public class shape {
         int nb = (int)(Math.random()*4);
 		CouleurTetrimino = AvailableColors.get(nb);
         * */
-        ColorTetrimino = Color.blue;
+        ColorTetrimino = new Color(r,g,b);
 		
 		//Initialisation tab
 		tab = new int [4][4];
@@ -101,18 +98,55 @@ public class shape {
         return 1;
     }
     
-    public void dessine(Graphics g){
-        for (int i=0; i < tab.length ; i++){
-            for (int j=0; j< tab[0].length ; j++){
-                if (tab[i][j]!=0){
-                    g.setColor(ColorTetrimino);
-                    g.fillRect (30+Y*15+j*15, 80+X*15+i*15, 15, 15);
-                }//else{
-                    //g.setColor(Color.red);
-                    //g.fillRect (30+Y*15+j*15, 80+X*15+i*15, 15, 15);
-                //}   
-            }
-        }
+    public void dessine(Graphics g, grid data, int n){
+		if (n==1){ //painting the current falling tetrimino T1 
+			switch (data.areaO.length){
+				case 20:         
+					g.setColor(data.T1.ColorTetrimino);
+					for (int i=0; i < data.T1.tab.length; i++){
+						for (int j=0; j< data.T1.tab[0].length ; j++){
+							if (data.T1.tab[i][j]!=0){
+								g.fillRect (170+(data.T1.X*(24+2))+j*(24+2), 50+(data.T1.Y*(24+2))+i*(24+2), 24, 24);
+							}
+						}
+					}
+				break;
+				
+				case 24:
+					g.setColor(data.T1.ColorTetrimino);
+					for (int i=0; i < data.T1.tab.length ; i++){
+						for (int j=0; j< data.T1.tab[0].length  ; j++){
+							if (data.T1.tab[i][j]!=0){
+								g.fillRect (170+(data.T1.X*(20+2))+j*(20+2), 50+(data.T1.Y*(20+2))+i*(20+2), 20, 20);
+							}
+						}
+					}
+				break;
+				
+				case 28:
+					g.setColor(data.T1.ColorTetrimino);
+					for (int i=0; i < data.T1.tab.length  ; i++){
+						for (int j=0; j< data.T1.tab[0].length ; j++){
+							if (data.T1.tab[i][j]!=0){
+								g.fillRect (170+(data.T1.X*(17+2))+j*(17+2), 50+(data.T1.Y*(17+2))+i*(20+2), 17, 17);
+							}
+							
+						}
+					}
+				break;
+			}
+		}else if (n==2){ //printing the next coming tetrimino
+			for (int i=0; i < data.T2.tab.length; i++){
+				for (int j=0; j< data.T2.tab[0].length ; j++){
+					if (data.T2.tab[i][j]!=0){
+						g.setColor(data.T1.ColorTetrimino);
+						g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
+					}
+				}
+			}
+		}
 	}
+		
+	
     
 }

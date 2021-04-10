@@ -81,6 +81,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     private ImageIcon imageIconTetrisWelcome3 = new ImageIcon("imageTetrisWelcome4.jpg");
     */
     
+    /** CONSTRUCTOR **/
+    
     public WelcomeGUI (grid g /*ArrayList<shape> l*/){
 		
 		data = g;
@@ -312,7 +314,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
             
 		}
 		
-		if (e.getSource()== HelpButton){
+		if (e.getSource() == HelpButton){
 			
 			helpPopUp HelpWindow = new helpPopUp ();
 			HelpWindow.setVisible(true);

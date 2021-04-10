@@ -15,9 +15,15 @@ public class mainGame extends JOptionPane {
         
         
         grid data = new grid();
+        System.out.println(data.areaO[1][1]);
+        int i =1;
+        data.areaO[2][2]=i;
+        System.out.println(data.areaO[2][2]);
+        
+        
 
         //Calling the first "welcome" panel
-        WelcomeGUI newWindow = new WelcomeGUI (data/*, ShapeBank*/);
+        WelcomeGUI newWindow = new WelcomeGUI (data /*, ShapeBank*/);
         
         while (data.restart==false){
             // do nothing
@@ -74,7 +80,7 @@ public class mainGame extends JOptionPane {
                 
                 data.start = false;
                 data.lap += 1;
-                System.out.println("######  lap :"+data.lap+"   ######");
+                System.out.println("######  lap : "+data.lap+"   ######");
                 data.score += 1;
                 System.out.println("######  score : "+data.score+"  ######");
 
@@ -193,10 +199,10 @@ public class mainGame extends JOptionPane {
 
     public static boolean gameOver(grid data) {
         boolean gameFinished = false;
-        for (int i=0 ; i<data.area[1].length ; i++){
-            if (data.area[1][i]!=0){
+        for (int i=0 ; i<data.areaO[1].length ; i++){
+            if (data.areaO[1][i]!=null){
                 gameFinished=true;
-                i=data.area[1].length;
+                i=data.areaO[1].length;
             }
         }
         return gameFinished;
@@ -217,16 +223,12 @@ public class mainGame extends JOptionPane {
         int count=0;
         for (int l : linesfilled){
             count=+1;
-            for (int i =0 ; i< data.area[0].length ; i++){
-                data.area[l][i]=0;
+            for (int i =0 ; i< data.areaO[0].length ; i++){
+                data.areaO[l][i]=0;
             }
             data.makeFallGrid(l); // we rearrange the grid : we make fall all the filled boxes above the lines
         }
         System.out.println("     count = "+count);
-
-        
-
-        
 
         /* we return an integer corresponding to the bonus got
          * using the method addBonus? is it usefull or maybe we can directly do it here...
@@ -251,12 +253,12 @@ public class mainGame extends JOptionPane {
 
         LinkedList<Integer> filledLines = new LinkedList<Integer>();
 
-        for (int i = 0 ; i<data.area.length ; i++){
+        for (int i = 0 ; i<data.areaO.length ; i++){
             boolean filled = true ;
-            for (int j = 0 ; j<data.area[0].length ; j++){
-                if (data.area[i][j]==0){
+            for (int j = 0 ; j<data.areaO[0].length ; j++){
+                if (data.areaO[i][j]==null){
                     filled = false ;
-                    j = data.area[0].length ;
+                    j = data.areaO[0].length ;
                 }
             }
             if (filled == true){
@@ -273,14 +275,16 @@ public class mainGame extends JOptionPane {
      * the score increases when one line is completed/deleted
      * the more lines you complete at the same time, the higher the score
      * */
+     
+    //useless?
 
     /*
     public static int getScore(grid g1){
 		int score=0;
 		int nbLines=0; // number of lines completed (so deleted) at the same time
-		for(int i=0 ; i<g1.area.length ; i++){
+		for(int i=0 ; i<g1.areaO.length ; i++){
 			boolean filled1 = true;
-			for(int j=0 ; i<g1.area[0].length ; j++){
+			for(int j=0 ; i<g1.areaO[0].length ; j++){
 				if(filled1 = true){ // if one line is completed
 					score = score + nbLines*100; // scoring system for level 1, we can adapt it
 				}
@@ -328,66 +332,32 @@ public class mainGame extends JOptionPane {
      * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
      * */
     
-    /*
     public static boolean dropIsPossible(grid data){
         boolean possible = true ;
-        for (int i = 0; i< data.T1.tab.length ; i++){
-            for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                if (data.T1.tab[i][j]!=0){
-                    if ((data.T1.Y == data.area.length -3-1) && (ShapeCountEmptyLines(data,1)==true)){
-                        if (data.area[data.T1.Y+i+1][data.T1.X+j] != 0){
-                            possible = false;
-                            i = data.T1.tab.length;
-                            j = data.T1.tab[0].length;
-                        }
-                    }else if((data.T1.Y == data.area.length -2-1) && (ShapeCountEmptyLines(data,2)==true)){
-                        if (data.area[data.T1.Y+i+1][data.T1.X+j] != 0){
-                            possible = false;
-                            i = data.T1.tab.length;
-                            j = data.T1.tab[0].length;
-                        }
-                    }else if ((data.T1.Y < data.area.length -3-1) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
-                        possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
-                    }else{
+        if (data.T1.Y < data.areaO.length -4){
+            for (int i = 0; i< data.T1.tab.length ; i++){
+                for (int j=0 ; j< data.T1.tab[0].length ; j++){
+                    if ((data.T1.tab[i][j] != 0) && (data.areaO[data.T1.Y+i+1][data.T1.X+j] != null)){
                         possible = false ;
                         i = data.T1.tab.length;
                         j = data.T1.tab[0].length;
                     }
                 }
             }
-        }
-        return possible;
-    }
-    * */
-    
-    public static boolean dropIsPossible(grid data){
-        boolean possible = true ;
-        if (data.T1.Y < data.area.length -4){
+        } else if ((data.T1.Y == data.areaO.length -4) && (ShapeCountEmptyLines(data,1)==true)){
             for (int i = 0; i< data.T1.tab.length ; i++){
                 for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                    if ((data.T1.tab[i][j] != 0) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
+                    if ((data.T1.tab[i][j] != 0) && (data.areaO[data.T1.Y+i+1][data.T1.X+j] != null)){
                         possible = false ;
                         i = data.T1.tab.length;
                         j = data.T1.tab[0].length;
                     }
                 }
             }
-        } else if ((data.T1.Y == data.area.length -4) && (ShapeCountEmptyLines(data,1)==true)){
+        } else if ((data.T1.Y == data.areaO.length -3) && (ShapeCountEmptyLines(data,2)==true)){
             for (int i = 0; i< data.T1.tab.length ; i++){
                 for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                    if ((data.T1.tab[i][j] != 0) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
-                        possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
-                    }
-                }
-            }
-        } else if ((data.T1.Y == data.area.length -3) && (ShapeCountEmptyLines(data,2)==true)){
-            for (int i = 0; i< data.T1.tab.length ; i++){
-                for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                    if ((data.T1.tab[i][j] != 0) && (data.area[data.T1.Y+i+1][data.T1.X+j] != 0)){
+                    if ((data.T1.tab[i][j] != 0) && (data.areaO[data.T1.Y+i+1][data.T1.X+j] != null)){
                         possible = false ;
                         i = data.T1.tab.length;
                         j = data.T1.tab[0].length;
@@ -407,26 +377,26 @@ public class mainGame extends JOptionPane {
 
     public static boolean moveToRightIsPossible(grid data){
         boolean possible = true ;
-        if (data.T1.X < data.area[0].length -4){
+        if (data.T1.X < data.areaO[0].length -4){
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
                         possible = false ;
                     }
                 }
             }
-        }else if ((data.T1.X == data.area[0].length -4) && (RightSideEmptyColumns(data,1)==true)){
+        }else if ((data.T1.X == data.areaO[0].length -4) && (RightSideEmptyColumns(data,1)==true)){
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
                         possible = false ;
                     }
                 }
             }
-        }else if ((data.T1.X == data.area[0].length -3) && (RightSideEmptyColumns(data,2)==true)){
+        }else if ((data.T1.X == data.areaO[0].length -3) && (RightSideEmptyColumns(data,2)==true)){
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
                         possible = false ;
                     }
                 }
@@ -434,7 +404,7 @@ public class mainGame extends JOptionPane {
         }else if(data.T1.X == -2){
             for (int i = 1; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
                         possible = false ;
                     }
                 }
@@ -456,7 +426,7 @@ public class mainGame extends JOptionPane {
         if (data.T1.X > 0){
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i-1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i-1] != null)){
                         possible = false ;
                     }
                 }
@@ -468,7 +438,7 @@ public class mainGame extends JOptionPane {
                                                                                  * */
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i-1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i-1] != null)){
                         possible = false ;
                     }
                 }
@@ -479,7 +449,7 @@ public class mainGame extends JOptionPane {
                                                                                  * */
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.area[data.T1.Y+j][data.T1.X+i+1] != 0)){
+                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
                         possible = false ;
                     }
                 }
@@ -584,9 +554,9 @@ public class mainGame extends JOptionPane {
                     }
                 }
             break;
-            /*
+            
             case 2:
-                for (int i = data.T1.tab[0].length-2; i < data.T1.tab[0].length ; i++){
+                for (int i = 0; i < 2 ; i++){
                     for (int j=0 ; j< data.T1.tab.length ; j++){
                         if (data.T1.tab[j][i]!=0){
                             ok=false;
@@ -594,7 +564,6 @@ public class mainGame extends JOptionPane {
                     }
                 }
             break;
-            * */
         }
         return ok;
     }

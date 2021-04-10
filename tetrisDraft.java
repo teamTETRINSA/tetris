@@ -40,12 +40,14 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
 
     //public static Timer T;                 // public > so that we can start the timer form theinfo1PlayerPopUp class
     private Timer mt;
+    
+    /** CONSTRUCTOR **/
 	
-    public tetrisDraft (grid g, ArrayList<shape> l){
+    public tetrisDraft (grid g/*, ArrayList<shape> l*/){
             
         data = g;
         
-        list = l;
+        //list = l;
 		
 		//Creation of principle window
 		
@@ -237,13 +239,17 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     public void paint (Graphics g) {
         
         super.paint(g);
+        
+        data.dessine(g);
+        data.T1.dessine(g,data,1);
+        data.T2.dessine(g,data,2);
     
         /* game area
         g.setColor(Color.orange);
         g.fillRect(160,40,278,538);
         * */
-                
- 
+        
+        /*
         switch (data.area.length){
             case 20:
             
@@ -332,26 +338,25 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
                 }
             break;
         }
+        * */
         
         /*
         //next coming tetrimino panel
         g.setColor(Color.red);
         g.fillRect(550,60,130,175);
         * */
- 
+        
+        /*
         //printing the next coming tetrimino
         for (int i=0; i < data.T2.tab.length; i++){
             for (int j=0; j< data.T2.tab[0].length ; j++){
                 if (data.T2.tab[i][j]!=0){
                     g.setColor(data.T2.ColorTetrimino);
                     g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
-                }/*else{
-                    g.setColor(Color.yellow);
-                    g.fillRect (565+j*(24+2), 143+i*(24+2), 24, 24);
-                } 
-                    //g.fillRect (170+(data.T1.Y*(24+2))+j*(24+2), 70+(data.T1.X*(24+2))+i*(24+2), 24, 24);/*/
+                }
             }
         }
+        * */
 	}
     
     
@@ -450,16 +455,16 @@ public class tetrisDraft extends JFrame implements ActionListener, ChangeListene
     public void keyPressed(KeyEvent e) {
 		System.out.println("coucou");
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
-			System.out.println("⬇");
+			System.out.println(">>>>>>>>>>>>>bas");
             mainGame.dropTetrimino(data, 1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-			System.out.println("↻");
+			System.out.println(">>>>>>>>>>>>>rot");
             mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            System.out.println("➡︎");
+            System.out.println(">>>>>>>>>>>>>right︎");
             mainGame.moveTetrimino(data,1);
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
-            System.out.println("⬅︎︎");
+            System.out.println(">>>>>>>>>>>>>left︎︎");
             mainGame.moveTetrimino(data,-1);
         }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
             data.pauseTheGame();
