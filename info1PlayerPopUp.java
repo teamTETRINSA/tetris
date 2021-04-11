@@ -71,6 +71,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     public tetrisDraft2 OnePlayer;
     
     private ArrayList<shape> list ;
+
     
     /** CONSTRUCTOR **/
 	
@@ -192,7 +193,6 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		exitButton.addActionListener(this);
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-		
 		// JSpinner to change the background //
 		
 		String[] backGroundNames = {"Sunset","Oasis","Dinosaurs","Night Lake"} ;
@@ -206,7 +206,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		backGroundSpinner.setBounds((displayPanel.getWidth()-200)/2,330,200,50);
 		
-		backGroundSpinner.addChangeListener(this);
+		//backGroundSpinner.addChangeListener(this);
 		panelImage.add(backGroundSpinner);
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
