@@ -42,10 +42,13 @@ public class helpPopUp extends JFrame implements ActionListener {
     
     private boolean sound = true;
     
+    private grid data ;
+    
     /** CONSTRUCTOR **/
     
-    public helpPopUp () {
+    public helpPopUp (grid g) {
 		
+		data = g;
 			// Frame definition //
 		
 		this.setTitle("Help Panel - How to Play : ");
@@ -331,7 +334,7 @@ public class helpPopUp extends JFrame implements ActionListener {
     public void actionPerformed (ActionEvent e){
 		
 		if (e.getSource()== exitButton){
-			
+			data.pauseTheGame();
 			this.setVisible(false);
 			helpSoundtrack.stop();
 			closedWindow = true;

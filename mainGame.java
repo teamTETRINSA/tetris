@@ -36,23 +36,9 @@ public class mainGame extends JOptionPane {
             // Creation of the ShapeBank of tetriminos
             // While the button play is not pressed, do nothing, then create a new shapeBank with thr X copmponent of tetriminos centered
             
-            ArrayList<shape> ShapeBank = bank(data);
+            data.ShapeBank = bank(data);
             
-            /*
-            switch (data.area.length){
-                case 20 :
-                
-                break;
-                
-                case 24 :
-                ArrayList<shape> ShapeBank = new bank(2);
-                break;
-                
-                case 28 :
-                ArrayList<shape> ShapeBank = new bank(3);
-                break;
-            }
-            * */
+            data.pause=false;
 
             data.initialiseData();   /* we empty the area before each new game
                                         * useful when we play more that one game after having lauch the java program
@@ -62,7 +48,7 @@ public class mainGame extends JOptionPane {
             //the first tetrimino choosen is initialized in a diferent way than the following
             int nb = (int)(Math.random()*7);
             System.out.println("new T1 >>>"+nb);
-            data.T1 = ShapeBank.get(nb);
+            data.T1 = data.ShapeBank.get(nb);
 
             /* while we can play and add tetriminos
             * we continue introducing tetriminos at the top of the game
@@ -86,7 +72,7 @@ public class mainGame extends JOptionPane {
 
                 // we choose the next coming tetrimino random - it will be printed next the game area
                 int nbs = (int)(Math.random()*7);
-                data.T2 = ShapeBank.get(nbs);
+                data.T2 = data.ShapeBank.get(nbs);
                 System.out.println("######  T2  >> "+nbs+" ######");
 
                 // will be printed "the next coming tetrimino T2" when T1 will be printed on the grid
@@ -95,7 +81,6 @@ public class mainGame extends JOptionPane {
                     if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing                    
                         timePause(data.interval);
                         data.dropTetrimino(1);
-                        //System.out.println("drop ");
                     }
                 }
 
@@ -312,10 +297,12 @@ public class mainGame extends JOptionPane {
      * Drop the tetrimino of a coordinate dY
      * */
 
-    public static void dropTetrimino(grid data, int dy) {
-        if (dropIsPossible(data)==true){
-            data.dropTetrimino(dy);
-        }
+    public static void dropTetrimino(grid data) {
+		if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
+			if (dropIsPossible(data)){
+				data.dropTetrimino(1);
+			}
+		}
 	}
 
     /**

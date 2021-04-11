@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class grid{
 	
@@ -30,7 +31,7 @@ public class grid{
     
     public int score = 0;          // score of the player
     
-    public int bestScore = 0;      // to save the best score
+    public int bestScore = 100;      // to save the best score
     
     /** public boolean go = false; // says if the game is over or not      :      START varibale ?????      **/
     
@@ -44,7 +45,9 @@ public class grid{
     
     public shape T2 ;           // the next tetrimino coming ; it is printed on the side of the game
     
-    public boolean soundOn =true ;
+    public boolean soundOn = true ;
+    
+    public ArrayList<shape> ShapeBank ;
     
     /** CONSTRUCTOR **/
     
@@ -135,11 +138,11 @@ public class grid{
                     for (int j=0; j< 20 ; j++){
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
-                            g.fillRect (138+i*(28+2), 110+j*(28+2), 28, 28);
-                        }else{
+                            g.fillRect (137+i*(28+2), 123+j*(28+2), 28, 28);
+                        }/*else{
 							g.setColor(Color.cyan);
-                            g.fillRect (138+i*(28+2), 110+j*(28+2), 28, 28);
-						}
+                            g.fillRect (137+i*(28+2), 123+j*(28+2), 28, 28);
+						}*/
                     }
                 }
             break;
@@ -150,11 +153,11 @@ public class grid{
                     for (int j=0; j< 24 ; j++){
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
-                            g.fillRect (131+i*(23+2), 110+j*(23+2), 23, 23);
-                        }else{
+                            g.fillRect (137+i*(23+2), 123+j*(23+2), 23, 23);
+                        }/*else{
 							g.setColor(Color.cyan);
-                            g.fillRect (131+i*(23+2), 110+j*(23+2), 23, 23);
-						}
+                            g.fillRect (137+i*(23+2), 123+j*(23+2), 23, 23);
+						}*/
                     }
                 }
             break;
@@ -165,11 +168,11 @@ public class grid{
                     for (int j=0; j< 28 ; j++){
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
-                            g.fillRect (133+i*(20+2), 110+j*(20+2), 20, 20);
-                        }else{
+                            g.fillRect (133+i*(20+2), 112+j*(20+2), 20, 20);
+                        }/*else{
 							g.setColor(Color.cyan);
-                            g.fillRect (133+i*(20+2), 110+j*(20+2), 20, 20);
-						}
+                            g.fillRect (133+i*(20+2), 112+j*(20+2), 20, 20);
+						}*/
                     }
                 }
             break;
@@ -211,9 +214,11 @@ public class grid{
      * falling tetrimino in the mainGame class and then use this method
      * */
      
-    public void dropTetrimino(int dy) {
-        T1.Y += dy;
-        System.out.println("Y = "+T1.Y);
+    public void dropTetrimino(int dy/*, grid data*/) {
+		//if (dropIsPossible(data)==true){
+			T1.Y += dy;
+			System.out.println("Y = "+T1.Y);
+		//}
 	}
     
     /**

@@ -31,6 +31,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 	private JPanel nextPanel;
 	
 	private JPanel animPanel;
+
+    private JPanel gaugePanel;
 		
 	private JTextArea scoreAffPlayer;
 
@@ -59,6 +61,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
     protected static Clip tetrisSoundtrack;
 
     private Clip helpSound;
+    
+    private tetrimino T;
 
 	public tetrisDraft2 (grid g) {
 		
@@ -83,7 +87,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         panelImage = new JPanel();
         panelImage.setBounds(0,0,this.getWidth(),this.getHeight());
         panelImage.setLayout(null);
-        this.addKeyListener(this);
+        //this.addKeyListener(this);
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
@@ -122,7 +126,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		// Create gif area showing gif according to actions in the game
 		
 		animPanel = new RoundedJPanel(30,new Color(255,255,255,100),Color.WHITE, true, false);
-		animPanel.setBounds(880,460,290,290);
+		animPanel.setBounds(880,450,290,290);
 		animPanel.setLayout(null);
 		animPanel.setOpaque(false);
 		
@@ -130,17 +134,24 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		// Create panel for next tetrimino in the info Panel
 		
 		nextPanel = new RoundedJPanel(30,new Color(255,255,255,100),Color.WHITE, true, false);
-		nextPanel.setBounds(570,460,290,290);
+		nextPanel.setBounds(570,450,290,290);
 		nextPanel.setLayout(null);
 		nextPanel.setOpaque(false);
 		
 		// Game Area Panel
 		
 		gamePanel = new RoundedJPanel(30,new Color(255,255,255,100),Color.WHITE, true, false);
-		gamePanel.setBounds(30,100,500,650);
+		gamePanel.setBounds(120,100,333,640);
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
-		this.addKeyListener(this);
+		//this.addKeyListener(this);
+
+        //GAUGE UNTIL RECORD
+            
+        gaugePanel = new RoundedJPanel(30,new Color(255,255,255,100),Color.WHITE, true, false);
+        gaugePanel.setBounds(480,100,30,640);
+        gaugePanel.setLayout(null);
+        gaugePanel.setOpaque(false);
 
 
 
@@ -277,14 +288,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         mainPanel.add(infoPanel);
         mainPanel.add(animPanel);
         mainPanel.add(nextPanel);
+        mainPanel.add(gaugePanel);
         mainPanel.add(panelImage);
-        
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-        
-			// Adding this Panel to the general Frame //
-		
-        this.add(mainPanel);
-        this.setVisible(true);
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
@@ -292,12 +297,13 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         
        try {
          
-         File tetrisSoundFile = new File("Tetris-Song.wav");		// Open an audio input stream.
+         //File tetrisSoundFile = new File("Tetris-Song.wav");		// Open an audio input stream.
+         File tetrisSoundFile = new File("Daft Punk - Around the world (Official Audio).wav");		// Open an audio input stream.
          AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
          tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
 		
-		if (helpPopUp.closedWindow == true) {
+		if (data.soundOn == true) {
 			tetrisSoundtrack.start();
 		}
          
@@ -308,23 +314,33 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
          helpSound.open(audiohelpSound);
          
 		}catch(Exception e){ e.printStackTrace(); } 
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
+			
+		/**
+		 * * TIMER
+		 * the grid will be repaint each 100ms
+		 * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
+		 * */
+			
+			//mt = new Timer(700, this);
+			//mt.start();
+			
+			//T = new Timer(500, this);
+			//T.start();
+
+        
+			
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
+		// Adding this Panel to the general Frame //
 		
-	/**
-         * TIMER
-         * the grid will be repaint each 100ms
-         * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
-         * */
-        
-		mt = new Timer(700, this);
-		mt.start();
-        
-        //T = new Timer(500, this);
-		//T.start();
+        this.add(mainPanel);
+        this.setVisible(true);
+		
+		this.addKeyListener(this);
 		
 	}
-    
-    
-    
    
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 		
@@ -335,8 +351,14 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		super.paint(g);
 		
 		data.dessine(g);
-        data.T1.dessine(g,data,1);
-        data.T2.dessine(g,data,2);
+		//T1 tetrimino
+        data.T1.dessine(g, data, 1);
+        
+        //T2 tetrimino
+        data.T2.dessine(g, data, 2);
+        
+        //Tetrimino Collection
+        data.T2.dessine(g, data, 3);
         
 		Graphics2D G = (Graphics2D) g;
 		G.setFont(new Font("Times Roman", Font.BOLD, 40));     
@@ -347,16 +369,22 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		G.drawString("TETRINSA", 500+2, 60+2);
 		
 		this.setFocusable(true);
-
-		try {
+		
+		if (data.pause==false){
+			try {
+				
+				//Thread.sleep(400);
+				Thread.sleep(data.interval);
+				repaint();
+					
+			} 
 			
-			Thread.sleep(400);
-			repaint();
-                
-		} 
-        
-		catch (InterruptedException ex) {}
-        
+			catch (InterruptedException ex) {}
+		}
+		
+		
+		
+		       
         
     }
     
@@ -369,7 +397,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         //repaint();
         
         if (e.getSource()== exitButton){
-			
+			data.pause=true;
+			tetrisSoundtrack.stop();
 			this.dispose();
 			
 		}
@@ -391,7 +420,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		if (e.getSource() == helpButton){
 			
 			data.pauseTheGame();
-			helpPopUp HelpWindow = new helpPopUp ();
+			helpPopUp HelpWindow = new helpPopUp (data);
 			HelpWindow.setVisible(true);
 			helpSound.start();
 			tetrisSoundtrack.stop();
@@ -400,7 +429,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 
 		}
         
-        if (e.getSource()== playPauseButton){
+        if (e.getSource() == playPauseButton){
             data.pauseTheGame();
         }
 	}
@@ -409,14 +438,14 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
      * KEYLISTENER
      * */
 	
-	public void keyPressed(KeyEvent e) {
-		System.out.println("coucou");
+	public void keyPressed(KeyEvent e){
+		//System.out.println("coucou");
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
 			System.out.println(">>>>>>>>>>>>>bas");
-            mainGame.dropTetrimino(data, 1);
+            mainGame.dropTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
-			System.out.println(">>>>>>>>>>>>>rot");
-            //data.T1.rotateTetrimino();
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ROT");
+            data.T1.rotateTetrimino();
             mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println(">>>>>>>>>>>>>right︎");
@@ -427,13 +456,22 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
             System.out.println("space bar");
             data.pauseTheGame();
+            if (data.soundOn == true) {
+				tetrisSoundtrack.stop();
+				data.soundOn = false;
+			
+			}else if (data.soundOn == false) {
+				tetrisSoundtrack.start();
+				data.soundOn = true;
+				
+			}
         }
     }
     
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e){
     }
     
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e){
     }
     
     

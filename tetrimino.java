@@ -70,15 +70,18 @@ public class tetrimino extends shape{
      * no parameter
      **/
     
-    /*
+    
     public String toString(){
+		return super.toString();
+		/*
         StringBuilder temp = new StringBuilder("");
         temp.append("Shape "+this.tab[1][1]+" :");
         temp.append("\n");
         temp.append(super.toString());
         return temp.toString();
+        * */
     }
-    * */
+    
     
     
     /**
@@ -88,8 +91,11 @@ public class tetrimino extends shape{
     
     
     public void rotateTetrimino () {
+		super.rotateTetrimino();
 		
 		int [][] revTab = new int [this.tab.length][this.tab[0].length];
+        
+        System.out.println(this);
         
         //the lines are moved down
         for (int j = 0; j<revTab.length; j++){
@@ -98,6 +104,8 @@ public class tetrimino extends shape{
 			}
 		}
 		
+		System.out.println(prt(revTab));
+		
 		//transpose of the matrix
 		int [][] transTab = new int [this.tab.length][this.tab[0].length];
 		for (int p = 0; p<transTab.length; p++){
@@ -105,12 +113,21 @@ public class tetrimino extends shape{
 				transTab[p][q]=revTab[q][p];
 			}
 		}
+		
+		System.out.println(prt(transTab));
         
-        this.tab=transTab;
+        tab=transTab;
+		
+        
     }
     
     
-    
+    /**
+     * DESSINE
+     * use by the paint(() method is our GUi to paint 
+     * */
+     
+     //USELESS
     
     
     public void dessine(Graphics g, grid data, int n){
@@ -164,6 +181,7 @@ public class tetrimino extends shape{
 		}
 		* */
 	}
+	
     
     
 

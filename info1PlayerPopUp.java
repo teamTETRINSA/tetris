@@ -60,18 +60,17 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     private JRadioButton gridSize3;
     
-    public static int difficulty;
+    public static int difficulty = 1;
     
     public static String backGroundname = "Night Lake"; // Default Value
     
     public static String pseudoPlayer;
     
-    public static String sizeGrid;
+    public static String sizeGrid = "20x10";
     
     public tetrisDraft2 OnePlayer;
     
     private ArrayList<shape> list ;
-
     
     /** CONSTRUCTOR **/
 	
@@ -193,6 +192,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		exitButton.addActionListener(this);
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+		
 		// JSpinner to change the background //
 		
 		String[] backGroundNames = {"Sunset","Oasis","Dinosaurs","Night Lake"} ;
@@ -206,7 +206,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		backGroundSpinner.setBounds((displayPanel.getWidth()-200)/2,330,200,50);
 		
-		//backGroundSpinner.addChangeListener(this);
+		backGroundSpinner.addChangeListener(this);
 		panelImage.add(backGroundSpinner);
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -264,6 +264,10 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playerPseudo.addItem("New Player");
 		playerPseudo.addItem("Jean Castex");
 		playerPseudo.addItem("Kylie Jenner");
+		
+		/**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>**/
+		/**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ADD HERE THE PLAYERS FORM THE DATABASE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>**/
+		/**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>**/
 		
 		playerPseudo.setForeground(Color.RED);
 		playerPseudo.setBackground(Color.LIGHT_GRAY);
@@ -374,16 +378,15 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
         } 
         
         
-        if (fps == 1){
-            data.selectSpeed(800);
-            this.difficulty = 1;
-            System.out.println(data.speedLevel);
-        } else if (fps == 2){
+        if (fps == 2){
             data.selectSpeed(600);
             this.difficulty = 2;
         }else if (fps == 3){
             data.selectSpeed(400);
             this.difficulty = 3;
+        }else{
+			data.selectSpeed(800);
+            this.difficulty = 1;
         }
         
 		
@@ -395,25 +398,15 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	
 	}
 	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
-	
-		// ActionListener //
+	/**
+	 * ACTION LISTENER
+	 * */
     
     public void actionPerformed (ActionEvent e) {
         
-        // Grid Size JRadioButton
         
-        if (e.getSource() == gridSize1 ){
-			this.sizeGrid = gridSize1.getText();
-		
-		} else if (e.getSource() == gridSize2 ){
-			this.sizeGrid = gridSize2.getText();
-		
-		} else if (e.getSource() == gridSize3 ){
-			this.sizeGrid = gridSize2.getText();
-		}
         
-        // Pseudo JComboBox
+        //PSEUDO JCOMBOBOX
         
         if (e.getSource() == playerPseudo ){
 			
@@ -429,7 +422,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			
 		}
 			
-		// Others 
+		//SOUND BUTTON
         
         if (e.getSource() == soundButton) {
 		
@@ -444,6 +437,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			}
 			
 		}
+		
+		//PLAY BUTTON
      
         if (e.getSource() == playButton){
             data.restart=true;
@@ -452,14 +447,18 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             OnePlayer.setVisible(true);
             //OnePlayer.T.start();
             timePause();
-            WelcomeGUI.tetrisSoundtrack.stop();
+            if (data.soundOn==true){
+				WelcomeGUI.tetrisSoundtrack.stop();
+			}
             //timePause();
             //OnePlayer.closedWindow = true;
             this.dispose();
         }
         
+        //HELP BUTTON
+        
         if (e.getSource() == helpButton){	
-            helpPopUp HelpWindow = new helpPopUp ();
+            helpPopUp HelpWindow = new helpPopUp (data);
 			HelpWindow.setVisible(true);
 			//helpSound.start();
 			//tetrisSoundtrack.stop();
@@ -467,20 +466,27 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			helpPopUp.closedWindow = true;
         }
         
+        //EXIT BUTTON
+        
         if (e.getSource() == exitButton){
             this.dispose();
         }
         
+        //GRID SIZE JRadioButton
+        
         if (e.getSource() == gridSize1){
             data.selectAreaSize(20,10);
+            sizeGrid = "20x10";
         }
         
         if (e.getSource() == gridSize2){
             data.selectAreaSize(24,12);
+            sizeGrid = "24x12";
         }
         
         if (e.getSource() == gridSize3){
             data.selectAreaSize(28,14);
+            sizeGrid = "28x14";
         }
     }
     
