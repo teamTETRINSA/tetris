@@ -12,7 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class tetrisDraft2 extends JFrame implements ActionListener {
+public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener {
 		 
 	//grid-type attribute
     
@@ -74,6 +74,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
         this.setUndecorated(true);
 		this.setShape(new RoundRectangle2D.Double(0, 0, 1200, 800, 50, 50));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
@@ -82,6 +83,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
         panelImage = new JPanel();
         panelImage.setBounds(0,0,this.getWidth(),this.getHeight());
         panelImage.setLayout(null);
+        this.addKeyListener(this);
         
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
@@ -138,6 +140,9 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
 		gamePanel.setBounds(30,100,500,650);
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
+		this.addKeyListener(this);
+
+
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
@@ -340,6 +345,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
 		G.drawString("TETRINSA", 500, 60);
 		G.setColor(Color.black);
 		G.drawString("TETRINSA", 500+2, 60+2);
+		
+		this.setFocusable(true);
 
 		try {
 			
@@ -409,6 +416,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
             mainGame.dropTetrimino(data, 1);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
 			System.out.println(">>>>>>>>>>>>>rot");
+            //data.T1.rotateTetrimino();
             mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println(">>>>>>>>>>>>>right︎");
@@ -417,6 +425,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
             System.out.println(">>>>>>>>>>>>>left︎︎");
             mainGame.moveTetrimino(data,-1);
         }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+            System.out.println("space bar");
             data.pauseTheGame();
         }
     }
@@ -427,10 +436,10 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
     public void keyTyped(KeyEvent e) {
     }
     
-    /*
+    
     public void setFocusable (){
 	}
-	* */
+
 	
     
 }

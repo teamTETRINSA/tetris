@@ -325,6 +325,7 @@ public class mainGame extends JOptionPane {
 
     public static void rotateTetrimino (grid data) {
 		data.T1.rotateTetrimino();
+		System.out.println("you have rotated");
     }
 
     /**
