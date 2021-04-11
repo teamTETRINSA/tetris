@@ -62,7 +62,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     public static int difficulty;
     
-    public static String backGroundname;
+    public static String backGroundname = "Night Lake"; // Default Value
     
     public static String pseudoPlayer;
     
@@ -195,7 +195,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		// JSpinner to change the background //
 		
-		String[] backGroundNames = {" Background 1 : Desert "," Background 2 : SCAN "," Background 3 : [...] "," Background 4 : [...] "} ;
+		String[] backGroundNames = {"Sunset","Oasis","Dinosaurs","Night Lake"} ;
 		
 		SpinnerListModel backGroundModel = new SpinnerListModel(backGroundNames);
 		
@@ -260,7 +260,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		playerPseudo = new JComboBox<String>();
 		
-		playerPseudo.addItem("Pimprenelle");
+		playerPseudo.addItem("SELECT PSEUDO");
+		playerPseudo.addItem("New Player");
 		playerPseudo.addItem("Jean Castex");
 		playerPseudo.addItem("Kylie Jenner");
 		
@@ -270,6 +271,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playerPseudo.setMaximumRowCount(5);
 		playerPseudo.setBounds(80,110,200,50);
 		playerPseudo.setEditable(true);
+		playerPseudo.addActionListener(this);
 		
 		panelImage.add(playerPseudo, BorderLayout.CENTER);
     
@@ -285,7 +287,8 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		newName.setBackground(Color.LIGHT_GRAY);
 		newName.setFont(new Font("Arial", Font.PLAIN, 14));
 		newName.setBounds(320,110,200,50);
-		newName.setEditable(true);
+		newName.setEditable(false);
+		newName.addActionListener(this);
 		
 		panelImage.add(newName, BorderLayout.CENTER);
     
@@ -365,61 +368,31 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	public void stateChanged(ChangeEvent e) {
         int fps=0;
         JSlider source = (JSlider)e.getSource();
+       
         if (source.getValueIsAdjusting()) {
             fps = (int)source.getValue();
-
         } 
         
         
         if (fps == 1){
             data.selectSpeed(800);
+            this.difficulty = 1;
             System.out.println(data.speedLevel);
         } else if (fps == 2){
             data.selectSpeed(600);
+            this.difficulty = 2;
         }else if (fps == 3){
             data.selectSpeed(400);
+            this.difficulty = 3;
         }
         
-		/*
+		
 		if (e.getSource() == backGroundSpinner) {
 			
-			backGroundNumber = (Integer) backGroundSpinner.getValue();
-			// System.out.println(backGroundNumber); - - - > Test to verify 
-			
-			if (backGroundNumber == 1) {
-				
-				//backGround = "imageTetrisWelcome.jpg";
-				//Background.setIcon(imageIconTetrisWelcome1);
-				Background = new JLabel(imageIconTetrisWelcome1);
-				Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
-				panelImage.add(Background);
-			}
-			
-			if (backGroundNumber == 2) {
-				
-				//backGround = "imageTetrisWelcome2.jpg";
-				//Background.setIcon(imageIconTetrisWelcome2);
-				Background = new JLabel(imageIconTetrisWelcome2);
-				Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
-				Background.repaint();
-				Background.revalidate();
-				panelImage.add(Background);
-				panelImage.repaint();
-				
-			}
-			
-			if (backGroundNumber == 3) {
-				
-				//backGround = "imageTetrisWelcome4.jpg";
-				//Background.setIcon(imageIconTetrisWelcome3);
-				Background = new JLabel(imageIconTetrisWelcome3);
-				Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
-				Background.setIcon(imageIconTetrisWelcome3);
-				Background.repaint();
-			}
+			this.backGroundname = (String) backGroundSpinner.getValue().toString();
 			
 		}
-	*/
+	
 	}
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
@@ -427,6 +400,36 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		// ActionListener //
     
     public void actionPerformed (ActionEvent e) {
+        
+        // Grid Size JRadioButton
+        
+        if (e.getSource() == gridSize1 ){
+			this.sizeGrid = gridSize1.getText();
+		
+		} else if (e.getSource() == gridSize2 ){
+			this.sizeGrid = gridSize2.getText();
+		
+		} else if (e.getSource() == gridSize3 ){
+			this.sizeGrid = gridSize2.getText();
+		}
+        
+        // Pseudo JComboBox
+        
+        if (e.getSource() == playerPseudo ){
+			
+			if (playerPseudo.getSelectedItem() == "New Player") {
+				newName.setEditable(true);
+				this.pseudoPlayer = newName.getText();
+			}
+			
+			else {
+				newName.setEditable(false);
+				this.pseudoPlayer = (String) playerPseudo.getSelectedItem();
+			}
+			
+		}
+			
+		// Others 
         
         if (e.getSource() == soundButton) {
 		

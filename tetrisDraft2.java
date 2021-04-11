@@ -208,14 +208,14 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
 		pseudo.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		pseudo.setText(" Pseudo : "+info1PlayerPopUp.pseudoPlayer);
         pseudo.setForeground(Color.white);
-		pseudo.setBounds(40,160,200,30);
+		pseudo.setBounds(40,160,300,30);
 		infoPanel.add(pseudo);
 		
 		if (info1PlayerPopUp.difficulty == 1) {
 			difficultyString = "Easy Peasy !";
 		} else if (info1PlayerPopUp.difficulty == 2) {
 			difficultyString = "Spicy dude !";
-		} else if (info1PlayerPopUp.difficulty == 2) {
+		} else if (info1PlayerPopUp.difficulty == 3) {
 			difficultyString = "Don't even dare !";
 		}
 		
@@ -230,7 +230,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener {
 		gridSize.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		gridSize.setText(" Grid Size : "+info1PlayerPopUp.sizeGrid);
         gridSize.setForeground(Color.white);
-		gridSize.setBounds(40,240,200,30);
+		gridSize.setBounds(40,240,300,30);
 		infoPanel.add(gridSize);
 		
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
