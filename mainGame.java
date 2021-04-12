@@ -99,7 +99,8 @@ public class mainGame extends JOptionPane {
                 int bonus = deleteLines(data);
                 data.score +=  bonus;
 
-                //let's update the data.estScore attribute
+                // data.bestScore attribute is updated
+                // data.bestScore is updated
 
                 if (data.score>data.bestScore){
                     if (formerBestScoreUpdated==false){
@@ -108,10 +109,7 @@ public class mainGame extends JOptionPane {
                     }
                     data.bestScore=data.score;
                     
-                }/*else{
-                    //static problem
-                    //tetrisDraft.messageDialogGO();
-                }*/
+                }
 
                 /*
                  * is the game finished?
@@ -131,22 +129,17 @@ public class mainGame extends JOptionPane {
             System.out.println("##################################");
             System.out.println("######      GAME OVER      #######");
             System.out.println("######      SCORE : "+data.score+"    #######");
-            
-            
-            // the bestScore is updated
-
-            /** PRINT PopUp window
-             * at the end of the game
-             * with the score
-             * and the bestScore
-             * */
-
-            
-            
             System.out.println("######      BESTSCORE : "+data.bestScore+"    #######");
             System.out.println("##################################");
             System.out.println("##################################");
             System.out.println();
+
+            /**
+             * PRINT GameOverGUI window
+             * */
+
+            GameOverGUI WindowGameover = new GameOverGUI (data.score,data);
+			WindowGameover.setVisible(true);
             
             data.score=0;
             System.out.println("Score = 0");

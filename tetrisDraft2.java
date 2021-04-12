@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 // Sound support
 import java.io.File;
@@ -64,6 +65,10 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
     
     private tetrimino T;
 
+    private BufferedImage imageBuf;
+
+    /** CONSTRUCTR **/
+
 	public tetrisDraft2 (grid g) {
 		
 		data = g;
@@ -77,6 +82,11 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         this.setLayout(null);
         this.setUndecorated(true);
 		this.setShape(new RoundRectangle2D.Double(0, 0, 1200, 780, 50, 50));
+
+        // initializing the buffer
+        Dimension dim = getSize();
+        imageBuf = new BufferedImage(dim.width,dim.height,BufferedImage.TYPE_INT_RGB);
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
@@ -305,7 +315,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
        try {
          
          //File tetrisSoundFile = new File("Tetris-Song.wav");		// Open an audio input stream.
-         File tetrisSoundFile = new File("Daft Punk - Around the world (Official Audio).wav");		// Open an audio input stream.
+         File tetrisSoundFile = new File("DaftPunk-AroundTheWorld.wav");		// Open an audio input stream.
          AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
          tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
@@ -354,8 +364,74 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		// Window Title Animation (scintillement) //
 		
 	public void paint(Graphics g) {
+
+        super.paint(g);
+/*
+        dessineBuffer(imageBuf.getGraphics()); // le dessin est effectue dans le buffer
+        g.drawImage(imageBuf,getInsets().left,getInsets().top,null); //affichage du dessin pre-calcule
+*/
+
+
+
+
+        /********************************************************/
 		 
-		super.paint(g);
+		
+
+        
+        //Gauge
+        
+        if (data.score <= data.bestScore){
+            int lev = (int) ((float) ((float) data.score/data.bestScore)*620);
+            g.setColor(data.T1.ColorTetrimino);
+            g.fillRect(500,110+(620-lev),20,lev);
+            /** + EMOJI CIBLE  **/
+        }else if (data.formerBestScore>0){
+            int lev = (int) ((float) ((float) data.formerBestScore/data.score)*620);
+            g.setColor(data.T1.ColorTetrimino);
+            g.fillRect(500,110,20,620-lev);
+            g.setColor(Color.black);
+            g.fillRect(500,110+(620-lev),20,lev);
+            /** + EMOJI CIBLE  **/ 
+        }		
+		data.dessine(g);
+		//T1 tetrimino
+        data.T1.dessine(g, data, 1);
+        
+        //T2 tetrimino
+        data.T2.dessine(g, data, 2);
+        
+        //Tetrimino Collection
+        data.T2.dessine(g, data, 3);
+        
+		Graphics2D G = (Graphics2D) g;
+		G.setFont(new Font("Times Roman", Font.BOLD, 40));     
+        
+		G.setColor(Color.white);
+		G.drawString("TETRINSA", 500, 60);
+		G.setColor(Color.black);
+		G.drawString("TETRINSA", 500+2, 60+2);
+		
+		this.setFocusable(true);
+		
+		if (data.pause==false){
+			try {
+				
+				//Thread.sleep(400);
+				Thread.sleep(data.interval);
+				repaint();
+					
+			} 
+			
+			catch (InterruptedException ex) {}
+		}
+        
+        
+    }
+
+
+    public void dessineBuffer(Graphics g) {
+        Dimension d = getContentPane().getSize();
 
         //Gauge
         
@@ -393,8 +469,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		G.drawString("TETRINSA", 500+2, 60+2);
 		
 		this.setFocusable(true);
-		
-		if (data.pause==false){
+
+        if (data.pause==false){
 			try {
 				
 				//Thread.sleep(400);
@@ -405,13 +481,6 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 			
 			catch (InterruptedException ex) {}
 		}
-
-		/*						
-                for int (i = 620 ; i > level
-
-            gaugePanel.setBounds(495,100,30,640);
-            * */
-        
     }
     
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	

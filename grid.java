@@ -58,8 +58,10 @@ public class grid{
     public grid(){
         int nb = (int)(Math.random()*7);
         T1 = new tetrimino(nb);
+        getInitialPosition();
         nb = (int)(Math.random()*7);
         T2 = new tetrimino(nb);
+        getInitialPosition();
     }
     
     /*
@@ -184,11 +186,13 @@ public class grid{
 	}
 	
     
-    public int getInitialPosition(){
-        int ct=T2.tab.length/2; // coordinate of the horizontal center of tetrimino t
+    public void getInitialPosition(){
+        int ct=T1.tab.length/2; // coordinate of the horizontal center of tetrimino t
         int cg=(areaO[0].length)/2; //coordinate of the horizontal center of grid G
-        T2.X = cg-ct ;// the initial position X of tetrimino t
-        return T2.X;
+        T1.X = cg-ct;
+        T2.X = cg-ct;// the initial position X of tetrimino t
+        
+        //return T2.X;
         
 		
         // détermination de la position d'insertion de la forme au début de la grille de jeu
