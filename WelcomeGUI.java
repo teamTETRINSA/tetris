@@ -316,7 +316,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource() == HelpButton){
 			
-			helpPopUp HelpWindow = new helpPopUp ();
+			helpPopUp HelpWindow = new helpPopUp (data);
 			HelpWindow.setVisible(true);
 			helpSound.start();
 			tetrisSoundtrack.stop();

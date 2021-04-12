@@ -11,7 +11,9 @@ import javax.sound.sampled.Clip;
 
 public class info2PlayerPopUp extends JFrame implements ActionListener {	
 
-// We made the choice not to develop this game mode but to work on improved functionnalities on the 1 Player Mode // 
+// We made the choice not to develop this game mode but to work on improved functionnalities on the 1 Player Mode //
+
+    private grid data;
 
 	private JPanel panelImage;
 	
@@ -27,7 +29,9 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
     
     private JButton exitButton;
 
-	public info2PlayerPopUp () {
+	public info2PlayerPopUp (grid g) {
+
+        data = g;
 
 		// Definition of the Frame // 
 
@@ -144,7 +148,7 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 		}
         
         if (e.getSource() == helpButton){	
-            helpPopUp HelpWindow = new helpPopUp ();
+            helpPopUp HelpWindow = new helpPopUp (data);
 			HelpWindow.setVisible(true);
 			//helpSound.start();
 			//tetrisSoundtrack.stop();

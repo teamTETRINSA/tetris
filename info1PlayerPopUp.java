@@ -194,8 +194,12 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 		
 		// JSpinner to change the background //
+
+        SpinnerListModel backGroundModel = new SpinnerListModel(new String[] {"Sunset","Oasis","Dinosaurs","Night Lake"});
 		
-		SpinnerListModel backGroundModel = new SpinnerListModel(new String[] {"Sunset","Oasis","Dinosaurs","Night Lake"});
+		//String[] backGroundNames = {"Sunset","Oasis","Dinosaurs","Night Lake"} ;
+		
+		//SpinnerListModel backGroundModel = new SpinnerListModel(backGroundNames);
 		
 		backGroundSpinner = new JSpinner(backGroundModel);
 		
@@ -366,15 +370,18 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-	
-	public void stateChanged(ChangeEvent e) {
-        
+    
+	/**
+     * STATE CHANGED
+     * */
+
+    public void stateChanged(ChangeEvent e) {
+
         int fps = 0;
-        
+
         if (e.getSource() == sliderDifficulty) {
 			fps = (int)sliderDifficulty.getValue();
-        } 
-        
+        }
         if (fps == 2){
             data.selectSpeed(600);
             this.difficulty = 2;
@@ -385,20 +392,19 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			data.selectSpeed(800);
             this.difficulty = 1;
         }
-        
+
         if (e.getSource() == backGroundSpinner) {
 			this.backGroundname = (String) backGroundSpinner.getValue();
         }
-        
-        /*
-        int fps=0;
-        JSlider source = (JSlider)e.getSource();
-       
-        if (source.getValueIsAdjusting()) {
-            fps = (int)source.getValue();
-        } 
-        
-        
+    }
+    
+    /*
+	public void stateChanged(ChangeEvent e) {
+       int fps = 0;
+
+        if (e.getSource() == sliderDifficulty) {
+			fps = (int)sliderDifficulty.getValue();
+        }
         if (fps == 2){
             data.selectSpeed(600);
             this.difficulty = 2;
@@ -409,13 +415,15 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			data.selectSpeed(800);
             this.difficulty = 1;
         }
-        
-        JSpinner sourcebis = (JSpinner)e.getSource();
-			
-		this.backGroundname = (String) sourcebis.getValue();
-		*/	
+
+        if (e.getSource() == backGroundSpinner) {
+			this.backGroundname = (String) backGroundSpinner.getValue();
+        }
 	
 	}
+    */
+
+    
 	
 	/**
 	 * ACTION LISTENER

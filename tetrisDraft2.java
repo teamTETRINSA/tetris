@@ -149,7 +149,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         //GAUGE UNTIL RECORD
             
         gaugePanel = new RoundedJPanel(30,new Color(255,255,255,100),Color.WHITE, true, false);
-        gaugePanel.setBounds(480,100,30,640);
+        gaugePanel.setBounds(495,100,30,640);
         gaugePanel.setLayout(null);
         gaugePanel.setOpaque(false);
 
@@ -252,13 +252,20 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 			// Insertion of images inside the Panels //
-        
+
         //JLabel logotetrimino = new JLabel(new ImageIcon("tetrimino.png"));
 		//logotetrimino.setBounds(270,10,148,80);
 		//panelImage.add(logotetrimino);
+        
+        JLabel logotetrimino = new JLabel(new ImageIcon("tetrimino.png"));
+		logotetrimino.setBounds(270,10,148,80);
+		panelImage.add(logotetrimino);
 		
 		JLabel logoINSA = new JLabel(new ImageIcon("insa_logo2.png"));
-		logoINSA.setBounds(440,285,140,30);
+		//logoINSA.setBounds(700,25,355,40);
+		//panelImage.add(logoINSA);
+
+        logoINSA.setBounds(440,285,140,30);
 		infoPanel.add(logoINSA);
 		
 		if (info1PlayerPopUp.backGroundname == "Sunset") {
@@ -349,6 +356,24 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 	public void paint(Graphics g) {
 		 
 		super.paint(g);
+
+        //Gauge
+        
+        if (data.score <= data.bestScore){
+            /*
+            float frac = (float) data.score/data.bestScore;
+            System.out.println("                            frac = "+frac);
+            float level = (float) frac*620;
+            System.out.println("                            level = "+level);
+            int levelBis = (int) level ; //200;
+            * */
+
+            int lev = (int) ((float) ((float) data.score/data.bestScore)*620);
+
+            System.out.println("                            lev = "+lev);
+            g.setColor(data.T1.ColorTetrimino);
+            g.fillRect(500,110+(620-lev),20,lev);
+        }
 		
 		data.dessine(g);
 		//T1 tetrimino
@@ -381,10 +406,12 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 			
 			catch (InterruptedException ex) {}
 		}
-		
-		
-		
-		       
+
+		/*						
+                for int (i = 620 ; i > level
+
+            gaugePanel.setBounds(495,100,30,640);
+            * */
         
     }
     

@@ -171,15 +171,19 @@ public class shape {
 				break;
 			}
 		}else if (n==2){ //printing the next coming tetrimino
+            int k = 0;
+            if ((mainGame.RightSideEmptyColumns(data, 1, 2) == true) && mainGame.LeftSideEmptyColumns(data, 1, 2) == false){
+                k=28;
+            }
 			for (int i=0; i < data.T2.tab.length; i++){
 				for (int j=0; j< data.T2.tab[0].length ; j++){
 					if (data.T2.tab[i][j]!=0){
 						g.setColor(data.T2.ColorTetrimino);
-						g.fillRect (600+j*(56+2), 483+i*(56+2), 56, 56);
-					}else{
+						g.fillRect (600+k+j*(56+2), 483+i*(56+2), 56, 56);
+					}/*else{
 						g.setColor(Color.yellow);
-						g.fillRect (600+j*(56+2), 483+i*(56+2), 56, 56);
-					}
+						g.fillRect (600+k+j*(56+2), 483+i*(56+2), 56, 56);
+					}*/
 				}
 			}
 		}else if (n==3){

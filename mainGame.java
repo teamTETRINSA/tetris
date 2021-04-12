@@ -373,7 +373,7 @@ public class mainGame extends JOptionPane {
                     }
                 }
             }
-        }else if ((data.T1.X == data.areaO[0].length -4) && (RightSideEmptyColumns(data,1)==true)){
+        }else if ((data.T1.X == data.areaO[0].length -4) && (RightSideEmptyColumns(data,1,1)==true)){
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
                     if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
@@ -381,7 +381,7 @@ public class mainGame extends JOptionPane {
                     }
                 }
             }
-        }else if ((data.T1.X == data.areaO[0].length -3) && (RightSideEmptyColumns(data,2)==true)){
+        }else if ((data.T1.X == data.areaO[0].length -3) && (RightSideEmptyColumns(data,2,1)==true)){
             for (int i = 0; i< data.T1.tab[0].length ; i++){
                 for (int j=0 ; j< data.T1.tab.length ; j++){
                     if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
@@ -420,7 +420,7 @@ public class mainGame extends JOptionPane {
                 }
             }
         
-        }else if ((data.T1.X == 0) && (LeftSideEmptyColumns(data,1)==true)){    /* and if the first column of the tetrimino's tab is empty,
+        }else if ((data.T1.X == 0) && (LeftSideEmptyColumns(data,1,1)==true)){    /* and if the first column of the tetrimino's tab is empty,
                                                                                  * we can analyse the x-1 column of the grid's area when a 
                                                                                  * box of the tetrimino's tab is filled bu a number different than 0
                                                                                  * */
@@ -431,7 +431,7 @@ public class mainGame extends JOptionPane {
                     }
                 }
             }
-        }else if((data.T1.X == -1) && (LeftSideEmptyColumns(data,2)==true)){    /* and if the 2 first columns of the tetrimino's tab are empty,
+        }else if((data.T1.X == -1) && (LeftSideEmptyColumns(data,2,1)==true)){    /* and if the 2 first columns of the tetrimino's tab are empty,
                                                                                  * we can analyse the x-1 column of the grid's area when a 
                                                                                  * box of the tetrimino's tab is filled by a number different than 0
                                                                                  * */
@@ -502,26 +502,34 @@ public class mainGame extends JOptionPane {
      * works if n = 1 or 2
      * */
     
-    public static boolean RightSideEmptyColumns(grid data, int n){
+    public static boolean RightSideEmptyColumns(grid data, int n, int tet_1_or_2){
         boolean ok = true ;
-        switch (n){
-            case 1:
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if (data.T1.tab[j][data.T1.tab[0].length-1]!=0){
-                        ok=false;
-                    }
+        if (tet_1_or_2 == 2){
+            for (int j=0 ; j< data.T2.tab.length ; j++){
+                if (data.T2.tab[j][data.T2.tab[0].length-1]!=0){
+                    ok=false;
                 }
-            break;
-            
-            case 2:
-                for (int i = data.T1.tab[0].length-2; i < data.T1.tab[0].length ; i++){
+            }
+        }else{
+            switch (n){
+                case 1:
                     for (int j=0 ; j< data.T1.tab.length ; j++){
-                        if (data.T1.tab[j][i]!=0){
+                        if (data.T1.tab[j][data.T1.tab[0].length-1]!=0){
                             ok=false;
                         }
                     }
-                }
-            break;
+                break;
+                
+                case 2:
+                    for (int i = data.T1.tab[0].length-2; i < data.T1.tab[0].length ; i++){
+                        for (int j=0 ; j< data.T1.tab.length ; j++){
+                            if (data.T1.tab[j][i]!=0){
+                                ok=false;
+                            }
+                        }
+                    }
+                break;
+            }
         }
         return ok;
     }
@@ -532,26 +540,34 @@ public class mainGame extends JOptionPane {
      * works if n = 1 or 2
      * */
     
-    public static boolean LeftSideEmptyColumns(grid data, int n){
+    public static boolean LeftSideEmptyColumns(grid data, int n, int tet_1_or_2){
         boolean ok = true ;
-        switch (n){
-            case 1:
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if (data.T1.tab[j][0]!=0){
-                        ok=false;
-                    }
+        if (tet_1_or_2 == 2){
+            for (int j=0 ; j< data.T2.tab.length ; j++){
+                if (data.T2.tab[j][0]!=0){
+                    ok=false;
                 }
-            break;
-            
-            case 2:
-                for (int i = 0; i < 2 ; i++){
+            }
+        }else{
+            switch (n){
+                case 1:
                     for (int j=0 ; j< data.T1.tab.length ; j++){
-                        if (data.T1.tab[j][i]!=0){
+                        if (data.T1.tab[j][0]!=0){
                             ok=false;
                         }
                     }
-                }
-            break;
+                break;
+                
+                case 2:
+                    for (int i = 0; i < 2 ; i++){
+                        for (int j=0 ; j< data.T1.tab.length ; j++){
+                            if (data.T1.tab[j][i]!=0){
+                                ok=false;
+                            }
+                        }
+                    }
+                break;
+            }
         }
         return ok;
     }

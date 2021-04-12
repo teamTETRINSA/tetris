@@ -31,7 +31,7 @@ public class grid{
     
     public int score = 0;          // score of the player
     
-    public int bestScore = 100;      // to save the best score
+    public int bestScore = 20;      // to save the best score
     
     /** public boolean go = false; // says if the game is over or not      :      START varibale ?????      **/
     
