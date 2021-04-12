@@ -15,15 +15,12 @@ public class mainGame extends JOptionPane {
         
         
         grid data = new grid();
-        System.out.println(data.areaO[1][1]);
-        int i =1;
-        data.areaO[2][2]=i;
-        System.out.println(data.areaO[2][2]);
+        boolean formerBestScoreUpdated = false; 
         
         
 
         //Calling the first "welcome" panel
-        WelcomeGUI newWindow = new WelcomeGUI (data /*, ShapeBank*/);
+        WelcomeGUI newWindow = new WelcomeGUI (data);
         
         while (data.restart==false){
             // do nothing
@@ -45,10 +42,13 @@ public class mainGame extends JOptionPane {
                                         * data.restart = false;
                                         * */
 
+            //USELESS NOW
+            /*
             //the first tetrimino choosen is initialized in a diferent way than the following
             int nb = (int)(Math.random()*7);
-            System.out.println("new T1 >>>"+nb);
-            data.T1 = data.ShapeBank.get(nb);
+            //data.T1 = data.ShapeBank.get(nb);
+            data.T1 = new tetrimino(nb);
+            * */
 
             /* while we can play and add tetriminos
             * we continue introducing tetriminos at the top of the game
@@ -72,8 +72,12 @@ public class mainGame extends JOptionPane {
 
                 // we choose the next coming tetrimino random - it will be printed next the game area
                 int nbs = (int)(Math.random()*7);
-                data.T2 = data.ShapeBank.get(nbs);
-                System.out.println("######  T2  >> "+nbs+" ######");
+                //data.T2 = data.ShapeBank.get(nbs);
+                data.T2 = new tetrimino(nbs);
+                //centering the tetrimino on the grid
+                data.getInitialPosition();
+                
+                //System.out.println("######  T2  >> "+nbs+" ######");
 
                 // will be printed "the next coming tetrimino T2" when T1 will be printed on the grid
 
@@ -92,8 +96,22 @@ public class mainGame extends JOptionPane {
                  * we also add an integer returned by the deleteLines method
                  * see its implementation for details
                  * */
-                int bonus = deleteLines(data) + data.lap;
+                int bonus = deleteLines(data);
                 data.score +=  bonus;
+
+                //let's update the data.estScore attribute
+
+                if (data.score>data.bestScore){
+                    if (formerBestScoreUpdated==false){
+                        data.formerBestScore = data.bestScore;
+                        formerBestScoreUpdated=true;
+                    }
+                    data.bestScore=data.score;
+                    
+                }/*else{
+                    //static problem
+                    //tetrisDraft.messageDialogGO();
+                }*/
 
                 /*
                  * is the game finished?
@@ -123,14 +141,7 @@ public class mainGame extends JOptionPane {
              * and the bestScore
              * */
 
-            if (data.score>data.bestScore){
-                //static problem
-                //tetrisDraft.messageDialogNBS();
-                data.bestScore=data.score;
-            }else{
-                //static problem
-                //tetrisDraft.messageDialogGO();
-            }
+            
             
             System.out.println("######      BESTSCORE : "+data.bestScore+"    #######");
             System.out.println("##################################");
@@ -601,10 +612,13 @@ public class mainGame extends JOptionPane {
         BANK.add(t7);
         
         //we change the starting X coordinate
-        
+
+        //WE DONT NEED THIS NO MORE
+        /*
         for (int i = 0; i < BANK.size() ; i++){
             BANK.get(i).X = data.getInitialPosition((tetrimino)BANK.get(i));
         }
+        * */
         
         return BANK;
     }

@@ -32,6 +32,8 @@ public class grid{
     public int score = 0;          // score of the player
     
     public int bestScore = 20;      // to save the best score
+
+    public int formerBestScore = 0;
     
     /** public boolean go = false; // says if the game is over or not      :      START varibale ?????      **/
     
@@ -48,6 +50,8 @@ public class grid{
     public boolean soundOn = true ;
     
     public ArrayList<shape> ShapeBank ;
+
+    //public ArrayList<shape> ShapeBankBis ;
     
     /** CONSTRUCTOR **/
     
@@ -180,11 +184,11 @@ public class grid{
 	}
 	
     
-    public int getInitialPosition(tetrimino T){
-        int ct=T.tab.length/2; // coordinate of the horizontal center of tetrimino t
+    public int getInitialPosition(){
+        int ct=T2.tab.length/2; // coordinate of the horizontal center of tetrimino t
         int cg=(areaO[0].length)/2; //coordinate of the horizontal center of grid G
-        T.X = cg-ct ;// the initial position X of tetrimino t
-        return T.X;
+        T2.X = cg-ct ;// the initial position X of tetrimino t
+        return T2.X;
         
 		
         // détermination de la position d'insertion de la forme au début de la grille de jeu

@@ -76,7 +76,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         this.setResizable(false);
         this.setLayout(null);
         this.setUndecorated(true);
-		this.setShape(new RoundRectangle2D.Double(0, 0, 1200, 800, 50, 50));
+		this.setShape(new RoundRectangle2D.Double(0, 0, 1200, 780, 50, 50));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
@@ -239,7 +239,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		Difficulty.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		Difficulty.setText(" Current Difficulty : "+difficultyString);
         Difficulty.setForeground(Color.white);
-		Difficulty.setBounds(40,200,300,30);
+		Difficulty.setBounds(40,200,500,30);
 		infoPanel.add(Difficulty);
 		
 		JLabel gridSize = new JLabel(new ImageIcon("size2.png"));
@@ -360,21 +360,20 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         //Gauge
         
         if (data.score <= data.bestScore){
-            /*
-            float frac = (float) data.score/data.bestScore;
-            System.out.println("                            frac = "+frac);
-            float level = (float) frac*620;
-            System.out.println("                            level = "+level);
-            int levelBis = (int) level ; //200;
-            * */
-
             int lev = (int) ((float) ((float) data.score/data.bestScore)*620);
-
-            System.out.println("                            lev = "+lev);
+            //System.out.println("                            lev = "+lev);
             g.setColor(data.T1.ColorTetrimino);
             g.fillRect(500,110+(620-lev),20,lev);
-        }
-		
+            /** + EMOJI CIBLE **/
+        }else if (data.formerBestScore>0){
+            int lev = (int) ((float) ((float) data.formerBestScore/data.score)*620);
+            //System.out.println("                            lev = "+lev);
+            g.setColor(data.T1.ColorTetrimino);
+            g.fillRect(500,110,20,620-lev);
+            g.setColor(Color.black);
+            g.fillRect(500,110+(620-lev),20,lev);
+            /** + EMOJI CIBLE **/
+        }		
 		data.dessine(g);
 		//T1 tetrimino
         data.T1.dessine(g, data, 1);
