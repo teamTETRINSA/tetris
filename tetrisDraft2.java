@@ -156,14 +156,40 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		gamePanel.setOpaque(false);
 		//this.addKeyListener(this);
 
-        //GAUGE UNTIL RECORD
+        // Gauge until record
             
         gaugePanel = new RoundedJPanel(30,new Color(255,255,255,100),Color.WHITE, true, false);
-        gaugePanel.setBounds(495,100,30,640);
+        gaugePanel.setBounds(470,100,30,640);
         gaugePanel.setLayout(null);
         gaugePanel.setOpaque(false);
 
-
+		JLabel jauge1 = new JLabel(new ImageIcon("flag.png"));
+		jauge1.setBounds(510,700,40,40);
+		panelImage.add(jauge1);
+		
+		JLabel jauge2 = new JLabel(new ImageIcon("sparkles.png"));
+		jauge2.setBounds(510,600,40,40);
+		panelImage.add(jauge2);
+		
+		JLabel jauge3 = new JLabel(new ImageIcon("rocket.png"));
+		jauge3.setBounds(510,500,40,40);
+		panelImage.add(jauge3);
+		
+		JLabel jauge4 = new JLabel(new ImageIcon("muscle.png"));
+		jauge4.setBounds(510,400,40,40);
+		panelImage.add(jauge4);
+		
+		JLabel jauge5 = new JLabel(new ImageIcon("wow.png"));
+		jauge5.setBounds(510,300,40,40);
+		panelImage.add(jauge5);
+		
+		JLabel jauge6 = new JLabel(new ImageIcon("target.png"));
+		jauge6.setBounds(510,200,40,40);
+		panelImage.add(jauge6);
+		
+		JLabel jauge7 = new JLabel(new ImageIcon("fireworks.png"));
+		jauge7.setBounds(510,100,40,40);
+		panelImage.add(jauge7);
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
@@ -266,10 +292,6 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         //JLabel logotetrimino = new JLabel(new ImageIcon("tetrimino.png"));
 		//logotetrimino.setBounds(270,10,148,80);
 		//panelImage.add(logotetrimino);
-        
-        JLabel logotetrimino = new JLabel(new ImageIcon("tetrimino.png"));
-		logotetrimino.setBounds(270,10,148,80);
-		panelImage.add(logotetrimino);
 		
 		JLabel logoINSA = new JLabel(new ImageIcon("insa_logo2.png"));
 		//logoINSA.setBounds(700,25,355,40);
@@ -366,33 +388,47 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 	public void paint(Graphics g) {
 
         super.paint(g);
-/*
-        dessineBuffer(imageBuf.getGraphics()); // le dessin est effectue dans le buffer
-        g.drawImage(imageBuf,getInsets().left,getInsets().top,null); //affichage du dessin pre-calcule
-*/
-
-
-
+        
+        Graphics2D G = (Graphics2D) g;
+		G.setFont(new Font("Times Roman", Font.BOLD, 40));     
+        
+		G.setColor(Color.white);
+		G.drawString("TETRINSA", 500, 60);
+		G.setColor(Color.black);
+		G.drawString("TETRINSA", 500+2, 60+2);
+        
+        this.setFocusable(true);
+		
+		try {
+				
+			Thread.sleep(600);
+			repaint();
+					
+		} 
+			
+		catch (InterruptedException ex) {}
 
         /********************************************************/
 		 
-		
-
+        //Gauge //
         
-        //Gauge
-        
+        /*
+        dessineBuffer(imageBuf.getGraphics()); // le dessin est effectue dans le buffer
+        g.drawImage(imageBuf,getInsets().left,getInsets().top,null); //affichage du dessin pre-calcule
+		*/
+       
         if (data.score <= data.bestScore){
             int lev = (int) ((float) ((float) data.score/data.bestScore)*620);
             g.setColor(data.T1.ColorTetrimino);
-            g.fillRect(500,110+(620-lev),20,lev);
-            /** + EMOJI CIBLE  **/
+            g.fillRect(475,110+(620-lev),20,lev);
+            
         }else if (data.formerBestScore>0){
             int lev = (int) ((float) ((float) data.formerBestScore/data.score)*620);
             g.setColor(data.T1.ColorTetrimino);
-            g.fillRect(500,110,20,620-lev);
+            g.fillRect(475,110,20,620-lev);
             g.setColor(Color.black);
-            g.fillRect(500,110+(620-lev),20,lev);
-            /** + EMOJI CIBLE  **/ 
+            g.fillRect(475,110+(620-lev),20,lev);
+            
         }		
 		data.dessine(g);
 		//T1 tetrimino
@@ -403,21 +439,13 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         
         //Tetrimino Collection
         data.T2.dessine(g, data, 3);
-        
-		Graphics2D G = (Graphics2D) g;
-		G.setFont(new Font("Times Roman", Font.BOLD, 40));     
-        
-		G.setColor(Color.white);
-		G.drawString("TETRINSA", 500, 60);
-		G.setColor(Color.black);
-		G.drawString("TETRINSA", 500+2, 60+2);
 		
 		this.setFocusable(true);
 		
 		if (data.pause==false){
+			
 			try {
 				
-				//Thread.sleep(400);
 				Thread.sleep(data.interval);
 				repaint();
 					
@@ -429,7 +457,6 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         
     }
 
-
     public void dessineBuffer(Graphics g) {
         Dimension d = getContentPane().getSize();
 
@@ -439,16 +466,16 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
             int lev = (int) ((float) ((float) data.score/data.bestScore)*620);
             //System.out.println("                            lev = "+lev);
             g.setColor(data.T1.ColorTetrimino);
-            g.fillRect(500,110+(620-lev),20,lev);
-            /** + EMOJI CIBLE **/
+            g.fillRect(475,110+(620-lev),20,lev);
+
         }else if (data.formerBestScore>0){
             int lev = (int) ((float) ((float) data.formerBestScore/data.score)*620);
             //System.out.println("                            lev = "+lev);
             g.setColor(data.T1.ColorTetrimino);
-            g.fillRect(500,110,20,620-lev);
+            g.fillRect(475,110,20,620-lev);
             g.setColor(Color.black);
-            g.fillRect(500,110+(620-lev),20,lev);
-            /** + EMOJI CIBLE **/
+            g.fillRect(475,110+(620-lev),20,lev);
+
         }		
 		data.dessine(g);
 		//T1 tetrimino
@@ -459,14 +486,6 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         
         //Tetrimino Collection
         data.T2.dessine(g, data, 3);
-        
-		Graphics2D G = (Graphics2D) g;
-		G.setFont(new Font("Times Roman", Font.BOLD, 40));     
-        
-		G.setColor(Color.white);
-		G.drawString("TETRINSA", 500, 60);
-		G.setColor(Color.black);
-		G.drawString("TETRINSA", 500+2, 60+2);
 		
 		this.setFocusable(true);
 
@@ -480,7 +499,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 			} 
 			
 			catch (InterruptedException ex) {}
-		}
+		}  
     }
     
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	

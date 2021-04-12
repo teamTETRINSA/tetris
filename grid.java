@@ -58,7 +58,7 @@ public class grid{
     public grid(){
         int nb = (int)(Math.random()*7);
         T1 = new tetrimino(nb);
-        getInitialPosition();
+        
         nb = (int)(Math.random()*7);
         T2 = new tetrimino(nb);
         getInitialPosition();
