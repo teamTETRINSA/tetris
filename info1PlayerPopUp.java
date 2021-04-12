@@ -195,9 +195,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		
 		// JSpinner to change the background //
 		
-		String[] backGroundNames = {"Sunset","Oasis","Dinosaurs","Night Lake"} ;
-		
-		SpinnerListModel backGroundModel = new SpinnerListModel(backGroundNames);
+		SpinnerListModel backGroundModel = new SpinnerListModel(new String[] {"Sunset","Oasis","Dinosaurs","Night Lake"});
 		
 		backGroundSpinner = new JSpinner(backGroundModel);
 		
@@ -370,6 +368,29 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	
 	public void stateChanged(ChangeEvent e) {
+        
+        int fps = 0;
+        
+        if (e.getSource() == sliderDifficulty) {
+			fps = (int)sliderDifficulty.getValue();
+        } 
+        
+        if (fps == 2){
+            data.selectSpeed(600);
+            this.difficulty = 2;
+        }else if (fps == 3){
+            data.selectSpeed(400);
+            this.difficulty = 3;
+        }else{
+			data.selectSpeed(800);
+            this.difficulty = 1;
+        }
+        
+        if (e.getSource() == backGroundSpinner) {
+			this.backGroundname = (String) backGroundSpinner.getValue();
+        }
+        
+        /*
         int fps=0;
         JSlider source = (JSlider)e.getSource();
        
@@ -389,12 +410,10 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
             this.difficulty = 1;
         }
         
-		
-		if (e.getSource() == backGroundSpinner) {
+        JSpinner sourcebis = (JSpinner)e.getSource();
 			
-			this.backGroundname = (String) backGroundSpinner.getValue().toString();
-			
-		}
+		this.backGroundname = (String) sourcebis.getValue();
+		*/	
 	
 	}
 	

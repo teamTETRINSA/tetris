@@ -253,13 +253,13 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         
 			// Insertion of images inside the Panels //
         
-        JLabel logotetrimino = new JLabel(new ImageIcon("tetrimino.png"));
-		logotetrimino.setBounds(270,10,148,80);
-		panelImage.add(logotetrimino);
+        //JLabel logotetrimino = new JLabel(new ImageIcon("tetrimino.png"));
+		//logotetrimino.setBounds(270,10,148,80);
+		//panelImage.add(logotetrimino);
 		
 		JLabel logoINSA = new JLabel(new ImageIcon("insa_logo2.png"));
-		logoINSA.setBounds(700,25,355,40);
-		panelImage.add(logoINSA);
+		logoINSA.setBounds(440,285,140,30);
+		infoPanel.add(logoINSA);
 		
 		if (info1PlayerPopUp.backGroundname == "Sunset") {
 			this.backGround = "background1.jpg";
