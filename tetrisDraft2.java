@@ -67,7 +67,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 
     private BufferedImage imageBuf;
 
-    /** CONSTRUCTR **/
+    /** CONSTRUCTOR **/
 
 	public tetrisDraft2 (grid g) {
 		
