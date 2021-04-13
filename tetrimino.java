@@ -92,33 +92,6 @@ public class tetrimino extends shape{
     
     public void rotateTetrimino () {
 		super.rotateTetrimino();
-		
-		int [][] revTab = new int [this.tab.length][this.tab[0].length];
-        
-        System.out.println(this);
-        
-        //the lines are moved down
-        for (int j = 0; j<revTab.length; j++){
-			for (int i = 0; i<revTab[0].length; i++){
-				revTab[i][j]=this.tab[this.tab.length-1-i][j];
-			}
-		}
-		
-		System.out.println(prt(revTab));
-		
-		//transpose of the matrix
-		int [][] transTab = new int [this.tab.length][this.tab[0].length];
-		for (int p = 0; p<transTab.length; p++){
-			for (int q = 0; q<transTab[0].length; q++){
-				transTab[p][q]=revTab[q][p];
-			}
-		}
-		
-		System.out.println(prt(transTab));
-        
-        tab=transTab;
-		
-        
     }
     
     

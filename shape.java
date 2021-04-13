@@ -69,6 +69,7 @@ public class shape {
      * */
      
     public String prt (int[][] t){ 
+        //System.out.println("**PRT**");
         String res ="";
         for(int i = 0; i < t.length; i++){
             for(int j = 0; j < t[1].length; j++){
@@ -76,7 +77,7 @@ public class shape {
             }
             res+="\n";// line break
         }
-        System.out.println("**PRT**");
+        
         return res;
         
     }
@@ -87,19 +88,21 @@ public class shape {
      * */
     
     public void rotateTetrimino () {
-		/*
+		
 		int [][] revTab = new int [this.tab.length][this.tab[0].length];
-        
+        System.out.println("original");
         System.out.println(this);
         
         //the lines are moved down
+        
         for (int j = 0; j<revTab.length; j++){
 			for (int i = 0; i<revTab[0].length; i++){
-				revTab[i][j]=this.tab[this.tab.length-1-i][j];
+				revTab[i][j]=tab[tab.length-1-i][j];
 			}
 		}
-		
+		System.out.println("revTab");
 		System.out.println(prt(revTab));
+        
 		
 		//transpose of the matrix
 		int [][] transTab = new int [this.tab.length][this.tab[0].length];
@@ -108,11 +111,11 @@ public class shape {
 				transTab[p][q]=revTab[q][p];
 			}
 		}
-		
+		System.out.println("transTab");
 		System.out.println(prt(transTab));
         
         tab=transTab;
-        * */
+        
     }
     
     
