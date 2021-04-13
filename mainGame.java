@@ -313,11 +313,13 @@ public class mainGame extends JOptionPane {
      * ROTATETRIMINO
      * Rotation to the right
      * */
-
+	
+	//USELESS NOW
+	/*
     public static void rotateTetrimino (grid data) {
 		data.T1.rotateTetrimino();
 		System.out.println("you have rotated");
-    }
+    }*/
 
     /**
      * DROPSIPOSSIBLE
