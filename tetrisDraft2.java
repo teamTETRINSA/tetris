@@ -559,7 +559,6 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
             mainGame.dropTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ROT");
-            data.T1.rotateTetrimino();
             mainGame.rotateTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println(">>>>>>>>>>>>>right︎");
