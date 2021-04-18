@@ -17,9 +17,15 @@ public class shape {
     public shape () {
         
         Random rand = new Random();
-		int r = rand.nextInt(255);
-		int g = rand.nextInt(255);
-		int b = rand.nextInt(255);
+        int r = 0;
+        int g = 0;
+        int b = 0;
+        
+        While ((r<30 && g<30) || (r<30 && b <30) || (g<30 && b<30)){
+            r = rand.nextInt(255);
+            g = rand.nextInt(255);
+            b = rand.nextInt(255);
+        }
         
         /*
         //creating an ArrayList of colors

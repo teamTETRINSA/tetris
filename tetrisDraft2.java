@@ -62,6 +62,14 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
     protected static Clip tetrisSoundtrack;
 
     private Clip helpSound;
+
+    protected static Clip soundKeyboardDrop;
+
+    protected static Clip soundKeyboardMove;
+
+    protected static Clip soundEndFall;
+
+    protected static Clip soundDeletedLine;
     
     private tetrimino T;
 
@@ -351,6 +359,26 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
          AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
          helpSound = AudioSystem.getClip();
          helpSound.open(audiohelpSound);
+
+         File helpSoundFile = new File("soundKeyboardDrop.wav");
+         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         soundKeyboardDrop = AudioSystem.getClip();
+         soundKeyboardDrop.open(audiohelpSound);
+
+         File helpSoundFile = new File("soundKeyboardMove.wav");
+         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         soundKeyboardMove = AudioSystem.getClip();
+         soundKeyboardMove.open(audiohelpSound);
+
+         File helpSoundFile = new File("soundDeletedLine.wav");
+         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         soundDeletedLine = AudioSystem.getClip();
+         soundDeletedLine.open(audiohelpSound);
+
+         File helpSoundFile = new File("soundEndFall.wav");
+         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         soundEndFall = AudioSystem.getClip();
+         soundEndFall.open(audiohelpSound);
          
 		}catch(Exception e){ e.printStackTrace(); } 
 	

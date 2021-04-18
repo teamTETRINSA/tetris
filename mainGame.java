@@ -88,6 +88,10 @@ public class mainGame extends JOptionPane {
                     }
                 }
 
+                //sound when a tetrimno end falling
+
+                tetrisDraft2.soundEndFall.start();
+
                 data.transformShape();
 
                 /*
@@ -212,6 +216,7 @@ public class mainGame extends JOptionPane {
         int count=0;
         for (int l : linesfilled){
             count=+1;
+            tetrisDraft2.soundDeletedLine.start();
             for (int i =0 ; i< data.areaO[0].length ; i++){
                 data.areaO[l][i]=0;
             }
@@ -291,8 +296,11 @@ public class mainGame extends JOptionPane {
      * */
 
     public static void moveTetrimino(grid data, int dx) {
-        if ((dx>0 && moveToRightIsPossible(data)==true)||(dx<0 && moveToLeftIsPossible(data))){
-            data.moveTetrimino(dx);
+        if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
+            if ((dx>0 && moveToRightIsPossible(data)==true)||(dx<0 && moveToLeftIsPossible(data))){
+                data.moveTetrimino(dx);
+                tetrisDraft2.soundKeyboardMove.start();
+            }
         }
 	}
 
@@ -305,6 +313,7 @@ public class mainGame extends JOptionPane {
 		if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
 			if (dropIsPossible(data)){
 				data.dropTetrimino(1);
+                tetrisDraft2.soundKeyboardDrop.start();
 			}
 		}
 	}

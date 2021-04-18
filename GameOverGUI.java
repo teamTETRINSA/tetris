@@ -21,8 +21,10 @@ public class GameOverGUI extends JFrame {
 	private JPanel gameOverPanel;
 	
 	private JPanel panelBackground;
+
+    private Clip gameOverSound1;
 	
-	private Clip gameOverSound;
+	private Clip gameOverSound2;
 	
 	private JButton replay;
 	
@@ -120,14 +122,37 @@ public class GameOverGUI extends JFrame {
          
         File tetrisSoundFile = new File("gameOver.wav");		
         AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
-        gameOverSound = AudioSystem.getClip();		
-        gameOverSound.open(audiotetrisSound);	
-        gameOverSound.start();	
+        gameOverSound1 = AudioSystem.getClip();		
+        gameOverSound1.open(audiotetrisSound);	
+        gameOverSound1.start();
+
+        File tetrisSoundFile = new File("soundGameOver.wav");		
+        AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
+        gameOverSound2 = AudioSystem.getClip();		
+        gameOverSound2.open(audiotetrisSound);	
+        gameOverSound2.start();
+
+        if (data.soundOn == true) {
+            gameOverSound2.start();
+            timePause(2000);
+			gameOverSound1.start();
+		}
+        
          
 		}catch(Exception e){ e.printStackTrace(); }
     
      
     }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
+		
+		// Time pause //
+
+    public static void timePause (int ms) {
+		try {
+		Thread.sleep(ms);
+		}catch(InterruptedException e){}
+	}
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 		
