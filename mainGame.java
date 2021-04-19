@@ -31,7 +31,7 @@ public class mainGame extends JOptionPane {
         while (data.restart == true){
             
             // Creation of the ShapeBank of tetriminos
-            // While the button play is not pressed, do nothing, then create a new shapeBank with thr X copmponent of tetriminos centered
+            // While the button play is not pressed, do nothing, then create a new shapeBank with the X copmponent of tetriminos centered
             
             data.ShapeBank = bank(data);
             
@@ -61,7 +61,7 @@ public class mainGame extends JOptionPane {
                 //System.out.println("SSSSSSSSS       "+data.speedLevel);
                 
                 
-                // this function allows to decrease the time interval as a functioon of the number of laps done
+                // this function allows to decrease the time interval as a function of the number of laps done
                 data.interval = data.speedLevel*(int)Math.exp((-data.lap)/100) + 100;
                 
                 data.start = false;
@@ -70,7 +70,7 @@ public class mainGame extends JOptionPane {
                 data.score += 1;
                 System.out.println("######  score : "+data.score+"  ######");
 
-                // we choose the next coming tetrimino random - it will be printed next the game area
+                // we choose the next coming tetrimino randomly - it will be printed next the game area
                 int nbs = (int)(Math.random()*7);
                 //data.T2 = data.ShapeBank.get(nbs);
                 data.T2 = new tetrimino(nbs);
