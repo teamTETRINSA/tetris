@@ -137,7 +137,10 @@ public class mainGame extends JOptionPane {
             System.out.println("##################################");
             System.out.println("##################################");
             System.out.println();
-
+            
+            tetrisDraft2.soundGameOver.start();
+            timePause(2000);
+            
             /**
              * PRINT GameOverGUI window
              * */

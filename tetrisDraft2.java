@@ -71,6 +71,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 
     protected static Clip soundDeletedLine;
     
+    protected static Clip soundGameOver;
+    
     private tetrimino T;
 
     private BufferedImage imageBuf;
@@ -379,6 +381,11 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
          AudioInputStream audiosoundEndFall = AudioSystem.getAudioInputStream(soundEndFallFile);
          soundEndFall = AudioSystem.getClip();
          soundEndFall.open(audiosoundEndFall);
+         
+         File gameOver2File = new File("soundGameOver.wav");		
+         AudioInputStream audiogameOver2 = AudioSystem.getAudioInputStream(gameOver2File);
+         soundGameOver = AudioSystem.getClip();		
+         soundGameOver.open(audiogameOver2);	
          
 		}catch(Exception e){ e.printStackTrace(); } 
 	

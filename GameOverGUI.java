@@ -24,8 +24,6 @@ public class GameOverGUI extends JFrame {
 
     private Clip gameOverSound1;
 	
-	private Clip gameOverSound2;
-	
 	private JButton replay;
 	
 	// Coordinates for String animation // 
@@ -123,17 +121,9 @@ public class GameOverGUI extends JFrame {
         File gameOver1File = new File("gameOver.wav");		
         AudioInputStream audiogameOver1 = AudioSystem.getAudioInputStream(gameOver1File);
         gameOverSound1 = AudioSystem.getClip();		
-        gameOverSound1.open(audiogameOver1);	
-        gameOverSound1.start();
-
-        File gameOver2File = new File("soundGameOver.wav");		
-        AudioInputStream audiogameOver2 = AudioSystem.getAudioInputStream(gameOver2File);
-        gameOverSound2 = AudioSystem.getClip();		
-        gameOverSound2.open(audiogameOver2);	
-        gameOverSound2.start();
+        gameOverSound1.open(audiogameOver1);
 
         if (data.soundOn == true) {
-            gameOverSound2.start();
             timePause(2000);
 			gameOverSound1.start();
 		}

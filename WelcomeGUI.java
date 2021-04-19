@@ -304,7 +304,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
             
             /** it should be the code just below but we create a single player mode game for now **/
             
-            TwoPlayersInfo = new info2PlayerPopUp ();
+            TwoPlayersInfo = new info2PlayerPopUp (data);
             TwoPlayersInfo.setVisible(true);
             //this.setVisible(false);
             //TwoPlayers.setVisible(true);
