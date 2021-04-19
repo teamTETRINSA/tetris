@@ -584,6 +584,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		//System.out.println("coucou");
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
 			System.out.println(">>>>>>>>>>>>>bas");
+			//soundKeyboardDrop.start();
             mainGame.dropTetrimino(data);
         }else if (e.getKeyCode()==KeyEvent.VK_UP){
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ROT");
@@ -592,6 +593,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println(">>>>>>>>>>>>>right︎");
             mainGame.moveTetrimino(data,1);
+            soundKeyboardMove.start();
         }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
             System.out.println(">>>>>>>>>>>>>left︎︎");
             mainGame.moveTetrimino(data,-1);
