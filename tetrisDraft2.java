@@ -360,25 +360,25 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
          helpSound = AudioSystem.getClip();
          helpSound.open(audiohelpSound);
 
-         File helpSoundFile = new File("soundKeyboardDrop.wav");
-         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         File soundKeyboardDropFile = new File("soundKeyboardDrop.wav");
+         AudioInputStream audiosoundKeyboardDrop = AudioSystem.getAudioInputStream(soundKeyboardDropFile);
          soundKeyboardDrop = AudioSystem.getClip();
          soundKeyboardDrop.open(audiohelpSound);
 
-         File helpSoundFile = new File("soundKeyboardMove.wav");
-         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         File soundKeyboardMoveFile = new File("soundKeyboardMove.wav");
+         AudioInputStream audiosoundKeyboardMove = AudioSystem.getAudioInputStream(soundKeyboardMoveFile);
          soundKeyboardMove = AudioSystem.getClip();
-         soundKeyboardMove.open(audiohelpSound);
+         soundKeyboardMove.open(audiosoundKeyboardMove);
 
-         File helpSoundFile = new File("soundDeletedLine.wav");
-         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         File soundDeletedLineFile = new File("soundDeletedLine.wav");
+         AudioInputStream audiosoundDeletedLine = AudioSystem.getAudioInputStream(soundDeletedLineFile);
          soundDeletedLine = AudioSystem.getClip();
-         soundDeletedLine.open(audiohelpSound);
+         soundDeletedLine.open(audiosoundDeletedLine);
 
-         File helpSoundFile = new File("soundEndFall.wav");
-         AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
+         File soundEndFallFile = new File("soundEndFall.wav");
+         AudioInputStream audiosoundEndFall = AudioSystem.getAudioInputStream(soundEndFallFile);
          soundEndFall = AudioSystem.getClip();
-         soundEndFall.open(audiohelpSound);
+         soundEndFall.open(audiosoundEndFall);
          
 		}catch(Exception e){ e.printStackTrace(); } 
 	
