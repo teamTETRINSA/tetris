@@ -34,6 +34,17 @@ import java.util.Locale;
  * DRIVER
  * */
 public class TetrisDataBase{
+    
+    private final String serveurBD = "localhost";
+    private final String portBD = "3306";
+    private final String nomBD = "TetrisDB";
+    private final String loginBD = "tetDB_id";
+    private final String motdepasseBD = "tetDB_pw";
+    
+    //private Connection myCo = null; // does not work (static problem)
+    //private PreparedStatement insertMesureStatement = null;
+    //private PreparedStatement selectMesuresStatement = null;
+    
     public static void main (String[] args){
         
         int nextID = 0;
