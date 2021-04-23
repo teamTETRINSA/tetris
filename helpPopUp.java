@@ -99,10 +99,12 @@ public class helpPopUp extends JFrame implements ActionListener {
 		//generalRules.setBorder(roundedBorder);
         // generalRules.setBackground(Color.RED); ---> for testing purposes only
         
-        JPanel generalRulesBis = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        //JPanel generalRulesBis = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        JPanel generalRulesBis = new JPanel();
         generalRulesBis.setBounds(250,55,300,300);
         generalRulesBis.setLayout(null);
-		generalRulesBis.setOpaque(false);
+        generalRulesBis.setBorder(roundedBorder);
+		//generalRulesBis.setOpaque(false);
         
         JPanel tetriminos = new JPanel();
         tetriminos.setBounds(570,55,402,302);
@@ -117,6 +119,10 @@ public class helpPopUp extends JFrame implements ActionListener {
 		label.setBounds(2,2,398,298); 
 		//this.getContentPane().add(label);	
 		tetriminos.add(label);	
+		
+		JLabel tetrisvintage = new JLabel(new ImageIcon("tetrisvintage.jpg"));
+		tetrisvintage.setBounds(0,0,generalRulesBis.getWidth(),generalRulesBis.getHeight());
+		generalRulesBis.add(tetrisvintage);
 		
 		/*Icon imgIcon2 = new ImageIcon(this.getClass().getResource("loading4.gif"));
 		JLabel label2 = new JLabel(imgIcon2);
@@ -246,13 +252,14 @@ public class helpPopUp extends JFrame implements ActionListener {
         // RULES //
 		
 		textPaneGeneralRules.setForeground(Color.WHITE);
-		textPaneGeneralRules.setText(" The game of Tetris consists of dropping several shapes to form the biggest possible number of lines." + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "You are able to move these shapes left and right and to rotate them." + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line." + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points." + "\n");
+		textPaneGeneralRules.setText("   The game of Tetris consists of dropping several shapes to form the biggest possible number of lines inside a grid.");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "You are able to move these shapes left and right and to rotate them. ");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line to avoid stacking. ");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points. ");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Once the screen is full and you can't place any more shapes, the game is over." + "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "   You're able to modify multiple set-up to spice up your game experience. For instance, several different backgrounds, grid sizes or difficulties will be available. "+ "\n");
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "   Hope you will enjoy it ! TEAM TETR'INSA." + "\n");
 		
-	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
 			// Other components inside the Panels //
