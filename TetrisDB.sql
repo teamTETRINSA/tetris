@@ -16,3 +16,6 @@ CREATE TABLE Parties (
   PRIMARY KEY (idParty)
   FOREIGN KEY (pseudo) REFERENCES Players(name)
 );
+
+INSERT INTO Players VALUES
+(1,'Kylie');

@@ -1,3 +1,5 @@
+//package fr.insalyon.p2i2.td1;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
 /** 
  * CODE A INSERER DANS LE MAINGAME DANS UNE METHODE QUI SERA APPELLEE 
  * DEPUIS LES GUI LORSQUE L'ON AJOUTERA UN JOUEUR OU QUE L'ON VOUDRA 
@@ -40,15 +41,19 @@ public class TetrisDataBase{
     private final String nomBD = "TetrisDB";
     private final String loginBD = "tetDB_id";
     private final String motdepasseBD = "tetDB_pw";
-    
+
     //private Connection myCo = null; // does not work (static problem)
     //private PreparedStatement insertMesureStatement = null;
     //private PreparedStatement selectMesuresStatement = null;
     
+    /**
+     * main
+     * */
+     
     public static void main (String[] args){
         
         int nextID = 0;
-        String newPlayer = "John";
+        String newPlayer = "John"; // to be given as a parameter
         
         try {
             // ouverture d'un connexion à la base

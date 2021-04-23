@@ -18,6 +18,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+// Modifier image background (GIF ???)
+// Rajouter différents éléments (Slider -> difficulté, Spinner -> choix background, JCombo -> Liste joueurs à sélectionner pseudo, RadioButton -> size of grid among 3 possibilities, TextArea -> enter player name if new player)
+// Finir créer widgets, les placer correctement, les custom graphiquement, ajouter listeners
+
 public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeListener {
     
     private grid data;	
@@ -64,7 +68,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     public static String sizeGrid = "20x10";
     
-    public tetrisDraft2 OnePlayer;
+    public tetrisGUI OnePlayer;
     
     private ArrayList<shape> list ;
     
@@ -465,7 +469,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
      
         if (e.getSource() == playButton){
             data.restart=true;
-            OnePlayer = new tetrisDraft2 (data);
+            OnePlayer = new tetrisGUI (data);
             this.setVisible(false);
             OnePlayer.setVisible(true);
             //OnePlayer.T.start();

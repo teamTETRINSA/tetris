@@ -53,6 +53,8 @@ public class grid{
 
     //public ArrayList<shape> ShapeBankBis ;
     
+    public Color ColorArea = new Color(10,10,10);
+    
     /** CONSTRUCTOR **/
     
     public grid(){
@@ -145,10 +147,10 @@ public class grid{
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
                             g.fillRect (137+i*(28+2), 123+j*(28+2), 28, 28);
-                        }/*else{
-							g.setColor(Color.cyan);
+                        }else{
+							g.setColor(ColorArea);
                             g.fillRect (137+i*(28+2), 123+j*(28+2), 28, 28);
-						}*/
+						}
                     }
                 }
             break;
@@ -160,10 +162,10 @@ public class grid{
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
                             g.fillRect (137+i*(23+2), 123+j*(23+2), 23, 23);
-                        }/*else{
-							g.setColor(Color.cyan);
+                        }else{
+							g.setColor(ColorArea);
                             g.fillRect (137+i*(23+2), 123+j*(23+2), 23, 23);
-						}*/
+						}
                     }
                 }
             break;
@@ -175,10 +177,10 @@ public class grid{
                         if (areaO[j][i] != null){
 							g.setColor((Color) areaO[j][i]);
                             g.fillRect (133+i*(20+2), 112+j*(20+2), 20, 20);
-                        }/*else{
-							g.setColor(Color.cyan);
+                        }else{
+							g.setColor(ColorArea);
                             g.fillRect (133+i*(20+2), 112+j*(20+2), 20, 20);
-						}*/
+						}
                     }
                 }
             break;
@@ -223,11 +225,85 @@ public class grid{
      * */
      
     public void dropTetrimino(int dy/*, grid data*/) {
-		//if (dropIsPossible(data)==true){
+		//if (mainGame.dropIsPossible(this)==true){
+        if (dropIsPossible()==true){
 			T1.Y += dy;
 			System.out.println("Y = "+T1.Y);
-		//}
+		}
 	}
+    
+    /**
+     * DROPSIPOSSIBLE
+     * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
+     * */
+    
+    public boolean dropIsPossible(){
+        boolean possible = true ;
+        if (T1.Y < areaO.length -4){
+            for (int i = 0; i< T1.tab.length ; i++){
+                for (int j=0 ; j< T1.tab[0].length ; j++){
+                    if ((T1.tab[i][j] != 0) && (areaO[T1.Y+i+1][T1.X+j] != null)){
+                        possible = false ;
+                        i = T1.tab.length;
+                        j = T1.tab[0].length;
+                    }
+                }
+            }
+        } else if ((T1.Y == areaO.length -4) && (ShapeCountEmptyLines(1)==true)){
+            for (int i = 0; i< T1.tab.length ; i++){
+                for (int j=0 ; j< T1.tab[0].length ; j++){
+                    if ((T1.tab[i][j] != 0) && (areaO[T1.Y+i+1][T1.X+j] != null)){
+                        possible = false ;
+                        i = T1.tab.length;
+                        j = T1.tab[0].length;
+                    }
+                }
+            }
+        } else if ((T1.Y == areaO.length -3) && (ShapeCountEmptyLines(2)==true)){
+            for (int i = 0; i< T1.tab.length ; i++){
+                for (int j=0 ; j< T1.tab[0].length ; j++){
+                    if ((T1.tab[i][j] != 0) && (areaO[T1.Y+i+1][T1.X+j] != null)){
+                        possible = false ;
+                        i = T1.tab.length;
+                        j = T1.tab[0].length;
+                    }
+                }
+            }
+        } else {
+            possible = false ;
+        }
+        return possible;
+    }
+    
+    /**
+     * SHAPECOUNTEMPTYLINES
+     * return true if the n last lines of the tab of a shape are empty
+     * works if n = 1 or 2
+     * */
+    
+    public boolean ShapeCountEmptyLines(int n){
+        boolean ok = true ;
+        switch (n){
+            case 1:
+                for (int j=0 ; j< T1.tab[0].length ; j++){
+                    if (T1.tab[T1.tab.length-1][j]!=0){
+                        ok=false;
+                    }
+                }
+            break;
+            
+            case 2:
+                for (int i = T1.tab.length-1; i>1 ; i--){
+                    for (int j=0 ; j< T1.tab[0].length ; j++){
+                        if (T1.tab[i][j]!=0){
+                            ok=false;
+                        }
+                    }
+                }
+            break;
+        }
+        return ok;
+    }
     
     /**
      * MOVETETRIMINO
@@ -261,5 +337,4 @@ public class grid{
         speedLevel = s ;
     }
 
-    // Audio SoundTrack //
 }

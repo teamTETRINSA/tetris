@@ -12,7 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class GameOverGUI extends JFrame implements ActionListener {
+public class GameOverGUI extends JFrame {
 
 	private int score;
 	
@@ -76,7 +76,6 @@ public class GameOverGUI extends JFrame implements ActionListener {
 		replay.setBorder(roundedBorder);
 		replay.setOpaque(true);
 		replay.setIcon(new ImageIcon("replay.png"));
-		replay.addActionListener(this);
 		panelBackground.add(replay);
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -144,18 +143,6 @@ public class GameOverGUI extends JFrame implements ActionListener {
 		Thread.sleep(ms);
 		}catch(InterruptedException e){}
 	}
-	
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
-	
-	public void actionPerformed (ActionEvent e) {
-        
-        if (e.getSource() == replay ){
-			
-			this.dispose();
-			
-		}
-		
-	}
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 		
@@ -206,5 +193,17 @@ public class GameOverGUI extends JFrame implements ActionListener {
 		}
         
     }
+    
+    public void actionPerformed (ActionEvent e){
+        
+        if (e.getSource() == replay){
+            //tetrisGUI.setVisible(false);
+            //tetrisGUI.dispose();
+            //mainGame.setTetrisGuiFalse();
+            this.dispose();
+        }
+    }
+    
+    
 	
 }
