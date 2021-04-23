@@ -18,10 +18,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-// Modifier image background (GIF ???)
-// Rajouter différents éléments (Slider -> difficulté, Spinner -> choix background, JCombo -> Liste joueurs à sélectionner pseudo, RadioButton -> size of grid among 3 possibilities, TextArea -> enter player name if new player)
-// Finir créer widgets, les placer correctement, les custom graphiquement, ajouter listeners
-
 public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeListener {
     
     private grid data;	
@@ -68,7 +64,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     public static String sizeGrid = "20x10";
     
-    public tetrisGUI OnePlayer;
+    public tetrisDraft2 OnePlayer;
     
     private ArrayList<shape> list ;
     
@@ -266,17 +262,18 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playerPseudo.addItem("New Player");
 		playerPseudo.addItem("Jean Castex");
 		playerPseudo.addItem("Kylie Jenner");
+		playerPseudo.addItem("I don't remember my name");
 		
 		/**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>**/
 		/**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ADD HERE THE PLAYERS FORM THE DATABASE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>**/
 		/**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>**/
 		
-		playerPseudo.setForeground(Color.RED);
+		playerPseudo.setForeground(Color.black);
 		playerPseudo.setBackground(Color.LIGHT_GRAY);
 		playerPseudo.setFont(new Font("Arial", Font.PLAIN, 14));
 		playerPseudo.setMaximumRowCount(5);
 		playerPseudo.setBounds(80,110,200,50);
-		playerPseudo.setEditable(true);
+		playerPseudo.setEditable(false);
 		playerPseudo.addActionListener(this);
 		
 		panelImage.add(playerPseudo, BorderLayout.CENTER);
@@ -293,7 +290,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		newName.setBackground(Color.LIGHT_GRAY);
 		newName.setFont(new Font("Arial", Font.PLAIN, 14));
 		newName.setBounds(320,110,200,50);
-		newName.setEditable(false);
+		newName.setEditable(true);
 		newName.addActionListener(this);
 		
 		panelImage.add(newName, BorderLayout.CENTER);
@@ -440,6 +437,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			if (playerPseudo.getSelectedItem() == "New Player") {
 				newName.setEditable(true);
 				this.pseudoPlayer = newName.getText();
+				playerPseudo.addItem(this.pseudoPlayer);
 			}
 			
 			else {
@@ -468,8 +466,18 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		//PLAY BUTTON
      
         if (e.getSource() == playButton){
+			
+			if (playerPseudo.getSelectedItem() == "New Player") {
+				this.pseudoPlayer = newName.getText();
+			}
+			
+			else {
+				newName.setEditable(false);
+				this.pseudoPlayer = (String) playerPseudo.getSelectedItem();
+			}
+			
             data.restart=true;
-            OnePlayer = new tetrisGUI (data);
+            OnePlayer = new tetrisDraft2 (data);
             this.setVisible(false);
             OnePlayer.setVisible(true);
             //OnePlayer.T.start();
