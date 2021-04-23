@@ -141,6 +141,8 @@ public class mainGame extends JOptionPane {
             tetrisDraft2.soundGameOver.start();
             timePause(2000);
             
+            tetrisDraft2.gameOverboolean = true;
+            
             /**
              * PRINT GameOverGUI window
              * */

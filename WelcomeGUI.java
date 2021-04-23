@@ -17,13 +17,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-/*
- *  Make round edges on Buttons
- * 	Emojis and pictures ...
- * 	Enlever Changing Backgrounds -> JSpinner + StateChange
- * 	For TetrisGUI changing Backgrounds -> JCombobox
- * 	Mode plein écran ???
- * */ 
 
 public class WelcomeGUI extends JFrame implements ActionListener {	
     

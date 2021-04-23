@@ -16,19 +16,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-/*
- *  Make Sound Functional (problem of superposition ...)
- * 	Make rounded corners + shadows : https://www.codeproject.com/Articles/114959/Rounded-Border-JPanel-JPanel-graphics-improvements
- *  Mouse follower : tetrimino image
- * 	Remplissage JPanels (images, texte ...) + Alignements textes JLabels (layout ...)
- * 	Other components ? (p10 slides Fenetres) + dans les autres classes graphiques ...
- * 	Add Emojis
- * 	JTextPane / JEditorPane with scrolls inside JPanels
- * 	https://stackoverflow.com/questions/40368875/how-to-display-unicode-characters-in-java-swing
- * 	http://icps.u-strasbg.fr/people/bastoul/public_html/teaching/java/docs/Swing.pdf
- *  https://miashs-www.u-ga.fr/prevert/Prog/Java/swing/JTextPane.html
- * 
- * */ 
 
 public class helpPopUp extends JFrame implements ActionListener {	
     
@@ -228,6 +215,22 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpLabel.setIcon(new ImageIcon("help.png"));
         controlKeys.add(helpLabel);
         
+        JLabel backLabel = new JLabel();
+        backLabel.setFont(new Font("Times Roman", Font.BOLD, 12));
+        backLabel.setText(" Return back ");
+        backLabel.setForeground(Color.WHITE);
+        backLabel.setBounds(20,310,140,30);
+        backLabel.setIcon(new ImageIcon("back.png"));
+        controlKeys.add(backLabel);
+        
+        JLabel pauseLabel = new JLabel();
+        pauseLabel.setFont(new Font("Times Roman", Font.BOLD, 12));
+        pauseLabel.setText(" Play / Pause ");
+        pauseLabel.setForeground(Color.WHITE);
+        pauseLabel.setBounds(20,350,150,30);
+        pauseLabel.setIcon(new ImageIcon("playbis.png"));
+        controlKeys.add(pauseLabel);
+        
         // [ Other commands on the same model -> just copy + change labelName, name image and add 40 to the vertical component ]
         
 		/*String Keys1 = "Left Arrow : " + "\n" + " - Move Left -" + "\n";
@@ -243,7 +246,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         // RULES //
 		
 		textPaneGeneralRules.setForeground(Color.WHITE);
-		textPaneGeneralRules.setText("The game of Tetris consists of dropping several shapes to form the biggest possible number of lines." + "\n");
+		textPaneGeneralRules.setText(" The game of Tetris consists of dropping several shapes to form the biggest possible number of lines." + "\n");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "You are able to move these shapes left and right and to rotate them." + "\n");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line." + "\n");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points." + "\n");

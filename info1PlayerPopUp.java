@@ -18,10 +18,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-// Modifier image background (GIF ???)
-// Rajouter différents éléments (Slider -> difficulté, Spinner -> choix background, JCombo -> Liste joueurs à sélectionner pseudo, RadioButton -> size of grid among 3 possibilities, TextArea -> enter player name if new player)
-// Finir créer widgets, les placer correctement, les custom graphiquement, ajouter listeners
-
 public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeListener {
     
     private grid data;	

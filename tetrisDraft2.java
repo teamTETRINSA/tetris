@@ -76,6 +76,10 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
     private tetrimino T;
 
     private BufferedImage imageBuf;
+    
+    public static boolean gameOverboolean = false;
+    
+    public String animatedgif = "animation3.gif";
 
     /** CONSTRUCTOR **/
 
@@ -414,6 +418,7 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 		
 		this.addKeyListener(this);
 		
+		
 	}
    
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
@@ -423,6 +428,8 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 	public void paint(Graphics g) {
 
         super.paint(g);
+        
+        // Title //
         
         Graphics2D G = (Graphics2D) g;
 		G.setFont(new Font("Times Roman", Font.BOLD, 40));     
@@ -549,6 +556,9 @@ public class tetrisDraft2 extends JFrame implements ActionListener, KeyListener 
 			data.pause=true;
 			tetrisSoundtrack.stop();
 			this.dispose();
+			
+			GameOverGUI gameover = new GameOverGUI (data.score, data);
+			gameover.setVisible(true);
 			
 		}
 		
