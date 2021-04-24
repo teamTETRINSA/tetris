@@ -452,6 +452,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 			
 		catch (InterruptedException ex) {}
 
+
         /********************************************************/
 		 
         //Gauge //
@@ -490,15 +491,14 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 			
 			try {
 				
-				Thread.sleep(data.interval);
+				Thread.sleep(data.interval/2);
 				repaint();
 					
 			} 
 			
 			catch (InterruptedException ex) {}
 		}
-        
-        
+		
     }
 
     public void dessineBuffer(Graphics g) {
@@ -544,6 +544,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 			
 			catch (InterruptedException ex) {}
 		}  
+		
     }
     
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	

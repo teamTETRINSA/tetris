@@ -90,7 +90,7 @@ public class mainGame extends JOptionPane {
 
                 //sound when a tetrimno end falling
 
-                tetrisDraft2.soundEndFall.start();
+                tetrisGUI.soundEndFall.start();
 
                 data.transformShape();
 
@@ -138,7 +138,7 @@ public class mainGame extends JOptionPane {
             System.out.println("##################################");
             System.out.println();
             
-            tetrisDraft2.soundGameOver.start();
+            tetrisGUI.soundGameOver.start();
             timePause(2000);
             
             /**
@@ -219,7 +219,7 @@ public class mainGame extends JOptionPane {
         int count=0;
         for (int l : linesfilled){
             count=+1;
-            tetrisDraft2.soundDeletedLine.start();
+            tetrisGUI.soundDeletedLine.start();
             for (int i =0 ; i< data.areaO[0].length ; i++){
                 data.areaO[l][i]=0;
             }
@@ -302,7 +302,7 @@ public class mainGame extends JOptionPane {
         if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
             if ((dx>0 && moveToRightIsPossible(data)==true)||(dx<0 && moveToLeftIsPossible(data))){
                 data.moveTetrimino(dx);
-                tetrisDraft2.soundKeyboardMove.start();
+                tetrisGUI.soundKeyboardMove.start();
             }
         }
 	}
@@ -316,7 +316,7 @@ public class mainGame extends JOptionPane {
 		if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
 			if (dropIsPossible(data)){
 				data.dropTetrimino(1);
-                tetrisDraft2.soundKeyboardDrop.start();
+                tetrisGUI.soundKeyboardDrop.start();
 			}
 		}
 	}

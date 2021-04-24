@@ -64,7 +64,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     public static String sizeGrid = "20x10";
     
-    public tetrisDraft2 OnePlayer;
+    public tetrisGUI OnePlayer;
     
     private ArrayList<shape> list ;
     
@@ -477,7 +477,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 			}
 			
             data.restart=true;
-            OnePlayer = new tetrisDraft2 (data);
+            OnePlayer = new tetrisGUI (data);
             this.setVisible(false);
             OnePlayer.setVisible(true);
             //OnePlayer.T.start();
