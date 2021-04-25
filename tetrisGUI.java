@@ -610,6 +610,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ROT");
             //mainGame.rotateTetrimino(data);
             data.T1.rotateTetrimino();
+            data.checkPotentialErrorAtBorder();
         }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println(">>>>>>>>>>>>>right︎");
             mainGame.moveTetrimino(data,1);

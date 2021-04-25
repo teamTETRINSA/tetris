@@ -25,16 +25,8 @@ public class shape {
             r = rand.nextInt(255);
             g = rand.nextInt(255);
             b = rand.nextInt(255);
-        }while ((r<30 && g<30) || (r<30 && b <30) || (g<30 && b<30));
+        }while ((r>210 && g>210) || (r>210 && b >210) || (g>210 && b>210)); // it allows to don't have too "clear colors" so that we can always see them clearly
         
-        /*
-        //creating an ArrayList of colors
-        ArrayList<Color> AvailableColors = new ArrayList<Color> (Color.green, Color.blue, Color.red);
-        
-        //Initialisation couleur
-        int nb = (int)(Math.random()*4);
-		CouleurTetrimino = AvailableColors.get(nb);
-        * */
         ColorTetrimino = new Color(r,g,b);
 		
 		//Initialisation tab
@@ -45,6 +37,7 @@ public class shape {
     /**
      * toString method
      * no parameter
+     * used to print on the terminal a shape
      **/
     
     
@@ -56,22 +49,13 @@ public class shape {
             }
             res+="\n";// line break
         }
-        /*
-        StringBuilder temp = new StringBuilder(""); //StringBuilder allows us to use a toString method able to print something on different lines, usefull to print matrices
-        for(int i = 0; i < tab.length; i++){
-            for(int j = 0; j < tab[1].length; j++){
-                temp.append("").append(tab[i][j]).append("|"); // concatenation
-            }
-            temp.append("\n");// line break
-        }
-        return temp.toString();
-        */
         return res;
     }
     
     /** 
      * STRING
      * for 4x4 int[][]
+     * used to see on the terminal how a shape is rotated (before the GUI was available)
      * */
      
     public String prt (int[][] t){ 
@@ -106,8 +90,8 @@ public class shape {
 				revTab[i][j]=tab[tab.length-1-i][j];
 			}
 		}
-		System.out.println("revTab");
-		System.out.println(prt(revTab));
+		//System.out.println("revTab");
+		//System.out.println(prt(revTab));
         
 		
 		//transpose of the matrix
@@ -117,25 +101,16 @@ public class shape {
 				transTab[p][q]=revTab[q][p];
 			}
 		}
-		System.out.println("transTab");
-		System.out.println(prt(transTab));
+		//System.out.println("transTab");
+		//System.out.println(prt(transTab));
+        
+        //grid.checkPotentialError();
         
         tab=transTab;
         
+        
     }
-    
-    
-    
-    /*******************
-     * TO COMPLETE WITH OTHER COLORS
-     * */
-    // USELESS
-    
-    /*
-    public int getIntegerForColor(){
-        return 1;
-    }
-    * */
+
     
     /*******************
      * DESSINE

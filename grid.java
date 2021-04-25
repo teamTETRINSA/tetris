@@ -11,11 +11,10 @@ import java.util.ArrayList;
 
 public class grid{
 	
-    public int[][] area = new int[20][10];
+    // not used no more
+    //public int[][] area = new int[20][10];
     
-    //public Color[][] areaC = new Color[20][10];
-    
-    public Object[][] areaO = new Object[20][10];
+    public Object[][] areaO = new Object[20][10]; //Object type allows to store int ad colors in the same array
     
     
     
@@ -49,11 +48,9 @@ public class grid{
     
     public boolean soundOn = true ;
     
-    public ArrayList<shape> ShapeBank ;
-
-    //public ArrayList<shape> ShapeBankBis ;
+    public ArrayList<shape> ShapeBank ; // bank of shapes to store tetriminos
     
-    public Color ColorArea = new Color(10,10,10);
+    public Color ColorArea = new Color(210,210,210); // the color for the area background on the GUI
     
     /** CONSTRUCTOR **/
     
@@ -65,21 +62,6 @@ public class grid{
         T2 = new tetrimino(nb);
         getInitialPosition();
     }
-    
-    /*
-    public String toString (){ 
-        StringBuilder temp = new StringBuilder("");
-        temp.append("Grid "+this.area.length+"x"+this.area[0].length+" :");
-        temp.append("\n");
-        for(int i = 0; i < area.length; i++){
-            for(int j = 0; j < area[1].length; j++){
-                temp.append("").append(area[i][j]).append("|");//je fais unne concatenation
-            }
-            temp.append("\n");// Retour a la ligne
-        }
-        return temp.toString();
-    }
-    * */
     
     /**
      * TRANSFORMSHAPE
@@ -112,21 +94,10 @@ public class grid{
         System.out.println("          > jump "); 
     }
     
-    /*
-    public boolean odd (int i){
-        boolean o = true;
-        if (i%2 !=0){
-            o = false;
-        }
-        return o;
-    }
-    * */
-    
     
     public void dessine(Graphics g){
         switch (areaO.length){
             case 20:
-                //g.setColor(Color.black);
                 for (int i=0; i < 10 ; i++){
                     for (int j=0; j< 20 ; j++){
                         if (areaO[j][i] != null){
@@ -141,7 +112,6 @@ public class grid{
             break;
             
             case 24:
-                //g.setColor(Color.black);
                 for (int i=0; i < 12 ; i++){
                     for (int j=0; j< 24 ; j++){
                         if (areaO[j][i] != null){
@@ -156,7 +126,6 @@ public class grid{
             break;
             
             case 28:
-                //g.setColor(Color.black);
                 for (int i=0; i < 14 ; i++){
                     for (int j=0; j< 28 ; j++){
                         if (areaO[j][i] != null){
@@ -172,29 +141,26 @@ public class grid{
         }
 	}
 	
+    /**
+     * to set the position of a tetrimino at the center of the area
+     * as a function of the size of the area
+     * */
     
     public void getInitialPosition(){
         int ct=T1.tab.length/2; // coordinate of the horizontal center of tetrimino t
         int cg=(areaO[0].length)/2; //coordinate of the horizontal center of grid G
         T1.X = cg-ct;
         T2.X = cg-ct;// the initial position X of tetrimino t
-        
-        //return T2.X;
-        
-		
-        // détermination de la position d'insertion de la forme au début de la grille de jeu
-        /*
-        System.out.println("milieu shape a = "+ct);
-        System.out.println("milieu gamearea A = "+cg);
-        System.out.println("position début ajout a dans A = "+ (cg-ct));
-        * */
     }
     
+    /**
+     * we empty the area before restarting a new game
+     * */
+    
     public void initialiseData(){
-        // first we empty the area
         for (int i=0; i < areaO.length ; i++){
             for (int j=0; j< areaO[0].length ; j++){
-                areaO[i][j]=null;
+                this.areaO[i][j]=null;
             }
         }
     }
@@ -209,8 +175,7 @@ public class grid{
      * falling tetrimino in the mainGame class and then use this method
      * */
      
-    public void dropTetrimino(int dy/*, grid data*/) {
-		//if (mainGame.dropIsPossible(this)==true){
+    public void dropTetrimino(int dy) {
         if (dropIsPossible()==true){
 			T1.Y += dy;
 			System.out.println("Y = "+T1.Y);
@@ -457,14 +422,14 @@ public class grid{
     
     public boolean LeftSideEmptyColumns(int n, int tet_1_or_2){
         boolean ok = true ;
-        if (tet_1_or_2 == 2){
+        if (tet_1_or_2 == 2){ // which tetrimino are we working on
             for (int j=0 ; j< T2.tab.length ; j++){
                 if (T2.tab[j][0]!=0){
                     ok=false;
                 }
             }
         }else{
-            switch (n){
+            switch (n){ // how many columns do we want to check
                 case 1:
                     for (int j=0 ; j< T1.tab.length ; j++){
                         if (T1.tab[j][0]!=0){
@@ -486,5 +451,28 @@ public class grid{
         }
         return ok;
     }
-
+    
+    /**
+     * CHECKPOTENTIALERRORATBORDER
+     * after the rotation of a tetrimino, we take care that 
+     * the roation method doesn't put colored boxes out of the area
+     * */
+    
+    public void checkPotentialErrorAtBorder(){
+        if ((T1.X == areaO[0].length -2) && (RightSideEmptyColumns(2,1)==false)){ // if the tetrimino has 2 columns outside the area on the right side, we check if they are still empty after the rotation
+            T1.X+=-1;
+            if ((T1.X == areaO[0].length -3) && (RightSideEmptyColumns(1,1)==false)){ //here we have to re-check the condition for 1 colum
+                T1.X+=-1;
+            }
+        }else if ((T1.X == areaO[0].length -3) && (RightSideEmptyColumns(1,1)==false)){ // if the tetrimino has 1 columns outside the area on the right side, same verification...
+            T1.X+=-1;
+        }else if((T1.X == -1) && (LeftSideEmptyColumns(1,1)==false)){ // if the tetrimino has 1 columns outside the area on the left side, same verification...
+            T1.X+=1;
+        }else if((T1.X == -2) && (LeftSideEmptyColumns(2,1)==false)){ // if the tetrimino has 2 columns outside the area on the left side, same verification...
+            T1.X+=1;
+            if((T1.X == -1) && (LeftSideEmptyColumns(1,1)==false)){ //here we have to re-check the condition for 1 colum
+                T1.X+=1;
+            }
+        }
+    }
 }
