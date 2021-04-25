@@ -2,7 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.Color;
 
-// Class implemented to create stylish Panels with rounded edges and shadows //
+// Class implemented to create stylish Panels with rounded edges and shadows (design purposes only) //
+// It's an extension of the JPanel class to design specific types of panels //
 
 public class RoundedJPanel extends JPanel {
 
