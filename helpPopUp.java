@@ -91,20 +91,20 @@ public class helpPopUp extends JFrame implements ActionListener {
 
         // controlKeys.setBackground(Color.RED); ---> for testing purposes only
         
-        //JPanel generalRules = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
-        JPanel generalRulesBis = new JPanel();
+        JPanel generalRules = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
         generalRules.setBounds(250,375,730,200);
         generalRules.setLayout(null);
-        generalRulesBis.setBorder(roundedBorder);
-		//generalRules.setOpaque(false);
+		generalRules.setOpaque(false);
 		//generalRules.setBackground(new Color(0,0,0,100));
 		//generalRules.setBorder(roundedBorder);
         // generalRules.setBackground(Color.RED); ---> for testing purposes only
         
-        JPanel generalRulesBis = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        //JPanel generalRulesBis = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        JPanel generalRulesBis = new JPanel();
         generalRulesBis.setBounds(250,55,300,300);
         generalRulesBis.setLayout(null);
-		generalRulesBis.setOpaque(false);
+		//generalRulesBis.setOpaque(false);
+        generalRulesBis.setBorder(roundedBorder);
         
         JPanel tetriminos = new JPanel();
         tetriminos.setBounds(570,55,402,302);
