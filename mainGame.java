@@ -23,15 +23,16 @@ public class mainGame extends JOptionPane {
         WelcomeGUI newWindow = new WelcomeGUI (data);
         
         while (data.restart==false){
-            // do nothing
+		// While the button play is not pressed, do nothing
             System.out.println("### FALSE ###");
             timePause(1000);
         }
 
         while (data.restart == true){
             
-            // Creation of the ShapeBank of tetriminos
-            // While the button play is not pressed, do nothing, then create a new shapeBank with the X copmponent of tetriminos centered
+		data.restart = false;
+
+            //then create a new shapeBank with the X copmponent of tetriminos centered
             
             data.ShapeBank = bank(data);
             
@@ -39,7 +40,6 @@ public class mainGame extends JOptionPane {
 
             data.initialiseData();   /* we empty the area before each new game
                                         * useful when we play more that one game after having lauch the java program
-                                        * data.restart = false;
                                         * */
 
             //USELESS NOW
