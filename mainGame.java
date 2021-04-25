@@ -139,7 +139,7 @@ public class mainGame extends JOptionPane {
             System.out.println();
             
             tetrisGUI.soundGameOver.start();
-            timePause(2000);
+            //timePause(2000);
             
             /**
              * PRINT GameOverGUI window

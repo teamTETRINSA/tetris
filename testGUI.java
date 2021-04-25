@@ -31,8 +31,8 @@ public class testGUI {
 			
 			//tetrisGUI myTetrisGUI = new tetrisGUI ();
 			
-			//helpPopUp helpWindow = new helpPopUp ();
-			//helpWindow.setVisible(true);
+			helpPopUp helpWindow = new helpPopUp (a);
+			helpWindow.setVisible(true);
 
 			//WelcomeGUI newWindow = new WelcomeGUI (a);
 			
@@ -41,8 +41,8 @@ public class testGUI {
 			//info2PlayerPopUp newWindowBisbis = new info2PlayerPopUp ();
 			//newWindowBisbis.setVisible(true);
 			
-			GameOverGUI WindowGameover = new GameOverGUI (3,a);
-			WindowGameover.setVisible(true);
+			//GameOverGUI WindowGameover = new GameOverGUI (3,a);
+			//WindowGameover.setVisible(true);
 	}
 }
 
