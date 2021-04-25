@@ -336,5 +336,170 @@ public class grid{
     public void selectSpeed (int s){
         speedLevel = s ;
     }
+    
+    /**
+     * MOVETORIGHTISPOSSIBLE
+     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
+     * */
+
+    public boolean moveToRightIsPossible(){
+        boolean possible = true ;
+        if (T1.X < areaO[0].length -4){
+            for (int i = 0; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i+1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else if ((T1.X == areaO[0].length -4) && (RightSideEmptyColumns(1,1)==true)){
+            for (int i = 0; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i+1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else if ((T1.X == areaO[0].length -3) && (RightSideEmptyColumns(2,1)==true)){
+            for (int i = 0; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i+1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else if(T1.X == -2){
+            for (int i = 1; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i+1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else{
+            possible = false;
+        }
+        return possible;
+    }
+    
+    /**
+     * MOVETOLEFTISPOSSIBLE
+     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
+     * */
+    
+    public boolean moveToLeftIsPossible(){
+        boolean possible = true ;
+        if (T1.X > 0){
+            for (int i = 0; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i-1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        
+        }else if ((T1.X == 0) && (LeftSideEmptyColumns(1,1)==true)){    /* and if the first column of the tetrimino's tab is empty,
+                                                                                 * we can analyse the x-1 column of the grid's area when a 
+                                                                                 * box of the tetrimino's tab is filled bu a number different than 0
+                                                                                 * */
+            for (int i = 0; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i-1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else if((T1.X == -1) && (LeftSideEmptyColumns(2,1)==true)){    /* and if the 2 first columns of the tetrimino's tab are empty,
+                                                                                 * we can analyse the x-1 column of the grid's area when a 
+                                                                                 * box of the tetrimino's tab is filled by a number different than 0
+                                                                                 * */
+            for (int i = 0; i< T1.tab[0].length ; i++){
+                for (int j=0 ; j< T1.tab.length ; j++){
+                    if ((T1.tab[j][i]!=0) && (areaO[T1.Y+j][T1.X+i+1] != null)){
+                        possible = false ;
+                    }
+                }
+            }
+        }else{
+            possible = false;
+        }
+        return possible;
+    }
+    
+    /**
+     * RIGHTSIDEEMPTYCOLUMNS
+     * return true if the n last lines of the tab of a shape are empty
+     * works if n = 1 or 2
+     * */
+    
+    public boolean RightSideEmptyColumns(int n, int tet_1_or_2){
+        boolean ok = true ;
+        if (tet_1_or_2 == 2){
+            for (int j=0 ; j< T2.tab.length ; j++){
+                if (T2.tab[j][T2.tab[0].length-1]!=0){
+                    ok=false;
+                }
+            }
+        }else{
+            switch (n){
+                case 1:
+                    for (int j=0 ; j< T1.tab.length ; j++){
+                        if (T1.tab[j][T1.tab[0].length-1]!=0){
+                            ok=false;
+                        }
+                    }
+                break;
+                
+                case 2:
+                    for (int i = T1.tab[0].length-2; i < T1.tab[0].length ; i++){
+                        for (int j=0 ; j< T1.tab.length ; j++){
+                            if (T1.tab[j][i]!=0){
+                                ok=false;
+                            }
+                        }
+                    }
+                break;
+            }
+        }
+        return ok;
+    }
+    
+    /**
+     * LEFTSIDEEMPTYCOLUMNS
+     * return true if the n last lines of the tab of a shape are empty
+     * works if n = 1 or 2
+     * */
+    
+    public boolean LeftSideEmptyColumns(int n, int tet_1_or_2){
+        boolean ok = true ;
+        if (tet_1_or_2 == 2){
+            for (int j=0 ; j< T2.tab.length ; j++){
+                if (T2.tab[j][0]!=0){
+                    ok=false;
+                }
+            }
+        }else{
+            switch (n){
+                case 1:
+                    for (int j=0 ; j< T1.tab.length ; j++){
+                        if (T1.tab[j][0]!=0){
+                            ok=false;
+                        }
+                    }
+                break;
+                
+                case 2:
+                    for (int i = 0; i < 2 ; i++){
+                        for (int j=0 ; j< T1.tab.length ; j++){
+                            if (T1.tab[j][i]!=0){
+                                ok=false;
+                            }
+                        }
+                    }
+                break;
+            }
+        }
+        return ok;
+    }
 
 }

@@ -81,7 +81,7 @@ public class mainGame extends JOptionPane {
 
                 // will be printed "the next coming tetrimino T2" when T1 will be printed on the grid
 
-                while (dropIsPossible(data)){
+                while (data.dropIsPossible()){
                     if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing                    
                         timePause(data.interval);
                         data.dropTetrimino(1);
@@ -171,13 +171,6 @@ public class mainGame extends JOptionPane {
      * TIMEPAUSE
      * used to make drop the tetriminos at regular intervals
      * */
-    /*
-    public static void timePause () {
-		try {
-		Thread.sleep(1000);
-		}catch(InterruptedException e){}
-	}
-    * */
 
     public static void timePause (int ms) {
 		try {
@@ -267,29 +260,7 @@ public class mainGame extends JOptionPane {
 
 
 
-    /**
-     * GET THE SCORE
-     * the score increases when one line is completed/deleted
-     * the more lines you complete at the same time, the higher the score
-     * */
-     
-    //useless?
 
-    /*
-    public static int getScore(grid g1){
-		int score=0;
-		int nbLines=0; // number of lines completed (so deleted) at the same time
-		for(int i=0 ; i<g1.areaO.length ; i++){
-			boolean filled1 = true;
-			for(int j=0 ; i<g1.areaO[0].length ; j++){
-				if(filled1 = true){ // if one line is completed
-					score = score + nbLines*100; // scoring system for level 1, we can adapt it
-				}
-			}
-		}
-		return score;
-	}
-    * */
 
 
     /**
@@ -300,8 +271,9 @@ public class mainGame extends JOptionPane {
 
     public static void moveTetrimino(grid data, int dx) {
         if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
-            if ((dx>0 && moveToRightIsPossible(data)==true)||(dx<0 && moveToLeftIsPossible(data))){
+            if ((dx>0 && data.moveToRightIsPossible()==true)||(dx<0 && data.moveToLeftIsPossible())){
                 data.moveTetrimino(dx);
+                // problem here to restart the sound when we push the button the second time
                 tetrisGUI.soundKeyboardMove.start();
             }
         }
@@ -314,8 +286,9 @@ public class mainGame extends JOptionPane {
 
     public static void dropTetrimino(grid data) {
 		if (data.pause == false){ //if the play/pause button is on "pause" mode, do nothing 
-			if (dropIsPossible(data)){
+			if (data.dropIsPossible()){
 				data.dropTetrimino(1);
+                // problem here to restart the sound when we push the button the second time
                 tetrisGUI.soundKeyboardDrop.start();
 			}
 		}
@@ -333,163 +306,16 @@ public class mainGame extends JOptionPane {
 		System.out.println("you have rotated");
     }*/
 
-    /**
-     * DROPSIPOSSIBLE
-     * Returns true if the boxes (of the grid) under all colored boxes of a tetrimino are empty
-     * */
-    
-    public static boolean dropIsPossible(grid data){
-        boolean possible = true ;
-        if (data.T1.Y < data.areaO.length -4){
-            for (int i = 0; i< data.T1.tab.length ; i++){
-                for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                    if ((data.T1.tab[i][j] != 0) && (data.areaO[data.T1.Y+i+1][data.T1.X+j] != null)){
-                        possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
-                    }
-                }
-            }
-        } else if ((data.T1.Y == data.areaO.length -4) && (ShapeCountEmptyLines(data,1)==true)){
-            for (int i = 0; i< data.T1.tab.length ; i++){
-                for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                    if ((data.T1.tab[i][j] != 0) && (data.areaO[data.T1.Y+i+1][data.T1.X+j] != null)){
-                        possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
-                    }
-                }
-            }
-        } else if ((data.T1.Y == data.areaO.length -3) && (ShapeCountEmptyLines(data,2)==true)){
-            for (int i = 0; i< data.T1.tab.length ; i++){
-                for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                    if ((data.T1.tab[i][j] != 0) && (data.areaO[data.T1.Y+i+1][data.T1.X+j] != null)){
-                        possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
-                    }
-                }
-            }
-        } else {
-            possible = false ;
-        }
-        return possible;
-    }
-
-    /**
-     * MOVETORIGHTISPOSSIBLE
-     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
-     * */
-
-    public static boolean moveToRightIsPossible(grid data){
-        boolean possible = true ;
-        if (data.T1.X < data.areaO[0].length -4){
-            for (int i = 0; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        }else if ((data.T1.X == data.areaO[0].length -4) && (RightSideEmptyColumns(data,1,1)==true)){
-            for (int i = 0; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        }else if ((data.T1.X == data.areaO[0].length -3) && (RightSideEmptyColumns(data,2,1)==true)){
-            for (int i = 0; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        }else if(data.T1.X == -2){
-            for (int i = 1; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        }else{
-            possible = false;
-        }
-        return possible;
-    }
-
-     /**
-     * MOVETOLEFTISPOSSIBLE
-     * Returns true if the boxes (of the grid) on the right side of all colored boxes of a tetrimino are empty
-     * */
-    
-    public static boolean moveToLeftIsPossible(grid data){
-        boolean possible = true ;
-        //OK
-        if (data.T1.X > 0){
-            for (int i = 0; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i-1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        
-        }else if ((data.T1.X == 0) && (LeftSideEmptyColumns(data,1,1)==true)){    /* and if the first column of the tetrimino's tab is empty,
-                                                                                 * we can analyse the x-1 column of the grid's area when a 
-                                                                                 * box of the tetrimino's tab is filled bu a number different than 0
-                                                                                 * */
-            for (int i = 0; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i-1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        }else if((data.T1.X == -1) && (LeftSideEmptyColumns(data,2,1)==true)){    /* and if the 2 first columns of the tetrimino's tab are empty,
-                                                                                 * we can analyse the x-1 column of the grid's area when a 
-                                                                                 * box of the tetrimino's tab is filled by a number different than 0
-                                                                                 * */
-            for (int i = 0; i< data.T1.tab[0].length ; i++){
-                for (int j=0 ; j< data.T1.tab.length ; j++){
-                    if ((data.T1.tab[j][i]!=0) && (data.areaO[data.T1.Y+j][data.T1.X+i+1] != null)){
-                        possible = false ;
-                    }
-                }
-            }
-        }else{
-            possible = false;
-        }
-        return possible;
-    }
-    
-    /*
-    public static boolean moveToLeftIsPossible(grid data){
-        boolean possible = true ;
-        for (int i = 0; i< data.T1.tab.length ; i++){
-            for (int j=0 ; j< data.T1.tab[0].length ; j++){
-                if (data.T1.tab[i][j-1]==0){
-                    if (data.area[data.T1.Y][data.T1.X+j-1] != 0){
-                        possible = false ;
-                        i = data.T1.tab.length;
-                        j = data.T1.tab[0].length;
-                    }
-                }
-            }
-        }
-        return possible;
-    }
-    * */
+   
     
     /**
      * SHAPECOUNTEMPTYLINES
      * return true if the n last lines of the tab of a shape are empty
      * works if n = 1 or 2
      * */
-    
+    //USELESS NOW
+    // but if we delete the methods the game is not painted no more on the GUI
+
     public static boolean ShapeCountEmptyLines(grid data, int n){
         boolean ok = true ;
         switch (n){
@@ -519,7 +345,8 @@ public class mainGame extends JOptionPane {
      * return true if the n last lines of the tab of a shape are empty
      * works if n = 1 or 2
      * */
-    
+    //USELESS NOW
+    // but if we delete the methods the game is not painted no more on the GUI
     public static boolean RightSideEmptyColumns(grid data, int n, int tet_1_or_2){
         boolean ok = true ;
         if (tet_1_or_2 == 2){
@@ -551,6 +378,7 @@ public class mainGame extends JOptionPane {
         }
         return ok;
     }
+    
     
     /**
      * LEFTSIDEEMPTYCOLUMNS
@@ -589,6 +417,7 @@ public class mainGame extends JOptionPane {
         }
         return ok;
     }
+    
     
     /**
      * BANK
