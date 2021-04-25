@@ -16,19 +16,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-/*
- *  Make Sound Functional (problem of superposition ...)
- * 	Make rounded corners + shadows : https://www.codeproject.com/Articles/114959/Rounded-Border-JPanel-JPanel-graphics-improvements
- *  Mouse follower : tetrimino image
- * 	Remplissage JPanels (images, texte ...) + Alignements textes JLabels (layout ...)
- * 	Other components ? (p10 slides Fenetres) + dans les autres classes graphiques ...
- * 	Add Emojis
- * 	JTextPane / JEditorPane with scrolls inside JPanels
- * 	https://stackoverflow.com/questions/40368875/how-to-display-unicode-characters-in-java-swing
- * 	http://icps.u-strasbg.fr/people/bastoul/public_html/teaching/java/docs/Swing.pdf
- *  https://miashs-www.u-ga.fr/prevert/Prog/Java/swing/JTextPane.html
- * 
- * */ 
 
 public class helpPopUp extends JFrame implements ActionListener {	
     
@@ -104,10 +91,12 @@ public class helpPopUp extends JFrame implements ActionListener {
 
         // controlKeys.setBackground(Color.RED); ---> for testing purposes only
         
-        JPanel generalRules = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        //JPanel generalRules = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
+        JPanel generalRulesBis = new JPanel();
         generalRules.setBounds(250,375,730,200);
         generalRules.setLayout(null);
-		generalRules.setOpaque(false);
+        generalRulesBis.setBorder(roundedBorder);
+		//generalRules.setOpaque(false);
 		//generalRules.setBackground(new Color(0,0,0,100));
 		//generalRules.setBorder(roundedBorder);
         // generalRules.setBackground(Color.RED); ---> for testing purposes only
@@ -130,6 +119,10 @@ public class helpPopUp extends JFrame implements ActionListener {
 		label.setBounds(2,2,398,298); 
 		//this.getContentPane().add(label);	
 		tetriminos.add(label);	
+		
+		JLabel tetrisvintage = new JLabel(new ImageIcon("tetrisvintage.jpg"));
+ 		tetrisvintage.setBounds(0,0,generalRulesBis.getWidth(),generalRulesBis.getHeight());
+ 		generalRulesBis.add(tetrisvintage);
 		
 		/*Icon imgIcon2 = new ImageIcon(this.getClass().getResource("loading4.gif"));
 		JLabel label2 = new JLabel(imgIcon2);
@@ -228,6 +221,23 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpLabel.setIcon(new ImageIcon("help.png"));
         controlKeys.add(helpLabel);
         
+        
+        JLabel backLabel = new JLabel();
+        backLabel.setFont(new Font("Times Roman", Font.BOLD, 12));
+        backLabel.setText(" Return back ");
+        backLabel.setForeground(Color.WHITE);
+        backLabel.setBounds(20,310,140,30);
+        backLabel.setIcon(new ImageIcon("back.png"));
+        controlKeys.add(backLabel);
+
+        JLabel pauseLabel = new JLabel();
+        pauseLabel.setFont(new Font("Times Roman", Font.BOLD, 12));
+        pauseLabel.setText(" Play / Pause ");
+        pauseLabel.setForeground(Color.WHITE);
+        pauseLabel.setBounds(20,350,150,30);
+        pauseLabel.setIcon(new ImageIcon("playbis.png"));
+        controlKeys.add(pauseLabel);
+        
         // [ Other commands on the same model -> just copy + change labelName, name image and add 40 to the vertical component ]
         
 		/*String Keys1 = "Left Arrow : " + "\n" + " - Move Left -" + "\n";
@@ -243,12 +253,14 @@ public class helpPopUp extends JFrame implements ActionListener {
         // RULES //
 		
 		textPaneGeneralRules.setForeground(Color.WHITE);
-		textPaneGeneralRules.setText("The game of Tetris consists of dropping several shapes to form the biggest possible number of lines." + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "You are able to move these shapes left and right and to rotate them." + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line." + "\n");
-		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points." + "\n");
+		textPaneGeneralRules.setText("   The game of Tetris consists of dropping several shapes to form the biggest possible number of lines inside a grid.");
+ 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "You are able to move these shapes left and right and to rotate them. ");
+ 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "The goal is to get all the blocks to fill all the empty space in a line to avoid stacking. ");
+ 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Whenever you do this, the blocks of this line will vanish and you will be awarded some points. ");
 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "Once the screen is full and you can't place any more shapes, the game is over." + "\n");
-		
+		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "   You're able to modify multiple set-up to spice up your game experience. For instance, several different backgrounds, grid sizes or difficulties will be available. "+ "\n");
+ 		textPaneGeneralRules.setText(textPaneGeneralRules.getText() + "   Hope you will enjoy it ! TEAM TETR'INSA." + "\n");
+
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         
