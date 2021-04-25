@@ -1,3 +1,11 @@
+/* This class is a simple GUI Frame called when the player has lost the game.
+	It is composed of an animated image background and a button "Play Again" redirecting to the Welcome Window.
+	
+	2 possibilities for the background :
+		- a standard animated image when the game is over
+		- if the player surpassed his best score, it displays a special background with an animated text
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,6 +22,8 @@ import javax.sound.sampled.Clip;
 
 public class GameOverGUI extends JFrame {
 
+	// Declaration of the attributes and widgets //
+	
 	private int score;
 	
 	private grid data;
@@ -22,34 +32,34 @@ public class GameOverGUI extends JFrame {
 	
 	private JPanel panelBackground;
 
-    private Clip gameOverSound1;
+   	private Clip gameOverSound1;
 	
 	private JButton replay;
 	
 	// Coordinates for String animation // 
 	
 	private int coordX = 0;
-    private int coordY = 60;
-    private int coordZ = 150;
-    private int coordT = 180;
+    	private int coordY = 60;
+    	private int coordZ = 150;
+    	private int coordT = 180;
     
-    private String string1 = "! New Record !";
-    private String string2 = "Best Score";
+   	 private String string1 = "! New Record !";
+   	 private String string2 = "Best Score";
 
-	public GameOverGUI (int scoregame, grid g) {
+	public GameOverGUI (int scoregame, grid g) { // 
 	
 		score = scoregame;
 		data = g;
 		
-		// Definition of the Frame //
+		// Definition of the Frame -> Size, location ... //
         
         this.setTitle("! Game Over !");
         this.setSize(500,280);
-		this.setLocationRelativeTo(null);
+	this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setUndecorated(true);
+        this.setUndecorated(true);	
         this.setLayout(null);
-        this.setShape(new RoundRectangle2D.Double(0, 0, 500, 280, 30, 30));
+        this.setShape(new RoundRectangle2D.Double(0, 0, 500, 280, 30, 30)); 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         
@@ -84,7 +94,7 @@ public class GameOverGUI extends JFrame {
 		
 		if (score < data.bestScore) {
 		
-        Icon imgIcon = new ImageIcon(this.getClass().getResource("gameover.gif"));
+        	Icon imgIcon = new ImageIcon(this.getClass().getResource("gameover.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(0,0,500,280); 
 		//this.getContentPane().add(label);	
