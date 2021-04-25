@@ -122,21 +122,6 @@ public class grid{
     }
     * */
     
-   
-    /**
-     * GETCELL
-     * Returns the content of one cell of the grid
-     * */
-     
-    //not used no more
-    
-    
-    public Object getCell(int x, int y) {
-        return areaO[x][y];
-        
-	}
-	
-    
     
     public void dessine(Graphics g){
         switch (areaO.length){
