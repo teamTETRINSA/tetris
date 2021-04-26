@@ -1,6 +1,6 @@
 /**
  * GRID CLASS
- * ...
+This class contains the grid of the tetris game and stores all the basic information of the game such as game parameters.
  * * */
 
 import java.awt.Color;
