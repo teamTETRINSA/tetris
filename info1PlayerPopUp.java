@@ -1,3 +1,6 @@
+/* This class is a GUI Frame called when the player clicks on 1 player from the welcome popup.
+	It is allows the player to click on a pseudo or choose a new one/ choose their background/ choose their grid/ choose their difficulty
+*/
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
