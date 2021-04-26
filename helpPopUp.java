@@ -1,3 +1,6 @@
+/* This class is a GUI Frame called when the player presses on the help button.
+	It details the general rules and the main keyboard commands to move the tetriminos on the grid 
+*/
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
