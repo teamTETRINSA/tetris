@@ -1,7 +1,3 @@
-/* This class is the first GUI frame that appears when the player executes the program.
-	Here, the player is able to choose between the 1 player mode or the 2 player mode (not functional yet)
-*/
-
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +51,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     //private String backGround = "imageTetrisWelcome.jpg";
     
-    private int backGroundNumber = 1;
+    private int backGroundNumber = 1;       // Default Value
     
     private JLabel Background;
     
@@ -63,7 +59,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     private JLabel Names;
     
-    private int choice = 0;
+    private int choice = 0;       // Default Value
     
     private ArrayList<shape> list;
     
@@ -77,7 +73,8 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     private ImageIcon imageIconTetrisWelcome3 = new ImageIcon("imageTetrisWelcome4.jpg");
     */
     
-    /** CONSTRUCTOR **/
+
+/** CONSTRUCTOR **/
     
     public WelcomeGUI (grid g /*ArrayList<shape> l*/){
 		
@@ -280,7 +277,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		
 		if (e.getSource()== Player1){
 			choice = 1;
-            OnePlayerInfo = new info1PlayerPopUp (data);
+            OnePlayerInfo = new info1PlayerPopUp(data);
             OnePlayerInfo.setVisible(true);
             //this.setVisible(false);
             //OnePlayer.setVisible(true);
@@ -300,7 +297,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
             
             /** it should be the code just below but we create a single player mode game for now **/
             
-            TwoPlayersInfo = new info2PlayerPopUp (data);
+            TwoPlayersInfo = new info2PlayerPopUp(/*data*/);
             TwoPlayersInfo.setVisible(true);
             //this.setVisible(false);
             //TwoPlayers.setVisible(true);

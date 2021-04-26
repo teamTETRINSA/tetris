@@ -1,10 +1,11 @@
-/* This class is a simple GUI Frame called when the player has lost the game.
-	It is composed of an animated image background and a button "Play Again" redirecting to the Welcome Window.
-	
-	2 possibilities for the background :
-		- a standard animated image when the game is over
-		- if the player surpassed his best score, it displays a special background with an animated text
-*/
+/** 
+ * This class is a simple GUI Frame called when the player has lost the game.
+ * It is composed of an animated image background and a button "Play Again" redirecting to the Welcome Window.
+ * 
+ * 2 possibilities for the background :
+ *      - a standard animated image when the game is over
+ *      - if the player surpassed his best score, it displays a special background with an animated text
+ * */
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +56,7 @@ public class GameOverGUI extends JFrame {
         
         this.setTitle("! Game Over !");
         this.setSize(500,280);
-	this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setUndecorated(true);	
         this.setLayout(null);
@@ -207,6 +208,9 @@ public class GameOverGUI extends JFrame {
     public void actionPerformed (ActionEvent e){
         
         if (e.getSource() == replay){
+            
+            //HERE WE DONT KNOW HOW TO CLOSE THE TetrisGUI (STATIC PROBLEM)
+            
             //tetrisGUI.setVisible(false);
             //tetrisGUI.dispose();
             //mainGame.setTetrisGuiFalse();

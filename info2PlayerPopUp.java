@@ -1,3 +1,11 @@
+/**
+ * info2PlayerPopUp
+ * 
+ * this window opens when we choose ethe 2 plyers mode
+ * We made the choice not to develop this game mode but to 
+ * work on improved functionnalities on the 1 Player Mode
+ * */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,9 +17,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+
 public class info2PlayerPopUp extends JFrame implements ActionListener {	
 
-// We made the choice not to develop this game mode but to work on improved functionnalities on the 1 Player Mode //
+
 
     private grid data;
 
@@ -28,10 +37,15 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 	private JButton helpButton;
     
     private JButton exitButton;
+    
 
-	public info2PlayerPopUp (grid g) {
+/** CONSTRUCTOR **/
 
-        data = g;
+	public info2PlayerPopUp (/*grid g*/) {
+
+        // not to take into account the object grid resolves a bug that doesn't show this pop-up
+        
+        /*data = g;*/
 
 		// Definition of the Frame // 
 
@@ -55,7 +69,7 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
         
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-		// Label Loading //
+		// Loading Label  //
 		
 		loadingLabel = new JLabel();
 		loadingLabel.setBackground(Color.white);
@@ -144,14 +158,22 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
     public void actionPerformed (ActionEvent e) {
         
         if (e.getSource() == soundButton) {
+			if (data.soundOn == true) {
+				WelcomeGUI.tetrisSoundtrack.stop();
+				data.soundOn = false;
 			
+			}else if (data.soundOn == false) {
+				WelcomeGUI.tetrisSoundtrack.start();
+				data.soundOn = true;
+				
+			}
 		}
         
         if (e.getSource() == helpButton){	
             helpPopUp HelpWindow = new helpPopUp (data);
 			HelpWindow.setVisible(true);
-			//helpSound.start();
-			//tetrisSoundtrack.stop();
+			helpPopUp.helpSoundtrack.start();
+            WelcomeGUI.tetrisSoundtrack.stop();
 			helpPopUp.helpSoundtrack.start();
 			helpPopUp.closedWindow = true;
         }

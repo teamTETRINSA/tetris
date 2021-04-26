@@ -1,6 +1,13 @@
-/* This class is a GUI Frame called when the player clicks on 1 player from the welcome popup.
-	It is allows the player to click on a pseudo or choose a new one/ choose their background/ choose their grid/ choose their difficulty
-*/
+/**
+ * info1PlayerPopUp
+ * 
+ * this window opens when we choose ethe 1 plyer mode
+ * it allows to set the different parameters of the game : profile, 
+ * level, size of the grid, bakcground...
+ * before strating the game
+ * */
+
+
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
@@ -65,13 +72,14 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
     
     public static String pseudoPlayer;
     
-    public static String sizeGrid = "20x10";
+    public static String sizeGrid = "20x10";            // Default Value
     
     public tetrisGUI OnePlayer;
     
     private ArrayList<shape> list ;
     
-    /** CONSTRUCTOR **/
+
+/** CONSTRUCTOR **/
 	
 	public info1PlayerPopUp (grid g) {
         

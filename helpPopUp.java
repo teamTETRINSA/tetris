@@ -1,6 +1,3 @@
-/* This class is a GUI Frame called when the player presses on the help button.
-	It details the general rules and the main keyboard commands to move the tetriminos on the grid 
-*/
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +16,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-
 public class helpPopUp extends JFrame implements ActionListener {	
     
     public static Clip helpSoundtrack;
@@ -34,12 +30,13 @@ public class helpPopUp extends JFrame implements ActionListener {
     
     private grid data ;
     
-    /** CONSTRUCTOR **/
+/** CONSTRUCTOR **/
     
     public helpPopUp (grid g) {
 		
 		data = g;
-			// Frame definition //
+			
+            // Frame definition //
 		
 		this.setTitle("Help Panel - How to Play : ");
         this.setSize(1000,600);
@@ -100,7 +97,7 @@ public class helpPopUp extends JFrame implements ActionListener {
 		generalRules.setOpaque(false);
 		//generalRules.setBackground(new Color(0,0,0,100));
 		//generalRules.setBorder(roundedBorder);
-        // generalRules.setBackground(Color.RED); ---> for testing purposes only
+        //generalRules.setBackground(Color.RED); ---> for testing purposes only
         
         //JPanel generalRulesBis = new RoundedJPanel(30,new Color(0,0,0,100),Color.WHITE, true, true);
         JPanel generalRulesBis = new JPanel();

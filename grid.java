@@ -1,6 +1,6 @@
 /**
  * GRID CLASS
-This class contains the grid of the tetris game and stores all the basic information of the game such as game parameters.
+ * ...
  * * */
 
 import java.awt.Color;
@@ -30,7 +30,9 @@ public class grid{
     
     public int score = 0;          // score of the player
     
-    public int bestScore = 20;      // to save the best score
+    public int bestScore = 100;         /* to save the best score
+                                        *        Default Value if the database is not available
+                                        * */
 
     public int formerBestScore = 0;
     
@@ -38,21 +40,26 @@ public class grid{
     
     public int lap = 0;            // count the total number of tetriminos placed in the area
     
-    public int interval = 1000;    //the time interval at which a tetrimino is dropped   
+    public int interval = 1000;    /*the time interval at which a tetrimino is dropped  
+                                    *        Default Value 
+                                    * */ 
     
-    public int speedLevel=800;         // take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
+    public int speedLevel=800;         /* take the following values : 800 (level 1) - 600 (level 2) - 400 (level 3)
+                                        *        Default Value 
+                                        * */
     
     public shape T1 ;           //the tetrimino falling on the grid
     
     public shape T2 ;           // the next tetrimino coming ; it is printed on the side of the game
     
-    public boolean soundOn = true ;
+    public boolean soundOn = true ;         // tells if the user want to cut or not the sound running the game
     
-    public ArrayList<shape> ShapeBank ; // bank of shapes to store tetriminos
+    public ArrayList<shape> ShapeBank ;         // used to paint a list of 7 tetriminos on the left side of the GUI
     
     public Color ColorArea = new Color(210,210,210); // the color for the area background on the GUI
     
-    /** CONSTRUCTOR **/
+    
+/** CONSTRUCTOR **/
     
     public grid(){
         int nb = (int)(Math.random()*7);

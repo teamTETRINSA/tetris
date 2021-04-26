@@ -1,7 +1,16 @@
-/* This class is a GUI Frame called once the player has chosen his/her parameters in info1Player.
-	This is where the game takes places. The game takes place on the left of the screen.
-	It also shows their score, their best score and the future tetrimino
-*/
+
+/**
+ * TETRIS GUI
+ * 
+ * this is the graohical interface where we can play Tetris
+ * it contains different panels with the area, the next coming tetrimino
+ * a gif, loggos, tetriminos, a gauge corresponding to the score with respect
+ * to the best score ever (fixed at 100 if the database is not available)
+ * buttons to manage the game
+ * a music from the Datt Punk plays in the back ground
+ * the keyboard is used to control the game
+ * */
+
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +25,11 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		 
@@ -39,7 +53,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 
     private JPanel gaugePanel;
 		
-	private JTextArea scoreAffPlayer;
+	public static JTextArea scoreAffPlayer;
 
 	private JTextArea bestScoreAff;
 		
@@ -62,6 +76,8 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 	// For the music
 	
 	public static boolean sound = true;
+    
+    AudioInputStream audioInputStream;
 
     protected static Clip tetrisSoundtrack;
 
@@ -77,6 +93,8 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
     
     protected static Clip soundGameOver;
     
+    // game parameters
+    
     private tetrimino T;
 
     private BufferedImage imageBuf;
@@ -85,9 +103,10 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
     
     public String animatedgif = "animation3.gif";
     
-    public static boolean closedWindow = true;
+    //public static boolean closedWindow = true;
 
-    /** CONSTRUCTOR **/
+
+/** CONSTRUCTOR **/
 
 	public tetrisGUI (grid g) {
 		
@@ -356,17 +375,16 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
         
        try {
          
-         //File tetrisSoundFile = new File("Tetris-Song.wav");		// Open an audio input stream.
          File tetrisSoundFile = new File("DaftPunk-AroundTheWorld.wav");		// Open an audio input stream.
          AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
          tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
+         tetrisSoundtrack.loop(Clip.LOOP_CONTINUOUSLY);         // so that the music never ends (as we could not upload too big files on Git (<25Mo))
 		
 		if (data.soundOn == true) {
 			tetrisSoundtrack.start();
 		}
-         
-         
+        
          File helpSoundFile = new File("pacman_death.wav");
          AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
          helpSound = AudioSystem.getClip();
@@ -407,6 +425,8 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		 * the timer start 1s after we push the "Play" button of the info1pLayerPopUp window
 		 * */
 			
+           //FINALLY USELESS 
+            
 			//mt = new Timer(700, this);
 			//mt.start();
 			
@@ -557,7 +577,6 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 
     public void actionPerformed (ActionEvent e){
 		// no need of any "if" for the timer t
-        //repaint();
         
         if (e.getSource()== exitButton){
 			data.pause=true;
@@ -605,31 +624,35 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
      * */
 	
 	public void keyPressed(KeyEvent e){
-		//System.out.println("coucou");
+        
         if (e.getKeyCode()==KeyEvent.VK_DOWN){
 			System.out.println(">>>>>>>>>>>>>bas");
-			//soundKeyboardDrop.start();
             mainGame.dropTetrimino(data);
-        }else if (e.getKeyCode()==KeyEvent.VK_UP){
+        }
+        else if (e.getKeyCode()==KeyEvent.VK_UP){
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ROT");
-            //mainGame.rotateTetrimino(data);
             data.T1.rotateTetrimino();
-            data.checkPotentialErrorAtBorder();
-        }else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+            data.checkPotentialErrorAtBorder();     // to verify if the tetrimino is not out of bounds after the rotation
+        }
+        else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
             System.out.println(">>>>>>>>>>>>>right︎");
             mainGame.moveTetrimino(data,1);
             soundKeyboardMove.start();
-        }else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+        }
+        else if (e.getKeyCode()==KeyEvent.VK_LEFT){
             System.out.println(">>>>>>>>>>>>>left︎︎");
             mainGame.moveTetrimino(data,-1);
-        }else if (e.getKeyCode()==KeyEvent.VK_SPACE){
+        }
+        else if (e.getKeyCode()==KeyEvent.VK_SPACE){
             System.out.println("space bar");
             data.pauseTheGame();
+            
             if (data.soundOn == true) {
 				tetrisSoundtrack.stop();
 				data.soundOn = false;
 			
-			}else if (data.soundOn == false) {
+			}
+            else if (data.soundOn == false) {
 				tetrisSoundtrack.start();
 				data.soundOn = true;
 				
@@ -650,5 +673,12 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
     
     public void setFocusable (){
 	}
+    
+    
+    public static void reset(Clip c) /*throws IOException, LineUnavailableException, UnsupportedAudioFileException*/ {
+        c.stop();
+        c.setMicrosecondPosition(0);
+    }
+    
     
 }

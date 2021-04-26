@@ -1,5 +1,9 @@
-/*  Create a 4 by 4 2D array which will be the basis of our tetriminos and initialise the coordinates of the tetrimino
-*/ 
+/**
+ * SHAPE
+ * a shape is a little table which will coloured to get a tetrimino
+ * mother class for tetrimino
+ * */
+
 import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -39,7 +43,7 @@ public class shape {
     /**
      * toString method
      * no parameter
-     * used to print on the terminal a shape
+     * used to print a shape on the terminal
      **/
     
     
@@ -106,11 +110,7 @@ public class shape {
 		//System.out.println("transTab");
 		//System.out.println(prt(transTab));
         
-        //grid.checkPotentialError();
-        
         tab=transTab;
-        
-        
     }
 
     
@@ -166,10 +166,7 @@ public class shape {
 					if (data.T2.tab[i][j]!=0){
 						g.setColor(data.T2.ColorTetrimino);
 						g.fillRect (600+k+j*(56+2), 483+i*(56+2), 56, 56);
-					}/*else{
-						g.setColor(Color.yellow);
-						g.fillRect (600+k+j*(56+2), 483+i*(56+2), 56, 56);
-					}*/
+					}
 				}
 			}
 		}else if (n==3){

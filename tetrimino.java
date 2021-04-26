@@ -1,5 +1,9 @@
 /**
- * it's a colored shape composed of different little squares
+ * TETRIMINO
+ * it's a colored shape composed of different litlle squares
+ * inheritor class of shape
+ * 
+ * a tetrimino is this little piece composed of squares that fall in a Tetris game
  * */
  
 import java.awt.Graphics;

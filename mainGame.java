@@ -1,6 +1,3 @@
-/* This is the main class of our game, center of the project that drives all the other functionalities
-	It creates and calls the objects for the game to run and states the general useful methods for the rest of the game 
-*/
 import java.util.LinkedList;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -94,6 +91,8 @@ public class mainGame extends JOptionPane {
                 //sound when a tetrimno end falling
 
                 tetrisGUI.soundEndFall.start();
+                tetrisGUI.reset(tetrisGUI.soundEndFall);
+                
 
                 data.transformShape();
 
@@ -105,6 +104,7 @@ public class mainGame extends JOptionPane {
                  * */
                 int bonus = deleteLines(data);
                 data.score +=  bonus;
+                tetrisGUI.scoreAffPlayer.setText(data.score);
 
                 // data.bestScore attribute is updated
                 // data.bestScore is updated
@@ -142,7 +142,7 @@ public class mainGame extends JOptionPane {
             System.out.println();
             
             tetrisGUI.soundGameOver.start();
-            //timePause(2000);
+            timePause(3000);
             
             /**
              * PRINT GameOverGUI window
@@ -216,6 +216,7 @@ public class mainGame extends JOptionPane {
         for (int l : linesfilled){
             count=+1;
             tetrisGUI.soundDeletedLine.start();
+            tetrisGUI.reset(tetrisGUI.soundDeletedLine);
             for (int i =0 ; i< data.areaO[0].length ; i++){
                 data.areaO[l][i]=0;
             }
@@ -278,6 +279,8 @@ public class mainGame extends JOptionPane {
                 data.moveTetrimino(dx);
                 // problem here to restart the sound when we push the button the second time
                 tetrisGUI.soundKeyboardMove.start();
+                timePause(1000);
+                tetrisGUI.reset(tetrisGUI.soundKeyboardMove);
             }
         }
 	}
@@ -293,21 +296,10 @@ public class mainGame extends JOptionPane {
 				data.dropTetrimino(1);
                 // problem here to restart the sound when we push the button the second time
                 tetrisGUI.soundKeyboardDrop.start();
+                tetrisGUI.reset(tetrisGUI.soundKeyboardDrop);
 			}
 		}
 	}
-
-    /**
-     * ROTATETRIMINO
-     * Rotation to the right
-     * */
-	
-	//USELESS NOW
-	/*
-    public static void rotateTetrimino (grid data) {
-		data.T1.rotateTetrimino();
-		System.out.println("you have rotated");
-    }*/
 
    
     

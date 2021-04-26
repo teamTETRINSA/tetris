@@ -18,4 +18,5 @@ CREATE TABLE Parties (
 );
 
 INSERT INTO Players VALUES
-(1,'Kylie');
+(1,'Kylie')
+(2, 'Lewis');
