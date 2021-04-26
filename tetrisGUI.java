@@ -1,3 +1,7 @@
+/* This class is a GUI Frame called once the player has chosen his/her parameters in info1Player.
+	This is where the game takes places. The game takes place on the left of the screen.
+	It also shows their score, their best score and the future tetrimino
+*/
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
