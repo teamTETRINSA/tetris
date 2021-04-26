@@ -104,7 +104,7 @@ public class mainGame extends JOptionPane {
                  * */
                 int bonus = deleteLines(data);
                 data.score +=  bonus;
-                tetrisGUI.scoreAffPlayer.setText(data.score);
+                tetrisGUI.scoreAffPlayer.setText(String.valueOf(data.score));
 
                 // data.bestScore attribute is updated
                 // data.bestScore is updated
