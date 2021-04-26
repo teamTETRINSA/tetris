@@ -1,3 +1,7 @@
+/* This class is the first GUI frame that appears when the player executes the program.
+	Here, the player is able to choose between the 1 player mode or the 2 player mode (not functional yet)
+*/
+
 import java.util.ArrayList; 
 import javax.swing.*;
 import java.awt.*;
