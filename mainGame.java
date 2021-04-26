@@ -1,3 +1,6 @@
+/* This is the mainclass of our game, center of the project that drives all the other functionalities
+	It creates and calls the objects for the game to run and states the general useful methods for the rest of the game 
+*/
 import java.util.LinkedList;
 import java.util.ArrayList;
 import javax.swing.*;
