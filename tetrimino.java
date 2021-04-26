@@ -1,5 +1,5 @@
 /**
- * it's a colored shape composed of different litlle squares
+ * it's a colored shape composed of different little squares
  * */
  
 import java.awt.Graphics;
