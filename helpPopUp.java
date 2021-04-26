@@ -63,7 +63,7 @@ public class helpPopUp extends JFrame implements ActionListener {
 			
 		Border roundedBorder = new LineBorder(Color.WHITE, 3, true);
 			
-		exitButton = new JButton(new ImageIcon("back.png"));
+		exitButton = new JButton(new ImageIcon("Images (.png and .jpg)/back.png"));
 		//exitButton.setText("EXIT");
 		exitButton.setBounds(930,10,40,40);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
@@ -72,7 +72,7 @@ public class helpPopUp extends JFrame implements ActionListener {
 		panelImage.add(exitButton);
 		exitButton.addActionListener(this);
 		
-		soundButton = new JButton (new ImageIcon("Soundicon.png"));
+		soundButton = new JButton (new ImageIcon("Images (.png and .jpg)/Soundicon.png"));
 		soundButton.setBounds(30,20,20,20);	
 		soundButton.setOpaque(false);
 		panelImage.add(soundButton);
@@ -114,13 +114,13 @@ public class helpPopUp extends JFrame implements ActionListener {
         tetriminos.setBorder(roundedBorder);
         // tetriminos.setBackground(Color.RED); ---> for testing purposes only
         
-        Icon imgIcon = new ImageIcon(this.getClass().getResource("tetriminos.gif"));
+        Icon imgIcon = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/tetriminos.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(2,2,398,298); 
 		//this.getContentPane().add(label);	
 		tetriminos.add(label);	
 		
-		JLabel tetrisvintage = new JLabel(new ImageIcon("tetrisvintage.jpg"));
+		JLabel tetrisvintage = new JLabel(new ImageIcon("Images (.png and .jpg)/tetrisvintage.jpg"));
  		tetrisvintage.setBounds(0,0,generalRulesBis.getWidth(),generalRulesBis.getHeight());
  		generalRulesBis.add(tetrisvintage);
 		
@@ -178,7 +178,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         upperArrow.setText(" 1/4 Rotation ");
         upperArrow.setForeground(Color.WHITE);
         upperArrow.setBounds(20,70,150,30);
-        upperArrow.setIcon(new ImageIcon("upperarrow.jpg"));
+        upperArrow.setIcon(new ImageIcon("Images (.png and .jpg)/upperarrow.jpg"));
         controlKeys.add(upperArrow);
         
         JLabel lowerArrow = new JLabel();
@@ -186,7 +186,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         lowerArrow.setText(" Drop the piece ");
         lowerArrow.setForeground(Color.WHITE);
         lowerArrow.setBounds(20,110,150,30);
-		lowerArrow.setIcon(new ImageIcon("lowerarrow.jpg"));
+		lowerArrow.setIcon(new ImageIcon("Images (.png and .jpg)/lowerarrow.jpg"));
         controlKeys.add(lowerArrow);
         
         JLabel rightArrow = new JLabel();
@@ -194,7 +194,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         rightArrow.setText(" Right translation ");
         rightArrow.setForeground(Color.WHITE);
         rightArrow.setBounds(20,150,150,30);
-        rightArrow.setIcon(new ImageIcon("rightarrow.jpg"));
+        rightArrow.setIcon(new ImageIcon("Images (.png and .jpg)/rightarrow.jpg"));
         controlKeys.add(rightArrow);
         
         JLabel leftArrow = new JLabel();
@@ -202,7 +202,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         leftArrow.setText(" Right translation ");
         leftArrow.setForeground(Color.WHITE);
         leftArrow.setBounds(20,190,150,30);
-        leftArrow.setIcon(new ImageIcon("leftarrow.jpg"));
+        leftArrow.setIcon(new ImageIcon("Images (.png and .jpg)/leftarrow.jpg"));
         controlKeys.add(leftArrow);
         
         JLabel soundLabel = new JLabel();
@@ -210,7 +210,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         soundLabel.setText(" SOUND ON / OFF ");
         soundLabel.setForeground(Color.WHITE);
         soundLabel.setBounds(20,230,150,30);
-        soundLabel.setIcon(new ImageIcon("Soundicon.png"));
+        soundLabel.setIcon(new ImageIcon("Images (.png and .jpg)/Soundicon.png"));
         controlKeys.add(soundLabel);
         
         JLabel helpLabel = new JLabel();
@@ -218,7 +218,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpLabel.setText(" Help Panel ");
         helpLabel.setForeground(Color.WHITE);
         helpLabel.setBounds(20,270,150,30);
-        helpLabel.setIcon(new ImageIcon("help.png"));
+        helpLabel.setIcon(new ImageIcon("Images (.png and .jpg)/help.png"));
         controlKeys.add(helpLabel);
         
         
@@ -227,7 +227,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         backLabel.setText(" Return back ");
         backLabel.setForeground(Color.WHITE);
         backLabel.setBounds(20,310,140,30);
-        backLabel.setIcon(new ImageIcon("back.png"));
+        backLabel.setIcon(new ImageIcon("Images (.png and .jpg)/back.png"));
         controlKeys.add(backLabel);
 
         JLabel pauseLabel = new JLabel();
@@ -235,7 +235,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         pauseLabel.setText(" Play / Pause ");
         pauseLabel.setForeground(Color.WHITE);
         pauseLabel.setBounds(20,350,150,30);
-        pauseLabel.setIcon(new ImageIcon("playbis.png"));
+        pauseLabel.setIcon(new ImageIcon("Images (.png and .jpg)/playbis.png"));
         controlKeys.add(pauseLabel);
         
         // [ Other commands on the same model -> just copy + change labelName, name image and add 40 to the vertical component ]
@@ -271,7 +271,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         helpText.setText(" - HOW TO PLAY - ");
         helpText.setForeground(Color.WHITE);
         helpText.setBounds((panelImage.getWidth()-310)/2,10,310,30);
-        helpText.setIcon(new ImageIcon("rules.png"));
+        helpText.setIcon(new ImageIcon("Images (.png and .jpg)/rules.png"));
         
         JLabel titleControlKeys = new JLabel();
         titleControlKeys.setFont(new Font("Times Roman", Font.BOLD, 18));
@@ -300,7 +300,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         
 			// Insertion of images inside the Panels //
         
-		JLabel BackgroundHelp = new JLabel(new ImageIcon("background-help.jpg"));
+		JLabel BackgroundHelp = new JLabel(new ImageIcon("Images (.png and .jpg)/background-help.jpg"));
 		BackgroundHelp.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(BackgroundHelp);
         
@@ -331,7 +331,7 @@ public class helpPopUp extends JFrame implements ActionListener {
         
        try {
          
-         File helpSoundFile = new File("help-menu-music.wav");		// Open an audio input stream.
+         File helpSoundFile = new File("Sounds (.wav)/help-menu-music.wav");		// Open an audio input stream.
          AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
          helpSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          helpSoundtrack.open(audiohelpSound);		// Open audio clip and load samples from the audio input stream.

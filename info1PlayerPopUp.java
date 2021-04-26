@@ -116,7 +116,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		nameFrame.setForeground(Color.white);
 		nameFrame.setFont(new Font("Times Roman", Font.BOLD, 18));
 		nameFrame.setText("- ONE PLAYER MODE -");
-		nameFrame.setIcon(new ImageIcon("oneplayer.png"));
+		nameFrame.setIcon(new ImageIcon("Images (.png and .jpg)/oneplayer.png"));
 		nameFrame.setHorizontalAlignment(JLabel.CENTER);
 		nameFrame.setBounds((panelImage.getWidth()-300)/2,20,300,30);
 		panelImage.add(nameFrame); 
@@ -131,7 +131,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		JLabel choosePseudo = new JLabel ();
 		choosePseudo.setFont(new Font("Ariel", Font.PLAIN, 16));
 		choosePseudo.setText("Choose your pseudo or enter a new one :");
-		choosePseudo.setIcon(new ImageIcon("info.png"));
+		choosePseudo.setIcon(new ImageIcon("Images (.png and .jpg)/info.png"));
         choosePseudo.setForeground(Color.white);
 		choosePseudo.setBounds(70,65,400,50);
 		panelImage.add(choosePseudo);
@@ -139,7 +139,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		JLabel chooseSize = new JLabel ();
 		chooseSize.setFont(new Font("Ariel", Font.PLAIN, 16));
 		chooseSize.setText("Choose the size of your grid :");
-		chooseSize.setIcon(new ImageIcon("size.png"));
+		chooseSize.setIcon(new ImageIcon("Images (.png and .jpg)/size.png"));
         chooseSize.setForeground(Color.white);
 		chooseSize.setBounds(70,155,400,50);
 		panelImage.add(chooseSize);
@@ -147,7 +147,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		JLabel chooseBackground = new JLabel ();
 		chooseBackground.setFont(new Font("Ariel", Font.PLAIN, 16));
 		chooseBackground.setText("Choose your favorite background :");
-		chooseBackground.setIcon(new ImageIcon("background.png"));
+		chooseBackground.setIcon(new ImageIcon("Images (.png and .jpg)/background.png"));
         chooseBackground.setForeground(Color.white);
 		chooseBackground.setBounds(70,285,400,50);
 		panelImage.add(chooseBackground);
@@ -155,12 +155,12 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		JLabel chooseDifficulty = new JLabel ();
 		chooseDifficulty.setFont(new Font("Ariel", Font.PLAIN, 16));
 		chooseDifficulty.setText("Choose your difficulty level :");
-		chooseDifficulty.setIcon(new ImageIcon("difficulty.png"));
+		chooseDifficulty.setIcon(new ImageIcon("Images (.png and .jpg)/difficulty.png"));
         chooseDifficulty.setForeground(Color.white);
 		chooseDifficulty.setBounds(70,380,400,50);
 		panelImage.add(chooseDifficulty);
         
-		soundButton = new JButton (new ImageIcon("sound.png"));
+		soundButton = new JButton (new ImageIcon("Images (.png and .jpg)/sound.png"));
 		soundButton.setBounds(20,20,20,20);	
 		soundButton.setOpaque(false);
 		//soundButton.setBackground(Color.red);
@@ -168,7 +168,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		panelImage.add(soundButton);
 		soundButton.addActionListener(this);
 		
-		helpButton = new JButton (new ImageIcon("help.png"));
+		helpButton = new JButton (new ImageIcon("Images (.png and .jpg)/help.png"));
 		helpButton.setBounds(60,20,20,20);	
 		//helpButton.setText("?");
 		helpButton.setFont(new java.awt.Font("Times Roman", Font.BOLD, 14));
@@ -185,11 +185,11 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		playButton.setBackground(new Color(255,255,255,100));
 		playButton.setBorder(roundedBorder);
 		playButton.setOpaque(false);
-		playButton.setIcon(new ImageIcon("play.png"));
+		playButton.setIcon(new ImageIcon("Images (.png and .jpg)/play.png"));
 		panelImage.add(playButton);
 		playButton.addActionListener(this);
         
-        exitButton = new JButton(new ImageIcon("back.png"));
+        exitButton = new JButton(new ImageIcon("Images (.png and .jpg)/back.png"));
 		//exitButton.setText("<- BACK");
 		exitButton.setBounds(540,10,40,40);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
@@ -223,13 +223,13 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 		// JSlider to change difficulty //	-> Reprendre Tool Tip Text !! 
 		
 		Hashtable<Integer, JLabel> difficultyLabels = new Hashtable<>();
-        JLabel labelLevel1 = new JLabel(new ImageIcon("easypeasy.png"));
+        JLabel labelLevel1 = new JLabel(new ImageIcon("Images (.png and .jpg)/easypeasy.png"));
         labelLevel1.setToolTipText("Easy Peasy");
         
-        JLabel labelLevel2 = new JLabel(new ImageIcon("spicy.png"));
+        JLabel labelLevel2 = new JLabel(new ImageIcon("Images (.png and .jpg)/spicy.png"));
         labelLevel2.setToolTipText("Spicy");
         
-        JLabel labelLevel3 = new JLabel(new ImageIcon("don'tevendare.png"));
+        JLabel labelLevel3 = new JLabel(new ImageIcon("Images (.png and .jpg)/don'tevendare.png"));
         labelLevel1.setToolTipText("Don't even dare !");
         
         labelLevel1.setForeground(Color.WHITE);
@@ -354,7 +354,7 @@ public class info1PlayerPopUp extends JFrame implements ActionListener, ChangeLi
 	 
 		// Insertion of the images // 
 		
-		Icon imgIcon = new ImageIcon(this.getClass().getResource("settings.gif"));
+		Icon imgIcon = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/settings.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(0,0,600,600); 
 		panelImage.add(label);	

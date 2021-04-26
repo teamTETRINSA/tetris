@@ -101,7 +101,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
     
     public static boolean gameOverboolean = false;
     
-    public String animatedgif = "animation3.gif";
+    public String animatedgif = "Animated Images (.gif)/animation3.gif";  //We can here change the gif to be displayed
     
     //public static boolean closedWindow = true;
 
@@ -142,20 +142,20 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
     
 		// Settings Buttons // 
    		
-		soundButton = new JButton (new ImageIcon("Soundicon.png"));
+		soundButton = new JButton (new ImageIcon("Images (.png and .jpg)/Soundicon.png"));
 		soundButton.setBounds(30,30,20,20);	
 		soundButton.setBackground(Color.red);
 		soundButton.setForeground(Color.black);
 		panelImage.add(soundButton);
 		soundButton.addActionListener(this);
 		
-        helpButton = new JButton (new ImageIcon("help.png"));
+        helpButton = new JButton (new ImageIcon("Images (.png and .jpg)/help.png"));
 		helpButton.setBounds(60,30,20,20);	
 		helpButton.setBackground(Color.WHITE);
 		panelImage.add(helpButton);
 		helpButton.addActionListener(this);
 		
-		exitButton = new JButton(new ImageIcon("back.png"));
+		exitButton = new JButton(new ImageIcon("Images (.png and .jpg)/back.png"));
 		exitButton.setBounds(1130,20,40,40);
 		exitButton.setBackground(Color.WHITE);
 		panelImage.add(exitButton);
@@ -202,31 +202,31 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
         gaugePanel.setLayout(null);
         gaugePanel.setOpaque(false);
 
-		JLabel jauge1 = new JLabel(new ImageIcon("flag.png"));
+		JLabel jauge1 = new JLabel(new ImageIcon("Images (.png and .jpg)/flag.png"));
 		jauge1.setBounds(510,700,40,40);
 		panelImage.add(jauge1);
 		
-		JLabel jauge2 = new JLabel(new ImageIcon("sparkles.png"));
+		JLabel jauge2 = new JLabel(new ImageIcon("Images (.png and .jpg)/sparkles.png"));
 		jauge2.setBounds(510,600,40,40);
 		panelImage.add(jauge2);
 		
-		JLabel jauge3 = new JLabel(new ImageIcon("rocket.png"));
+		JLabel jauge3 = new JLabel(new ImageIcon("Images (.png and .jpg)/rocket.png"));
 		jauge3.setBounds(510,500,40,40);
 		panelImage.add(jauge3);
 		
-		JLabel jauge4 = new JLabel(new ImageIcon("muscle.png"));
+		JLabel jauge4 = new JLabel(new ImageIcon("Images (.png and .jpg)/muscle.png"));
 		jauge4.setBounds(510,400,40,40);
 		panelImage.add(jauge4);
 		
-		JLabel jauge5 = new JLabel(new ImageIcon("wow.png"));
+		JLabel jauge5 = new JLabel(new ImageIcon("Images (.png and .jpg)/wow.png"));
 		jauge5.setBounds(510,300,40,40);
 		panelImage.add(jauge5);
 		
-		JLabel jauge6 = new JLabel(new ImageIcon("target.png"));
+		JLabel jauge6 = new JLabel(new ImageIcon("Images (.png and .jpg)/target.png"));
 		jauge6.setBounds(510,200,40,40);
 		panelImage.add(jauge6);
 		
-		JLabel jauge7 = new JLabel(new ImageIcon("fireworks.png"));
+		JLabel jauge7 = new JLabel(new ImageIcon("Images (.png and .jpg)/fireworks.png"));
 		jauge7.setBounds(510,100,40,40);
 		panelImage.add(jauge7);
 
@@ -234,7 +234,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
         
 			// Gif Area Display //	
 		
-		Icon imgIcon = new ImageIcon(this.getClass().getResource("animation1.gif"));
+		Icon imgIcon = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/animation1.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(10,10,270,270); 
 		//this.getContentPane().add(label);	
@@ -250,14 +250,14 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		infoTitle.setBounds((infoPanel.getWidth()-180)/2,15,180,30);
 		infoPanel.add(infoTitle);
 		
-		playPauseButton = new JButton (new ImageIcon("playPauseIcon.png"));
+		playPauseButton = new JButton (new ImageIcon("Images (.png and .jpg)/playPauseIcon.png"));
 		playPauseButton.setBounds(250,280,100,40);	
 		playPauseButton.setBackground(Color.WHITE);
 		playPauseButton.addActionListener(this);
 		infoPanel.add(playPauseButton);
 		
 
-		JLabel scoreTitle = new JLabel(new ImageIcon("score.png"));
+		JLabel scoreTitle = new JLabel(new ImageIcon("Images (.png and .jpg)/score.png"));
 		scoreTitle.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		scoreTitle.setText(" Your Score :");
         scoreTitle.setForeground(Color.white);
@@ -276,7 +276,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		scorePanel.setLayout(null);
 		infoPanel.add(scorePanel);
 		
-		JLabel bestScoreTitle = new JLabel(new ImageIcon("bestscore.png"));
+		JLabel bestScoreTitle = new JLabel(new ImageIcon("Images (.png and .jpg)/bestscore.png"));
 		bestScoreTitle.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		bestScoreTitle.setText(" Highest Score : ");
 		bestScoreTitle.setForeground(Color.white);
@@ -295,7 +295,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		bestscorePanel.setLayout(null);
 		infoPanel.add(bestscorePanel);
 		
-		JLabel pseudo = new JLabel(new ImageIcon("pseudo.png"));
+		JLabel pseudo = new JLabel(new ImageIcon("Images (.png and .jpg)/pseudo.png"));
 		pseudo.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		pseudo.setText(" Pseudo : "+info1PlayerPopUp.pseudoPlayer);
         pseudo.setForeground(Color.white);
@@ -310,14 +310,14 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 			difficultyString = "Don't even dare !";
 		}
 		
-		JLabel Difficulty = new JLabel(new ImageIcon("difficulty2.png"));
+		JLabel Difficulty = new JLabel(new ImageIcon("Images (.png and .jpg)/difficulty2.png"));
 		Difficulty.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		Difficulty.setText(" Current Difficulty : "+difficultyString);
         Difficulty.setForeground(Color.white);
 		Difficulty.setBounds(40,200,500,30);
 		infoPanel.add(Difficulty);
 		
-		JLabel gridSize = new JLabel(new ImageIcon("size2.png"));
+		JLabel gridSize = new JLabel(new ImageIcon("Images (.png and .jpg)/size2.png"));
 		gridSize.setFont(new Font("Times Roman", Font.PLAIN, 16));
 		gridSize.setText(" Grid Size : "+info1PlayerPopUp.sizeGrid);
         gridSize.setForeground(Color.white);
@@ -332,7 +332,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		//logotetrimino.setBounds(270,10,148,80);
 		//panelImage.add(logotetrimino);
 		
-		JLabel logoINSA = new JLabel(new ImageIcon("insa_logo2.png"));
+		JLabel logoINSA = new JLabel(new ImageIcon("Images (.png and .jpg)/insa_logo2.png"));
 		//logoINSA.setBounds(700,25,355,40);
 		//panelImage.add(logoINSA);
 
@@ -340,13 +340,13 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 		infoPanel.add(logoINSA);
 		
 		if (info1PlayerPopUp.backGroundname == "Sunset") {
-			this.backGround = "background1.jpg";
+			this.backGround = "Images (.png and .jpg)/background1.jpg";
 		} else if (info1PlayerPopUp.backGroundname == "Oasis") {
-			this.backGround = "background2.jpg";
+			this.backGround = "Images (.png and .jpg)/background2.jpg";
 		} else if (info1PlayerPopUp.backGroundname == "Dinosaurs") {
-			this.backGround = "background3.jpg";
+			this.backGround = "Images (.png and .jpg)/background3.jpg";
 		} else if (info1PlayerPopUp.backGroundname == "Night Lake") {
-			this.backGround = "background4.jpg";
+			this.backGround = "Images (.png and .jpg)/background4.jpg";
 		}
 		
 		JLabel BackgroundHelp = new JLabel(new ImageIcon(backGround));
@@ -375,7 +375,7 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
         
        try {
          
-         File tetrisSoundFile = new File("DaftPunk-AroundTheWorld.wav");		// Open an audio input stream.
+         File tetrisSoundFile = new File("Sounds (.wav)/DaftPunk-AroundTheWorld.wav");		// Open an audio input stream.
          AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
          tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
@@ -385,32 +385,32 @@ public class tetrisGUI extends JFrame implements ActionListener, KeyListener {
 			tetrisSoundtrack.start();
 		}
         
-         File helpSoundFile = new File("pacman_death.wav");
+         File helpSoundFile = new File("Sounds (.wav)/pacman_death.wav");
          AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
          helpSound = AudioSystem.getClip();
          helpSound.open(audiohelpSound);
 
-         File soundKeyboardDropFile = new File("soundKeyboardDrop.wav");
+         File soundKeyboardDropFile = new File("Sounds (.wav)/soundKeyboardDrop.wav");
          AudioInputStream audiosoundKeyboardDrop = AudioSystem.getAudioInputStream(soundKeyboardDropFile);
          soundKeyboardDrop = AudioSystem.getClip();
          soundKeyboardDrop.open(audiohelpSound);
 
-         File soundKeyboardMoveFile = new File("soundKeyboardMove.wav");
+         File soundKeyboardMoveFile = new File("Sounds (.wav)/soundKeyboardMove.wav");
          AudioInputStream audiosoundKeyboardMove = AudioSystem.getAudioInputStream(soundKeyboardMoveFile);
          soundKeyboardMove = AudioSystem.getClip();
          soundKeyboardMove.open(audiosoundKeyboardMove);
 
-         File soundDeletedLineFile = new File("soundDeletedLine.wav");
+         File soundDeletedLineFile = new File("Sounds (.wav)/soundDeletedLine.wav");
          AudioInputStream audiosoundDeletedLine = AudioSystem.getAudioInputStream(soundDeletedLineFile);
          soundDeletedLine = AudioSystem.getClip();
          soundDeletedLine.open(audiosoundDeletedLine);
 
-         File soundEndFallFile = new File("soundEndFall.wav");
+         File soundEndFallFile = new File("Sounds (.wav)/soundEndFall.wav");
          AudioInputStream audiosoundEndFall = AudioSystem.getAudioInputStream(soundEndFallFile);
          soundEndFall = AudioSystem.getClip();
          soundEndFall.open(audiosoundEndFall);
          
-         File gameOver2File = new File("soundGameOver.wav");		
+         File gameOver2File = new File("Sounds (.wav)/soundGameOver.wav");		
          AudioInputStream audiogameOver2 = AudioSystem.getAudioInputStream(gameOver2File);
          soundGameOver = AudioSystem.getClip();		
          soundGameOver.open(audiogameOver2);	

@@ -122,7 +122,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Player1.setBackground(new Color(255,255,255,100));
 		Player1.setBorder(roundedBorder);
 		Player1.setOpaque(false);
-		Player1.setIcon(new ImageIcon("emoji-video-game.png"));
+		Player1.setIcon(new ImageIcon("Images (.png and .jpg)/emoji-video-game.png"));
 		
 		/*JLabel icon1 = new JLabel(new ImageIcon("emoji-video-game.jpg"));
 		icon1.setBounds(10,0,40,40);
@@ -144,7 +144,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Player2.setBackground(new Color(255,255,255,100));
 		Player2.setBorder(roundedBorder);
 		Player2.setOpaque(false);
-		Player2.setIcon(new ImageIcon("videogame.png"));
+		Player2.setIcon(new ImageIcon("Images (.png and .jpg)/videogame.png"));
 		panelImage.add(Player2);
 		Player2.addActionListener(this);
         
@@ -153,7 +153,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          * to turn off/on the music
          * */
 		
-		soundButton = new JButton (new ImageIcon("Soundicon.png"));
+		soundButton = new JButton (new ImageIcon("Images (.png and .jpg)/Soundicon.png"));
 		soundButton.setBounds(20,20,20,20);	
 		soundButton.setBackground(Color.red);
 		soundButton.setForeground(Color.black);
@@ -165,7 +165,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
          * open the helpPopUp window
          * */
         
-        HelpButton = new JButton (new ImageIcon("help.png"));
+        HelpButton = new JButton (new ImageIcon("Images (.png and .jpg)/help.png"));
 		HelpButton.setBounds(50,20,20,20);	
 		//HelpButton.setText("?");
 		HelpButton.setFont(new java.awt.Font("Times Roman", Font.BOLD, 14));
@@ -196,7 +196,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		Names.setText("Project by Joseph B, Paul TD, Bich-Lien P, Flora G");
 		Names.setBounds(0,0,400,40);
 		Names.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		Names.setIcon(new ImageIcon ("laptop.png"));
+		Names.setIcon(new ImageIcon ("Images (.png and .jpg)/laptop.png"));
 		namePanel.add(Names); 
 			
 		
@@ -204,13 +204,13 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 	 
 		// Insertion of the images // 
 		
-		/*ImageIcon logoINSA = new ImageIcon("insa_logo.png");
+		/*ImageIcon logoINSA = new ImageIcon("Images (.png and .jpg)/insa_logo.png");
 		Image scaledlogoINSA = logoINSA.getScaledImage(60,20,Image.SCALE_SMOOTH);
 		JLabel LogoINSA = new JLabel(logoINSA);
 		LogoINSA.setBounds(20,320,60,20);
 		panelImage.add(LogoINSA);*/
 		
-		LogoINSA = new JLabel(new ImageIcon("insa_logo.png"));
+		LogoINSA = new JLabel(new ImageIcon("Images (.png and .jpg)/insa_logo.png"));
 		LogoINSA.setBounds(510,20,60,24);
 		panelImage.add(LogoINSA);
 		
@@ -219,7 +219,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 		panelImage.add(LogoGame);
 		*/
 		
-		Background = new JLabel(new ImageIcon("backgroundPropositionWelcome.png"));
+		Background = new JLabel(new ImageIcon("Images (.png and .jpg)/backgroundPropositionWelcome.png"));
 		Background.setBounds(0,0,panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(Background);
         
@@ -248,7 +248,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         
         try {
          
-         File tetrisSoundFile = new File("tetris-theme-officiel.wav");		// Open an audio input stream.
+         File tetrisSoundFile = new File("Sounds (.wav)/tetris-theme-officiel.wav");		// Open an audio input stream.
          AudioInputStream audiotetrisSound = AudioSystem.getAudioInputStream(tetrisSoundFile);
          tetrisSoundtrack = AudioSystem.getClip();		// Get a sound clip resource.
          tetrisSoundtrack.open(audiotetrisSound);		// Open audio clip and load samples from the audio input stream.
@@ -257,12 +257,12 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 			tetrisSoundtrack.start();
 		}
          
-         File playSoundFile = new File("here-we-go.wav");
+         File playSoundFile = new File("Sounds (.wav)/here-we-go.wav");
          AudioInputStream audioplaySound = AudioSystem.getAudioInputStream(playSoundFile);
          playSound = AudioSystem.getClip();
          playSound.open(audioplaySound);
          
-         File helpSoundFile = new File("pacman_death.wav");
+         File helpSoundFile = new File("Sounds (.wav)/pacman_death.wav");
          AudioInputStream audiohelpSound = AudioSystem.getAudioInputStream(helpSoundFile);
          helpSound = AudioSystem.getClip();
          helpSound.open(audiohelpSound);

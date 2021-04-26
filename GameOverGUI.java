@@ -21,7 +21,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class GameOverGUI extends JFrame {
+public class GameOverGUI extends JFrame implements ActionListener {
 
 	// Declaration of the attributes and widgets //
 	
@@ -86,7 +86,8 @@ public class GameOverGUI extends JFrame {
 		replay.setBackground(new Color(0,0,0,200));
 		replay.setBorder(roundedBorder);
 		replay.setOpaque(true);
-		replay.setIcon(new ImageIcon("replay.png"));
+		replay.setIcon(new ImageIcon("Images (.png and .jpg)/replay.png"));
+		replay.addActionListener(this);
 		panelBackground.add(replay);
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -95,7 +96,7 @@ public class GameOverGUI extends JFrame {
 		
 		if (score < data.bestScore) {
 		
-        	Icon imgIcon = new ImageIcon(this.getClass().getResource("gameover.gif"));
+        	Icon imgIcon = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/gameover.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(0,0,500,280); 
 		//this.getContentPane().add(label);	
@@ -103,7 +104,7 @@ public class GameOverGUI extends JFrame {
 		
 		} else if (score >= data.bestScore) {
 		
-		Icon imgIcon = new ImageIcon(this.getClass().getResource("gameoverbis.gif"));
+		Icon imgIcon = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/gameoverbis.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(0,0,500,280); 
 		//this.getContentPane().add(label);	
@@ -129,7 +130,7 @@ public class GameOverGUI extends JFrame {
      
         try {
          
-        File gameOver1File = new File("gameOver.wav");		
+        File gameOver1File = new File("Sounds (.wav)/gameOver.wav");		
         AudioInputStream audiogameOver1 = AudioSystem.getAudioInputStream(gameOver1File);
         gameOverSound1 = AudioSystem.getClip();		
         gameOverSound1.open(audiogameOver1);

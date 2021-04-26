@@ -76,7 +76,7 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 		loadingLabel.setForeground(Color.black);
 		loadingLabel.setFont(new Font("Times Roman", Font.BOLD, 18));
 		loadingLabel.setText("Loading . . .");
-		loadingLabel.setIcon(new ImageIcon("difficulty.png"));
+		loadingLabel.setIcon(new ImageIcon("Images (.png and .jpg)/difficulty.png"));
 		loadingLabel.setHorizontalAlignment(JLabel.CENTER);
 		loadingLabel.setBounds((panelImage.getWidth()-400)/2,20,400,30);
 		panelImage.add(loadingLabel); 
@@ -86,12 +86,12 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 		workLabel.setForeground(Color.black);
 		workLabel.setFont(new Font("Times Roman", Font.BOLD, 16));
 		workLabel.setText("Work in progress - Available Soon");
-		workLabel.setIcon(new ImageIcon("work.png"));
+		workLabel.setIcon(new ImageIcon("Images (.png and .jpg)/work.png"));
 		workLabel.setHorizontalAlignment(JLabel.CENTER);
 		workLabel.setBounds((panelImage.getWidth()-400)/2,550,400,30);
 		panelImage.add(workLabel); 
 		
-		soundButton = new JButton (new ImageIcon("sound.png"));
+		soundButton = new JButton (new ImageIcon("Images (.png and .jpg)/sound.png"));
 		soundButton.setBounds(20,20,20,20);	
 		soundButton.setOpaque(false);
 		//soundButton.setBackground(Color.red);
@@ -99,7 +99,7 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 		panelImage.add(soundButton);
 		soundButton.addActionListener(this);
 		
-		helpButton = new JButton (new ImageIcon("help.png"));
+		helpButton = new JButton (new ImageIcon("Images (.png and .jpg)/help.png"));
 		helpButton.setBounds(60,20,20,20);	
 		//helpButton.setText("?");
 		helpButton.setFont(new java.awt.Font("Times Roman", Font.BOLD, 14));
@@ -108,7 +108,7 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 		panelImage.add(helpButton);
 		helpButton.addActionListener(this);
         
-        exitButton = new JButton(new ImageIcon("back.png"));
+        exitButton = new JButton(new ImageIcon("Images (.png and .jpg)/back.png"));
 		//exitButton.setText("<- BACK");
 		exitButton.setBounds(540,10,40,40);
 		exitButton.setFont(new java.awt.Font("Arial", Font.BOLD, 14));
@@ -121,18 +121,18 @@ public class info2PlayerPopUp extends JFrame implements ActionListener {
 
 		// Animated Image //
 		
-		Icon imgIcon = new ImageIcon(this.getClass().getResource("loading1.gif"));
+		Icon imgIcon = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/loading1.gif"));
 		JLabel label = new JLabel(imgIcon);
 		label.setBounds(50,50,250,250); 
 		//this.getContentPane().add(label);	
 		panelImage.add(label);	
 		
-		Icon imgIcon2 = new ImageIcon(this.getClass().getResource("loading2.gif"));
+		Icon imgIcon2 = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/loading2.gif"));
 		JLabel label2 = new JLabel(imgIcon2);
 		label2.setBounds(300,0,250,250); 
 		panelImage.add(label2);	
 		
-		Icon imgIcon3 = new ImageIcon(this.getClass().getResource("loading3.gif"));
+		Icon imgIcon3 = new ImageIcon(this.getClass().getResource("Animated Images (.gif)/loading3.gif"));
 		JLabel label3 = new JLabel(imgIcon3);
 		label3.setBounds(0,120,600,600); 
 		panelImage.add(label3);	
