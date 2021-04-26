@@ -1,3 +1,5 @@
+/*  Create a 4 by 4 2D array which will be the basis of our tetriminos and initialise the coordinates of the tetrimino
+*/ 
 import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics;
